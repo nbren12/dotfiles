@@ -215,6 +215,8 @@ set clipboard=unnamed
     
     map <Leader>5 <F5>
 
+    " Fugitive"
+    nnoremap <silent> <Leader>g  :Gstatus<CR>
     " Folding 
     nnoremap <space> za
     vnoremap <space> zf
