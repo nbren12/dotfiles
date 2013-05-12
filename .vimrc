@@ -192,6 +192,9 @@ set clipboard=unnamed
     nnoremap <C-l> <C-w>l
     nnoremap <C-n> <C-w>n
     nnoremap <C-x> <C-w>x
+    nnoremap <Leader>c <C-w>c
+    nnoremap <Leader>o <C-w>o
+
 
     "Insert mode movement
     imap <C-a> <C-O>0
