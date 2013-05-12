@@ -99,6 +99,9 @@ set clipboard=unnamed
         vmap <Leader>#$ <Plug>IMAP_DeleteAndJumpForward
     endif
     
+    " For matching in fortran"
+    Bundle 'matchit.zip'
+
 " }}}
 
 " User Interface {{{
