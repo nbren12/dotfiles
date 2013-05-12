@@ -15,9 +15,6 @@ filetype off                   " required!
 " Sync the clipboard with the registers
 set clipboard=unnamed
 
-" Proving Grounds for various plugins
-" Bundle 'VOoM'
-
 " Plugins {{{
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
@@ -77,7 +74,9 @@ set clipboard=unnamed
         map <C-e> :NERDTreeToggle<CR>
         let NERDTreeShowBookmarks=1
     " }
-    " Bundle "Townk/vim-autoclose"
+
+    " Hopefully this won't mess up neocomplcache like Townk
+    Bundle "vim-scripts/AutoClose"
     
     " Colorscheme
     Bundle 'Wombat'
@@ -87,9 +86,6 @@ set clipboard=unnamed
     "SuperTab
     Bundle 'SuperTab'
 
-    " Bundle 'VimOrganizer'
-    " TODO : This messes up the <C-j> mapping
-    "
     Bundle 'laktek/distraction-free-writing-vim'
     Bundle 'jcf/vim-latex'
     let g:Tex_ViewRule_pdf = 'Skim'
@@ -120,9 +116,11 @@ set clipboard=unnamed
         colorscheme distinguished 
     endif
 
-
+    "Folding "
+    let fortran_fold=1
     set foldmethod=marker
     set wrap " word wrap
+    autocmd FileType c,cpp,fortran setlocal foldmethod=syntax
 
     " Accept Mouse Input
     set mouse=a
@@ -135,6 +133,7 @@ set clipboard=unnamed
     set incsearch                   " Find as you type search
     
 " }}}
+
 " Formatting {{{
 
     " Strip whitespace {
@@ -206,7 +205,11 @@ set clipboard=unnamed
     vnoremap yg "+y
     
     map <Leader>5 <F5>
-        
+
+    " Folding 
+    nnoremap <space> za
+    vnoremap <space> zf
+    set foldnestmax=2
 "}}}
 
 " Programming {{{
