@@ -127,6 +127,7 @@ set clipboard=unnamed
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,cpp,fortran setlocal foldmethod=syntax
+    autocmd FileType python setlocal foldmethod=indent
 
     " Accept Mouse Input
     set mouse=a
