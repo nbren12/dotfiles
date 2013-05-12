@@ -47,9 +47,12 @@ set clipboard=unnamed
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
         nnoremap <silent> <Leader>r :CtrlPMRU<CR>
+        nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
         let g:ctrlp_custom_ignore = {
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.exe$\|\.so$\|\.dll$' }
+            \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
+
+        let g:ctrlp_max_depth = 5
 
         " let g:ctrlp_user_command = {
         "     \ 'types': {
@@ -234,8 +237,8 @@ set clipboard=unnamed
 
 set listchars=""
 
-" set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-" set wildignore+=*.Trash/*,*/Library/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+set wildignore+=*.Trash/*,*/Library/*
 
 set autochdir
 let g:notes_directory = '~/Dropbox/notes'
