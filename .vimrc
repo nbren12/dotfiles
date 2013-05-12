@@ -31,7 +31,7 @@ set clipboard=unnamed
     " Bundle 'vimwiki'
     " let g:vimwiki_list = [{'path': '~/Dropbox/notes',
     "                    \ 'syntax': 'markdown', 'ext': '.md'}]
-    Bundle 'fugitive.vim'
+    Bundle 'https://github.com/tpope/vim-fugitive.git' 
 
     Bundle 'taglist.vim'
 
