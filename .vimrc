@@ -66,14 +66,21 @@ set clipboard=unnamed
     "Code completion
 
     " if has('mac')
-    "     Bundle "Valloric/YouCompleteMe"
+    Bundle "Valloric/YouCompleteMe"
+    let g:ycm_autoclose_preview_window_after_insertion=1
     " else
-        Bundle 'neocomplcache'
-        let g:neocomplcache_enable_at_startup = 1 
+        " Bundle 'neocomplcache'
+        " let g:neocomplcache_enable_at_startup = 1 
     " endif 
 
 
     Bundle 'UltiSnips'
+    let g:ycm_key_list_previous_completion=['<Up>']
+
+    "" Ultisnips
+    let g:UltiSnipsExpandTrigger="<s-tab>"
+    let g:UltiSnipsListSnippets="<c-tab>"
+
     Bundle 'tComment'
 
     
@@ -234,7 +241,7 @@ set clipboard=unnamed
     set foldnestmax=2
 "}}}
 
-" Programming {{{
+"  Programming {{{
     " CTags Browsing
     set tags=./tags,./../tags,./*/tags
     " nmap <S-F> :set syntax=fortran<CR>:let b:fortran_fixed_source=!b:fortran_fixed_source<CR>:set syntax=text<CR>:set syntax=fortran<CR>
@@ -252,6 +259,41 @@ set clipboard=unnamed
 		    \		setlocal omnifunc=syntaxcomplete#Complete |
 		    \	endif
     endif
+"}}}
+
+" MVIM to iTerm "{{{
+function! SendToTerminal(args)
+  execute ":silent !mvim_to_iterm '" . a:args . "'"
+  
+endfunction
+
+function! ClearTerminal()
+  call SendToTerminal("clear")
+endfunction
+
+function! SyncDirs()
+    call SendToTerminal("cd %:p:h")
+endfunction
+
+
+let g:sync_mvim_to_iterm_dir = 0
+function! ToggleSyncDirs()
+    if g:sync_mvim_to_iterm_dir
+        let g:sync_mvim_to_iterm_dir = 0
+        echom "Directories not Synced!"
+        autocmd! sync_dir_files
+    else
+        augroup sync_dir_files
+            autocmd!
+            autocmd BufEnter *.txt,*.py,*.c,*.cpp,*.f90 :call SyncDirs()
+        augroup END
+        echom "Directories Synced!"
+        let g:sync_mvim_to_iterm_dir = 1
+    endif
+endfunction
+
+nnoremap <Leader>sd :call ToggleSyncDirs()<CR>
+nnoremap <Leader>s  :call SyncDirs()<CR>
 "}}}
 
 set listchars=""
