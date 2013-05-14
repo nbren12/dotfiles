@@ -64,10 +64,16 @@ set clipboard=unnamed
     "}
 
     "Code completion
-    Bundle 'neocomplcache'
-    let g:neocomplcache_enable_at_startup = 1 
 
-    Bundle 'snipMate'
+    " if has('mac')
+    "     Bundle "Valloric/YouCompleteMe"
+    " else
+        Bundle 'neocomplcache'
+        let g:neocomplcache_enable_at_startup = 1 
+    " endif 
+
+
+    Bundle 'UltiSnips'
     Bundle 'tComment'
 
     
@@ -78,8 +84,11 @@ set clipboard=unnamed
         let NERDTreeShowBookmarks=1
     " }
 
-    " Hopefully this won't mess up neocomplcache like Townk
-    Bundle "vim-scripts/AutoClose"
+    " Autoclosing 
+    " Tried many plugins, Townk is bad, AutoClose is bad
+    " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
+    
+    Bundle "jiangmiao/auto-pairs"
     
     " Colorscheme
     Bundle 'Wombat'
@@ -124,6 +133,7 @@ set clipboard=unnamed
 
     "Folding "
     let fortran_fold=1
+    let fortran_fold_conditionals=1
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,cpp,fortran setlocal foldmethod=syntax
@@ -236,6 +246,12 @@ set clipboard=unnamed
     " Fix Indenting Behavior with #
     inoremap # X#   
 
+    if has("autocmd") && exists("+omnifunc")
+	autocmd Filetype *
+		    \	if &omnifunc == "" |
+		    \		setlocal omnifunc=syntaxcomplete#Complete |
+		    \	endif
+    endif
 "}}}
 
 set listchars=""
