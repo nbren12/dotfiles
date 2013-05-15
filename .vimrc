@@ -144,8 +144,14 @@ set clipboard=unnamed
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,cpp,fortran setlocal foldmethod=syntax
-    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python setlocal f" Don't screw up folds when inserting text that might affect them, until
 
+    " This is why autocomplete is abysmally slow sometimes
+    " Don't screw up folds when inserting text that might affect them, until
+    " leaving insert mode. Foldmethod is local to the window. Protect against
+    " screwing up folding when switching between windows.
+    autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
+    autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
     " Accept Mouse Input
     set mouse=a
 
