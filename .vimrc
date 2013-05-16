@@ -26,6 +26,9 @@ set clipboard=unnamed
     Bundle 'https://github.com/xiexinyls/vim.git'
     au BufRead,BufNewFile *.ncl set filetype=ncl
 
+
+    Bundle 'mileszs/ack.vim'
+
     Bundle 'notes.vim'
     
     " Bundle 'vimwiki'
