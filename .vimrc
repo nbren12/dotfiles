@@ -56,7 +56,7 @@ set clipboard=unnamed
             \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
 
         let g:ctrlp_max_depth = 5
-
+        let g:ctrlp_working_path_mode=2
         " let g:ctrlp_user_command = {
         "     \ 'types': {
         "         \ 1: ['.git', 'cd %s && git ls-files'],
