@@ -29,7 +29,8 @@ set clipboard=unnamed
 
     Bundle 'mileszs/ack.vim'
 
-    Bundle 'notes.vim'
+    " Bundle 'notes.vim'
+    " let g:notes_directory = '~/Dropbox/notes'
     
     " Bundle 'vimwiki'
     " let g:vimwiki_list = [{'path': '~/Dropbox/notes',
@@ -313,7 +314,6 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*.Trash/*,*/Library/*
 
 set autochdir
-let g:notes_directory = '~/Dropbox/notes'
 
 filetype plugin indent on
 syntax on
