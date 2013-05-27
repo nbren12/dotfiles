@@ -57,6 +57,7 @@ set clipboard=unnamed
 
         let g:ctrlp_max_depth = 5
         let g:ctrlp_working_path_mode=2
+        let g:ctrlp_lazy_update = 1
         " let g:ctrlp_user_command = {
         "     \ 'types': {
         "         \ 1: ['.git', 'cd %s && git ls-files'],
@@ -134,7 +135,7 @@ set clipboard=unnamed
     if has("gui_running")
         colorscheme wombat
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
-        set guifont=DejaVu\ Sans\ Mono\ Book\ 10,Consolas:h13
+        set guifont=Monospace\ 10,Consolas:h13
         " turn off the toolbar
         set guioptions-=T
     elseif &t_Co == 256
@@ -200,6 +201,7 @@ set clipboard=unnamed
     autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 
+
 " }}}
  
 " Shorcuts {{{
@@ -252,7 +254,7 @@ set clipboard=unnamed
 
 "  Programming {{{
     " CTags Browsing
-    set tags=./tags,./../tags,./*/tags
+    set tags=./tags;/
     " nmap <S-F> :set syntax=fortran<CR>:let b:fortran_fixed_source=!b:fortran_fixed_source<CR>:set syntax=text<CR>:set syntax=fortran<CR>
     let fortran_do_enddo=1
     let fortran_more_precise=1

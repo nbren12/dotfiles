@@ -9,6 +9,7 @@ alias mnt_helix='sshfs -o transform_symlinks,follow_symlinks helix: /Users/noah/
 alias aria='aria2c -d $HOME/Desktop -j 4 -x 4 --load-cookies=$HOME/.cookies -Z'
 alias fserve='aria2c -d $HOME/Downloads/Warez -j 4 -x 4 --load-cookies=$HOME/.cookies -Z'
 alias ipy='ipython qtconsole --pylab=inline'
+alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
 
 alias screen='screen -R'
 alias p='pushd'
@@ -59,7 +60,7 @@ export PATH=/Applications/Wine.app/Contents/Resources/bin/:$PATH
 export PATH=$HOME/local/bin:$PATH
 
 
-export MATLABPATH=$HOME/proj/nlsa:$MATLABPATH
+# export MATLABPATH=$HOME/proj/nlsa:$MATLABPATH
 
 ################Environment Variables########
 
