@@ -20,6 +20,7 @@ dotsyncrc
 vimrc
 profile
 vim
+gitconfig
 #ack/ackrc
 #aptitude
 #bin:bin
