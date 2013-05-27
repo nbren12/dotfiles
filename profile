@@ -122,6 +122,11 @@ pman()
 alias aml='cd ~/Documents/AML/Spring2011'
 alias clc='clear'
 
+if [[ -e $HOME/.git-completion.bash ]]
+then
+    source $HOME/.git-completion.bash
+fi
+
 if [[ -e .profile.local ]]
 then
     source .profile.local
