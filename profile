@@ -59,6 +59,9 @@ export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/Library/ENV/pkgconfig/1
 export PATH=/Applications/Wine.app/Contents/Resources/bin/:$PATH
 export PATH=$HOME/local/bin:$PATH
 
+export DOTFILES=$HOME/.dotfiles
+export PATH=$DOTFILES/dotsync/bin:$PATH
+
 
 # export MATLABPATH=$HOME/proj/nlsa:$MATLABPATH
 
