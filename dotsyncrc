@@ -21,6 +21,7 @@ vimrc
 profile
 vim
 gitconfig
+profile:.screen
 #ack/ackrc
 #aptitude
 #bin:bin
