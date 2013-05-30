@@ -9,7 +9,6 @@ alias mnt_helix='sshfs -o transform_symlinks,follow_symlinks helix: /Users/noah/
 alias aria='aria2c -d $HOME/Desktop -j 4 -x 4 --load-cookies=$HOME/.cookies -Z'
 alias fserve='aria2c -d $HOME/Downloads/Warez -j 4 -x 4 --load-cookies=$HOME/.cookies -Z'
 alias ipy='ipython qtconsole --pylab=inline'
-alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
 
 alias screen='screen -R'
 alias p='pushd'
@@ -19,8 +18,10 @@ alias d='dirs -v'
 if [ $(uname) == "Darwin" ] 
 then
     alias g='mvim --servername VIM1 --remote-silent'
+    alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
 else
     alias g='gvim --servername VIM1 --remote-silent'
+    alias matlab='matlab -nodisplay'
 fi
     
 

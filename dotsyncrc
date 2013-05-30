@@ -18,11 +18,11 @@ DOTFILES=.dotfiles
 [files]
 dotsyncrc
 vimrc
-profile
 vim
 gitconfig
-profile:.screen
+profile:.bash_profile
 vim/bundle/MatlabFilesEdition/.ctags:.ctags
+screenrc
 #ack/ackrc
 #aptitude
 #bin:bin
