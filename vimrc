@@ -7,7 +7,6 @@ set backspace=2     "Make backspace behave normally
 " Basic Keystrokes
 let mapleader=','
 imap jj <Esc>
-
 "Get rid of highlighting after search
 " nnoremap <CR> :noh<CR><CR>
 filetype off                   " required!
@@ -72,13 +71,13 @@ set clipboard=unnamed
 
     "Code completion
 
-    " if has('mac')
+    if has('mac')
     Bundle "Valloric/YouCompleteMe"
     let g:ycm_autoclose_preview_window_after_insertion=1
-    " else
-        " Bundle 'neocomplcache'
-        " let g:neocomplcache_enable_at_startup = 1 
-    " endif 
+    else
+        Bundle 'neocomplcache'
+        let g:neocomplcache_enable_at_startup = 1 
+    endif 
 
 
     Bundle 'UltiSnips'
