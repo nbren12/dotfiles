@@ -1,0 +1,8 @@
+#
+# Get CIMS defaults
+#
+if [ -r /usr/local/lib/.system.bashrc ] ; then
+    . /usr/local/lib/.system.bashrc
+fi
+
+umask 2
