@@ -1,4 +1,8 @@
-# Finished adapting your PATH environment variable for use with MacPorts.
+#    source the local profile first
+if [[ -e .profile.local ]]
+then
+    source .profile.local
+fi
 
 #######USER ALIASES########################
 
@@ -128,7 +132,3 @@ then
     source $HOME/.git-completion.bash
 fi
 
-if [[ -e .profile.local ]]
-then
-    source .profile.local
-fi
