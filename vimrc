@@ -29,6 +29,7 @@ set clipboard=unnamed
 
     Bundle 'mileszs/ack.vim'
 
+    Bundle 'vim-scripts/MatlabFilesEdition'
     " Bundle 'notes.vim'
     " let g:notes_directory = '~/Dropbox/notes'
     

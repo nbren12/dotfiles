@@ -22,6 +22,7 @@ profile
 vim
 gitconfig
 profile:.screen
+vim/bundle/MatlabFilesEdition/.ctags:.ctags
 #ack/ackrc
 #aptitude
 #bin:bin
