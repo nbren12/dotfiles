@@ -23,6 +23,7 @@ gitconfig
 profile:.bash_profile
 vim/bundle/MatlabFilesEdition/.ctags:.ctags
 screenrc
+tmux.conf
 #ack/ackrc
 #aptitude
 #bin:bin
