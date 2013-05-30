@@ -30,6 +30,7 @@ set clipboard=unnamed
     Bundle 'mileszs/ack.vim'
 
     Bundle 'vim-scripts/MatlabFilesEdition'
+    Bundle 'djoshea/vim-matlab-fold'
     " Bundle 'notes.vim'
     " let g:notes_directory = '~/Dropbox/notes'
     
@@ -149,7 +150,7 @@ set clipboard=unnamed
     let fortran_fold_conditionals=1
     set foldmethod=marker
     set wrap " word wrap
-    autocmd FileType c,cpp,fortran setlocal foldmethod=syntax
+    autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
     autocmd FileType python setlocal foldmethod=indent
 
     " This is why autocomplete is abysmally slow sometimes
