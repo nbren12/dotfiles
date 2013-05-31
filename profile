@@ -1,7 +1,7 @@
 #    source the local profile first
-if [[ -e .profile.local ]]
+if [[ -e $HOME/.profile.local ]]
 then
-    source .profile.local
+    source $HOME/.profile.local 
 fi
 
 #######USER ALIASES########################
