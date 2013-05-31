@@ -6,3 +6,4 @@ if [ -r /usr/local/lib/.system.bashrc ] ; then
 fi
 
 umask 2
+module load boost
