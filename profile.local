@@ -5,5 +5,13 @@ if [ -r /usr/local/lib/.system.bashrc ] ; then
     . /usr/local/lib/.system.bashrc
 fi
 
-umask 2
+
+export LD_LIBRARY_FLAGS=$HOME/usr/lib:$LD_LIBRARY_FLAGS
+
+export CC=gcc
+export CXX=g++
+
+modlue load Python-2.7
 module load boost
+
+umask 2
