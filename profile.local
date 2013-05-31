@@ -6,7 +6,7 @@ if [ -r /usr/local/lib/.system.bashrc ] ; then
 fi
 
 
-export LD_LIBRARY_FLAGS=$HOME/usr/lib:$LD_LIBRARY_FLAGS
+export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
 
 export CC=gcc
 export CXX=g++
