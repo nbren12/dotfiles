@@ -12,7 +12,7 @@ imap jj <Esc>
 filetype off                   " required!
 
 " Sync the clipboard with the registers
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Plugins {{{
     set rtp+=~/.vim/bundle/vundle/
