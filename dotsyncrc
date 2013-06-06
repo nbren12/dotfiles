@@ -23,6 +23,7 @@ gitconfig
 profile:.bash_profile
 vim/bundle/MatlabFilesEdition/.ctags:.ctags
 screenrc
+tmux.conf
 #ack/ackrc
 #aptitude
 #bin:bin
@@ -82,6 +83,7 @@ Noahs-MacBook-Pro		 git=ANY
 linax2          git=ANY
 linax1          git=ANY
 kontiki1        git=ANY
+box520.cims.nyu.edu git=ANY
 #host1.example.com               git=ANY                        files=custom/dotfile    #git repo, pull from anywhere and link a custom dotfile
 #host2.example.com               git=ANY                                                #git repo, pull from anywhere
 #host3.example.com               git=ANY                                                #git repo, pull from anywhere

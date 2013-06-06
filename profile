@@ -1,7 +1,7 @@
 #    source the local profile first
-if [[ -e .profile.local ]]
+if [[ -e $HOME/.profile.local ]]
 then
-    source .profile.local
+    source $HOME/.profile.local 
 fi
 
 #######USER ALIASES########################
@@ -55,7 +55,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W \$\[\033[00m\] '
 ############################################################
 #                  Environ Variable Set
 ############################################################
-export PATH=/usr/local/uvcdat/1.2.0/bin:/usr/local/texlive/2010/bin/x86_64-darwin:$HOME/bin:/usr/local/share/python:/usr/local/bin:$HOME/usr/bin:$HOME/bin/nbconvert-master:$HOME/.cabal/bin:$PATH
+export PATH=/usr/local/texlive/2010/bin/x86_64-darwin:$HOME/bin:/usr/local/share/python:$HOME/usr/bin:$HOME/bin/nbconvert-master:$HOME/.cabal/bin:$PATH
 export PYTHONPATH=$HOME/proj/cfd_final/src:/usr/local/lib/python:$HOME/python:$PYTHONPATH
 export EDITOR='/usr/bin/env vim'
 export NCARG_ROOT=/opt/ncl_ncarg
@@ -75,6 +75,7 @@ export PATH=$DOTFILES/dotsync/bin:$PATH
 if [[ $(uname) == 'Darwin' ]]
 then
     source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
+    export PATH=/usr/local/bin:$PATH
 fi
 
 

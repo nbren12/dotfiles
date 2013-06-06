@@ -7,13 +7,12 @@ set backspace=2     "Make backspace behave normally
 " Basic Keystrokes
 let mapleader=','
 imap jj <Esc>
-
 "Get rid of highlighting after search
 " nnoremap <CR> :noh<CR><CR>
 filetype off                   " required!
 
 " Sync the clipboard with the registers
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Plugins {{{
     set rtp+=~/.vim/bundle/vundle/
@@ -60,26 +59,27 @@ set clipboard=unnamed
             \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
 
         let g:ctrlp_max_depth = 5
-        let g:ctrlp_working_path_mode=2
+        let g:ctrlp_working_path_mode='r'
         let g:ctrlp_lazy_update = 1
-        " let g:ctrlp_user_command = {
-        "     \ 'types': {
-        "         \ 1: ['.git', 'cd %s && git ls-files'],
-        "         \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        "     \ },
-        "     \ 'fallback': 'find %s -type f'
-        " \ }
-    "}
+        let g:ctrlp_root_markers = ['.ctrlp']
+        let g:ctrlp_user_command = {
+                    \ 'types': {
+                    \ 1: ['.git', 'cd %s && git ls-files'],
+                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+                    \ },
+                    \ 'fallback': 'ack -f %s ' }
+                    
+        
 
     "Code completion
 
-    " if has('mac')
+    if has('mac')
     Bundle "Valloric/YouCompleteMe"
     let g:ycm_autoclose_preview_window_after_insertion=1
-    " else
-        " Bundle 'neocomplcache'
-        " let g:neocomplcache_enable_at_startup = 1 
-    " endif 
+    else
+        Bundle 'neocomplcache'
+        let g:neocomplcache_enable_at_startup = 1 
+    endif 
 
 
     Bundle 'UltiSnips'
@@ -109,6 +109,7 @@ set clipboard=unnamed
     Bundle 'Wombat'
     Bundle 'Lokaltog/vim-distinguished'
     Bundle 'jellybeans.vim'
+    Bundle 'zeis/vim-kolor'
 
     "SuperTab
     Bundle 'SuperTab'
@@ -142,8 +143,8 @@ set clipboard=unnamed
         set guifont=Monospace\ 10,Consolas:h13
         " turn off the toolbar
         set guioptions-=T
-    elseif &t_Co == 256
-        colorscheme distinguished 
+    else 
+        colorscheme desert 
     endif
 
     "Folding "
