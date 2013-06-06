@@ -59,9 +59,8 @@ export PATH=/usr/local/texlive/2010/bin/x86_64-darwin:$HOME/bin:/usr/local/share
 export PATH=$HOME/usr/bin:$HOME/bin/nbconvert-master:$HOME/.cabal/bin:$PATH
 export PATH=/opt/ncl_ncarg/bin:$PATH
 export PATH=/Applications/Wine.app/Contents/Resources/bin/:$PATH
-export PATH=/Library/Frameworks/EPD64.framework/Versions/Current/bin:$PATH # Enthought Python
-
 export PATH=$HOME/local/bin:$PATH
+
 export PYTHONPATH=$HOME/proj/cfd_final/src:/usr/local/lib/python:$HOME/python:$PYTHONPATH
 export EDITOR='/usr/bin/env vim'
 export NCARG_ROOT=/opt/ncl_ncarg
@@ -72,7 +71,6 @@ export PATH=$DOTFILES/dotsync/bin:$PATH
 
 
 
-# export MATLABPATH=$HOME/proj/nlsa:$MATLABPATH
 
 ################Environment Variables########
 
@@ -80,6 +78,8 @@ if [[ $(uname) == 'Darwin' ]]
 then
     source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
     export PATH=/usr/local/bin:$PATH
+    # VIRTUAL_ENV_DISABLE_PROMPT can be '' to make bashprompt show that Canopy is active, otherwise 1
+    VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
 fi
 
 
@@ -136,4 +136,5 @@ if [[ -e $HOME/.git-completion.bash ]]
 then
     source $HOME/.git-completion.bash
 fi
+
 
