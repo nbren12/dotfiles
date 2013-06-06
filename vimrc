@@ -47,6 +47,7 @@ set clipboard=unnamed
     " required! 
     Bundle 'gmarik/vundle'
 
+    Bundle 'mileszs/ack.vim'
     " ctrlp {
         Bundle 'ctrlp.vim'
         " let g:ctrlp_working_path_mode = 1
