@@ -84,7 +84,7 @@ fi
 
 if [[ -e $HOME/Canopy  ]]
 then
-    source $HOME/Canopy/canopy/activate
+    source $HOME/Enthought/Canopy_64bit/User/bin/activate
 fi
 
 
