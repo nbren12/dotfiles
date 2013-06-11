@@ -82,9 +82,9 @@ then
     VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
 fi
 
-if [[ -e $HOME/Canopy/bin  ]]
+if [[ -e $HOME/Canopy  ]]
 then
-    export PATH=$HOME/Canopy/bin:$PATH
+    source $HOME/Canopy/canopy/activate
 fi
 
 
@@ -140,3 +140,7 @@ then
 fi
 
 
+
+# Added by Canopy installer on 2013-06-11
+# VIRTUAL_ENV_DISABLE_PROMPT can be '' to make bashprompt show that Canopy is active, otherwise 1
+VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/noah/Enthought/Canopy_64bit/User/bin/activate
