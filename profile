@@ -82,8 +82,10 @@ then
     VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
 fi
 
-
-
+if [[ -e $HOME/Canopy/bin  ]]
+then
+    export PATH=$HOME/Canopy/bin:$PATH
+fi
 
 
 function sw(){

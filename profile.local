@@ -7,6 +7,7 @@ fi
 
 
 export LD_LIBRARY_PATH=$HOME/usr/lib:$LD_LIBRARY_PATH
+export PATH=$HOME/usr/local/bin:$PATH
 
 export CC=gcc
 export CXX=g++
