@@ -61,7 +61,7 @@ export PATH=/opt/ncl_ncarg/bin:$PATH
 export PATH=/Applications/Wine.app/Contents/Resources/bin/:$PATH
 export PATH=$HOME/local/bin:$PATH
 
-export PYTHONPATH=$HOME/proj/cfd_final/src:/usr/local/lib/python:$HOME/python:$PYTHONPATH
+export PYTHONPATH=$HOME/proj/cfd_final/src:$PYTHONPATH
 export EDITOR='/usr/bin/env vim'
 export NCARG_ROOT=/opt/ncl_ncarg
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/Library/ENV/pkgconfig/10.8:$PKG_CONFIG_PATH
