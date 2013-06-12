@@ -71,7 +71,7 @@ export PATH=$DOTFILES/dotsync/bin:$PATH
 
 export PYTHONPATH=$HOME/proj/rayben:$PYTHONPATH
 
-
+export ETS_TOOLKIT=qt4
 ################Environment Variables########
 
 if [[ $(uname) == 'Darwin' ]]

@@ -49,7 +49,6 @@ filetype off                   " required!
     Bundle 'mileszs/ack.vim'
     " ctrlp {
         Bundle 'ctrlp.vim'
-        " let g:ctrlp_working_path_mode = 1
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
         nnoremap <silent> <Leader>r :CtrlPMRU<CR>
@@ -58,17 +57,18 @@ filetype off                   " required!
             \ 'dir':  '\.git$\|\.hg$\|\.svn$',
             \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
 
-        let g:ctrlp_max_depth = 5
-        let g:ctrlp_working_path_mode='r'
         let g:ctrlp_lazy_update = 1
-        let g:ctrlp_root_markers = ['.ctrlp']
+        let g:ctrlp_max_depth = 5
+        let g:ctrlp_working_path_mode = 2
+        " let g:ctrlp_working_path_mode='r'
         let g:ctrlp_user_command = {
                     \ 'types': {
                     \ 1: ['.git', 'cd %s && git ls-files'],
                     \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                     \ },
-                    \ 'fallback': 'ack -f %s ' }
+                    \ 'fallback': ' find %s -type f' }
                     
+        let g:ctrlp_root_markers = ['.ctrlp','.git']
         
 
     "Code completion
