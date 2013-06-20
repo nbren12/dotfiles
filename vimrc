@@ -12,7 +12,7 @@ imap jj <Esc>
 filetype off                   " required!
 
 " Sync the clipboard with the registers
-" set clipboard=unnamed
+set clipboard=unnamed
 
 " Plugins {{{
     set rtp+=~/.vim/bundle/vundle/
@@ -61,12 +61,12 @@ filetype off                   " required!
         let g:ctrlp_max_depth = 5
         let g:ctrlp_working_path_mode = 2
         " let g:ctrlp_working_path_mode='r'
-        let g:ctrlp_user_command = {
-                    \ 'types': {
-                    \ 1: ['.git', 'cd %s && git ls-files'],
-                    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                    \ },
-                    \ 'fallback': ' find %s -type f' }
+        " let g:ctrlp_user_command = {
+        "             \ 'types': {
+        "             \ 1: ['.git', 'cd %s && git ls-files'],
+        "             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+        "             \ },
+        "             \ 'fallback': ' find %s -type f' }
                     
         let g:ctrlp_root_markers = ['.ctrlp','.git']
         
@@ -90,6 +90,7 @@ filetype off                   " required!
     let g:UltiSnipsListSnippets="<c-tab>"
 
     Bundle 'tComment'
+    Bundle 'Rykka/riv.vim'
 
     
     Bundle 'surround.vim'
@@ -153,7 +154,7 @@ filetype off                   " required!
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
-    autocmd FileType python setlocal foldmethod=indent
+    autocmd FileType python setlocal foldmethod=syntax
 
     " This is why autocomplete is abysmally slow sometimes
     " Don't screw up folds when inserting text that might affect them, until
@@ -314,8 +315,8 @@ nnoremap <Leader>s  :call SyncDirs()<CR>
 
 set listchars=""
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-set wildignore+=*.Trash/*,*/Library/*
+set wildignore+=*.so,*.swp,*.zip
+set wildignore+=*.Trash/*
 
 set autochdir
 

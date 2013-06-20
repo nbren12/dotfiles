@@ -23,6 +23,8 @@ if [ $(uname) == "Darwin" ]
 then
     alias g='mvim --servername VIM1 --remote-silent'
     alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
+    alias vim='mvim -v'
+
 else
     alias g='gvim --servername VIM1 --remote-silent'
     alias matlab='matlab -nodisplay'
@@ -78,8 +80,16 @@ if [[ $(uname) == 'Darwin' ]]
 then
     source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
     export PATH=/usr/local/bin:$PATH
-    # VIRTUAL_ENV_DISABLE_PROMPT can be '' to make bashprompt show that Canopy is active, otherwise 1
-    VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
+
+    # VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
+
+    # Setting PATH for EPD-7.3-2
+    # The orginal version is saved in .bash_profile.pysave
+    PATH="/Library/Frameworks/EPD64.framework/Versions/Current/bin:${PATH}"
+    export PATH
+
+    MKL_NUM_THREADS=1
+    export MKL_NUM_THREADS
 fi
 
 if [[ -e $HOME/Canopy  ]]
@@ -141,6 +151,4 @@ fi
 
 
 
-# Added by Canopy installer on 2013-06-11
-# VIRTUAL_ENV_DISABLE_PROMPT can be '' to make bashprompt show that Canopy is active, otherwise 1
-VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/noah/Enthought/Canopy_64bit/User/bin/activate
+
