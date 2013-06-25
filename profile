@@ -71,9 +71,9 @@ export DOTFILES=$HOME/.dotfiles
 export PATH=$DOTFILES/dotsync/bin:$PATH
 
 
-export PYTHONPATH=$HOME/proj/rayben:$PYTHONPATH
 
 export ETS_TOOLKIT=qt4
+
 ################Environment Variables########
 
 if [[ $(uname) == 'Darwin' ]]
@@ -94,7 +94,9 @@ fi
 
 if [[ -e $HOME/Canopy  ]]
 then
-    source $HOME/Enthought/Canopy_64bit/User/bin/activate
+    # source $HOME/Enthought/Canopy_64bit/User/bin/activate
+    #   Canopy SNAFU
+    # alias python=$(which python)
 fi
 
 
@@ -148,7 +150,3 @@ if [[ -e $HOME/.git-completion.bash ]]
 then
     source $HOME/.git-completion.bash
 fi
-
-
-
-
