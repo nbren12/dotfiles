@@ -92,13 +92,6 @@ then
     export MKL_NUM_THREADS
 fi
 
-if [[ -e $HOME/Canopy  ]]
-then
-    # source $HOME/Enthought/Canopy_64bit/User/bin/activate
-    #   Canopy SNAFU
-    # alias python=$(which python)
-fi
-
 
 function sw(){
 mv "$2" .tmp123124125
