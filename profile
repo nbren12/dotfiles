@@ -22,12 +22,12 @@ alias d='dirs -v'
 if [ $(uname) == "Darwin" ] 
 then
     alias g='mvim --servername VIM1 --remote-silent'
-    alias matlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
+    alias mlab ='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
     alias vim='mvim -v'
 
 else
     alias g='gvim --servername VIM1 --remote-silent'
-    alias matlab='matlab -nodisplay'
+    alias mlab='matlab -nodisplay'
 fi
     
 
@@ -134,10 +134,6 @@ pman()
     man -t "$@" | open -f -a Preview; 
 }
 
-
-#alias rm='del'
-alias aml='cd ~/Documents/AML/Spring2011'
-alias clc='clear'
 
 if [[ -e $HOME/.git-completion.bash ]]
 then
