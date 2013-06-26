@@ -119,7 +119,9 @@ set clipboard=unnamed
     Bundle 'jcf/vim-latex'
     let g:Tex_ViewRule_pdf = 'Skim'
     let g:tex_flavor='latex'
-    let g:Tex_TreatMacViewerAsUNIX = 1
+    " let g:Tex_TreatMacViewerAsUNIX = 1
+    set grepprg=grep\ -nH\ $*
+    imap ;; <Plug>IMAP_JumpForward
     "Fix the C-j nonsense in non latex files"
     if &filetype != 'tex'
         imap <Leader>#$ <Plug>IMAP_JumpForward
@@ -256,6 +258,12 @@ set clipboard=unnamed
     nnoremap <space> za
     vnoremap <space> zf
     set foldnestmax=2
+
+
+    " Date Time
+    iab <expr> dts strftime("%b %d, %Y")
+
+
 "}}}
 
 "  Programming {{{
