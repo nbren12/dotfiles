@@ -156,7 +156,7 @@ set clipboard=unnamed
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
-    autocmd FileType python setlocal foldmethod=syntax
+    autocmd FileType python setlocal foldmethod=indent
 
     " This is why autocomplete is abysmally slow sometimes
     " Don't screw up folds when inserting text that might affect them, until

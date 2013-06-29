@@ -81,12 +81,15 @@ then
     source `brew --prefix`/Library/Contributions/brew_bash_completion.sh
     export PATH=/usr/local/bin:$PATH
 
+
     # VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
 
     # Setting PATH for EPD-7.3-2
     # The orginal version is saved in .bash_profile.pysave
     PATH="/Library/Frameworks/EPD64.framework/Versions/Current/bin:${PATH}"
     export PATH
+    export PYTHONPATH=/Users/noah/proj/rayben
+    alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 
     MKL_NUM_THREADS=1
     export MKL_NUM_THREADS
