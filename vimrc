@@ -88,6 +88,7 @@ set clipboard=unnamed
     "" Ultisnips
     let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsListSnippets="<c-tab>"
+    let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
     Bundle 'tComment'
     Bundle 'Rykka/riv.vim'
