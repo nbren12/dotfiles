@@ -1,0 +1,29 @@
+Host cims
+Hostname access.cims.nyu.edu
+user noah
+
+Host hpc
+Hostname hpc.nyu.edu
+user ndb245
+
+Host bowery
+Hostname bowery
+port 22
+user ndb245
+ProxyCommand ssh -A hpc nc %h %p
+
+Host mm
+Hostname noah-macmini.local
+user noah
+
+Host kon
+Hostname kontiki1
+port 22
+user noah
+ProxyCommand ssh -A cims nc %h %p
+
+Host desk
+Hostname box520
+port 22
+user noah
+ProxyCommand ssh -A cims nc %h %p
