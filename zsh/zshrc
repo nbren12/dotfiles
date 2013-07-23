@@ -1,3 +1,11 @@
+#
+# Get CIMS defaults
+#
+if [ -r /usr/local/lib/.system.kshrc ] ; then
+    . /usr/local/lib/.system.kshrc
+fi
+
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.dotfiles/zsh/oh-my-zsh
 
@@ -5,9 +13,9 @@ ZSH=$HOME/.dotfiles/zsh/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="robbyrussell"
-ZSH_THEME="darkblood"
-ZSH_THEME="ys"
+ZSH_THEME="robbyrussell"
+# ZSH_THEME="darkblood"
+# ZSH_THEME="ys"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
