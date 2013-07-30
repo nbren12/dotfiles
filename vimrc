@@ -273,8 +273,8 @@ set clipboard=unnamed
     " nmap <S-F> :set syntax=fortran<CR>:let b:fortran_fixed_source=!b:fortran_fixed_source<CR>:set syntax=text<CR>:set syntax=fortran<CR>
     let fortran_do_enddo=1
     let fortran_more_precise=1
-    let fortran_free_source=1
-    let fortran_have_tabs=1
+    " let fortran_free_source=1
+    " let fortran_have_tabs=1
 
     " Fix Indenting Behavior with #
     inoremap # X#   
