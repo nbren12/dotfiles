@@ -56,3 +56,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=$PATH:/Library/Frameworks/EPD64.framework/Versions/Current/bin:/usr/local/bin:/Users/noah/.dotfiles/dotsync/bin:/Users/noah/local/bin:/Applications/Wine.app/Contents/Resources/bin/:/opt/ncl_ncarg/bin:/Users/noah/usr/bin:/Users/noah/bin/nbconvert-master:/Users/noah/.cabal/bin:/usr/local/texlive/2010/bin/x86_64-darwin:/Users/noah/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin
+
+function git_prompt_info() {
+ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+}
