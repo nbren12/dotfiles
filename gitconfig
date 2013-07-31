@@ -15,3 +15,5 @@
 [user]
     name = Noah D. Brenowitz
     email = nbren12@gmail.com
+[oh-my-zsh]
+	hide-status = 1
