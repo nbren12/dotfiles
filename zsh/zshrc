@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
 # much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -60,3 +60,13 @@ export PATH=$PATH:/Library/Frameworks/EPD64.framework/Versions/Current/bin:/usr/
 __git_files () { 
     _wanted files expl 'local files' _files     
 }
+
+#   Ipython completion
+source $DOTFILES/ipython-completion.bash
+
+source $DOTFILES/zsh/alias.zsh
+
+if [[ $(hostname) == *.cims.nyu.edu ]]
+then
+    source $DOTFILES/zsh/cims.zsh
+fi
