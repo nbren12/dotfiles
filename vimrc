@@ -19,7 +19,16 @@ set clipboard=unnamed
     call vundle#rc()
     
     " Markdown plugin
-    Bundle 'Markdown'
+    "Bundle 'Markdown'
+    Bundle 'vim-pandoc/vim-pandoc'
+    au BufRead,BufNewFile *.md  set filetype=pandoc
+
+    " R plugin
+    Bundle 'Vim-R-plugin'
+
+
+    " OrgMode
+    Bundle 'hsitz/VimOrganizer'
     "
     " NCL Syntax Highlighting
     Bundle 'https://github.com/xiexinyls/vim.git'
