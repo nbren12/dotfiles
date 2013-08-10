@@ -151,13 +151,14 @@ set clipboard=unnamed
     syntax on
 
     if has("gui_running")
-        colorscheme wombat
+        " colorscheme wombat
+        
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
         set guifont=Monospace\ 10,Consolas:h13
         " turn off the toolbar
         set guioptions-=T
     else 
-        colorscheme desert 
+        " colorscheme desert 
     endif
 
     "Folding "
