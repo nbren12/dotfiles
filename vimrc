@@ -15,8 +15,16 @@ filetype off                   " required!
 set clipboard=unnamed
 
 " Plugins {{{
+
+
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
+    " let Vundle manage Vundle
+    " required! 
+    Bundle 'gmarik/vundle'
+    
+    
+    " Language Specific
     
     " Markdown plugin
     "Bundle 'Markdown'
@@ -34,29 +42,17 @@ set clipboard=unnamed
     Bundle 'https://github.com/xiexinyls/vim.git'
     au BufRead,BufNewFile *.ncl set filetype=ncl
 
-
-    Bundle 'mileszs/ack.vim'
-
     Bundle 'vim-scripts/MatlabFilesEdition'
     Bundle 'djoshea/vim-matlab-fold'
-    " Bundle 'notes.vim'
-    " let g:notes_directory = '~/Dropbox/notes'
-    
-    " Bundle 'vimwiki'
-    " let g:vimwiki_list = [{'path': '~/Dropbox/notes',
-    "                    \ 'syntax': 'markdown', 'ext': '.md'}]
-    Bundle 'https://github.com/tpope/vim-fugitive.git' 
-
-    Bundle 'taglist.vim'
 
     " Bundle 'vim-ipython'
 
-    " let Vundle manage Vundle
-    " required! 
-    Bundle 'gmarik/vundle'
 
+    Bundle 'https://github.com/tpope/vim-fugitive.git' 
     Bundle 'mileszs/ack.vim'
-    " ctrlp {
+    Bundle 'taglist.vim'
+
+    " ctrlp {"{{{
         Bundle 'ctrlp.vim'
         nnoremap <silent> <D-t> :CtrlP<CR>
         nnoremap <silent> <D-r> :CtrlPMRU<CR>
@@ -78,23 +74,25 @@ set clipboard=unnamed
         "             \ 'fallback': ' find %s -type f' }
                     
         let g:ctrlp_root_markers = ['.ctrlp','.git']
-        
+        "}}}
 
     "Code completion
 
     if has('mac')
-    Bundle "Valloric/YouCompleteMe"
-    let g:ycm_autoclose_preview_window_after_insertion=1
+        Bundle "Valloric/YouCompleteMe"
+        let g:ycm_autoclose_preview_window_after_insertion=1
     else
         Bundle 'neocomplcache'
         let g:neocomplcache_enable_at_startup = 1 
     endif 
 
 
-    Bundle 'UltiSnips'
     let g:ycm_key_list_previous_completion=['<Up>']
 
-    "" Ultisnips
+    "" Snippets: 
+    " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
+    " Bundle "garbas/vim-snipmate"
+    Bundle 'UltiSnips'
     let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsListSnippets="<c-tab>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
@@ -121,9 +119,6 @@ set clipboard=unnamed
     Bundle 'Lokaltog/vim-distinguished'
     Bundle 'jellybeans.vim'
     Bundle 'zeis/vim-kolor'
-
-    "SuperTab
-    Bundle 'SuperTab'
 
     Bundle 'laktek/distraction-free-writing-vim'
     Bundle 'jcf/vim-latex'
@@ -175,13 +170,14 @@ set clipboard=unnamed
     " screwing up folding when switching between windows.
     autocmd InsertEnter * if !exists('w:last_fdm') | let w:last_fdm=&foldmethod | setlocal foldmethod=manual | endif
     autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
+
     " Accept Mouse Input
     set mouse=a
 
     set number
     let g:fullscreen_colorscheme = "iawriter"
     let g:fullscreen_font = "DejaVu\ Sans\ Mono\ Book\ 12"
-    let g:normal_colorscheme = "wombat"
+    let g:normal_colorscheme = "default"
     let g:normal_font=&guifont
     set incsearch                   " Find as you type search
     
