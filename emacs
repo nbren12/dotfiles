@@ -1,0 +1,34 @@
+(add-to-list 'load-path "~/.emacs.d/")
+(load "package.el")
+
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+
+
+;;;; Org Mode
+(require 'org-install)
+
+; Some initial langauges we want org-babel to support
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (sh . t)
+   (python . t)
+   (R . t)
+   (ruby . t)
+   (ditaa . t)
+   (dot . t)
+   (octave . t)
+   (sqlite . t)
+   (perl . t)
+   ))
+
+
+
+;;; EVIL Vim Mode
+(require 'evil)
+(evil-mode 1)
