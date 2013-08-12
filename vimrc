@@ -19,64 +19,50 @@ set clipboard=unnamed
 
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    " let Vundle manage Vundle
-    " required! 
-    Bundle 'gmarik/vundle'
-    
-    
-    " Language Specific
-    
-    " Markdown plugin
-    "Bundle 'Markdown'
-    Bundle 'vim-pandoc/vim-pandoc'
-    au BufRead,BufNewFile *.md  set filetype=pandoc
+    Bundle 'gmarik/vundle' 
 
-    " R plugin
-    Bundle 'Vim-R-plugin'
-
-
-    " OrgMode
     Bundle 'hsitz/VimOrganizer'
-    "
-    " NCL Syntax Highlighting
-    Bundle 'https://github.com/xiexinyls/vim.git'
-    au BufRead,BufNewFile *.ncl set filetype=ncl
+    let g:org_command_for_emacsclient = "/usr/local/bin/emacsclient"
 
+    Bundle 'vim-pandoc/vim-pandoc'
+    Bundle 'Vim-R-plugin'
     Bundle 'vim-scripts/MatlabFilesEdition'
     Bundle 'djoshea/vim-matlab-fold'
-
-    " Bundle 'vim-ipython'
-
-
     Bundle 'https://github.com/tpope/vim-fugitive.git' 
     Bundle 'mileszs/ack.vim'
     Bundle 'taglist.vim'
+    Bundle 'tComment'
+    Bundle 'surround.vim'
+    Bundle 'mattn/calendar-vim'
+    Bundle 'vim-scripts/utl.vim'
+    Bundle 'scrooloose/nerdtree'
+    map <C-e> :NERDTreeToggle<CR>
+    let NERDTreeShowBookmarks=1
 
-    " ctrlp {"{{{
-        Bundle 'ctrlp.vim'
-        nnoremap <silent> <D-t> :CtrlP<CR>
-        nnoremap <silent> <D-r> :CtrlPMRU<CR>
-        nnoremap <silent> <Leader>r :CtrlPMRU<CR>
-        nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-        let g:ctrlp_custom_ignore = {
-            \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-            \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
+    " ctrlp {{{
+    Bundle 'ctrlp.vim'
+    nnoremap <silent> <D-t> :CtrlP<CR>
+    nnoremap <silent> <D-r> :CtrlPMRU<CR>
+    nnoremap <silent> <Leader>r :CtrlPMRU<CR>
+    nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+    let g:ctrlp_custom_ignore = {
+        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+        \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
 
-        let g:ctrlp_lazy_update = 1
-        let g:ctrlp_max_depth = 5
-        let g:ctrlp_working_path_mode = 2
-        " let g:ctrlp_working_path_mode='r'
-        " let g:ctrlp_user_command = {
-        "             \ 'types': {
-        "             \ 1: ['.git', 'cd %s && git ls-files'],
-        "             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        "             \ },
-        "             \ 'fallback': ' find %s -type f' }
-                    
-        let g:ctrlp_root_markers = ['.ctrlp','.git']
-        "}}}
-
-    "Code completion
+    let g:ctrlp_lazy_update = 1
+    let g:ctrlp_max_depth = 5
+    let g:ctrlp_working_path_mode = 2
+    " let g:ctrlp_working_path_mode='r'
+    " let g:ctrlp_user_command = {
+    "             \ 'types': {
+    "             \ 1: ['.git', 'cd %s && git ls-files'],
+    "             \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    "             \ },
+    "             \ 'fallback': ' find %s -type f' }
+                
+    let g:ctrlp_root_markers = ['.ctrlp','.git']
+    "}}}
+    "Code completion"{{{
 
     if has('mac')
         Bundle "Valloric/YouCompleteMe"
@@ -96,29 +82,34 @@ set clipboard=unnamed
     let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsListSnippets="<c-tab>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+    "}}}
 
-    Bundle 'tComment'
-    Bundle 'Rykka/riv.vim'
+    au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
+    au BufEnter *.org call OrgOpts()
+
+    function OrgOpts()
+        call org#SetOrgFileType()
+        unmap gj
+        unmap gk
+    endfunction
+
+
+
+    au BufRead,BufNewFile *.md  set filetype=pandoc
 
     
-    Bundle 'surround.vim'
-    " NERDTree for file browsing {
-        Bundle 'scrooloose/nerdtree'
-        map <C-e> :NERDTreeToggle<CR>
-        let NERDTreeShowBookmarks=1
-    " }
-
     " Autoclosing 
     " Tried many plugins, Townk is bad, AutoClose is bad
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
     
     Bundle "jiangmiao/auto-pairs"
     
-    " Colorscheme
+    " Colorschemes"{{{
     Bundle 'Wombat'
     Bundle 'Lokaltog/vim-distinguished'
     Bundle 'jellybeans.vim'
     Bundle 'zeis/vim-kolor'
+    "}}}
 
     Bundle 'laktek/distraction-free-writing-vim'
     Bundle 'jcf/vim-latex'
@@ -283,7 +274,7 @@ set clipboard=unnamed
     " let fortran_have_tabs=1
 
     " Fix Indenting Behavior with #
-    inoremap # X#   
+    " inoremap # X#   
 
     if has("autocmd") && exists("+omnifunc")
 	autocmd Filetype *
