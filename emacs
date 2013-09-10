@@ -14,7 +14,7 @@
    (or (package-installed-p package)
        (if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
            (package-install package))))
- '(evil ))
+ '(evil org ess ess-R-data-view ess-R-object-popup auto-complete))
 
 ;;;; Org Mode
 (require 'org-install)
