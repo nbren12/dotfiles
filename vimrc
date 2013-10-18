@@ -27,7 +27,6 @@ set clipboard=unnamed
     Bundle 'vim-pandoc/vim-pandoc'
     Bundle 'Vim-R-plugin'
     Bundle 'vim-scripts/MatlabFilesEdition'
-    Bundle 'djoshea/vim-matlab-fold'
     Bundle 'https://github.com/tpope/vim-fugitive.git' 
     Bundle 'mileszs/ack.vim'
     Bundle 'taglist.vim'
