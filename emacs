@@ -14,7 +14,7 @@
    (or (package-installed-p package)
        (if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
            (package-install package))))
- '(evil reftex org ess ess-R-data-view ess-R-object-popup auto-complete))
+ '(evil auctex undo-tree org ess ess-R-data-view ess-R-object-popup auto-complete))
 
 ;;;; Org Mode
 (require 'org-install)
@@ -49,8 +49,6 @@
 
 ;;; Latex Stuff
 
-(setq org-latex-pdf-process 
-   "latexmk -bibtex -pdflatex='pdflatex -shell-escape -interaction nonstopmode' -pdf -f  %f")
 
 ;; to fix problems with amsmath conflicting with wasysym:
 ;;
@@ -58,11 +56,19 @@
 ;; Subject: [Orgmode] Re: [bug] latex export ignores org-export-latex-default-packages-alist?
 ;; To: emacs-orgmode <at> gnu.org
 ;; Date: Wed, 26 Jan 2011 16:01:52 +0000
-(add-to-list 'org-export-latex-packages-alist '("" "amsmath" t))
-(setcar (rassoc '("wasysym" t) org-export-latex-default-packages-alist)	"integrals")
+(add-to-list 'org-latex-packages-alist '("" "amsmath" t))
+;;(setcar (rassoc '("wasysym" t) org-export-latex-default-packages-alist)	"integrals")
 
 
 
 ;;; RefTex Hooks
 (add-hook 'org-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
+
+(setq org-latex-create-formula-image-program 'dvipng)
+
+
+;; Custom Evil Mode Key Bindings
+
+(define-key evil-normal-state-map ",l" 'org-preview-latex-fragment)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
