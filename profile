@@ -63,6 +63,8 @@ export PATH=$HOME/usr/bin:$HOME/bin/nbconvert-master:$HOME/.cabal/bin:$PATH
 export PATH=/opt/ncl_ncarg/bin:$PATH
 export PATH=/Applications/Wine.app/Contents/Resources/bin/:$PATH
 export PATH=$HOME/local/bin:$PATH
+export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
+
 
 export EDITOR='/usr/bin/env vim'
 export NCARG_ROOT=/opt/ncl_ncarg
