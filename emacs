@@ -56,7 +56,7 @@
 ;; Subject: [Orgmode] Re: [bug] latex export ignores org-export-latex-default-packages-alist?
 ;; To: emacs-orgmode <at> gnu.org
 ;; Date: Wed, 26 Jan 2011 16:01:52 +0000
-(add-to-list 'org-latex-packages-alist '("" "amsmath" t))
+(add-to-list 'org-latex-packages-alist '("" "amsmath" "epstopdf" t))
 ;;(setcar (rassoc '("wasysym" t) org-export-latex-default-packages-alist)	"integrals")
 
 
@@ -72,3 +72,5 @@
 
 (define-key evil-normal-state-map ",l" 'org-preview-latex-fragment)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+
+(require 'ess-site)
