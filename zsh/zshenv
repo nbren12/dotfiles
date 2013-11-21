@@ -13,6 +13,7 @@ export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/Library/ENV/pkgconfig/1
 
 export DOTFILES=$HOME/.dotfiles
 export PATH=$DOTFILES/dotsync/bin:$PATH
+export PATH=/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
 
 
 
