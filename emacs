@@ -64,9 +64,7 @@
 ;;; RefTex Hooks
 (add-hook 'org-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
-
-(setq org-latex-create-formula-image-program 'dvipng)
-
+(setq latex-run-command "pdflatex")
 
 ;; Custom Evil Mode Key Bindings
 

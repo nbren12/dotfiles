@@ -1,6 +1,8 @@
 ############################################################
 #                  Environ Variable Set
 ############################################################
+export PATH=/Library/Frameworks/EPD64.framework/Versions/Current/bin:/usr/local/bin:/Users/noah/.dotfiles/dotsync/bin:/Users/noah/local/bin:/Applications/Wine.app/Contents/Resources/bin/:/opt/ncl_ncarg/bin:/Users/noah/usr/bin:/Users/noah/bin/nbconvert-master:/Users/noah/.cabal/bin:/usr/local/texlive/2010/bin/x86_64-darwin:/Users/noah/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH
+export PATH=/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
 export PATH=/usr/local/texlive/2010/bin/x86_64-darwin:$HOME/bin:/usr/local/share/python:$PATH
 export PATH=$HOME/usr/bin:$HOME/bin/nbconvert-master:$HOME/.cabal/bin:$PATH
 export PATH=/opt/ncl_ncarg/bin:$PATH
@@ -14,7 +16,6 @@ export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/Library/ENV/pkgconfig/1
 
 export DOTFILES=$HOME/.dotfiles
 export PATH=$DOTFILES/dotsync/bin:$PATH
-export PATH=/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
 
 
 
