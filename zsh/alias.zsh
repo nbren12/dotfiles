@@ -14,6 +14,8 @@ alias p='pushd'
 alias o='popd' 
 alias d='dirs -v'
 
+alias ipynb='ipython notebook --browser=no'
+
 if [[ $(uname) == "Darwin" ]] 
 then
     alias g='mvim --servername VIM1 --remote-silent'
