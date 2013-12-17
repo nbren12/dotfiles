@@ -14,7 +14,10 @@
    (or (package-installed-p package)
        ;(if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
            (package-install package)));)
- '( evil python-mode jedi auctex org ess auto-complete	websocket request smartrep popup fuzzy ein color-theme color-theme-solarized))
+ '( evil python-mode jedi auctex org ess auto-complete	websocket request smartrep popup fuzzy ein ))
+
+
+
 
 ;;;; Org Mode
 (require 'org-install)
@@ -71,7 +74,6 @@
 
 (setq-default py-shell-name "ipython")
 (setq-default py-which-bufname "IPython")
-; use the wx backend, for both mayavi and matplotlib
 (setq py-python-command-args
   '("--pylab"))
 (setq py-force-py-shell-name-p t)
@@ -94,6 +96,3 @@
 ;(setq ac-auto-start 3)
 ;(setq ac-dwim t)
 
-
-;; Themeing
-(load-theme 'solarized-light t)
