@@ -19,3 +19,5 @@
 [oh-my-zsh]
 	hide-status = 1
 
+[push]
+	default = simple
