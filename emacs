@@ -1,20 +1,23 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (load "package.el")
 
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
+(setq package-archives '(
+			; ("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
 ;; check if the packages is installed; if not, install it.
 (mapc
  (lambda (package)
    (or (package-installed-p package)
-       (if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
-           (package-install package))))
- '(evil auctex undo-tree org ess ess-R-data-view ess-R-object-popup auto-complete))
+       ;(if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
+           (package-install package)));)
+ '( evil python-mode jedi auctex org ess auto-complete	websocket request smartrep popup fuzzy ein ))
+
+
+
 
 ;;;; Org Mode
 (require 'org-install)
@@ -33,18 +36,11 @@
    (sqlite . t)
    (perl . t)
    ))
-
-
+(add-hook 'org-mode-hook 'org-cdlatex-mode)
 
 ;;; EVIL Vim Mode
 (require 'evil)
 (evil-mode 1)
-
-
-;;; Auto Complete
-;; Add ac-source-dictionary to ac-sources of all buffer
-(defun ac-common-setup ()
-  (setq ac-sources (append ac-sources '(ac-source-filename))))
 
 
 ;;; Latex Stuff
@@ -56,10 +52,9 @@
 ;; Subject: [Orgmode] Re: [bug] latex export ignores org-export-latex-default-packages-alist?
 ;; To: emacs-orgmode <at> gnu.org
 ;; Date: Wed, 26 Jan 2011 16:01:52 +0000
-(add-to-list 'org-latex-packages-alist '("" "amsmath" "epstopdf" t))
+(add-to-list 'org-latex-packages-alist '("" "amsmath" t))
 ;;(setcar (rassoc '("wasysym" t) org-export-latex-default-packages-alist)	"integrals")
-
-
+(setq org-latex-to-pdf-process (list "latexmk -bibtex -f -pdf %s"))
 
 ;;; RefTex Hooks
 (add-hook 'org-mode-hook 'turn-on-reftex)
@@ -75,4 +70,35 @@
 
 
 
-(global-set-key "\M-/" 'comint-dynamic-complete-filename)
+;; Ipython
+
+(setq-default py-shell-name "ipython")
+(setq-default py-which-bufname "IPython")
+(setq py-python-command-args
+  '("--pylab"))
+(setq py-force-py-shell-name-p t)
+
+; switch to the interpreter after executing code
+(setq py-shell-switch-buffers-on-execute-p t)
+(setq py-switch-buffers-on-execute-p t)
+; don't split windows
+(setq py-split-windows-on-execute-p nil)
+; try to automagically figure out indentation
+(setq py-smart-indentation t)
+
+
+
+(setq ein:use-auto-complete-superpack t)
+
+
+;; Auto Complete
+(require 'auto-complete)
+;(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)                      ; optional
+(setq jedi:complete-on-dot t)    
+
+;(global-auto-complete-mode t)
+(setq ac-auto-start 3)
+(setq ac-dwim t)
+
+(c-mode)
