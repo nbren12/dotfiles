@@ -16,7 +16,7 @@ export DOTFILES=$HOME/.dotfiles
 export PATH=$DOTFILES/dotsync/bin:$PATH
 export PATH=/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
 
-
+export PYTHONPATH=$DOTFILE/python:$PYTHONPATH
 
 export ETS_TOOLKIT=qt4
 
