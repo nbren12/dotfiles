@@ -86,13 +86,19 @@
 ; try to automagically figure out indentation
 (setq py-smart-indentation t)
 
+
+
+(setq ein:use-auto-complete-superpack t)
+
+
 ;; Auto Complete
+(require 'auto-complete)
 ;(add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)    
 
-(require 'auto-complete)
 ;(global-auto-complete-mode t)
-;(setq ac-auto-start 3)
-;(setq ac-dwim t)
+(setq ac-auto-start 3)
+(setq ac-dwim t)
 
+(c-mode)
