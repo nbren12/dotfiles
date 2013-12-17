@@ -72,3 +72,7 @@
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 
 (require 'ess-site)
+
+
+
+(global-set-key "\M-/" 'comint-dynamic-complete-filename)

@@ -12,10 +12,10 @@
     br = branch 
     ; diff = diff --word-diff
     dc = diff --cached
+
 [user]
     name = Noah D. Brenowitz
     email = nbren12@gmail.com
 [oh-my-zsh]
 	hide-status = 1
-[push]
-	default = simple
+

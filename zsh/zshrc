@@ -55,7 +55,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-
 # ZSH options
 unsetopt autopushd
 zmodload zsh/mathfunc
