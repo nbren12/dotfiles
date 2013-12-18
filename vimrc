@@ -63,9 +63,22 @@ set clipboard=unnamed
     "}}}
     "Code completion"{{{
     Bundle 'ervandew/supertab'
-    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+    let g:SuperTabDefaultCompletionType = "context"
     set completeopt+=longest
+    
+    
+    Bundle 'davidhalter/jedi-vim'
+    let g:jedi#goto_assignments_command = "<leader>g"
+    let g:jedi#goto_definitions_command = "<leader>d"
+    let g:jedi#documentation_command = "K"
+    let g:jedi#usages_command = "<leader>n"
+    let g:jedi#completions_command = "<C-Space>"
+    let g:jedi#rename_command = ""
 
+
+    " Bundle 'neocomplcache'
+    " let g:neocomplcache_enable_at_startup = 1 
+        
     if has('mac')
         " Bundle "Valloric/YouCompleteMe"
         " let g:ycm_autoclose_preview_window_after_insertion=1
@@ -132,6 +145,7 @@ set clipboard=unnamed
     Bundle 'matchit.zip'
 
     Bundle 'vim-ipython'
+    let g:ipy_completefunc = 'local'
 
 " }}}
 
