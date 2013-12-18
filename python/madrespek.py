@@ -20,6 +20,7 @@ def scatter_line_plot(x, y, bands = None, alpha=.05):
     (C) 2013 Noah D. Brenowitz
     """
     from numpy import polyfit, polyval
+
     plt.plot(x, y, '.', alpha=alpha)
     
     if bands is not None:
@@ -31,3 +32,7 @@ def scatter_line_plot(x, y, bands = None, alpha=.05):
     else:
         pf = polyfit(x, y, 1)
         plt.plot(x , polyval(pf, x))
+
+
+import statsmodels.api as sm
+sm.

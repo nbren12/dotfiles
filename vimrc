@@ -64,8 +64,10 @@ set clipboard=unnamed
     "Code completion"{{{
 
     if has('mac')
-        Bundle "Valloric/YouCompleteMe"
-        let g:ycm_autoclose_preview_window_after_insertion=1
+        " Bundle "Valloric/YouCompleteMe"
+        " let g:ycm_autoclose_preview_window_after_insertion=1
+        Bundle 'neocomplcache'
+        let g:neocomplcache_enable_at_startup = 1 
     else
         Bundle 'neocomplcache'
         let g:neocomplcache_enable_at_startup = 1 
@@ -128,6 +130,8 @@ set clipboard=unnamed
     " For matching in fortran"
     Bundle 'matchit.zip'
 
+    Bundle 'vim-ipython'
+
 " }}}
 
 " User Interface {{{
@@ -136,7 +140,7 @@ set clipboard=unnamed
     syntax on
 
     if has("gui_running")
-        " colorscheme wombat
+        colorscheme wombat
         
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
         set guifont=Monospace\ 10,Consolas:h13

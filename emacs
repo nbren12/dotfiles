@@ -72,7 +72,7 @@
 
 ;; Ipython
 
-(setq-default py-shell-name "ipython")
+(setq-default py-shell-name "/Library/Frameworks/EPD64.framework/Versions/Current/bin/ipython")
 (setq-default py-which-bufname "IPython")
 (setq py-python-command-args
   '("--pylab"))
@@ -85,20 +85,21 @@
 (setq py-split-windows-on-execute-p nil)
 ; try to automagically figure out indentation
 (setq py-smart-indentation t)
-
-
-
 (setq ein:use-auto-complete-superpack t)
 
 
 ;; Auto Complete
 (require 'auto-complete)
-;(add-hook 'python-mode-hook 'jedi:setup)
+(setq ac-auto-start 3)
+(setq ac-dwim t)
+;(global-auto-complete-mode t)
+
+(add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)    
 
-;(global-auto-complete-mode t)
-(setq ac-auto-start 3)
-(setq ac-dwim t)
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+
 
 (c-mode)
