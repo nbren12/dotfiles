@@ -62,19 +62,20 @@ set clipboard=unnamed
     let g:ctrlp_root_markers = ['.ctrlp','.git']
     "}}}
     "Code completion"{{{
+    Bundle 'ervandew/supertab'
+    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+    set completeopt+=longest
 
     if has('mac')
         " Bundle "Valloric/YouCompleteMe"
         " let g:ycm_autoclose_preview_window_after_insertion=1
-        Bundle 'neocomplcache'
-        let g:neocomplcache_enable_at_startup = 1 
+        " let g:ycm_key_list_previous_completion=['<Up>']
     else
-        Bundle 'neocomplcache'
-        let g:neocomplcache_enable_at_startup = 1 
+        " Bundle 'neocomplcache'
+        " let g:neocomplcache_enable_at_startup = 1 
     endif 
 
 
-    let g:ycm_key_list_previous_completion=['<Up>']
 
     "" Snippets: 
     " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
@@ -337,8 +338,8 @@ function! ToggleSyncDirs()
     endif
 endfunction
 
-nnoremap <Leader>sd :call ToggleSyncDirs()<CR>
-nnoremap <Leader>s  :call SyncDirs()<CR>
+nnoremap <Leader>sdd :call ToggleyncDirs()<CR>
+nnoremap <Leader>sd  :call SyncDirs()<CR>
 "}}}
 
 set listchars=""

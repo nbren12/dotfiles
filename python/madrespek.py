@@ -22,17 +22,14 @@ def scatter_line_plot(x, y, bands = None, alpha=.05):
     from numpy import polyfit, polyval
 
     plt.plot(x, y, '.', alpha=alpha)
-    
+
     if bands is not None:
         for band in bands:
             ind = (x > band[0]) &( x < band[1])
             pf = polyfit( x[ind], y[ind], 1)
             plt.plot(x[ind], polyval(pf, x[ind]))
-    
+
     else:
         pf = polyfit(x, y, 1)
         plt.plot(x , polyval(pf, x))
 
-
-import statsmodels.api as sm
-sm.
