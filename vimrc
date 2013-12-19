@@ -69,9 +69,8 @@ set clipboard=unnamed
     
     Bundle 'davidhalter/jedi-vim'
     let g:jedi#rename_command = ""
-    let g:jedi#completions_command = "<C-j>"
+    let g:jedi#completions_command = "<C-j><C-j>"
 
-    call SuperTabChain(&jedi#completions, "<c-p>", "<c-x><c-u>")
     " Bundle 'neocomplcache'
 
 

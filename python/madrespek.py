@@ -33,3 +33,11 @@ def scatter_line_plot(x, y, bands = None, alpha=.05):
         pf = polyfit(x, y, 1)
         plt.plot(x , polyval(pf, x))
 
+def cart2pol(x,y):
+    from pylab import sqrt, arctan, pi
+    r = sqrt(x**2 + y**2)
+    theta = arctan(y/x)
+    theta[x<0] = pi + theta[x<0]
+    theta[theta <0 ] = theta[theta<0] +2*pi
+
+    return (r, theta)
