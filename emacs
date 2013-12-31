@@ -1,6 +1,20 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (load "package.el")
 
+(setq noah-packages '(
+	evil 
+	python-mode
+	jedi
+	auctex
+	ess
+	auto-complete  
+	websocket
+	request
+	smartrep 
+	popup 
+	fuzzy 
+	ein 
+))
 
 
 (setq package-archives '(
@@ -13,8 +27,8 @@
  (lambda (package)
    (or (package-installed-p package)
        ;(if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
-           (package-install package)));)
- '( evil python-mode jedi auctex org ess auto-complete	websocket request smartrep popup fuzzy ein ))
+           (package-install package)))
+ noah-packages)
 
 
 
@@ -48,6 +62,10 @@
 (require 'evil)
 (evil-mode 1)
 
+;; Custom Evil Mode Key Bindings
+
+(define-key evil-normal-state-map ",l" 'org-preview-latex-fragment)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 
 ;;; Latex Stuff
 
@@ -65,17 +83,10 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (setq latex-run-command "pdflatex")
 
-;; Custom Evil Mode Key Bindings
-
-(define-key evil-normal-state-map ",l" 'org-preview-latex-fragment)
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 
 (require 'ess-site)
 
-
-
 ;; Ipython
-
 (setq-default py-shell-name "/Library/Frameworks/EPD64.framework/Versions/Current/bin/ipython")
 (setq-default py-which-bufname "IPython")
 (setq py-python-command-args
