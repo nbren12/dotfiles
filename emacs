@@ -20,6 +20,7 @@
 
 
 ;;;; Org Mode
+(add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
 (require 'org-install)
 
 ; Some initial langauges we want org-babel to support
@@ -52,8 +53,6 @@
 ;; Subject: [Orgmode] Re: [bug] latex export ignores org-export-latex-default-packages-alist?
 ;; To: emacs-orgmode <at> gnu.org
 ;; Date: Wed, 26 Jan 2011 16:01:52 +0000
-(add-to-list 'org-latex-packages-alist '("" "amsmath" t))
-;;(setcar (rassoc '("wasysym" t) org-export-latex-default-packages-alist)	"integrals")
 (setq org-latex-to-pdf-process (list "latexmk -bibtex -f -pdf %s"))
 
 ;;; RefTex Hooks
