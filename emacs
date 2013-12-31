@@ -23,6 +23,11 @@
 (add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
 (require 'org-install)
 
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 ; Some initial langauges we want org-babel to support
 (org-babel-do-load-languages
  'org-babel-load-languages
