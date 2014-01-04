@@ -98,13 +98,15 @@
 (setq ein:use-auto-complete-superpack t)
 
 
+
 ;; Auto Complete
 (setq ac-auto-start 3)
 (setq ac-dwim t)
 ;(global-auto-complete-mode t)
 
 (setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)    
+(setq jedi:complete-on-dot t)
+
 
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
@@ -124,7 +126,9 @@
 (tool-bar-mode -1)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'deeper-blue t)
+(load-theme 'wombat t)
+
+(setq evil-default-cursor t)
 (set-cursor-color "White")
 
 ;; Hooks
