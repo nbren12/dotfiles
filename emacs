@@ -45,11 +45,6 @@
 (add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
 
 
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
 ; Some initial langauges we want org-babel to support
 (org-babel-do-load-languages
  'org-babel-load-languages
@@ -64,7 +59,6 @@
    (sqlite . t)
    (perl . t)
    ))
-(add-hook 'org-mode-hook 'org-cdlatex-mode)
 
 ;;; EVIL Vim Mode
 
@@ -77,19 +71,8 @@
 (global-evil-leader-mode)
 
 ;;; Latex Stuff
-
-
 ;; to fix problems with amsmath conflicting with wasysym:
-;;
-;; From: Lawrence Mitchell <wence <at> gmx.li>
-;; Subject: [Orgmode] Re: [bug] latex export ignores org-export-latex-default-packages-alist?
-;; To: emacs-orgmode <at> gnu.org
-;; Date: Wed, 26 Jan 2011 16:01:52 +0000
 (setq org-latex-to-pdf-process (list "latexmk -bibtex -f -pdf %s"))
-
-;;; RefTex Hooks
-(add-hook 'org-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)   ; with AUCTeX LaTeX mode
 (setq latex-run-command "pdflatex")
 
 
@@ -117,7 +100,6 @@
 (setq ac-dwim t)
 ;(global-auto-complete-mode t)
 
-(add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)                      ; optional
 (setq jedi:complete-on-dot t)    
 
@@ -133,9 +115,22 @@
 (setq deft-extension "org")
 (setq deft-text-mode 'org-mode)
 (setq deft-directory "~/Dropbox/org")
+(setq deft-use-filename-as-title t)
+
+
+
+;; Hooks
+(add-hook 'org-mode-hook 'turn-on-reftex)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'org-mode-hook 'org-cdlatex-mode)
+(add-hook 'python-mode-hook 'jedi:setup)
 
 
 
 ;; Keybindings
-
 (evil-leader/set-key "d" 'deft)
+
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
