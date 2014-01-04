@@ -1,5 +1,7 @@
 ; -*-Lisp-*-
 (add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
+
 (load "package.el")
 
 (setq noah-packages '(
@@ -21,7 +23,7 @@
 
 
 (setq package-archives '(
-			; ("gnu" . "http://elpa.gnu.org/packages/")
+			 ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
@@ -35,6 +37,8 @@
 
 
 
+;; Requires
+
 (require 'org-install)
 (require 'evil)
 (require 'ess-site)
@@ -42,7 +46,6 @@
 (require 'deft)
 
 ;;;; Org Mode
-(add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
 
 
 ; Some initial langauges we want org-babel to support
@@ -117,7 +120,12 @@
 (setq deft-directory "~/Dropbox/org")
 (setq deft-use-filename-as-title t)
 
+;; Appearance
+(tool-bar-mode -1)
 
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+(load-theme 'deeper-blue t)
+(set-cursor-color "White")
 
 ;; Hooks
 (add-hook 'org-mode-hook 'turn-on-reftex)
