@@ -1,8 +1,11 @@
+; -*-Lisp-*-
 (add-to-list 'load-path "~/.emacs.d/")
 (load "package.el")
 
 (setq noah-packages '(
 	evil 
+	evil-leader
+	deft
 	python-mode
 	jedi
 	auctex
@@ -32,10 +35,15 @@
 
 
 
+(require 'org-install)
+(require 'evil)
+(require 'ess-site)
+(require 'auto-complete)
+(require 'deft)
 
 ;;;; Org Mode
 (add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
-(require 'org-install)
+
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
@@ -59,13 +67,14 @@
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
 
 ;;; EVIL Vim Mode
-(require 'evil)
+
 (evil-mode 1)
 
 ;; Custom Evil Mode Key Bindings
 
 (define-key evil-normal-state-map ",l" 'org-preview-latex-fragment)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(global-evil-leader-mode)
 
 ;;; Latex Stuff
 
@@ -84,7 +93,7 @@
 (setq latex-run-command "pdflatex")
 
 
-(require 'ess-site)
+
 
 ;; Ipython
 (setq-default py-shell-name "/Library/Frameworks/EPD64.framework/Versions/Current/bin/ipython")
@@ -104,7 +113,6 @@
 
 
 ;; Auto Complete
-(require 'auto-complete)
 (setq ac-auto-start 3)
 (setq ac-dwim t)
 ;(global-auto-complete-mode t)
@@ -118,3 +126,16 @@
 
 
 (c-mode)
+
+
+;; Deft
+
+(setq deft-extension "org")
+(setq deft-text-mode 'org-mode)
+(setq deft-directory "~/Dropbox/org")
+
+
+
+;; Keybindings
+
+(evil-leader/set-key "d" 'deft)
