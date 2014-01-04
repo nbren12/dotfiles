@@ -154,7 +154,7 @@
 
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-normal-state-map (kbd "C-j") 'e)
+(define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
 
 
 ;; Org Mode
