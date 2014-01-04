@@ -63,6 +63,9 @@
    (perl . t)
    ))
 
+
+(setq org-confirm-babel-evaluate nil)
+
 ;;; EVIL Vim Mode
 
 (evil-mode 1)
@@ -138,6 +141,7 @@
 ; Keybindings (list of evil-mode [[https://github.com/mbriggs/.emacs.d/blob/master/my-keymaps.el]])
 
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
+(evil-leader/set-key "eb" 'eval-buffer)
 
 ;;; esc quits
 
