@@ -69,8 +69,6 @@
 
 ;; Custom Evil Mode Key Bindings
 
-(define-key evil-normal-state-map ",l" 'org-preview-latex-fragment)
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (global-evil-leader-mode)
 
 ;;; Latex Stuff
@@ -108,8 +106,6 @@
 (setq jedi:complete-on-dot t)
 
 
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
 
 (c-mode)
@@ -139,10 +135,37 @@
 
 
 
-;; Keybindings
-(evil-leader/set-key "d" 'deft)
+; Keybindings (list of evil-mode [[https://github.com/mbriggs/.emacs.d/blob/master/my-keymaps.el]])
 
+(define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
+
+;;; esc quits
+
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+
+;; Deft
+(evil-leader/set-key "d" 'deft "l" 'org-preview-latex-fragment)
+
+
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-normal-state-map (kbd "C-j") 'e)
+
+
+;; Org Mode
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+;; Autocomplete
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+
+; Misc
+(setq vc-follow-symlinks t)
