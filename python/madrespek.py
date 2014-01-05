@@ -34,6 +34,11 @@ def scatter_line_plot(x, y, bands = None, alpha=.05):
         plt.plot(x , polyval(pf, x))
 
 def cart2pol(x,y):
+    """
+    Cartesian coordinates to polar
+
+    (C) 2013 Noah D. Brenowitz
+    """
     from pylab import sqrt, arctan, pi
     r = sqrt(x**2 + y**2)
     theta = arctan(y/x)
