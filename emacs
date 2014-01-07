@@ -142,6 +142,7 @@
 
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
 (evil-leader/set-key "eb" 'eval-buffer)
+(evil-leader/set-key "nb" 'ein:notebooklist-open)
 
 ;;; esc quits
 
