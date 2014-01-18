@@ -142,7 +142,7 @@ export ETS_TOOLKIT=qt4
 
 if [[ $(uname) == 'Darwin' ]]
 then
-    export PATH=/usr/local/bin:$PATH
+    export PATH=/usr/local/bin:/anaconda/bin:$PATH
     export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
 
 
@@ -150,7 +150,6 @@ then
 
     # Setting PATH for EPD-7.3-2
     # The orginal version is saved in .bash_profile.pysave
-    PATH="/Library/Frameworks/EPD64.framework/Versions/Current/bin:${PATH}"
     export PATH
     export PYTHONPATH=/Users/noah/proj/rayben:$PYTHONPATH
     alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
