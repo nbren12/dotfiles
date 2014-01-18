@@ -3,6 +3,7 @@
 #
 if [ -r /usr/local/lib/.system.kshrc ] ; then
     . /usr/local/lib/.system.kshrc
+    export PYTHONPATH=""
 fi
 
 
@@ -108,11 +109,6 @@ fi
     
 
 
-if [[ $(hostname) == *.cims.nyu.edu ]]
-then
-    source $DOTFILES/zsh/cims.zsh
-fi
-
 
 ###########################################################################
 #                         Environmental Variables                         #
@@ -157,6 +153,12 @@ then
     MKL_NUM_THREADS=1
     export MKL_NUM_THREADS
     export PATH=/opt/local/bin:$PATH
+fi
+
+
+if [[ $(hostname) == *.cims.nyu.edu ]]
+then
+    source $DOTFILES/zsh/cims.zsh
 fi
 
 
