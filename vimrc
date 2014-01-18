@@ -89,7 +89,7 @@ set clipboard=unnamed
     "" Snippets: 
     " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
     " Bundle "garbas/vim-snipmate"
-    Bundle 'UltiSnips'
+    Bundle 'SirVer/ultisnips'
     let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsListSnippets="<c-tab>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
