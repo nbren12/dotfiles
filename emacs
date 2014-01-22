@@ -65,6 +65,7 @@
 
 
 (setq org-confirm-babel-evaluate nil)
+(setq org-export-with-smart-quotes t)
 
 ;;; EVIL Vim Mode
 
