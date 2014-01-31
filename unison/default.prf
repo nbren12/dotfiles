@@ -1,0 +1,11 @@
+#    Roots of the synchronization
+root = /Users/noah/Documents
+root = ssh://kontiki1//kontiki_array1/noah
+
+#   Paths to synchronize
+path = Sync
+
+ignore = Path Sync/.SyncArchive
+
+ignorecase = false
+unicode = true
