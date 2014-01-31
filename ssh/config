@@ -16,7 +16,7 @@ Host mm
 Hostname noah-macmini.local
 user noah
 
-Host kon
+Host kontiki1
 Hostname kontiki1
 port 22
 user noah
