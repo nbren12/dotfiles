@@ -18,3 +18,7 @@
     email = nbren12@gmail.com
 [oh-my-zsh]
 	hide-status = 1
+[url "git://uv-cdat.llnl.gov/windfield.git"]
+	insteadof = http://uv-cdat.llnl.gov/git/windfield.git
+[push]
+	default = simple

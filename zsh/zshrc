@@ -146,7 +146,8 @@ then
     # Setting PATH for EPD-7.3-2
     # The orginal version is saved in .bash_profile.pysave
     export PATH
-    export PYTHONPATH=/Users/noah/proj/rayben:/Users/noah/Documents/Sync/tropical_modeling:$PYTHONPATH
+    export PYTHONPATH=/Users/noah/proj/rayben:/Users/noah/proj/tropical_modeling:$PYTHONPATH
+    source activate aos
     alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 
     MKL_NUM_THREADS=1

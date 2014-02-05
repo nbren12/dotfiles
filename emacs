@@ -84,19 +84,21 @@
 
 
 ;; Ipython
-(setq-default py-shell-name "/Library/Frameworks/EPD64.framework/Versions/Current/bin/ipython")
-(setq-default py-which-bufname "IPython")
-(setq py-python-command-args
-  '("--pylab"))
-(setq py-force-py-shell-name-p t)
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+   "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+   "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-; switch to the interpreter after executing code
-(setq py-shell-switch-buffers-on-execute-p t)
-(setq py-switch-buffers-on-execute-p t)
-; don't split windows
-(setq py-split-windows-on-execute-p nil)
-; try to automagically figure out indentation
-(setq py-smart-indentation t)
+
+
+
 (setq ein:use-auto-complete-superpack t)
 
 
@@ -162,7 +164,9 @@
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
 
-
+;; IPython Notebook
+(define-key evil-normal-state-map (kbd "C-n") 'ein:worksheet-goto-next-input)
+(define-key evil-normal-state-map (kbd "C-p") 'ein:worksheet-goto-prev-input)
 ;; Org Mode
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)

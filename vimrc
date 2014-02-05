@@ -71,6 +71,7 @@ set clipboard=unnamed
     let g:jedi#rename_command = ""
     let g:jedi#completions_command = "<C-j><C-j>"
 
+    Bundle 'oplatek/Conque-Shell'
     " Bundle 'neocomplcache'
 
 
