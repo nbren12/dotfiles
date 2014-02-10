@@ -2,8 +2,6 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
 
-(load "package.el")
-
 (setq noah-packages '(
 	evil 
 	evil-leader
@@ -19,13 +17,18 @@
 	popup 
 	fuzzy 
 	ein 
+	projectile
 ))
 
+(require 'package)
+;(add-to-list 'package-archives
+;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
 (setq package-archives '(
-			 ("gnu" . "http://elpa.gnu.org/packages/")
+;			 ("gnu" . "http://elpa.gnu.org/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+;                         ("melpa" . "http://melpa.milkbox.net/packages/")
+))
 (package-initialize)
 ;; check if the packages is installed; if not, install it.
 (mapc
@@ -116,7 +119,7 @@
 
 (c-mode)
 
-
+(projectile-global-mode)
 ;; Deft
 
 (setq deft-extension "org")
@@ -166,12 +169,16 @@
 
 ;; IPython Notebook
 (define-key evil-normal-state-map (kbd "C-n") 'ein:worksheet-goto-next-input)
-(define-key evil-normal-state-map (kbd "C-p") 'ein:worksheet-goto-prev-input)
+;(define-key evil-normal-state-map (kbd "C-p") 'ein:worksheet-goto-prev-input)
 ;; Org Mode
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cb" 'org-iswitchb)
+
+;; Projectile
+
+(define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
 
 ;; Autocomplete
 (define-key ac-complete-mode-map "\C-n" 'ac-next)
