@@ -141,8 +141,8 @@ set clipboard=unnamed
     " For matching in fortran"
     Bundle 'matchit.zip'
 
-    Bundle 'vim-ipython'
-    let g:ipy_completefunc = 'local'
+    " Bundle 'vim-ipython'
+    " let g:ipy_completefunc = 'local'
 
 " }}}
 

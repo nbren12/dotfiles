@@ -117,9 +117,9 @@
 
 
 
-(c-mode)
+;;(c-mode)
 
-(projectile-global-mode)
+;;(projectile-global-mode)
 ;; Deft
 
 (setq deft-extension "org")
