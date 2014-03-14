@@ -149,6 +149,7 @@ then
     export PYTHONPATH=/Users/noah/proj/rayben:/Users/noah/proj/tropical_modeling:$PYTHONPATH
     source activate aos
     alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
+    alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
     MKL_NUM_THREADS=1
     export MKL_NUM_THREADS
