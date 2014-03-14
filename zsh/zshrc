@@ -163,6 +163,4 @@ then
 fi
 
 
-source .profile.local
-
 export PATH=$DOTFILES/bin:$PATH
