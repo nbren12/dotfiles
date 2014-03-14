@@ -6,7 +6,7 @@ foreach file (emacs vimrc Rprofile gitconfig vimrc vim emacs.d
     DEST=~/.${file:t}
     if [[ ! -e  $DEST ]]
     then
-        ln -s ~/.dotfiles/$file 
+        ln -s ~/.dotfiles/$file $DEST
     fi
 
 }

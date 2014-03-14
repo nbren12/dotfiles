@@ -1,6 +1,6 @@
 #    Roots of the synchronization
-root = /Users/noah/Documents
-root = ssh://kontiki1//kontiki_array1/noah
+root = /archive/ndb245/
+root = ssh://
 
 #   Paths to synchronize
 path = Sync

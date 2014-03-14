@@ -63,6 +63,10 @@ module load ncview/intel/2.0beta4
 # matlab
 module load matlab/R2011a
 
+
+# User Paths
+export PATH=/home/ndb245/usr/bin:$PATH
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
@@ -74,8 +78,6 @@ umask u=rwx,g=rx,o=rx
 # and enables me to help you if you have a problem.  
 # As a general rule, you should not put personal information on a public 
 # system like this.  
-
-
 
 
 
