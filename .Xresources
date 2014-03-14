@@ -1,0 +1,3 @@
+xterm*faceName: DejaVu Sans Mono:style=Book:size=10
+xterm*vt100*geometry: 80x50
+Vim*font: DejaVu Sans Mono:style=Book:size=10
