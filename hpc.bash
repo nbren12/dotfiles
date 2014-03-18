@@ -57,15 +57,20 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/apps/hdf5/1.8.4/intel/serial/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/apps/netcdf/4.1.1/intel/serial/netcdf/lib
 
 # ncview
-module load udunits/intel/2.1.19
 module load ncview/intel/2.0beta4 
 
 # matlab
 module load matlab/R2011a
 
+module unload udunits
+module load iris
 
+module load git
+module load mercurial
 # User Paths
 export PATH=/home/ndb245/usr/bin:$PATH
+
+source /home/ndb245/python-env/bin/activate
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
