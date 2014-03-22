@@ -120,13 +120,3 @@ export ETS_TOOLKIT=qt4
 
 
 
-if [[ $(hostname) == *.cims.nyu.edu ]]
-then
-    source $DOTFILES/zsh/cims.zsh
-fi
-
-
-if [[ -e $HOME/.profile.local ]]
-then
-    source $HOME/.profile.local
-fi
