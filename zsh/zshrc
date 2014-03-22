@@ -162,5 +162,9 @@ then
     source $DOTFILES/zsh/cims.zsh
 fi
 
-
 export PATH=$DOTFILES/bin:$PATH
+
+if [[ -e $HOME/.profile.local ]]
+then
+    source $HOME/.profile.local
+fi
