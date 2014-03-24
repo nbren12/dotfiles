@@ -47,7 +47,7 @@
 (require 'ess-site)
 (require 'auto-complete)
 (require 'deft)
-(require 'ox-reveal)
+;(require 'ox-reveal)
 
 ;;;; Org Mode
 
