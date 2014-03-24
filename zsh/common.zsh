@@ -91,6 +91,7 @@ alias p='pushd'
 alias o='popd' 
 alias d='dirs -v'
 
+alias lmk='latexmk -pdf -pvc'
 alias ipynb='ipython notebook --browser=no'
 
 if [[ $(uname) == "Darwin" ]] 

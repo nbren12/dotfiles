@@ -8,6 +8,7 @@ alias mlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
 alias vim='mvim -v'
 alias marked="open -a Marked.app"
 alias un="unison cims"
+alias tropnb="emacs /Users/noah/Sync/tropical_modeling/notebook/notebook.org"
 
 
 
@@ -31,7 +32,10 @@ export PATH=/usr/local/bin:/anaconda/bin:$PATH
 # Setting PATH for EPD-7.3-2
 # The orginal version is saved in .bash_profile.pysave
 export PATH
-export PYTHONPATH=/Users/noah/proj/rayben:/Users/noah/proj/tropical_modeling:$PYTHONPATH
+export PYTHONPATH=/Users/noah/proj/rayben:$PYTHONPATH
+
+
+source ~/Sync/tropical_modeling/activate
 source activate aos
 alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
