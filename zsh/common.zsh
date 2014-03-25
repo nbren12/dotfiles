@@ -93,6 +93,7 @@ alias d='dirs -v'
 
 alias lmk='latexmk -pdf -pvc'
 alias ipynb='ipython notebook --browser=no'
+alias pyhttp='python -m SimpleHTTPServer'
 
 if [[ $(uname) == "Darwin" ]] 
 then
