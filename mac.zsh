@@ -7,7 +7,8 @@ alias g='mvim --servername VIM1 --remote-silent'
 alias mlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
 alias vim='mvim -v'
 alias marked="open -a Marked.app"
-alias un="unison cims"
+alias un_cims="unison -batch cims"
+alias un_mm="unison -batch macmini"
 alias tropnb="emacs /Users/noah/Sync/tropical_modeling/notebook/notebook.org"
 
 
