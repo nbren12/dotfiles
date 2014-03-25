@@ -36,7 +36,8 @@
 
   :menu-entry
   '(?R "Export to reveal.js HTML Presentation"
-       ((?R "To file" org-reveal-export-to-html)))
+       ((?R "To file" org-reveal-export-to-html)
+        (?B "To file and Browse" org-reveal-export-to-html-and-browse)))
 
   :options-alist
   '((:reveal-control nil "reveal_control" org-reveal-control t)
@@ -44,6 +45,7 @@
     (:reveal-history nil  "reveal_history" org-reveal-history t)
     (:reveal-center nil "reveal_center" org-reveal-center t)
     (:reveal-rolling-links nil "reveal_rolling_links" org-reveal-rolling-links t)
+    (:reveal-slide-number nil "reveal_slide_number" org-reveal-slide-number t)
     (:reveal-keyboard nil "reveal_keyboard" org-reveal-keyboard t)
     (:reveal-overview nil "reveal_overview" org-reveal-overview t)
     (:reveal-width nil "reveal_width" org-reveal-width t)
@@ -58,6 +60,7 @@
     (:reveal-extra-css "REVEAL_EXTRA_CSS" nil nil nil)
     (:reveal-extra-js "REVEAL_EXTRA_JS" nil nil nil)
     (:reveal-hlevel "REVEAL_HLEVEL" nil nil t)
+    (:reveal-title-slide-template "REVEAL_TITLE_SLIDE_TEMPLATE" nil org-reveal-title-slide-template t)
     (:reveal-mathjax nil "reveal_mathjax" org-reveal-mathjax t)
     (:reveal-mathjax-url "REVEAL_MATHJAX_URL" nil org-reveal-mathjax-url t)
     (:reveal-preamble "REVEAL_PREAMBLE" nil org-reveal-preamble t)
@@ -152,6 +155,11 @@ can be include."
   :group 'org-export-reveal
   :type 'boolean)
 
+(defcustom org-reveal-slide-number t
+  "Reveal showing slide numbers."
+  :group 'org-export-reveal
+  :type 'boolean)
+
 (defcustom org-reveal-keyboard t
   "Reveal use keyboard navigation."
   :group 'org-export-reveal
@@ -229,7 +237,7 @@ CONTENTS is nil. NFO is a plist holding contextual information."
             "</aside>"))
           ((string= block-type "HTML")
            (org-remove-indentation block-string)))))
-                 
+
 (defun org-reveal-headline (headline contents info)
   "Transcode a HEADLINE element from Org to Reveal.
 CONTENTS holds the contents of the headline. INFO is a plist
@@ -260,7 +268,7 @@ holding contextual information."
       ;; Build the real contents of the sub-tree.
       (let* ((type (if numberedp 'ordered 'unordered))
 	     (itemized-body (org-reveal-format-list-item
-			     contents type nil nil 'none full-text)))
+			     contents type nil info nil 'none full-text)))
 	(concat
 	 (and (org-export-first-sibling-p headline info)
 	      (org-html-begin-plain-list type))
@@ -316,7 +324,7 @@ holding contextual information."
                   (org-export-last-sibling-p headline info))
              ;; Last head 1. Stop all slides.
              "</section>")))))))
-  
+
 (defgroup org-export-reveal nil
   "Options for exporting Orgmode files to reveal.js HTML pressentations."
   :tag "Org Export reveal"
@@ -353,7 +361,16 @@ using custom variable `org-reveal-root'."
     (format "<link rel=\"stylesheet\" href=\"%s\"/>
 <link rel=\"stylesheet\" href=\"%s\" id=\"theme\"/>
 %s
-<link rel=\"stylesheet\" href=\"%s\" type=\"text/css\"/>
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = '%s';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
 "
                 min-css-file-name theme-full extra-css-link-tag
                 pdf-css)))
@@ -388,6 +405,7 @@ custom variable `org-reveal-root'."
         			progress: %s,
         			history: %s,
         			center: %s,
+                                slideNumber: %s,
         			rollingLinks: %s,
         			keyboard: %s,
         			overview: %s,
@@ -405,6 +423,7 @@ custom variable `org-reveal-root'."
              (if (plist-get info :reveal-progress) "true" "false")
              (if (plist-get info :reveal-history) "true" "false")
              (if (plist-get info :reveal-center) "true" "false")
+             (if (plist-get info :reveal-slide-number) "true" "false")
              (if (plist-get info :reveal-rolling-links) "true" "false")
              (if (plist-get info :reveal-keyboard) "true" "false")
              (if (plist-get info :reveal-overview) "true" "false")
@@ -423,7 +442,7 @@ custom variable `org-reveal-root'."
              (let ((max-scale (string-to-number (plist-get info :reveal-max-scale))))
                (if (> max-scale 0) (format "maxScale: %.2f," max-scale)
                  ""))
-             
+
              (plist-get info :reveal-trans)
              (plist-get info :reveal-speed))
      (format "
@@ -496,7 +515,7 @@ Add proper internal link to each headline."
 
 (defun org-reveal-toc (depth info)
   "Build a slide of table of contents."
-  (format 
+  (format
    "<section>\n%s</section>\n"
    (org-reveal-toc-headlines
     (org-export-collect-headlines info depth)
@@ -514,9 +533,16 @@ holding export options."
    contents))
 
 (defun org-reveal-format-list-item
-  (contents type checkbox &optional term-counter-id frag headline)
+  (contents type checkbox info &optional term-counter-id frag headline)
   "Format a list item into Reveal.js HTML."
-  (let ((checkbox (concat (org-html-checkbox checkbox) (and checkbox " "))))
+  (let* (;; The argument definition of `org-html-checkbox' differs
+         ;; between Org-mode master and 8.2.5h. To deal both cases,
+         ;; both argument definitions are tried here.
+         (org-checkbox (condition-case nil
+                           (org-html-checkbox checkbox info)
+                         ;; In case of wrong number of arguments, try another one
+                         ((debug wrong-number-of-arguments) (org-html-checkbox checkbox))))
+         (checkbox (concat org-checkbox (and checkbox " "))))
     (concat
      (case type
        (ordered
@@ -558,7 +584,7 @@ contextual information."
                 (and tag (org-export-data tag info))))
          (frag (org-export-read-attribute :attr_reveal plain-list :frag)))
     (org-reveal-format-list-item
-     contents type checkbox (or tag counter) frag)))
+     contents type checkbox info (or tag counter) frag)))
 
 (defun org-reveal-parse-token (key &optional value)
   "Return HTML tags or perform SIDE EFFECT according to key"
@@ -574,7 +600,7 @@ contextual information."
      (lambda (x) (apply 'org-reveal-parse-token x))
      tokens
      "")))
-    
+
 
 (defun org-reveal-keyword (keyword contents info)
   "Transcode a KEYWORD element from Org to HTML,
@@ -624,7 +650,7 @@ the plist used as a communication channel."
                (format-spec section spec))))
         (when (org-string-nw-p section-contents)
            (org-element-normalize-string section-contents))))))
-        
+
 
 (defun org-reveal-section (section contents info)
   "Transcode a SECTION element from Org to Reveal.
@@ -684,7 +710,7 @@ info is a plist holding export options."
 <div class=\"slides\">
 <section>
 "
-   (format-spec org-reveal-title-slide-template (org-html-format-spec info))
+   (format-spec (plist-get info :reveal-title-slide-template) (org-html-format-spec info))
    "</section>\n"
    contents
    "</div>
@@ -704,6 +730,12 @@ info is a plist holding export options."
          (file (org-export-output-file-name extension subtreep)))
     (org-export-to-file
      'reveal file subtreep visible-only body-only ext-plist)))
+
+(defun org-reveal-export-to-html-and-browse
+  (&optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer to a reveal.js and browse HTML file."
+  (interactive)
+  (browse-url-of-file (org-reveal-export-to-html async subtreep visible-only body-only ext-plist)))
 
 (provide 'ox-reveal)
 
