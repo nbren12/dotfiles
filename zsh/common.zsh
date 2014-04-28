@@ -94,6 +94,7 @@ alias d='dirs -v'
 alias lmk='latexmk -pdf -pvc'
 alias ipynb='ipython notebook --browser=no'
 alias pyhttp='python -m SimpleHTTPServer'
+alias ml='matlab -nodesktop -nosplash'
 
 if [[ $(uname) == "Darwin" ]] 
 then
