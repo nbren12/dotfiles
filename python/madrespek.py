@@ -100,12 +100,13 @@ def hovmoller(cube, tmin, tmax, xmin=0, xmax=360, demean = True, cmap = 'PuOr_r'
 
     plotme = plotme.extract(iris.Constraint(longitude = lambda x : xmin < x < xmax))
 
-    im = qplt.contourf(plotme, 20, extend='both', cmap = cmap, **kwargs)
-    title = qplt._title(cube, False)
+    im = iplt.contourf(plotme, 20, extend='both', cmap = cmap, **kwargs)
+    title = cube.name() + " (%s)"%str(cube.units)
     std = sqrt(cube.collapsed('time', iris.analysis.VARIANCE).collapsed('longitude', iris.analysis.MEAN).data)
     m   = cube.collapsed(('time' ,'longitude'), iris.analysis.MEDIAN).data
     plt.gca().set_title('%s Rms %.1f Med %.1f'%(title,  std, m))
     plt.gca().axis('tight')
+    plt.colorbar(im, ax = plt.gca())
 
 def climatology(cube):
     """
