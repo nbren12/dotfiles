@@ -1,3 +1,14 @@
+# madrespek.py
+#
+# Full of useful things like:
+#
+# 1. Plotting functions
+# 2. acf, pgram and more
+# 3. important constants
+#
+#
+# (C) Noah D. Brenowitz. 2014. All rights reserved.
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -8,6 +19,21 @@ from numba import f8, void, jit, autojit
 day_s = 86400.0
 hour_s= 3600.0
 
+def fftdiff(u, L = 4e7, axis=-1):
+    """
+    Function for calculated the derivative of a periodic signal using fft.
+
+    L is the physical length of the signal (default = 4e7, m aroun earth)
+    """
+    from numpy.fft import fft, ifft, fftfreq
+    L = 40e6
+    nx = u.shape[axis]
+    x = np.linspace(0, L, nx, endpoint=False)
+    k = fftfreq( nx, 1.0/nx )
+    fd = fft(u, axis=axis) * k * 1j * 2 * pi / L
+    ud = np.real( ifft(fd, axis=axis) )
+
+    return ud
 
 def pgram(x, fs=1.0):
     """
@@ -55,7 +81,6 @@ def cart2pol(x,y):
 
     return (r, theta)
 
-
 def acf(x, axes=(0,1)):
     """
     2D ACF using fft
@@ -91,6 +116,11 @@ def pdacf(y, nlags=1000):
     ac = sm.tsa.acf(y, True, nlags=nlags, fft=True)
     t  = np.array(y.index[:nlags+1]) -y.index[0]
     return pd.Series( ac, t )
+
+#######################################################################
+#                             Iris Plots                              #
+#######################################################################
+
 
 def hovmoller(cube, tmin, tmax, xmin=0, xmax=360, demean = True, cmap = 'PuOr_r', **kwargs):
     import iris
@@ -137,6 +167,10 @@ def climatology(cube):
     plt.gca().set_title(title)
     plt.gca().axis('tight')
 
+#######################################################################
+#                        Wheeler-Kiladis Plots                        #
+#######################################################################
+
 @autojit
 def wk_smooth121(ff, axis):
     """
@@ -156,8 +190,6 @@ def wk_smooth121(ff, axis):
                 raise NotImplementedError
 
     return
-
-
 
 def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, **kwargs):
     """
