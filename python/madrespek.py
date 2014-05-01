@@ -5,6 +5,10 @@ from math import sqrt
 from numba import f8, void, jit, autojit
 
 
+day_s = 86400.0
+hour_s= 3600.0
+
+
 def pgram(x, fs=1.0):
     """
     A function to plot the periodogram of a signal x
@@ -135,16 +139,19 @@ def climatology(cube):
 
 @autojit
 def wk_smooth121(ff, axis):
+    """
+    1-2-1 Filter for smoothing power spectrum data ala Wheeler-Kiladis
+    """
     nr, nc = ff.shape
     bak = np.zeros((nr +2, nc+ 2))
     bak[1:-1,1:-1] = ff
 
-    for i in range(nr):
-        for j in range(nc):
+    for i in range(1, nr +1):
+        for j in range(1, nc + 1):
             if axis == 0:
-                ff[i, j] =(bak[i, j] + 2.0 * bak[i+1, j] + bak[i+2, j ]) / 4.0
+                ff[i-1, j-1] =(bak[i-1, j ] + 2.0 * bak[i, j] + bak[i +1, j  ]) / 4.0
             elif axis == 1:
-                ff[i, j] =(bak[i, j] + 2.0 * bak[i, j+1] + bak[i, j +2 ]) / 4.0
+                ff[i-1, j-1] =(bak[i , j-1] + 2.0 * bak[i, j] + bak[i, j +1 ]) / 4.0
             else:
                 raise NotImplementedError
 
@@ -152,9 +159,14 @@ def wk_smooth121(ff, axis):
 
 
 
-def wk_plot(cube, cmap = 'hot_r', smooth = True, **kwargs):
+def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, **kwargs):
+    """
+    Plotting raw frequency-wavenumber power spectrum for x-t data
+    """
     from scipy.fftpack import fft2, fftfreq, fftshift
     from matplotlib import mlab
+
+    # Demean data and calculate pow spec using fft
     z = np.squeeze(cube.data)
     z = mlab.demean(z)
 
@@ -170,40 +182,72 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, **kwargs):
     ft = fftfreq(nt, d = dt)
 
     pz = np.abs(fz)**2/(nx * nt)**2 *2
-
+    pz /= np.sum(pz)
     nt2 = nt/2
 
-    levs=  np.arange(-4, 0, .25)
 
+    # Smooth the data using 1-2-1 filter
     if smooth:
         wk_smooth121(pz, 0)
         wk_smooth121(pz, 1)
 
 
 
+
+    # Make the plot
+
+    levs=  np.arange(-5.0, -1.5, .25)
     plt.contourf(fx, ft[:nt2], np.log10(pz[:nt2, :]), levs, extend='both', cmap = cmap, **kwargs)
-    plt.colorbar()
+    if colorbar:
+        plt.colorbar()
 
 
+    # Plot the gravity wave dispersion lines
 
-    def plot_symmetric_sw_waves(h, type='cpd'):
-        c = np.sqrt(9.81 * h) * 86400 / 4e7
+
+    def plot_symmetric_sw_waves(h=50, c=None, x=15, type='cpd'):
+        if c is None:
+            c = np.sqrt(9.81 * h)
+        else:
+            h = c**2 / 9.81
+        c *= day_s / 4e7
+
         plt.plot( fx, fx * c, 'k')
+        plt.plot( -fx, fx * c, 'k')
 
-    plot_symmetric_sw_waves(10)
-    plot_symmetric_sw_waves(25)
-    plot_symmetric_sw_waves(250)
+        y = c *x
+        plt.text(x, y , '%.0f'%(h),
+                horizontalalignment='center',
+                verticalalignment='center',
+                bbox = {'facecolor':'white'})
+
+
+    plot_symmetric_sw_waves(h=12, x= 18)
+    plot_symmetric_sw_waves(h=25, x = 17)
+    plot_symmetric_sw_waves(h=50, x= 13)
+    plot_symmetric_sw_waves(c = 50, x =6)
+
+    # Add some visual gridline guides
 
     plt.plot([0, 0], [0, 10], 'k--')
 
-    plt.plot([-40, 40], [ 1.0 / 6, 1.0/6], 'k--')
-    plt.plot([-40, 40], [ 1.0 / 3, 1.0/3], 'k--')
-    plt.plot([-40, 40], [1.0/30, 1.0/30], 'k--')
+
+    def day_gridlines(day, xloc=19):
+        day = float(day)
+        plt.plot([-40, 40], [ 1.0 / day, 1.0/day], 'k--')
+        plt.text(xloc, 1.0/day, '%.0f days'%day,
+                    horizontalalignment='right',
+                )
+
+    for i in [3, 6, 30]:
+        day_gridlines(i)
+
 
     plt.grid('on')
     plt.xlim([-20, 20])
     plt.ylim([0, min(.8, ft.max())])
     plt.xlabel('Zonal Wavenumber')
     plt.ylabel('CPD')
+    plt.title(cube.name())
 
 
