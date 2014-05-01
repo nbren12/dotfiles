@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from math import sqrt
+from numba import f8, void, jit, autojit
 
 
 def pgram(x, fs=1.0):
@@ -132,7 +133,26 @@ def climatology(cube):
     plt.gca().set_title(title)
     plt.gca().axis('tight')
 
-def wk_plot(cube):
+@autojit
+def wk_smooth121(ff, axis):
+    nr, nc = ff.shape
+    bak = np.zeros((nr +2, nc+ 2))
+    bak[1:-1,1:-1] = ff
+
+    for i in range(nr):
+        for j in range(nc):
+            if axis == 0:
+                ff[i, j] =(bak[i, j] + 2.0 * bak[i+1, j] + bak[i+2, j ]) / 4.0
+            elif axis == 1:
+                ff[i, j] =(bak[i, j] + 2.0 * bak[i, j+1] + bak[i, j +2 ]) / 4.0
+            else:
+                raise NotImplementedError
+
+    return
+
+
+
+def wk_plot(cube, cmap = 'hot_r', smooth = True, **kwargs):
     from scipy.fftpack import fft2, fftfreq, fftshift
     from matplotlib import mlab
     z = np.squeeze(cube.data)
@@ -153,10 +173,15 @@ def wk_plot(cube):
 
     nt2 = nt/2
 
-    levs=  np.arange(-10, -2, .5)
+    levs=  np.arange(-4, 0, .25)
+
+    if smooth:
+        wk_smooth121(pz, 0)
+        wk_smooth121(pz, 1)
 
 
-    plt.contourf(fx, ft[:nt2], np.log10(pz[:nt2, :]), levs, extend='both')
+
+    plt.contourf(fx, ft[:nt2], np.log10(pz[:nt2, :]), levs, extend='both', cmap = cmap, **kwargs)
     plt.colorbar()
 
 
@@ -165,11 +190,18 @@ def wk_plot(cube):
         c = np.sqrt(9.81 * h) * 86400 / 4e7
         plt.plot( fx, fx * c, 'k')
 
+    plot_symmetric_sw_waves(10)
     plot_symmetric_sw_waves(25)
     plot_symmetric_sw_waves(250)
 
+    plt.plot([0, 0], [0, 10], 'k--')
+
+    plt.plot([-40, 40], [ 1.0 / 6, 1.0/6], 'k--')
+    plt.plot([-40, 40], [ 1.0 / 3, 1.0/3], 'k--')
+    plt.plot([-40, 40], [1.0/30, 1.0/30], 'k--')
+
     plt.grid('on')
-    plt.xlim([-15, 15])
+    plt.xlim([-20, 20])
     plt.ylim([0, min(.8, ft.max())])
     plt.xlabel('Zonal Wavenumber')
     plt.ylabel('CPD')

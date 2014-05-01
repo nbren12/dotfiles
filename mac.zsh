@@ -27,6 +27,8 @@ export PYTHONPATH=$DOTFILES/python:$PYTHONPATH
 
 export PATH=/usr/local/bin:/anaconda/bin:$PATH
 
+export NCARG_ROOT=/opt/ncl-6.2.0
+export PATH=$NCARG_ROOT/bin:$PATH
 
 # VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
 
