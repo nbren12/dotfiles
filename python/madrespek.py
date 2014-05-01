@@ -26,7 +26,6 @@ def fftdiff(u, L = 4e7, axis=-1):
     L is the physical length of the signal (default = 4e7, m aroun earth)
     """
     from numpy.fft import fft, ifft, fftfreq
-    L = 40e6
     nx = u.shape[axis]
     x = np.linspace(0, L, nx, endpoint=False)
     k = fftfreq( nx, 1.0/nx )
