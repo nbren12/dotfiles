@@ -193,6 +193,13 @@ def wk_smooth121(ff, axis):
 def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, **kwargs):
     """
     Plotting raw frequency-wavenumber power spectrum for x-t data
+
+    Note:
+
+    I had to reorder the k direction to get eastward waves that actually move
+    eastward. Necesary because it is exp(kx-om * t)
+
+    fx = -[ -n/2 ... 0 ... n/2]
     """
     from scipy.fftpack import fft2, fftfreq, fftshift
     from matplotlib import mlab
@@ -209,7 +216,7 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, 
     dx = 1.0 / nx
 
     fz = fftshift(np.abs(fft2(z)), axes=1)
-    fx = fftshift(fftfreq(nx, d = dx ))
+    fx = -fftshift(fftfreq(nx, d = dx ))
     ft = fftfreq(nt, d = dt)
 
     pz = np.abs(fz)**2/(nx * nt)**2 *2
@@ -221,7 +228,6 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, 
     if smooth:
         wk_smooth121(pz, 0)
         wk_smooth121(pz, 1)
-
 
 
 
