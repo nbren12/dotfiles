@@ -140,6 +140,8 @@ def hovmoller(cube, tmin, tmax, xmin=0, xmax=360, demean = True, cmap = 'PuOr_r'
     m   = cube.collapsed(('time' ,'longitude'), iris.analysis.MEDIAN).data
     plt.gca().set_title('%s Rms %.1f Med %.1f'%(title,  std, m))
     plt.gca().axis('tight')
+    plt.gca().set_xlabel(cube.coord('longitude').units)
+    plt.gca().set_ylabel(cube.coord('time').units)
     plt.colorbar(im, ax = plt.gca())
 
 def climatology(cube):
