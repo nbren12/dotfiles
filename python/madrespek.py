@@ -209,7 +209,7 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, 
     dx = 1.0 / nx
 
     fz = fftshift(np.abs(fft2(z)), axes=1)
-    fx = fftshift(fftfreq(nx, d = dx ))
+    fx = -fftshift(fftfreq(nx, d = dx ))
     ft = fftfreq(nt, d = dt)
 
     pz = np.abs(fz)**2/(nx * nt)**2 *2
