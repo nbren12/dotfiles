@@ -140,6 +140,8 @@ def hovmoller(cube, tmin, tmax, xmin=0, xmax=360, demean = True, cmap = 'PuOr_r'
     m   = cube.collapsed(('time' ,'longitude'), iris.analysis.MEDIAN).data
     plt.gca().set_title('%s Rms %.1f Med %.1f'%(title,  std, m))
     plt.gca().axis('tight')
+    plt.gca().set_xlabel(cube.coord('longitude').units)
+    plt.gca().set_ylabel(cube.coord('time').units)
     plt.colorbar(im, ax = plt.gca())
 
 def climatology(cube):
@@ -193,6 +195,13 @@ def wk_smooth121(ff, axis):
 def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, **kwargs):
     """
     Plotting raw frequency-wavenumber power spectrum for x-t data
+
+    Note:
+
+    I had to reorder the k direction to get eastward waves that actually move
+    eastward. Necesary because it is exp(kx-om * t)
+
+    fx = -[ -n/2 ... 0 ... n/2]
     """
     from scipy.fftpack import fft2, fftfreq, fftshift
     from matplotlib import mlab
@@ -221,7 +230,6 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, 
     if smooth:
         wk_smooth121(pz, 0)
         wk_smooth121(pz, 1)
-
 
 
 

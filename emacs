@@ -204,5 +204,5 @@
 
 
 
-(load-file "~/.emacs.d/beamer.el")
+;(load-file "~/.emacs.d/beamer.el")
 (load-file "~/.emacs.d/cdlatex.el")
