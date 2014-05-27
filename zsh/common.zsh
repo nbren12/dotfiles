@@ -95,7 +95,10 @@ alias lmk='latexmk -pdf -pvc'
 alias ipynb='ipython notebook --browser=no'
 alias pyhttp='python -m SimpleHTTPServer'
 alias ml='matlab -nodesktop -nosplash'
+alias ijulia='ipython --profile=julia'
+alias ijulianb='ipython notebook --profile=julia'
 
+alias vi="vim -u NONE"
 if [[ $(uname) == "Darwin" ]] 
 then
 

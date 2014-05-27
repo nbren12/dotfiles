@@ -11,8 +11,7 @@ alias un_cims="unison -batch cims"
 alias un_mm="unison -batch macmini"
 alias tropnb="emacs /Users/noah/Sync/tropical_modeling/notebook/notebook.org"
 
-
-
+export GIT_EDITOR="/usr/bin/vim -u NONE"
 
 export UDUNITS2_XML_PATH=/anaconda/envs/aos/share/udunits/udunits2.xml
 

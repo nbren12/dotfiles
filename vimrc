@@ -24,6 +24,7 @@ set clipboard=unnamed
     Bundle 'hsitz/VimOrganizer'
     let g:org_command_for_emacsclient = "/usr/local/bin/emacsclient"
 
+    Bundle 'JuliaLang/julia-vim'
     Bundle 'vim-pandoc/vim-pandoc'
     Bundle 'Vim-R-plugin'
     Bundle 'vim-scripts/MatlabFilesEdition'
@@ -72,7 +73,7 @@ set clipboard=unnamed
     let g:jedi#completions_command = "<C-j><C-j>"
 
     Bundle 'oplatek/Conque-Shell'
-    " Bundle 'neocomplcache'
+    Bundle 'neocomplcache'
 
 
         
@@ -81,6 +82,7 @@ set clipboard=unnamed
         " let g:ycm_autoclose_preview_window_after_insertion=1
         " let g:ycm_key_list_previous_completion=['<Up>']
     else
+        " Bundle "Valloric/YouCompleteMe"
         " Bundle 'neocomplcache'
         " let g:neocomplcache_enable_at_startup = 1 
     endif 
@@ -149,7 +151,7 @@ set clipboard=unnamed
 " User Interface {{{
     set hlsearch
     set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-    syntax on
+    " syntax on
 
     if has("gui_running")
         colorscheme wombat
@@ -163,8 +165,6 @@ set clipboard=unnamed
     endif
 
     "Folding "
-    let fortran_fold=1
-    let fortran_fold_conditionals=1
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
@@ -301,11 +301,8 @@ set clipboard=unnamed
 "  Programming {{{
     " CTags Browsing
     set tags=./tags;/
-    " nmap <S-F> :set syntax=fortran<CR>:let b:fortran_fixed_source=!b:fortran_fixed_source<CR>:set syntax=text<CR>:set syntax=fortran<CR>
-    let fortran_do_enddo=1
-    let fortran_more_precise=1
-    " let fortran_free_source=1
-    " let fortran_have_tabs=1
+
+
 
     " Fix Indenting Behavior with #
     " inoremap # X#   
