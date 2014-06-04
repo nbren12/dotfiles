@@ -68,9 +68,9 @@ set clipboard=unnamed
     set completeopt+=longest
     
     
-    Bundle 'davidhalter/jedi-vim'
-    let g:jedi#rename_command = ""
-    let g:jedi#completions_command = "<C-j><C-j>"
+    " Bundle 'davidhalter/jedi-vim'
+    " let g:jedi#rename_command = ""
+    " let g:jedi#completions_command = "<C-j><C-j>"
 
     Bundle 'oplatek/Conque-Shell'
     Bundle 'neocomplcache'
@@ -143,7 +143,7 @@ set clipboard=unnamed
     " For matching in fortran"
     Bundle 'matchit.zip'
 
-    " Bundle 'vim-ipython'
+    Bundle 'ivanov/vim-ipython'
     " let g:ipy_completefunc = 'local'
 
 " }}}
@@ -154,7 +154,8 @@ set clipboard=unnamed
     " syntax on
 
     if has("gui_running")
-        colorscheme wombat
+        " colorscheme wombat
+        colorscheme zellner
         
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
         set guifont=Monospace\ 10,Consolas:h13
