@@ -38,7 +38,7 @@ export PYTHONPATH=/Users/noah/proj/rayben:$PYTHONPATH
 
 
 source ~/Sync/tropical_modeling/activate
-source activate aos
+# source activate aos
 alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
