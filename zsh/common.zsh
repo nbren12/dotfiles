@@ -71,7 +71,7 @@ __git_files () {
 ###########################################################################
 
 export DOTFILES="$HOME/.dotfiles"
-
+export PYTHONPATH=${DOTFILES}/python:$PYTHONPATH
 
 #   Ipython completion
 source $DOTFILES/ipython-completion.bash

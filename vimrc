@@ -166,8 +166,6 @@ set clipboard=unnamed
     endif
 
     "Folding "
-    let fortran_fold=1
-    let fortran_fold_conditionals=1
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
@@ -304,21 +302,8 @@ set clipboard=unnamed
 "  Programming {{{
     " CTags Browsing
     set tags=./tags;/
-    nmap <S-F> :set syntax=fortran<CR>:let b:fortran_fixed_source=!b:fortran_fixed_source<CR>:set syntax=text<CR>:set syntax=fortran<CR>
 
-    let s:extfname = expand("%:e")
-    if s:extfname ==? "f90"
-        let fortran_free_source=1
-        unlet! fortran_fixed_source
-    else
-        let fortran_fixed_source=1
-        unlet! fortran_free_source
-    endif
-    let fortran_do_enddo=1
-    let fortran_more_precise=1
 
-    " let fortran_free_source=1
-    " let fortran_have_tabs=1
 
     " Fix Indenting Behavior with #
     " inoremap # X#   
