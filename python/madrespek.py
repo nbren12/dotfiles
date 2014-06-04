@@ -41,10 +41,16 @@ def pgram(x, fs=1.0):
     (C) 2013 Noah D. Brenowitz
     """
     from numpy import fft
-    ps  = abs(fft.fft(x**2))**2
+    ps  = abs(fft.fft(x**2))**2/x.shape[0]
+    print ps.max()
     fs  = fft.fftfreq(x.shape[0],fs)
 
-    return plt.semilogx(fs, ps)
+    return plt.loglog(fs, ps)
+
+def pdpgram(x):
+    fs = np.diff(np.array(x.index))[0]
+    return pgram(x-x.mean(), fs=fs)
+
 
 def scatter_line_plot(x, y, bands = None, alpha=.05):
     """
