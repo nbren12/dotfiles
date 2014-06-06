@@ -127,20 +127,49 @@ def pdacf(y, nlags=1000):
 #######################################################################
 
 
-def hovmoller(cube, tmin, tmax, xmin=0, xmax=360, demean = True, cmap = 'PuOr_r', **kwargs):
+
+def qxt(cube, dx = 5.0, cmap = 'brewer_PuOr_11', div = None,
+        **kwargs):
+    """
+    A convenience wrapper for hovmoller, that helps in the creation of contour
+    levels and color bars
+
+    dx is the spacing of the contours
+    div =True selects a single tone white-to-black colorbar (useful for
+        plotting positive quantities)
+
+    """
+    import iris
+    import iris.plot as iplt
+    import matplotlib.cm as cm
+
+    if div is not None:
+        if div == True:
+            cmap = 'brewer_Greys_09'
+
+    brewer_cmap = cm.get_cmap(cmap)
+    levs = np.arange(brewer_cmap.N+1) * dx
+    hovmoller(cube, levs = levs, cmap = cmap, **kwargs)
+
+def hovmoller(cube,
+        levs= None,
+        cmap = 'brewer_PuOr_11',
+        **kwargs):
+    """
+    Plots a 2d hovmoller diagram given an iris cube.
+    """
     import iris
     import iris.quickplot as qplt
     import iris.plot as iplt
-    if demean:
-        mu   = cube.collapsed(('time' ,), iris.analysis.MEAN)
-        plotme = cube.extract(iris.Constraint(time = lambda cell: tmin < cell < tmax))
-        plotme.data -= mu.data[None,...]
-    else:
-        plotme = cube.extract(iris.Constraint(time = lambda cell: tmin < cell < tmax))
+    import matplotlib.cm as cm
 
-    plotme = plotme.extract(iris.Constraint(longitude = lambda x : xmin < x < xmax))
 
-    im = iplt.contourf(plotme, 20, extend='both', cmap = cmap, **kwargs)
+    plotme = cube
+    brewer_cmap = cm.get_cmap(cmap)
+    if levs is None:
+        levs = brewer_cmap.N
+
+    im = iplt.contourf(plotme, levs, extend='both', cmap = brewer_cmap, **kwargs)
     title = cube.name() + " (%s)"%str(cube.units)
     std = sqrt(cube.collapsed('time', iris.analysis.VARIANCE).collapsed('longitude', iris.analysis.MEAN).data)
     m   = cube.collapsed(('time' ,'longitude'), iris.analysis.MEDIAN).data
@@ -173,6 +202,15 @@ def climatology(cube):
     title = qplt._title(cube, False)
     plt.gca().set_title(title)
     plt.gca().axis('tight')
+
+#######################################################################
+#                             Iris Analysis                           #
+#######################################################################
+
+def anom(cube, axis=('time',)):
+    import iris
+    return cube - cube.collapsed(('time',), iris.analysis.MEAN)
+
 
 #######################################################################
 #                        Wheeler-Kiladis Plots                        #
