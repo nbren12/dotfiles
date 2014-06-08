@@ -149,7 +149,6 @@ def cmapfac(dx=5.0, positive=True):
 
     return {'cmap': cmap, 'levs': levs}
 
-
 def qxt(cube, dx = 5.0, positive = False,
         **kwargs):
     """
@@ -221,9 +220,16 @@ def climatology(cube):
 #                             Iris Analysis                           #
 #######################################################################
 
+def clim(cube, axis=('time',)):
+    import iris
+    return cube.collapsed(axis, iris.analysis.MEAN)
+
+
 def anom(cube, axis=('time',)):
     import iris
-    return cube - cube.collapsed(('time',), iris.analysis.MEAN)
+    out = cube - cube.collapsed(axis, iris.analysis.MEAN)
+    out.name = cube.name
+    return out
 
 
 #######################################################################
