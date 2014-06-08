@@ -47,7 +47,9 @@
 (require 'ess-site)
 (require 'auto-complete)
 (require 'deft)
-(require 'ox-reveal)
+
+
+;(require 'ox-reveal)
 
 ;;;; Org Mode
 
@@ -132,10 +134,13 @@
 (tool-bar-mode -1)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'wombat t)
+;(load-theme 'wombat t)
 
 (setq evil-default-cursor t)
 (set-cursor-color "White")
+
+; Line numbers
+(global-linum-mode t)
 
 ;; Hooks
 (add-hook 'org-mode-hook 'turn-on-reftex)
@@ -151,7 +156,17 @@
 (evil-leader/set-key "eb" 'eval-buffer)
 (evil-leader/set-key "nb" 'ein:notebooklist-open)
 
-;;; esc quits
+;;; esc quits in evil mode
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+
 
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
