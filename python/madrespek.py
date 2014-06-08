@@ -127,29 +127,43 @@ def pdacf(y, nlags=1000):
 #######################################################################
 
 
+def cmapfac(dx=5.0, positive=True):
+    """
+    A convenience function for creating colormap/contour level pairs
 
-def qxt(cube, dx = 5.0, cmap = 'brewer_PuOr_11', div = None,
+    - dx is the spacing between contours
+    - positive=True => white-to-black colorscale
+      positive=False => diverging colorscale
+
+    """
+    import matplotlib.cm as cm
+    if positive:
+        cmap = 'brewer_Greys_09'
+        brewer_cmap = cm.get_cmap(cmap)
+        levs = np.arange(brewer_cmap.N+1) * dx
+    else:
+        cmap = 'brewer_PuOr_11'
+        brewer_cmap = cm.get_cmap(cmap)
+        N = brewer_cmap.N
+        levs = (np.arange(N+2) - ( brewer_cmap.N + 2 ) /2)* dx
+
+    return {'cmap': cmap, 'levs': levs}
+
+
+def qxt(cube, dx = 5.0, positive = False,
         **kwargs):
     """
     A convenience wrapper for hovmoller, that helps in the creation of contour
     levels and color bars
 
-    dx is the spacing of the contours
-    div =True selects a single tone white-to-black colorbar (useful for
-        plotting positive quantities)
+    - dx is the spacing of the contours
+    - see cmapfac for info on `positive` kwarg
 
     """
     import iris
     import iris.plot as iplt
-    import matplotlib.cm as cm
 
-    if div is not None:
-        if div == True:
-            cmap = 'brewer_Greys_09'
-
-    brewer_cmap = cm.get_cmap(cmap)
-    levs = np.arange(brewer_cmap.N+1) * dx
-    hovmoller(cube, levs = levs, cmap = cmap, **kwargs)
+    return hovmoller(cube, **cmapfac(dx=dx, positive=positive))
 
 def hovmoller(cube,
         levs= None,
