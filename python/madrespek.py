@@ -165,7 +165,7 @@ def qxt(cube, dx = None, positive = False,
 
 
     if dx is None:
-        dx = cube.data.std() / 2
+        dx = cube.data.std() / 1.2
         if dx > 1 :
             dx = np.round(dx, 0)
         elif dx < 1 :
