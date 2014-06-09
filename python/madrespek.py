@@ -149,18 +149,27 @@ def cmapfac(dx=5.0, positive=True):
 
     return {'cmap': cmap, 'levs': levs}
 
-def qxt(cube, dx = 5.0, positive = False,
+def qxt(cube, dx = None, positive = False,
         **kwargs):
     """
     A convenience wrapper for hovmoller, that helps in the creation of contour
     levels and color bars
 
     - dx is the spacing of the contours
+      dx = None means auto find dx
     - see cmapfac for info on `positive` kwarg
 
     """
     import iris
     import iris.plot as iplt
+
+
+    if dx is None:
+        dx = cube.data.std() / 2
+        if dx > 1 :
+            dx = np.round(dx, 0)
+        elif dx < 1 :
+            dx = np.round(dx, 1)
 
     return hovmoller(cube, **cmapfac(dx=dx, positive=positive))
 
