@@ -1,6 +1,8 @@
 ; -*-Lisp-*-
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
+(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87/")
+
 
 (setq noah-packages '(
 	evil 
@@ -48,7 +50,9 @@
 (require 'auto-complete)
 (require 'deft)
 
-
+;; AucTex
+(require 'tex)
+(setq TeX-PDF-mode t)
 ;(require 'ox-reveal)
 
 ;;;; Org Mode
@@ -145,6 +149,7 @@
 ;; Hooks
 (add-hook 'org-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(setq reftex-plug-into-AUCTeX t)
 (add-hook 'org-mode-hook 'org-cdlatex-mode)
 (add-hook 'python-mode-hook 'jedi:setup)
 
@@ -207,6 +212,7 @@ then it takes a second \\[keyboard-quit] to abort the minibuffer."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(TeX-view-program-list (quote (("Evince Command" "evince --page-index=%(outpage)"))))
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "d070fa185078bf753dcfd873ec63be19fa36a55a0c97dc66848a6d20c5fffdad" default)))
  '(inhibit-startup-screen t)
  '(org-babel-python-command "/anaconda/envs/aos/bin/python"))
