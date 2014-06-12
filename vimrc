@@ -92,8 +92,8 @@ set clipboard=unnamed
     "" Snippets: 
     " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
     " Bundle "garbas/vim-snipmate"
+    Bundle 'honza/vim-snippets'
     Bundle 'SirVer/ultisnips'
-    let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsListSnippets="<c-tab>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
     "}}}
@@ -117,6 +117,7 @@ set clipboard=unnamed
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
     
     Bundle "jiangmiao/auto-pairs"
+    au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
     
     " Colorschemes"{{{
     Bundle 'Wombat'
@@ -126,19 +127,31 @@ set clipboard=unnamed
     "}}}
 
     Bundle 'laktek/distraction-free-writing-vim'
-    Bundle 'jcf/vim-latex'
-    let g:Tex_ViewRule_pdf = 'Skim'
-    let g:tex_flavor='latex'
-    " let g:Tex_TreatMacViewerAsUNIX = 1
-    set grepprg=grep\ -nH\ $*
-    imap ;; <Plug>IMAP_JumpForward
-    "Fix the C-j nonsense in non latex files"
-    if &filetype != 'tex'
-        imap <Leader>#$ <Plug>IMAP_JumpForward
-        nmap <Leader>#$ <Plug>IMAP_JumpForward
-        vmap <Leader>#$ <Plug>IMAP_JumpForward
-        vmap <Leader>#$ <Plug>IMAP_DeleteAndJumpForward
-    endif
+
+    " Latex
+
+    
+    " This plugin is a little too simplistic
+    Bundle 'LaTeX-Box-Team/LaTeX-Box'    
+    let g:LatexBox_latexmk_async=1
+    let g:LatexBox_latexmk_preview_continuously=1
+    let g:LatexBox_Folding=1
+
+    " Bundle 'coot/atp_vim'
+    
+    " Bundle 'jcf/vim-latex'
+    " let g:Tex_ViewRule_pdf = 'Skim'
+    " let g:tex_flavor='latex'
+    " " let g:Tex_TreatMacViewerAsUNIX = 1
+    " set grepprg=grep\ -nH\ $*
+    " imap ;; <Plug>IMAP_JumpForward
+    " "Fix the C-j nonsense in non latex files"
+    " if &filetype != 'tex'
+    "     imap <Leader>#$ <Plug>IMAP_JumpForward
+    "     nmap <Leader>#$ <Plug>IMAP_JumpForward
+    "     vmap <Leader>#$ <Plug>IMAP_JumpForward
+    "     vmap <Leader>#$ <Plug>IMAP_DeleteAndJumpForward
+    " endif
     
     " For matching in fortran"
     Bundle 'matchit.zip'
