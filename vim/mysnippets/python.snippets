@@ -1,0 +1,20 @@
+snippet jinjahdr
+#!/usr/bin/env python
+import sys, os, csv, jinja2
+import glob, subprocess, re
+
+
+# Change the default delimiters used by Jinja such that it won't pick up
+# brackets attached to LaTeX macros.
+report_renderer = jinja2.Environment(
+  block_start_string = '%{',
+  block_end_string = '%}',
+  variable_start_string = '%{{',
+  variable_end_string = '%}}',
+  loader = jinja2.FileSystemLoader(os.path.abspath('.'))
+)
+
+template = report_renderer.get_template($1)
+
+
+endsnippet
