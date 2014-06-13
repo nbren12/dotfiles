@@ -9,7 +9,7 @@ alias eclipse='/opt/pkg/eclipse/4.3.2/eclipse'
 
 export CC=gcc
 export CXX=g++
-export PATH=/home/noah/anaconda/bin:/usr/local/texlive/2013/bin/x86_64-linux:/kontiki_array1/noah/rayben/rayben/bin:$HOME/usr/local/git-annex.linux:$PATH
+export PATH=/home/noah/anaconda/bin:/usr/local/texlive/2013/bin/x86_64-linux:/kontiki_array1/noah/rayben/rayben/bin:$PATH
 export PATH=/home/noah/array/linux_xorg7_64:$PATH
 # source activate aos
 
