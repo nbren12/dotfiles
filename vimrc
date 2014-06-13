@@ -129,6 +129,7 @@ set clipboard=unnamed
     Bundle 'laktek/distraction-free-writing-vim'
 
     " Latex
+    au Filetype tex set wrap
 
     
     " This plugin is a little too simplistic
