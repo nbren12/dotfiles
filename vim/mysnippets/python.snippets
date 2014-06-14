@@ -19,8 +19,7 @@ template = report_renderer.get_template($1)
 
 endsnippet
 
-snippet np "Common math imports"
-
+snippet npimp "Common math imports"
 import numpy as np
 from numpy import exp, sqrt, sin, cos, tan
 from numpy import reshape
@@ -34,6 +33,18 @@ import subprocess
 from os import path
 from re import search, sub, compile as rcompile
 from glob import glob
+endsnippet
 
 
+
+snippet aos "Imports for AOS stuff" 
+import madrespek as md
+import iris
+from iris import plot as iplt, quickplot as qplt, load_cube, Constraint as iC
+import matplotlib.pyplot as plt
+
+endsnippet 
+
+snippet tlim "Contruct tlim"
+tlim = lambda t : ${1:0} < t < ${2:100}
 endsnippet
