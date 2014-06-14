@@ -18,3 +18,17 @@ template = report_renderer.get_template($1)
 
 
 endsnippet
+
+
+
+snippet aos "Imports for AOS stuff" 
+import madrespek as md
+import iris
+from iris import plot as iplt, quickplot as qplt, load_cube, Constraint as iC
+import matplotlib.pyplot as plt
+
+endsnippet 
+
+snippet tlim "Contruct tlim"
+tlim = lambda t : ${1:0} < t < ${2:100}
+endsnippet
