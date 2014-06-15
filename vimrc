@@ -65,7 +65,7 @@ set clipboard=unnamed
     "Code completion"{{{
     Bundle 'ervandew/supertab'
     let g:SuperTabDefaultCompletionType = "context"
-    set completeopt+=longest
+    " set completeopt+=longest
     
     
     " Bundle 'davidhalter/jedi-vim'
@@ -73,8 +73,21 @@ set clipboard=unnamed
     " let g:jedi#completions_command = "<C-j><C-j>"
 
     Bundle 'oplatek/Conque-Shell'
-    Bundle 'neocomplcache'
 
+
+
+
+    " Bundle 'neocomplcache'
+    " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
+    " others
+    "
+    if has('lua') 
+        Bundle 'Shougo/neocomplete.vim'
+        let g:neocomplete#enable_at_startup = 1
+        au FileType tex let g:neocomplete#disable_auto_complete=1
+        " Let supertab call neocmplete
+        let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
+    endif
 
         
     if has('mac')
@@ -91,7 +104,7 @@ set clipboard=unnamed
 
     "" Snippets: 
     " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
-    " Bundle "garbas/vim-snipmate"
+    " 2014-06-15 00:53   Added ultisnips again. it's awesome.
     Bundle 'honza/vim-snippets'
     Bundle 'SirVer/ultisnips'
     let g:UltiSnipsListSnippets="<c-tab>"
