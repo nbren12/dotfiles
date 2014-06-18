@@ -81,6 +81,7 @@ set clipboard=unnamed
     " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
     " others
     "
+    let g:neocomplete#disable_auto_complete=1
     if has('lua') 
         Bundle 'Shougo/neocomplete.vim'
         let g:neocomplete#enable_at_startup = 1
