@@ -147,9 +147,10 @@ set clipboard=unnamed
     
     " This plugin is a little too simplistic
     Bundle 'LaTeX-Box-Team/LaTeX-Box'    
-    let g:LatexBox_latexmk_async=1
+    " let g:LatexBox_latexmk_async=1
     let g:LatexBox_latexmk_preview_continuously=1
     let g:LatexBox_Folding=1
+    let g:LatexBox_quickfix=2
 
     " Bundle 'coot/atp_vim'
     
