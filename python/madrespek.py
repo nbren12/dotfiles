@@ -127,20 +127,71 @@ def pdacf(y, nlags=1000):
 #######################################################################
 
 
-def hovmoller(cube, tmin, tmax, xmin=0, xmax=360, demean = True, cmap = 'PuOr_r', **kwargs):
+def cmapfac(dx=5.0, positive=True):
+    """
+    A convenience function for creating colormap/contour level pairs
+
+    - dx is the spacing between contours
+    - positive=True => white-to-black colorscale
+      positive=False => diverging colorscale
+
+    """
+    import matplotlib.cm as cm
+    if positive:
+        cmap = 'brewer_Greys_09'
+        brewer_cmap = cm.get_cmap(cmap)
+        levs = np.arange(brewer_cmap.N+1) * dx
+    else:
+        cmap = 'brewer_PuOr_11'
+        brewer_cmap = cm.get_cmap(cmap)
+        N = brewer_cmap.N
+        levs = (np.arange(N+2) - ( brewer_cmap.N + 2 ) /2)* dx
+
+    return {'cmap': cmap, 'levs': levs}
+
+def qxt(cube, dx = None, positive = False,
+        **kwargs):
+    """
+    A convenience wrapper for hovmoller, that helps in the creation of contour
+    levels and color bars
+
+    - dx is the spacing of the contours
+      dx = None means auto find dx
+    - see cmapfac for info on `positive` kwarg
+
+    """
+    import iris
+    import iris.plot as iplt
+
+
+    if dx is None:
+        dx = cube.data.std() / 1.2
+        if dx > 1 :
+            dx = np.round(dx, 0)
+        elif dx < 1 :
+            dx = np.round(dx, 1)
+
+    return hovmoller(cube, **cmapfac(dx=dx, positive=positive))
+
+def hovmoller(cube,
+        levs= None,
+        cmap = 'brewer_PuOr_11',
+        **kwargs):
+    """
+    Plots a 2d hovmoller diagram given an iris cube.
+    """
     import iris
     import iris.quickplot as qplt
     import iris.plot as iplt
-    if demean:
-        mu   = cube.collapsed(('time' ,), iris.analysis.MEAN)
-        plotme = cube.extract(iris.Constraint(time = lambda cell: tmin < cell < tmax))
-        plotme.data -= mu.data[None,...]
-    else:
-        plotme = cube.extract(iris.Constraint(time = lambda cell: tmin < cell < tmax))
+    import matplotlib.cm as cm
 
-    plotme = plotme.extract(iris.Constraint(longitude = lambda x : xmin < x < xmax))
 
-    im = iplt.contourf(plotme, 20, extend='both', cmap = cmap, **kwargs)
+    plotme = cube
+    brewer_cmap = cm.get_cmap(cmap)
+    if levs is None:
+        levs = brewer_cmap.N
+
+    im = iplt.contourf(plotme, levs, extend='both', cmap = brewer_cmap, **kwargs)
     title = cube.name() + " (%s)"%str(cube.units)
     std = sqrt(cube.collapsed('time', iris.analysis.VARIANCE).collapsed('longitude', iris.analysis.MEAN).data)
     m   = cube.collapsed(('time' ,'longitude'), iris.analysis.MEDIAN).data
@@ -173,6 +224,22 @@ def climatology(cube):
     title = qplt._title(cube, False)
     plt.gca().set_title(title)
     plt.gca().axis('tight')
+
+#######################################################################
+#                             Iris Analysis                           #
+#######################################################################
+
+def clim(cube, axis=('time',)):
+    import iris
+    return cube.collapsed(axis, iris.analysis.MEAN)
+
+
+def anom(cube, axis=('time',)):
+    import iris
+    out = cube - cube.collapsed(axis, iris.analysis.MEAN)
+    out.name = cube.name
+    return out
+
 
 #######################################################################
 #                        Wheeler-Kiladis Plots                        #

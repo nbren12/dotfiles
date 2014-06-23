@@ -65,7 +65,7 @@ set clipboard=unnamed
     "Code completion"{{{
     Bundle 'ervandew/supertab'
     let g:SuperTabDefaultCompletionType = "context"
-    set completeopt+=longest
+    " set completeopt+=longest
     
     
     " Bundle 'davidhalter/jedi-vim'
@@ -73,8 +73,22 @@ set clipboard=unnamed
     " let g:jedi#completions_command = "<C-j><C-j>"
 
     Bundle 'oplatek/Conque-Shell'
-    Bundle 'neocomplcache'
 
+
+
+
+    " Bundle 'neocomplcache'
+    " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
+    " others
+    "
+    let g:neocomplete#disable_auto_complete=1
+    if has('lua') 
+        Bundle 'Shougo/neocomplete.vim'
+        let g:neocomplete#enable_at_startup = 1
+        au FileType tex let g:neocomplete#disable_auto_complete=1
+        " Let supertab call neocmplete
+        let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
+    endif
 
         
     if has('mac')
@@ -91,9 +105,9 @@ set clipboard=unnamed
 
     "" Snippets: 
     " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
-    " Bundle "garbas/vim-snipmate"
+    " 2014-06-15 00:53   Added ultisnips again. it's awesome.
+    Bundle 'honza/vim-snippets'
     Bundle 'SirVer/ultisnips'
-    let g:UltiSnipsExpandTrigger="<s-tab>"
     let g:UltiSnipsListSnippets="<c-tab>"
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
     "}}}
@@ -117,6 +131,7 @@ set clipboard=unnamed
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
     
     Bundle "jiangmiao/auto-pairs"
+    au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
     
     " Colorschemes"{{{
     Bundle 'Wombat'
@@ -126,19 +141,33 @@ set clipboard=unnamed
     "}}}
 
     Bundle 'laktek/distraction-free-writing-vim'
-    Bundle 'jcf/vim-latex'
-    let g:Tex_ViewRule_pdf = 'Skim'
-    let g:tex_flavor='latex'
-    " let g:Tex_TreatMacViewerAsUNIX = 1
-    set grepprg=grep\ -nH\ $*
-    imap ;; <Plug>IMAP_JumpForward
-    "Fix the C-j nonsense in non latex files"
-    if &filetype != 'tex'
-        imap <Leader>#$ <Plug>IMAP_JumpForward
-        nmap <Leader>#$ <Plug>IMAP_JumpForward
-        vmap <Leader>#$ <Plug>IMAP_JumpForward
-        vmap <Leader>#$ <Plug>IMAP_DeleteAndJumpForward
-    endif
+
+    " Latex
+    au Filetype tex set wrap
+
+    
+    " This plugin is a little too simplistic
+    Bundle 'LaTeX-Box-Team/LaTeX-Box'    
+    " let g:LatexBox_latexmk_async=1
+    let g:LatexBox_latexmk_preview_continuously=1
+    let g:LatexBox_Folding=1
+    let g:LatexBox_quickfix=2
+
+    " Bundle 'coot/atp_vim'
+    
+    " Bundle 'jcf/vim-latex'
+    " let g:Tex_ViewRule_pdf = 'Skim'
+    " let g:tex_flavor='latex'
+    " " let g:Tex_TreatMacViewerAsUNIX = 1
+    " set grepprg=grep\ -nH\ $*
+    " imap ;; <Plug>IMAP_JumpForward
+    " "Fix the C-j nonsense in non latex files"
+    " if &filetype != 'tex'
+    "     imap <Leader>#$ <Plug>IMAP_JumpForward
+    "     nmap <Leader>#$ <Plug>IMAP_JumpForward
+    "     vmap <Leader>#$ <Plug>IMAP_JumpForward
+    "     vmap <Leader>#$ <Plug>IMAP_DeleteAndJumpForward
+    " endif
     
     " For matching in fortran"
     Bundle 'matchit.zip'

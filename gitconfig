@@ -22,3 +22,4 @@
 	insteadof = http://uv-cdat.llnl.gov/git/windfield.git
 [push]
 	default = simple
+
