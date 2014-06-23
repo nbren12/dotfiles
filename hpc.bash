@@ -3,7 +3,7 @@
 # User specific aliases and functions
 
 # check the queue and submit things faster
-alias qs='qstat -u nyuID'
+alias qs='qstat -u ndb245'
 alias qb='qsub'
 
 alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
@@ -23,7 +23,7 @@ function t4 {
         }
 
 # make sure you do not kill anything important!
-alias rm='rm -i'
+# alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 
@@ -43,9 +43,10 @@ alias ml='matlab -nodesktop -nosplash'
 # rsync is a better way of copying files
 alias rs='rsync -aHv'
 
+
 # load modules
-source /etc/profile.d/env-modules.sh
-module load mvapich2/intel/1.7
+#source /etc/profile.d/env-modules.sh
+module load mvapich2
 
 # the nco utilities
 export PATH=$PATH:/share/apps/netcdf/4.1.1/intel/serial/nco-4.0.1/bin
@@ -56,21 +57,28 @@ export PATH=$PATH:/share/apps/netcdf/4.1.1/intel/serial/netcdf/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/apps/hdf5/1.8.4/intel/serial/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/share/apps/netcdf/4.1.1/intel/serial/netcdf/lib
 
-# ncview
-module load ncview/intel/2.0beta4 
+# netcdf tools
+module load ncview
+module load cdo
+module load nco
 
 # matlab
-module load matlab/R2011a
+module load matlab
 
 module unload udunits
 module load iris
 
 module load git
-module load mercurial
+
+# Python
+
+module load python/intel/2.7.6 
+
+export PYTHONPATH=/home/ndb245/.dotfiles/python:$PYTHONPATH
 # User Paths
 export PATH=/home/ndb245/usr/bin:$PATH
 
-source /home/ndb245/python-env/bin/activate
+#source /home/ndb245/python-env/bin/activate
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then

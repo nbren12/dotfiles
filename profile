@@ -28,7 +28,7 @@ then
 else
     alias g='gvim --servername VIM1 --remote-silent'
     alias mlab='matlab -nodisplay'
-    alias vim='vim -X'
+    #alias vim='vim -X'
 fi
     
 
