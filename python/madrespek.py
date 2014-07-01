@@ -11,9 +11,9 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 from math import sqrt, pi
-from numba import f8, void, jit, autojit
+# from numba import f8, void, jit, autojit
+# import pandas as pd
 
 
 day_s = 86400.0
@@ -118,6 +118,7 @@ def acf(x, axes=(0,1)):
 
 def pdacf(y, nlags=1000):
     import statsmodels.api as sm
+    import pandas as pd
     ac = sm.tsa.acf(y, True, nlags=nlags, fft=True)
     t  = np.array(y.index[:nlags+1]) -y.index[0]
     return pd.Series( ac, t )
@@ -191,14 +192,17 @@ def hovmoller(cube,
     if levs is None:
         levs = brewer_cmap.N
 
-    im = iplt.contourf(plotme, levs, extend='both', cmap = brewer_cmap, **kwargs)
+    x  = cube.coord('longitude').points
+    t  = cube.coord('time').points
+
+    im = plt.contourf(x, t, plotme.data, levs, extend='both', cmap = brewer_cmap, **kwargs)
     title = cube.name() + " (%s)"%str(cube.units)
     std = sqrt(cube.collapsed('time', iris.analysis.VARIANCE).collapsed('longitude', iris.analysis.MEAN).data)
     m   = cube.collapsed(('time' ,'longitude'), iris.analysis.MEDIAN).data
     plt.gca().set_title('%s Rms %.1f Med %.1f'%(title,  std, m))
     plt.gca().axis('tight')
     plt.gca().set_xlabel(cube.coord('longitude').units)
-    plt.gca().set_ylabel(cube.coord('time').units)
+    plt.gca().set_ylabel('Days')
     plt.colorbar(im, ax = plt.gca())
 
 def climatology(cube):
@@ -245,7 +249,7 @@ def anom(cube, axis=('time',)):
 #                        Wheeler-Kiladis Plots                        #
 #######################################################################
 
-@autojit
+# @autojit
 def wk_smooth121(ff, axis):
     """
     1-2-1 Filter for smoothing power spectrum data ala Wheeler-Kiladis

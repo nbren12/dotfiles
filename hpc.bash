@@ -62,6 +62,9 @@ module load ncview
 module load cdo
 module load nco
 
+module load ncl
+export NCARG_ROOT=/share/apps/ncl/6.2.0/lib/ncarg/
+
 # matlab
 module load matlab
 
@@ -74,9 +77,13 @@ module load git
 
 module load python/intel/2.7.6 
 
+#VIM
+module load gtkplus
+#module load vim
+
 export PYTHONPATH=/home/ndb245/.dotfiles/python:$PYTHONPATH
 # User Paths
-export PATH=/home/ndb245/usr/bin:$PATH
+export PATH=$HOME/.dotfiles/bin:/home/ndb245/usr/bin:$PATH
 
 #source /home/ndb245/python-env/bin/activate
 
@@ -92,6 +99,6 @@ umask u=rwx,g=rx,o=rx
 # As a general rule, you should not put personal information on a public 
 # system like this.  
 
-
+module load vim/gnu/7.4
 
 
