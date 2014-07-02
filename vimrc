@@ -81,7 +81,7 @@ set clipboard=unnamed
     " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
     " others
     "
-    let g:neocomplete#disable_auto_complete=1
+    " let g:neocomplete#disable_auto_complete=1
     if has('lua') 
         Bundle 'Shougo/neocomplete.vim'
         let g:neocomplete#enable_at_startup = 1
@@ -198,6 +198,8 @@ set clipboard=unnamed
     set foldmethod=marker
     set wrap " word wrap
     autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
+
+    let g:fortran_free_source=1
     autocmd FileType python setlocal foldmethod=indent
 
     " This is why autocomplete is abysmally slow sometimes
