@@ -35,6 +35,8 @@ export PATH=$NCARG_ROOT/bin:$PATH
 # The orginal version is saved in .bash_profile.pysave
 export PATH
 export PYTHONPATH=/Users/noah/proj/rayben:$PYTHONPATH
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+# source $HOME/pyenv/bin/activate
 
 
 source ~/Sync/tropical_modeling/activate

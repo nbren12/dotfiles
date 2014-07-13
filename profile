@@ -145,3 +145,6 @@ if [[ -e $HOME/.git-completion.bash ]]
 then
     source $HOME/.git-completion.bash
 fi
+
+# added by Miniconda 3.5.5 installer
+export PATH="/Users/noah/miniconda/bin:$PATH"
