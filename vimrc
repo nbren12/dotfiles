@@ -77,11 +77,10 @@ set clipboard=unnamed
 
 
 
-    " Bundle 'neocomplcache'
+    Bundle 'neocomplcache'
     " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
     " others
-    "
-    " let g:neocomplete#disable_auto_complete=1
+    
     if has('lua') 
         Bundle 'Shougo/neocomplete.vim'
         let g:neocomplete#enable_at_startup = 1
@@ -90,9 +89,29 @@ set clipboard=unnamed
         let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
     endif
 
+    Bundle 'Rip-Rip/clang_complete'
+    let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
+
+	if !exists('g:neocomplete#force_omni_input_patterns')
+	  let g:neocomplete#force_omni_input_patterns = {}
+	endif
+	let g:neocomplete#force_overwrite_completefunc = 1
+	let g:neocomplete#force_omni_input_patterns.c =
+	      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+	let g:neocomplete#force_omni_input_patterns.cpp =
+	      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+	let g:neocomplete#force_omni_input_patterns.objc =
+	      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+	let g:neocomplete#force_omni_input_patterns.objcpp =
+	      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+	let g:clang_complete_auto = 0
+	let g:clang_auto_select = 0
         
     if has('mac')
         " Bundle "Valloric/YouCompleteMe"
+        " let g:ycm_key_list_previous_completion = ['<Up>']
+        " let g:ycm_key_list_select_completion = ['<Down>']
+        " let g:UltiSnipsExpandTrigger = "<s-tab>"
         " let g:ycm_autoclose_preview_window_after_insertion=1
         " let g:ycm_key_list_previous_completion=['<Up>']
     else
@@ -148,9 +167,10 @@ set clipboard=unnamed
     
     " This plugin is a little too simplistic
     Bundle 'LaTeX-Box-Team/LaTeX-Box'    
-    " let g:LatexBox_latexmk_async=1
-    let g:LatexBox_latexmk_preview_continuously=1
+    let g:LatexBox_latexmk_async=1
+    " let g:LatexBox_latexmk_preview_continuously=1
     let g:LatexBox_Folding=1
+    let g:LatexBox_show_warnings=0
     let g:LatexBox_quickfix=2
 
     " Bundle 'coot/atp_vim'
