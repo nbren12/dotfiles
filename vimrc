@@ -30,7 +30,8 @@ set clipboard=unnamed
     Bundle 'vim-scripts/MatlabFilesEdition'
     Bundle 'https://github.com/tpope/vim-fugitive.git' 
     Bundle 'mileszs/ack.vim'
-    Bundle 'taglist.vim'
+    " Bundle 'taglist.vim'
+    Bundle 'majutsushi/tagbar'
     Bundle 'tComment'
     Bundle 'surround.vim'
     Bundle 'mattn/calendar-vim'
@@ -89,8 +90,15 @@ set clipboard=unnamed
         let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
     endif
 
+    " C++ stuff
+        let g:neocomplete#disable_auto_complete=1
     Bundle 'Rip-Rip/clang_complete'
     let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
+
+    Bundle 'scrooloose/syntastic'
+    Bundle 'FSwitch'
+
+
 
 	if !exists('g:neocomplete#force_omni_input_patterns')
 	  let g:neocomplete#force_omni_input_patterns = {}
@@ -330,7 +338,7 @@ set clipboard=unnamed
      map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
      map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-     nnoremap <Leader>t :TlistToggle<CR>
+     nnoremap <Leader>t :TagbarToggle<CR>
     nnoremap yg "+y
     vnoremap yg "+y
     
