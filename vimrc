@@ -31,6 +31,7 @@ set clipboard=unnamed
     Bundle 'https://github.com/tpope/vim-fugitive.git' 
     Bundle 'mileszs/ack.vim'
     " Bundle 'taglist.vim'
+    Bundle 'a.vim'
     Bundle 'majutsushi/tagbar'
     Bundle 'tComment'
     Bundle 'surround.vim'
@@ -96,6 +97,8 @@ set clipboard=unnamed
     let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
 
     Bundle 'scrooloose/syntastic'
+    let g:syntastic_cpp_compiler = 'clang++'
+    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     Bundle 'FSwitch'
 
 
@@ -122,10 +125,12 @@ set clipboard=unnamed
         " let g:UltiSnipsExpandTrigger = "<s-tab>"
         " let g:ycm_autoclose_preview_window_after_insertion=1
         " let g:ycm_key_list_previous_completion=['<Up>']
+        let g:LatexBox_viewer="open"
     else
         " Bundle "Valloric/YouCompleteMe"
         " Bundle 'neocomplcache'
         " let g:neocomplcache_enable_at_startup = 1 
+        let g:LatexBox_viewer="xdg-open"
     endif 
 
 
@@ -180,6 +185,14 @@ set clipboard=unnamed
     let g:LatexBox_Folding=1
     let g:LatexBox_show_warnings=0
     let g:LatexBox_quickfix=2
+
+    map <silent> <Leader>ls :silent
+            \ !/Applications/Skim.app/Contents/SharedSupport/displayline
+            \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
+            \ "%:p" <CR>
+
+    let g:LatexBox_latexmk_options
+                    \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
 
     " Bundle 'coot/atp_vim'
     
