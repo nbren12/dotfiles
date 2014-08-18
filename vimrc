@@ -70,9 +70,10 @@ set clipboard=unnamed
     " set completeopt+=longest
     
     
-    " Bundle 'davidhalter/jedi-vim'
+    Bundle 'davidhalter/jedi-vim'
     " let g:jedi#rename_command = ""
     " let g:jedi#completions_command = "<C-j><C-j>"
+    let g:jedi#auto_initialization = 0
 
     Bundle 'oplatek/Conque-Shell'
 
