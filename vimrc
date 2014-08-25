@@ -38,6 +38,13 @@ set clipboard=unnamed
     Bundle 'vim-scripts/utl.vim'
     Bundle 'scrooloose/nerdtree'
     Bundle 'godlygeek/tabular'
+
+    nmap <Leader>a& :Tabularize /& <CR>
+    nmap <Leader>a= :Tabularize /= <CR>
+    vmap <Leader>a& :Tabularize /& <CR>
+    vmap <Leader>a= :Tabularize /= <CR>
+
+
     map <C-e> :NERDTreeToggle<CR>
     let NERDTreeShowBookmarks=1
 
