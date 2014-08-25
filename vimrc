@@ -48,6 +48,10 @@ set clipboard=unnamed
     map <C-e> :NERDTreeToggle<CR>
     let NERDTreeShowBookmarks=1
 
+    Bundle 'jmcantrell/vim-virtualenv'
+
+
+
     " ctrlp {{{
     Bundle 'ctrlp.vim'
     nnoremap <silent> <D-t> :CtrlP<CR>
@@ -152,6 +156,9 @@ set clipboard=unnamed
     Bundle 'scrooloose/syntastic'
     let g:syntastic_cpp_compiler = 'clang++'
     let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+    let g:syntastic_python_python_exec = '~/pyenv/bin/python'
+
+
     Bundle 'FSwitch'
 
 
@@ -349,8 +356,16 @@ set clipboard=unnamed
     nnoremap <C-l> <C-w>l
     nnoremap <C-n> <C-w>n
     nnoremap <C-x> <C-w>x
+    nnoremap <Leader>v <C-w>v
+    nnoremap <Leader>wh <C-w>H
+    nnoremap <Leader>wj <C-w>J
     nnoremap <Leader>c <C-w>c
     nnoremap <Leader>o <C-w>o
+
+    " Misc bindings
+    nnoremap <Leader>d :bd <CR>
+    nnoremap <Leader>ss :w <CR>
+    nnoremap <Leader>so :so % <CR>
 
 
     "Insert mode movement
