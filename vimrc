@@ -72,37 +72,81 @@ set clipboard=unnamed
     let g:ctrlp_root_markers = ['.ctrlp','.git']
     "}}}
     "Code completion"{{{
-    Bundle 'ervandew/supertab'
-    let g:SuperTabDefaultCompletionType = "context"
-    " set completeopt+=longest
-    
+    " Bundle 'ervandew/supertab'
+    " let g:SuperTabDefaultCompletionType = "context"
+    set completeopt=menuone,longest,preview
     
     Bundle 'davidhalter/jedi-vim'
-    " let g:jedi#rename_command = ""
-    " let g:jedi#completions_command = "<C-j><C-j>"
-    let g:jedi#auto_initialization = 0
+    " au FileType python set omnifunc=pythoncomplete#Complete 
+    let g:jedi#usages_command = "<leader>z"
+    let g:jedi#popup_on_dot = 0
+    " let g:jedi#popup_select_first = 0
+    map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
-    Bundle 'oplatek/Conque-Shell'
-
-
-
-
-    Bundle 'neocomplcache'
+    " Bundle 'neocomplcache'
     " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
     " others
-    
-    if has('lua') 
+    "
+    if 0
         Bundle 'Shougo/neocomplete.vim'
         let g:neocomplete#enable_at_startup = 1
-        au FileType tex let g:neocomplete#disable_auto_complete=1
+        if !exists('g:neocomplete#force_omni_input_patterns')
+            let g:neocomplete#force_omni_input_patterns = {}
+        endif
+        let g:neocomplete#force_overwrite_completefunc = 1
+        let g:neocomplete#force_omni_input_patterns.c =
+                    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+        let g:neocomplete#force_omni_input_patterns.cpp =
+                    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+        let g:neocomplete#force_omni_input_patterns.objc =
+                    \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+        let g:neocomplete#force_omni_input_patterns.objcpp =
+                    \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+
+        " au FileType tex let g:neocomplete#disable_auto_complete=1
+
+
+        " Plugin key-mappings.
+        inoremap <expr><C-g>     neocomplete#undo_completion()
+        inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+        " Recommended key-mappings.
+        " <CR>: close popup and save indent.
+        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+        function! s:my_cr_function()
+          return neocomplete#close_popup() . "\<CR>"
+          " For no inserting <CR> key.
+          "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+        endfunction
+        " <TAB>: completion.
+        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+        " <C-h>, <BS>: close popup and delete backword char.
+        inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+        inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+        inoremap <expr><C-y>  neocomplete#close_popup()
+        inoremap <expr><C-e>  neocomplete#cancel_popup()
+        " Close popup by <Space>.
+        "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+
+    else
+        " Bundle "Valloric/YouCompleteMe"
+        let g:UltiSnipsExpandTrigger = "<s-tab>"
+    endif
+        
+    if has('lua') 
+
+
+
         " Let supertab call neocmplete
         let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
     endif
 
     " C++ stuff
-        let g:neocomplete#disable_auto_complete=1
-    Bundle 'Rip-Rip/clang_complete'
-    let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
+        " let g:neocomplete#disable_auto_complete=1
+    " Bundle 'Rip-Rip/clang_complete'
+    " let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
+        let g:clang_complete_auto = 0
+        let g:clang_auto_select = 0
 
     Bundle 'scrooloose/syntastic'
     let g:syntastic_cpp_compiler = 'clang++'
@@ -111,26 +155,10 @@ set clipboard=unnamed
 
 
 
-	if !exists('g:neocomplete#force_omni_input_patterns')
-	  let g:neocomplete#force_omni_input_patterns = {}
-	endif
-	let g:neocomplete#force_overwrite_completefunc = 1
-	let g:neocomplete#force_omni_input_patterns.c =
-	      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-	let g:neocomplete#force_omni_input_patterns.cpp =
-	      \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-	let g:neocomplete#force_omni_input_patterns.objc =
-	      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-	let g:neocomplete#force_omni_input_patterns.objcpp =
-	      \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-	let g:clang_complete_auto = 0
-	let g:clang_auto_select = 0
         
     if has('mac')
-        " Bundle "Valloric/YouCompleteMe"
         " let g:ycm_key_list_previous_completion = ['<Up>']
         " let g:ycm_key_list_select_completion = ['<Down>']
-        " let g:UltiSnipsExpandTrigger = "<s-tab>"
         " let g:ycm_autoclose_preview_window_after_insertion=1
         " let g:ycm_key_list_previous_completion=['<Up>']
         let g:LatexBox_viewer="open"
