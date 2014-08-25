@@ -80,6 +80,7 @@ set clipboard=unnamed
     " au FileType python set omnifunc=pythoncomplete#Complete 
     let g:jedi#usages_command = "<leader>z"
     let g:jedi#popup_on_dot = 0
+    let g:jedi#rename_command = "<leader>rr"
     " let g:jedi#popup_select_first = 0
     map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
