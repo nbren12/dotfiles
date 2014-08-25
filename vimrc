@@ -21,7 +21,6 @@ set clipboard=unnamed
     call vundle#rc()
     Bundle 'gmarik/vundle' 
 
-    Bundle 'hsitz/VimOrganizer'
     let g:org_command_for_emacsclient = "/usr/local/bin/emacsclient"
 
     Bundle 'JuliaLang/julia-vim'
@@ -38,6 +37,7 @@ set clipboard=unnamed
     Bundle 'mattn/calendar-vim'
     Bundle 'vim-scripts/utl.vim'
     Bundle 'scrooloose/nerdtree'
+    Bundle 'godlygeek/tabular'
     map <C-e> :NERDTreeToggle<CR>
     let NERDTreeShowBookmarks=1
 
@@ -148,13 +148,6 @@ set clipboard=unnamed
     au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
     au BufEnter *.org call OrgOpts()
 
-    function OrgOpts()
-        call org#SetOrgFileType()
-        unmap gj
-        unmap gk
-    endfunction
-
-
 
     au BufRead,BufNewFile *.md  set filetype=pandoc
 
@@ -164,7 +157,8 @@ set clipboard=unnamed
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
     
     Bundle "jiangmiao/auto-pairs"
-    au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
+    " au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
+    au Filetype tex let b:AutoPairs = {"{": "}" }
     
     " Colorschemes"{{{
     Bundle 'Wombat'
@@ -241,7 +235,7 @@ set clipboard=unnamed
     set wrap " word wrap
     autocmd FileType c,matlab,cpp,fortran setlocal foldmethod=syntax
 
-    let g:fortran_free_source=1
+    " let g:fortran_free_source=1
     autocmd FileType python setlocal foldmethod=indent
 
     " This is why autocomplete is abysmally slow sometimes

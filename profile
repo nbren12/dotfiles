@@ -154,3 +154,6 @@ export PATH="/Users/noah/miniconda/bin:$PATH"
 
 # added by Miniconda 3.5.5 installer
 export PATH="/Users/noah/miniconda/bin:$PATH"
+
+# added by Anaconda 2.0.1 installer
+export PATH="/Users/noah/anaconda/bin:$PATH"

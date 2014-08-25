@@ -24,7 +24,7 @@ export PYTHONPATH=$DOTFILES/python:$PYTHONPATH
 
 
 
-export PATH=/usr/local/bin:/anaconda/bin:$PATH
+export PATH=/Users/noah/anaconda/bin:/usr/local/bin:$PATH
 
 export NCARG_ROOT=/opt/ncl-6.2.0
 export PATH=$NCARG_ROOT/bin:$PATH
