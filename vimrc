@@ -12,7 +12,7 @@ imap jj <Esc>
 filetype off                   " required!
 
 " Sync the clipboard with the registers
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Plugins {{{
 
@@ -21,7 +21,6 @@ set clipboard=unnamed
     call vundle#rc()
     Bundle 'gmarik/vundle' 
 
-    let g:org_command_for_emacsclient = "/usr/local/bin/emacsclient"
 
     Bundle 'JuliaLang/julia-vim'
     Bundle 'vim-pandoc/vim-pandoc'
@@ -76,9 +75,13 @@ set clipboard=unnamed
     let g:ctrlp_root_markers = ['.ctrlp','.git']
     "}}}
     "Code completion"{{{
+    au FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+    set complete+=k
+    
+
     " Bundle 'ervandew/supertab'
     " let g:SuperTabDefaultCompletionType = "context"
-    set completeopt=menuone,longest,preview
+
     
     Bundle 'davidhalter/jedi-vim'
     " au FileType python set omnifunc=pythoncomplete#Complete 
@@ -108,8 +111,28 @@ set clipboard=unnamed
         let g:neocomplete#force_omni_input_patterns.objcpp =
                     \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-        " au FileType tex let g:neocomplete#disable_auto_complete=1
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"         \ 'default' : '',
+"         \ 'tex' : $DOTVIM.'dictionaries/tex'
+"         \ }
+" 
+" if !exists('g:neocomplete#sources')
+"     let g:neocomplete#sources = {}
+" endif
+let g:neocomplete#sources.tex = ['buffer', 'dictionary', 'ultisnips', 'file',
+            \ 'omni']
 
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns._ = '^\\\?\h\w*$'
+let keyword_patterns = {}
+let keyword_patterns = {'tex' : '\h\w*:\%(\w*_\w*\)\?'}
+let keyword_patterns2 = {'tex' : '\h\w*'}
+call neocomplete#custom#source('buffer', 'keyword_patterns',
+            \ keyword_patterns)
+call neocomplete#custom#source('ultisnips', 'keyword_patterns',
+        \ keyword_patterns2)
 
         " Plugin key-mappings.
         inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -130,21 +153,18 @@ set clipboard=unnamed
         inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
         inoremap <expr><C-y>  neocomplete#close_popup()
         inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+
+
+
         " Close popup by <Space>.
         "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
     else
         " Bundle "Valloric/YouCompleteMe"
-        let g:UltiSnipsExpandTrigger = "<s-tab>"
+        " let g:UltiSnipsExpandTrigger = "<s-tab>"
     endif
         
-    if has('lua') 
-
-
-
-        " Let supertab call neocmplete
-        let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
-    endif
 
     " C++ stuff
         " let g:neocomplete#disable_auto_complete=1
@@ -188,8 +208,6 @@ set clipboard=unnamed
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
     "}}}
 
-    au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
-    au BufEnter *.org call OrgOpts()
 
 
     au BufRead,BufNewFile *.md  set filetype=pandoc
@@ -200,8 +218,8 @@ set clipboard=unnamed
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
     
     Bundle "jiangmiao/auto-pairs"
-    " au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
-    au Filetype tex let b:AutoPairs = {"{": "}" }
+    au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
+    let g:AutoPairsMapSpace=0
     
     " Colorschemes"{{{
     Bundle 'Wombat'
@@ -213,24 +231,24 @@ set clipboard=unnamed
     Bundle 'laktek/distraction-free-writing-vim'
 
     " Latex
-    au Filetype tex set wrap
-
-    
+    let g:tex_flavor = "latex"
+    set suffixes+=.log,.aux,.bbl,.blg,.idx,.fdb_latexmk,.ilg,.ind,.out,.pdf,.synctex.gz,.fls,.latexmain
+    Bundle 'AutomaticLaTeXPlugin'
     " This plugin is a little too simplistic
-    Bundle 'LaTeX-Box-Team/LaTeX-Box'    
-    let g:LatexBox_latexmk_async=1
-    " let g:LatexBox_latexmk_preview_continuously=1
-    let g:LatexBox_Folding=1
-    let g:LatexBox_show_warnings=0
-    let g:LatexBox_quickfix=2
+    " Bundle 'LaTeX-Box-Team/LaTeX-Box'    
+    " let g:LatexBox_latexmk_async=1
+    " " let g:LatexBox_latexmk_preview_continuously=1
+    " let g:LatexBox_Folding=1
+    " let g:LatexBox_show_warnings=0
+    " let g:LatexBox_quickfix=2
 
     map <silent> <Leader>ls :silent
             \ !/Applications/Skim.app/Contents/SharedSupport/displayline
             \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
             \ "%:p" <CR>
 
-    let g:LatexBox_latexmk_options
-                    \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
+    " let g:LatexBox_latexmk_options
+    "                 \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
 
     " Bundle 'coot/atp_vim'
     
@@ -250,7 +268,6 @@ set clipboard=unnamed
     
     " For matching in fortran"
     Bundle 'matchit.zip'
-
     Bundle 'ivanov/vim-ipython'
     " let g:ipy_completefunc = 'local'
 
@@ -411,12 +428,19 @@ set clipboard=unnamed
     set foldnestmax=2
 
 
-    " Date Time
-    iab <expr> dts strftime("%b %d, %Y")
 
 
 "}}}
+" Abreviations "{{{
 
+    " Date Time
+    iab <expr> dts strftime("%b %d, %Y")
+    iab teh the
+    iab adn and
+    iab fo of
+
+
+"}}}
 "  Programming {{{
     " CTags Browsing
     set tags=./tags;/
@@ -476,5 +500,6 @@ set wildignore+=*.Trash/*
 
 set autochdir
 
+set completeopt=menuone,longest,preview
 filetype plugin indent on
 syntax on
