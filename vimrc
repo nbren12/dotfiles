@@ -331,7 +331,9 @@ call neocomplete#custom#source('ultisnips', 'keyword_patterns',
 " }}}
 
 " Abbreviations "{{{
-
+iab ndb Noah D. Brenowitz
+iab nb Noah Brenowitz
+iab em noah@cims.nyu.edu
 iab teh the
 iab adn and
 iab fo of
