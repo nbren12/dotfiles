@@ -1,18 +1,8 @@
-setlocal iskeyword+=:,-
-setlocal makeprg=pdflatex\ -file-line-error\ -interaction=nonstopmode\ %
 setlocal wrap
-
-inoremap <buffer> { {}<ESC>i
-inoremap <buffer> [ []<ESC>i
-
+setlocal spell
+nmap <LocalLeader>ll :Latexmk<CR>
+iab deg <BS>$^{\circ}$
+iab wihtout without
+iab waht what
 iab <buffer> ,b \begin{
 iab <buffer> ,e \end{
-" More abbreviations...
-
-
-
-imap <buffer> [[     \begin{
-imap <buffer> ((     \eqref{
-
-
-
