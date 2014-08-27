@@ -1,4 +1,16 @@
 "vim: set sw=4 ts=4 sts=4 et tw=78 foldmethod=marker spell:
+" 
+" Plugins to Avoid:
+" - YouCompletMe (total pain in ass to install)
+" - VimComplteMe (not compatible with ultisnips and not very flexible)
+"
+" Change Log:
+" 
+" Aug 26, 2014:
+"
+" Attempted to install YouCompleteMe for the millionth time. Didn't work, and
+" I received a "ycmd server crash" error. I am done with this plugin, never
+" use again.
 
 set nocompatible	"has to be first line
 set ignorecase		"search ignores case
@@ -74,100 +86,49 @@ filetype off                   " required!
                 
     let g:ctrlp_root_markers = ['.ctrlp','.git']
     "}}}
+
     "Code completion"{{{
     au FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
     set complete+=k
     
 
-    " Bundle 'ervandew/supertab'
-    " let g:SuperTabDefaultCompletionType = "context"
 
     
-    Bundle 'davidhalter/jedi-vim'
-    " au FileType python set omnifunc=pythoncomplete#Complete 
-    let g:jedi#usages_command = "<leader>z"
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#rename_command = "<leader>rr"
-    " let g:jedi#popup_select_first = 0
-    map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
     " Bundle 'neocomplcache'
     " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
     " others
-    "
-    if 0
+    
+    Bundle 'ervandew/supertab'
+    let g:SuperTabDefaultCompletionType = "context"
+
+    Bundle 'davidhalter/jedi-vim'
+    autocmd FileType python setlocal omnifunc=jedi#completions
+    let g:jedi#usages_command = "<leader>z"
+    let g:jedi#popup_on_dot = 0
+    let g:jedi#rename_command = "<leader>rr"
+    map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+    if 1
+
+
         Bundle 'Shougo/neocomplete.vim'
         let g:neocomplete#enable_at_startup = 1
-        if !exists('g:neocomplete#force_omni_input_patterns')
-            let g:neocomplete#force_omni_input_patterns = {}
-        endif
-        let g:neocomplete#force_overwrite_completefunc = 1
-        let g:neocomplete#force_omni_input_patterns.c =
-                    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-        let g:neocomplete#force_omni_input_patterns.cpp =
-                    \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-        let g:neocomplete#force_omni_input_patterns.objc =
-                    \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-        let g:neocomplete#force_omni_input_patterns.objcpp =
-                    \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
-
-" let g:neocomplete#sources#dictionary#dictionaries = {
-"         \ 'default' : '',
-"         \ 'tex' : $DOTVIM.'dictionaries/tex'
-"         \ }
-" 
-" if !exists('g:neocomplete#sources')
-"     let g:neocomplete#sources = {}
-" endif
-let g:neocomplete#sources.tex = ['buffer', 'dictionary', 'ultisnips', 'file',
-            \ 'omni']
-
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns._ = '^\\\?\h\w*$'
-let keyword_patterns = {}
-let keyword_patterns = {'tex' : '\h\w*:\%(\w*_\w*\)\?'}
-let keyword_patterns2 = {'tex' : '\h\w*'}
-call neocomplete#custom#source('buffer', 'keyword_patterns',
-            \ keyword_patterns)
-call neocomplete#custom#source('ultisnips', 'keyword_patterns',
-        \ keyword_patterns2)
-
-        " Plugin key-mappings.
-        inoremap <expr><C-g>     neocomplete#undo_completion()
-        inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-        " Recommended key-mappings.
-        " <CR>: close popup and save indent.
-        inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-        function! s:my_cr_function()
-          return neocomplete#close_popup() . "\<CR>"
-          " For no inserting <CR> key.
-          "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-        endfunction
-        " <TAB>: completion.
-        inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-        " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-        inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y>  neocomplete#close_popup()
-        inoremap <expr><C-e>  neocomplete#cancel_popup()
+        " let g:neocomplete#disable_auto_complete = 1
 
 
 
+		if !exists('g:neocomplete#force_omni_input_patterns')
+		  let g:neocomplete#force_omni_input_patterns = {}
+		endif
+		let g:neocomplete#force_omni_input_patterns.python =
+		\ '[^. *\t]\.\w*\|\h\w*::'
 
-        " Close popup by <Space>.
-        "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
-    else
-        " Bundle "Valloric/YouCompleteMe"
-        " let g:UltiSnipsExpandTrigger = "<s-tab>"
-    endif
+        " let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
         
+    endif
 
     " C++ stuff
-        " let g:neocomplete#disable_auto_complete=1
     " Bundle 'Rip-Rip/clang_complete'
     " let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
     let g:clang_complete_auto = 0
@@ -222,7 +183,7 @@ call neocomplete#custom#source('ultisnips', 'keyword_patterns',
     " Need to download the latest version from sourcefourge and install psutil
     set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
     Bundle 'AutomaticLaTeXPlugin'
-    let g:atp_tab_map = 1
+    " let g:atp_tab_map = 1
 
     map <silent> <Leader>ls :silent
             \ !/Applications/Skim.app/Contents/SharedSupport/displayline
@@ -246,6 +207,8 @@ call neocomplete#custom#source('ultisnips', 'keyword_patterns',
     Bundle 'matchit.zip'
     Bundle 'ivanov/vim-ipython'
     " let g:ipy_completefunc = 'local'
+    " Many useful shortucts
+    Bundle 'tpope/vim-unimpaired' 
 
 " }}}
 
@@ -353,6 +316,7 @@ iab fo of
     " Search back
     nnoremap <leader>f F
 
+
     " Windows Management Shortcuts 
     nnoremap <C-h> <C-w>h
     nnoremap <C-k> <C-w>k
@@ -402,8 +366,10 @@ iab fo of
      " Ctags Code browsing shortcuts
      map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
      map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+     map <leader>bta :!/usr/local/bin/ctags -R .<CR>
+     set tags=tags;/
 
-     nnoremap <Leader>t :TagbarToggle<CR>
+    nnoremap <Leader>t :TagbarToggle<CR>
     nnoremap yg "+y
     vnoremap yg "+y
     
