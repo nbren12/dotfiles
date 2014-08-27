@@ -12,7 +12,7 @@ imap jj <Esc>
 filetype off                   " required!
 
 " Sync the clipboard with the registers
-set clipboard=unnamed
+" set clipboard=unnamed
 
 " Plugins {{{
 
@@ -138,45 +138,25 @@ set clipboard=unnamed
         let g:UltiSnipsExpandTrigger = "<s-tab>"
     endif
         
-    if has('lua') 
-
-
-
-        " Let supertab call neocmplete
-        let g:SuperTabDefaultCompletionType = "<c-x><c-u>" 
-    endif
 
     " C++ stuff
         " let g:neocomplete#disable_auto_complete=1
     " Bundle 'Rip-Rip/clang_complete'
     " let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
-        let g:clang_complete_auto = 0
-        let g:clang_auto_select = 0
+    let g:clang_complete_auto = 0
+    let g:clang_auto_select = 0
 
     Bundle 'scrooloose/syntastic'
+    let g:syntastic_mode_map = { "mode": "active",
+                               \ "passive_filetypes": ["python"] }
     let g:syntastic_cpp_compiler = 'clang++'
     let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
     let g:syntastic_python_python_exec = '~/pyenv/bin/python'
+    let g:syntastic_quiet_messages = { "level": "warnings" }
 
+    nnoremap <F7> :SyntasticCheck <CR>
 
     Bundle 'FSwitch'
-
-
-
-        
-    if has('mac')
-        " let g:ycm_key_list_previous_completion = ['<Up>']
-        " let g:ycm_key_list_select_completion = ['<Down>']
-        " let g:ycm_autoclose_preview_window_after_insertion=1
-        " let g:ycm_key_list_previous_completion=['<Up>']
-        let g:LatexBox_viewer="open"
-    else
-        " Bundle "Valloric/YouCompleteMe"
-        " Bundle 'neocomplcache'
-        " let g:neocomplcache_enable_at_startup = 1 
-        let g:LatexBox_viewer="xdg-open"
-    endif 
-
 
 
     "" Snippets: 
@@ -188,9 +168,6 @@ set clipboard=unnamed
     let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
     "}}}
 
-    au! BufRead,BufWrite,BufWritePost,BufNewFile *.org
-    au BufEnter *.org call OrgOpts()
-
 
     au BufRead,BufNewFile *.md  set filetype=pandoc
 
@@ -199,54 +176,32 @@ set clipboard=unnamed
     " Tried many plugins, Townk is bad, AutoClose is bad
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
     
-    Bundle "jiangmiao/auto-pairs"
+    " Bundle "jiangmiao/auto-pairs"
     " au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
-    au Filetype tex let b:AutoPairs = {"{": "}" }
+    " au Filetype tex let b:AutoPairs = {"{": "}" }
     
     " Colorschemes"{{{
     Bundle 'Wombat'
     Bundle 'Lokaltog/vim-distinguished'
     Bundle 'jellybeans.vim'
     Bundle 'zeis/vim-kolor'
+
     "}}}
 
     Bundle 'laktek/distraction-free-writing-vim'
 
     " Latex
-    au Filetype tex set wrap
-
-    
-    " This plugin is a little too simplistic
-    Bundle 'LaTeX-Box-Team/LaTeX-Box'    
-    let g:LatexBox_latexmk_async=1
-    " let g:LatexBox_latexmk_preview_continuously=1
-    let g:LatexBox_Folding=1
-    let g:LatexBox_show_warnings=0
-    let g:LatexBox_quickfix=2
+    " Need to download the latest version from sourcefourge and install psutil
+    set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
+    Bundle 'AutomaticLaTeXPlugin'
+    let g:atp_tab_map = 1
 
     map <silent> <Leader>ls :silent
             \ !/Applications/Skim.app/Contents/SharedSupport/displayline
             \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
             \ "%:p" <CR>
 
-    let g:LatexBox_latexmk_options
-                    \ = "-pdflatex='pdflatex -synctex=1 \%O \%S'"
 
-    " Bundle 'coot/atp_vim'
-    
-    " Bundle 'jcf/vim-latex'
-    " let g:Tex_ViewRule_pdf = 'Skim'
-    " let g:tex_flavor='latex'
-    " " let g:Tex_TreatMacViewerAsUNIX = 1
-    " set grepprg=grep\ -nH\ $*
-    " imap ;; <Plug>IMAP_JumpForward
-    " "Fix the C-j nonsense in non latex files"
-    " if &filetype != 'tex'
-    "     imap <Leader>#$ <Plug>IMAP_JumpForward
-    "     nmap <Leader>#$ <Plug>IMAP_JumpForward
-    "     vmap <Leader>#$ <Plug>IMAP_JumpForward
-    "     vmap <Leader>#$ <Plug>IMAP_DeleteAndJumpForward
-    " endif
     
     " For matching in fortran"
     Bundle 'matchit.zip'
@@ -264,6 +219,7 @@ set clipboard=unnamed
     if has("gui_running")
         " colorscheme wombat
         colorscheme zellner
+        colorscheme jellybeans
         
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
         set guifont=Monospace\ 10,Consolas:h13
@@ -335,7 +291,15 @@ set clipboard=unnamed
 
 
 " }}}
- 
+
+" Abbreviations "{{{
+
+iab teh the
+iab adn and
+iab fo of
+
+"}}}
+
 " Shorcuts {{{
 
     " toggle fullscreen mode
@@ -355,7 +319,8 @@ set clipboard=unnamed
     nnoremap <C-j> <C-w>j
     nnoremap <C-l> <C-w>l
     nnoremap <C-n> <C-w>n
-    nnoremap <C-x> <C-w>x
+    " nnoremap <C-v> <C-w>v
+    nnoremap  <Leader>wx <C-w>x
     nnoremap <Leader>v <C-w>v
     nnoremap <Leader>wh <C-w>H
     nnoremap <Leader>wj <C-w>J
@@ -364,8 +329,10 @@ set clipboard=unnamed
 
     " Misc bindings
     nnoremap <Leader>d :bd <CR>
-    nnoremap <Leader>ss :w <CR>
-    nnoremap <Leader>so :so % <CR>
+    nnoremap <Leader>s :w <CR>
+    nnoremap tt ciwTrue
+    nnoremap tf ciwFalse
+    nnoremap  :noh <CR>
 
 
     "Insert mode movement
@@ -404,7 +371,7 @@ set clipboard=unnamed
     map <Leader>5 <F5>
 
     " Fugitive"
-    nnoremap <silent> <Leader>g  :Gstatus<CR>
+    nnoremap <silent> <Leader>gs  :Gstatus<CR>
     " Folding 
     nnoremap <space> za
     vnoremap <space> zf
@@ -426,12 +393,6 @@ set clipboard=unnamed
     " Fix Indenting Behavior with #
     " inoremap # X#   
 
-    if has("autocmd") && exists("+omnifunc")
-	autocmd Filetype *
-		    \	if &omnifunc == "" |
-		    \		setlocal omnifunc=syntaxcomplete#Complete |
-		    \	endif
-    endif
 "}}}
 
 " MVIM to iTerm "{{{
