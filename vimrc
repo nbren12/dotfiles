@@ -183,7 +183,7 @@ filetype off                   " required!
     Bundle 'Lokaltog/vim-distinguished'
     Bundle 'jellybeans.vim'
     Bundle 'zeis/vim-kolor'
-
+    Bundle 'Solarized'
     "}}}
 
     Bundle 'laktek/distraction-free-writing-vim'
