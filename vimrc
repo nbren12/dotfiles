@@ -129,7 +129,9 @@ filetype off                   " required!
     map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
     Bundle 'Rip-Rip/clang_complete'
-    " let g:clang_library_path  = "/usr/lo"
+    let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib"
+
+    Bundle 'stlrefvim'
 
 
     if 0
