@@ -40,9 +40,9 @@ filetype off                   " required!
     Bundle 'vim-scripts/MatlabFilesEdition'
     Bundle 'https://github.com/tpope/vim-fugitive.git' 
     Bundle 'mileszs/ack.vim'
-    Bundle 'taglist.vim'
+    " Bundle 'taglist.vim'
     Bundle 'a.vim'
-    " Bundle 'majutsushi/tagbar'
+    Bundle 'majutsushi/tagbar'
     Bundle 'tComment'
     Bundle 'surround.vim'
     Bundle 'mattn/calendar-vim'
@@ -108,7 +108,11 @@ filetype off                   " required!
     let g:jedi#rename_command = "<leader>rr"
     map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
-    if 1
+    Bundle 'Rip-Rip/clang_complete'
+    " let g:clang_library_path  = "/usr/lo"
+
+
+    if 0
 
 
         Bundle 'Shougo/neocomplete.vim'
@@ -116,6 +120,7 @@ filetype off                   " required!
         " let g:neocomplete#disable_auto_complete = 1
 
 
+        let g:neocomplete#force_overwrite_completefunc = 1
 
 		if !exists('g:neocomplete#force_omni_input_patterns')
 		  let g:neocomplete#force_omni_input_patterns = {}
@@ -123,16 +128,20 @@ filetype off                   " required!
 		let g:neocomplete#force_omni_input_patterns.python =
 		\ '[^. *\t]\.\w*\|\h\w*::'
 
+        " For Clang complete from neocomplete docs
+        let g:neocomplete#force_omni_input_patterns.c =
+              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+        let g:neocomplete#force_omni_input_patterns.cpp =
+              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+        let g:neocomplete#force_omni_input_patterns.objc =
+              \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+        let g:neocomplete#force_omni_input_patterns.objcpp =
+              \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-        " let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+        let g:clang_complete_auto = 0
+        let g:clang_auto_select = 0
         
     endif
-
-    " C++ stuff
-    " Bundle 'Rip-Rip/clang_complete'
-    " let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib/"
-    let g:clang_complete_auto = 0
-    let g:clang_auto_select = 0
 
     Bundle 'scrooloose/syntastic'
     let g:syntastic_mode_map = { "mode": "active",
