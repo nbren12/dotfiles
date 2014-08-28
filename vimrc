@@ -1,20 +1,32 @@
 "vim: set sw=4 ts=4 sts=4 et tw=78 foldmethod=marker spell:
-" 
+"
 " Plugins to Avoid:
 " - YouCompletMe (total pain in ass to install)
 " - VimComplteMe (not compatible with ultisnips and not very flexible)
+" - Powerline ( hard to install)
 "
 " Change Log:
-" 
+"
 " Aug 26, 2014:
 "
 " Attempted to install YouCompleteMe for the millionth time. Didn't work, and
 " I received a "ycmd server crash" error. I am done with this plugin, never
 " use again.
+"
+" Aug 28, 2014
+"
+" Mucked around with the automcpletion. Add some fugitive autocmds and maps
+" from the vimcasts video. Using the airline plugin.
 
 set nocompatible	"has to be first line
 set ignorecase		"search ignores case
 set backspace=2     "Make backspace behave normally
+set laststatus=2    " Always show status line
+set listchars=""
+set wildignore+=*.so,*.swp,*.zip
+set wildignore+=*.Trash/*
+set autochdir
+set completeopt=menuone,longest,preview
 
 " Basic Keystrokes
 let mapleader=','
@@ -31,14 +43,23 @@ filetype off                   " required!
 
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    Bundle 'gmarik/vundle' 
+    Bundle 'gmarik/vundle'
 
 
     Bundle 'JuliaLang/julia-vim'
     Bundle 'vim-pandoc/vim-pandoc'
     Bundle 'Vim-R-plugin'
     Bundle 'vim-scripts/MatlabFilesEdition'
-    Bundle 'https://github.com/tpope/vim-fugitive.git' 
+
+    Bundle 'https://github.com/tpope/vim-fugitive.git'
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+    autocmd User fugitive
+      \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+      \   nnoremap <buffer> .. :edit %:h<CR> |
+      \ endif
+
+    Bundle 'bling/vim-airline'
+
     Bundle 'mileszs/ack.vim'
     " Bundle 'taglist.vim'
     Bundle 'a.vim'
@@ -83,21 +104,20 @@ filetype off                   " required!
                 \ 2: ['.hg', 'hg --cwd %s locate -I .'],
                 \ },
                 \ 'fallback': ' find %s -type f' }
-                
     let g:ctrlp_root_markers = ['.ctrlp','.git']
     "}}}
 
     "Code completion"{{{
     au FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
     set complete+=k
-    
 
 
-    
+
+
     " Bundle 'neocomplcache'
     " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
     " others
-    
+
     Bundle 'ervandew/supertab'
     let g:SuperTabDefaultCompletionType = "context"
 
@@ -123,7 +143,7 @@ filetype off                   " required!
         let g:neocomplete#force_overwrite_completefunc = 1
 
 		if !exists('g:neocomplete#force_omni_input_patterns')
-		  let g:neocomplete#force_omni_input_patterns = {}
+		let g:neocomplete#force_omni_input_patterns = {}
 		endif
 		let g:neocomplete#force_omni_input_patterns.python =
 		\ '[^. *\t]\.\w*\|\h\w*::'
@@ -140,7 +160,6 @@ filetype off                   " required!
 
         let g:clang_complete_auto = 0
         let g:clang_auto_select = 0
-        
     endif
 
     Bundle 'scrooloose/syntastic'
@@ -156,7 +175,7 @@ filetype off                   " required!
     Bundle 'FSwitch'
 
 
-    "" Snippets: 
+    "" Snippets:
     " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
     " 2014-06-15 00:53   Added ultisnips again. it's awesome.
     Bundle 'honza/vim-snippets'
@@ -169,15 +188,15 @@ filetype off                   " required!
 
     au BufRead,BufNewFile *.md  set filetype=pandoc
 
-    
-    " Autoclosing 
+
+    " Autoclosing
     " Tried many plugins, Townk is bad, AutoClose is bad
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
-    
+
     " Bundle "jiangmiao/auto-pairs"
     " au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
     " au Filetype tex let b:AutoPairs = {"{": "}" }
-    
+
     " Colorschemes"{{{
     Bundle 'Wombat'
     Bundle 'Lokaltog/vim-distinguished'
@@ -200,7 +219,7 @@ filetype off                   " required!
             \ "%:p" <CR>
 
 
-    
+
     " For matching in fortran"
     Bundle 'matchit.zip'
 
@@ -211,13 +230,13 @@ filetype off                   " required!
             \ "%:p" <CR>
 
 
-    
+
     " For matching in fortran"
     Bundle 'matchit.zip'
     Bundle 'ivanov/vim-ipython'
     " let g:ipy_completefunc = 'local'
     " Many useful shortucts
-    Bundle 'tpope/vim-unimpaired' 
+    Bundle 'tpope/vim-unimpaired'
 
 " }}}
 
@@ -230,13 +249,13 @@ filetype off                   " required!
         " colorscheme wombat
         " colorscheme zellner
         colorscheme jellybeans
-        
+
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
         set guifont=Monospace\ 10,Consolas:h13
         " turn off the toolbar
         set guioptions-=T
-    else 
-        " colorscheme desert 
+    else
+        " colorscheme desert
     endif
 
     "Folding "
@@ -263,7 +282,7 @@ filetype off                   " required!
     let g:normal_colorscheme = "default"
     let g:normal_font=&guifont
     set incsearch                   " Find as you type search
-    
+
 " }}}
 
 " Formatting {{{
@@ -326,7 +345,7 @@ iab fo of
     nnoremap <leader>f F
 
 
-    " Windows Management Shortcuts 
+    " Windows Management Shortcuts
     nnoremap <C-h> <C-w>h
     nnoremap <C-k> <C-w>k
     nnoremap <C-j> <C-w>j
@@ -381,12 +400,15 @@ iab fo of
     nnoremap <Leader>t :TagbarToggle<CR>
     nnoremap yg "+y
     vnoremap yg "+y
-    
+
     map <Leader>5 <F5>
 
     " Fugitive"
     nnoremap <silent> <Leader>gs  :Gstatus<CR>
-    " Folding 
+
+
+
+    " Folding
     nnoremap <space> za
     vnoremap <space> zf
     set foldnestmax=2
@@ -412,14 +434,14 @@ iab fo of
 
 
     " Fix Indenting Behavior with #
-    " inoremap # X#   
+    " inoremap # X#
 
 "}}}
 
 " MVIM to iTerm "{{{
 function! SendToTerminal(args)
   execute ":silent !mvim_to_iterm '" . a:args . "'"
-  
+
 endfunction
 
 function! ClearTerminal()
@@ -451,13 +473,5 @@ nnoremap <Leader>sdd :call ToggleyncDirs()<CR>
 nnoremap <Leader>sd  :call SyncDirs()<CR>
 "}}}
 
-set listchars=""
-
-set wildignore+=*.so,*.swp,*.zip
-set wildignore+=*.Trash/*
-
-set autochdir
-
-set completeopt=menuone,longest,preview
 filetype plugin indent on
 syntax on

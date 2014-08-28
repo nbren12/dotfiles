@@ -6,3 +6,5 @@ iab wihtout without
 iab waht what
 iab <buffer> ,b \begin{
 iab <buffer> ,e \end{
+
+let g:neocomplete#disable_auto_complete = 1
