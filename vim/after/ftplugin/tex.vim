@@ -7,4 +7,8 @@ iab waht what
 iab <buffer> ,b \begin{
 iab <buffer> ,e \end{
 
+
 let g:neocomplete#disable_auto_complete = 1
+set iskeyword+=;,-
+let g:tex_flavor = "latex"
+

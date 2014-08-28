@@ -160,6 +160,8 @@ filetype off                   " required!
         let g:neocomplete#force_omni_input_patterns.objcpp =
               \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
+        " let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+
         let g:clang_complete_auto = 0
         let g:clang_auto_select = 0
     endif
@@ -204,7 +206,7 @@ filetype off                   " required!
     Bundle 'Lokaltog/vim-distinguished'
     Bundle 'jellybeans.vim'
     Bundle 'zeis/vim-kolor'
-    Bundle 'Solarized'
+    Bundle 'altercation/vim-colors-solarized'
     "}}}
 
     Bundle 'laktek/distraction-free-writing-vim'
@@ -213,7 +215,7 @@ filetype off                   " required!
     " Need to download the latest version from sourcefourge and install psutil
     set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
     Bundle 'AutomaticLaTeXPlugin'
-    " let g:atp_tab_map = 1
+    let g:atp_tab_map = 1
 
     map <silent> <Leader>ls :silent
             \ !/Applications/Skim.app/Contents/SharedSupport/displayline
@@ -250,7 +252,9 @@ filetype off                   " required!
     if has("gui_running")
         " colorscheme wombat
         " colorscheme zellner
-        colorscheme jellybeans
+        " colorscheme jellybeans
+        set background=light
+        colorscheme solarized
 
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
         set guifont=Monospace\ 10,Consolas:h13
