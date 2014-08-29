@@ -13,3 +13,7 @@ let g:neocomplete#disable_auto_complete = 1
 set iskeyword+=;,-
 let g:tex_flavor = "latex"
 
+let b:tex_flavor = 'pdflatex'
+
+nnoremap <F5> :make  <CR>
+nnoremap <F6> execute ":make view" <CR>

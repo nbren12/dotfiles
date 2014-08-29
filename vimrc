@@ -33,8 +33,8 @@
 " plugins, like surround. Also installed vim easy motion.
 
 
-set mouse=a
 set nocompatible	"has to be first line
+set mouse=a
 set ignorecase		"search ignores case
 set backspace=2     "Make backspace behave normally
 set laststatus=2    " Always show status line
@@ -216,7 +216,7 @@ filetype off                   " required!
     " Tried many plugins, Townk is bad, AutoClose is bad
     " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
 
-    " Bundle "jiangmiao/auto-pairs"
+    Bundle "jiangmiao/auto-pairs"
     " au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
     " au Filetype tex let b:AutoPairs = {"{": "}" }
 
@@ -234,7 +234,7 @@ filetype off                   " required!
     " Need to download the latest version from sourcefourge and install psutil
     set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
     " Bundle 'AutomaticLaTeXPlugin'
-    let g:atp_tab_map = 1
+    " let g:atp_tab_map = 1
 
     map <silent> <Leader>ls :silent
             \ !/Applications/Skim.app/Contents/SharedSupport/displayline
