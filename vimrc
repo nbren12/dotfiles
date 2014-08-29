@@ -1,5 +1,14 @@
 "vim: set sw=4 ts=4 sts=4 et tw=78 foldmethod=marker spell:
 "
+" Essential plugins
+"
+" - Fugitive
+" - CtrlP
+" - surround.vim
+" - tComment
+" - ultisnips
+" - Tabularize
+"
 " Plugins to Avoid:
 " - YouCompletMe (total pain in ass to install)
 " - VimComplteMe (not compatible with ultisnips and not very flexible)
@@ -17,7 +26,14 @@
 "
 " Mucked around with the automcpletion. Add some fugitive autocmds and maps
 " from the vimcasts video. Using the airline plugin.
+"
+" Aug 29, 2014 
+"
+" Installed tim pope's repeat.vim plugin for repeating commands in other
+" plugins, like surround. Also installed vim easy motion.
 
+
+set mouse=a
 set nocompatible	"has to be first line
 set ignorecase		"search ignores case
 set backspace=2     "Make backspace behave normally
@@ -27,9 +43,10 @@ set wildignore+=*.so,*.swp,*.zip
 set wildignore+=*.Trash/*
 set autochdir
 set completeopt=menuone,longest,preview
+set hidden          " Allows leaving ufinished buffers
 
 " Basic Keystrokes
-let mapleader=','
+" let mapleader=','
 imap jj <Esc>
 "Get rid of highlighting after search
 " nnoremap <CR> :noh<CR><CR>
@@ -47,9 +64,8 @@ filetype off                   " required!
 
 
     Bundle 'JuliaLang/julia-vim'
-    Bundle 'vim-pandoc/vim-pandoc'
-    Bundle 'Vim-R-plugin'
-    Bundle 'vim-scripts/MatlabFilesEdition'
+
+    Bundle 'Lokaltog/vim-easymotion'
 
     Bundle 'https://github.com/tpope/vim-fugitive.git'
     autocmd BufReadPost fugitive://* set bufhidden=delete
@@ -224,16 +240,6 @@ filetype off                   " required!
 
 
 
-    " For matching in fortran"
-    Bundle 'matchit.zip'
-
-
-    map <silent> <Leader>ls :silent
-            \ !/Applications/Skim.app/Contents/SharedSupport/displayline
-            \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
-            \ "%:p" <CR>
-
-
 
     " For matching in fortran"
     Bundle 'matchit.zip'
@@ -241,6 +247,10 @@ filetype off                   " required!
     " let g:ipy_completefunc = 'local'
     " Many useful shortucts
     Bundle 'tpope/vim-unimpaired'
+
+    " Use repeat to use '.' with surround.
+    Bundle 'tpope/vim-repeat.git'
+
 
 " }}}
 
@@ -280,7 +290,6 @@ filetype off                   " required!
     autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:last_fdm | unlet w:last_fdm | endif
 
     " Accept Mouse Input
-    set mouse=a
 
     set number
     let g:fullscreen_colorscheme = "iawriter"
@@ -340,7 +349,7 @@ iab fo of
 " Shorcuts {{{
 
     " toggle fullscreen mode
-    nmap  <C-F> :call ToggleDistractionFreeWriting()<CR>
+    " nmap  <C-F> :call ToggleDistractionFreeWriting()<CR>
 
     " Make. cant use C-m, because that means return
     nnoremap mm :make<CR>
@@ -412,7 +421,10 @@ iab fo of
     " Fugitive"
     nnoremap <silent> <Leader>gs  :Gstatus<CR>
 
-
+    " quickfix space mapping
+    au FileType qf nnoremap <buffer> <Space> <CR><C-W>p
+    nnoremap <Leader>lc :copen <CR>
+    nnoremap <Leader>cl :close <CR>
 
     " Folding
     nnoremap <space> za
