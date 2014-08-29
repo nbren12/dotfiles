@@ -65,6 +65,8 @@ filetype off                   " required!
 
     Bundle 'JuliaLang/julia-vim'
 
+    Bundle 'MatlabFilesEdition' 
+
     Bundle 'Lokaltog/vim-easymotion'
 
     Bundle 'https://github.com/tpope/vim-fugitive.git'
