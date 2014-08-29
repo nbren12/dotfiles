@@ -1,0 +1,8 @@
+[.dotfiles]
+checkout = git clone 'ssh://git@github.com/nbren12/dotfiles.git' '.dotfiles'
+
+[workspace/ergnum]
+checkout = git clone 'git@bitbucket.org:nbren12/ergnum.git' 'ergnum'
+
+[workspace/stochmc]
+checkout = git clone 'git@bitbucket.org:nbren12/stochmc.git' 'stochmc'

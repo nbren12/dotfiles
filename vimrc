@@ -68,7 +68,7 @@ filetype off                   " required!
     Bundle 'surround.vim'
     Bundle 'mattn/calendar-vim'
     Bundle 'vim-scripts/utl.vim'
-    Bundle 'scrooloose/nerdtree'
+    " Bundle 'scrooloose/nerdtree'
     Bundle 'godlygeek/tabular'
 
     nmap <Leader>a& :Tabularize /& <CR>
