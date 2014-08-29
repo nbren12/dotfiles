@@ -214,7 +214,7 @@ filetype off                   " required!
     " Latex
     " Need to download the latest version from sourcefourge and install psutil
     set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
-    Bundle 'AutomaticLaTeXPlugin'
+    " Bundle 'AutomaticLaTeXPlugin'
     let g:atp_tab_map = 1
 
     map <silent> <Leader>ls :silent
