@@ -1,5 +1,6 @@
 setlocal wrap
 setlocal spell
+setlocal nocursorline
 nmap <LocalLeader>ll :Latexmk<CR>
 iab deg <BS>$^{\circ}$
 iab wihtout without

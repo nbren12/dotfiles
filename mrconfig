@@ -6,3 +6,7 @@ checkout = git clone 'git@bitbucket.org:nbren12/ergnum.git' 'ergnum'
 
 [workspace/stochmc]
 checkout = git clone 'git@bitbucket.org:nbren12/stochmc.git' 'stochmc'
+
+
+[workspace/skeleton]
+checkout = git clone 'git@bitbucket.org:nbren12/skeleton_model.git' 'skeleton'

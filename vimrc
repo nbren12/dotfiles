@@ -44,6 +44,7 @@ set wildignore+=*.Trash/*
 set autochdir
 set completeopt=menuone,longest,preview
 set hidden          " Allows leaving ufinished buffers
+set cursorline
 
 " Basic Keystrokes
 " let mapleader=','
