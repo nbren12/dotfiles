@@ -233,6 +233,7 @@ filetype off                   " required!
     " Latex
     " Need to download the latest version from sourcefourge and install psutil
     set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
+    let g:tex_isk = ":,-,48-57,a-z,A-Z,192-255"
     " Bundle 'AutomaticLaTeXPlugin'
     " let g:atp_tab_map = 1
 
