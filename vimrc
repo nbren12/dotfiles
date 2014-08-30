@@ -45,6 +45,7 @@ set autochdir
 set completeopt=menuone,longest,preview
 set hidden          " Allows leaving ufinished buffers
 set cursorline
+set incsearch                   " Find as you type search
 
 " Basic Keystrokes
 " let mapleader=','
@@ -59,201 +60,193 @@ filetype off                   " required!
 " Plugins {{{
 
 
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+Bundle 'surround.vim'
+
+Bundle 'JuliaLang/julia-vim'
+
+Bundle 'MatlabFilesEdition' 
+
+Bundle 'Lokaltog/vim-easymotion'
+nmap <Space> <Plug>(easymotion-prefix)
+
+" Tim Pop  plugins
+" Many useful shortucts
+Bundle 'tpope/vim-unimpaired'
+
+" Use repeat to use '.' with surround.
+Bundle 'tpope/vim-repeat.git'
+
+Bundle 'https://github.com/tpope/vim-fugitive.git'
+autocmd BufReadPost fugitive://* set bufhidden=delete
+autocmd User fugitive
+  \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  \   nnoremap <buffer> .. :edit %:h<CR> |
+  \ endif
+
+Bundle 'bling/vim-airline'
+
+Bundle 'mileszs/ack.vim'
+Bundle 'majutsushi/tagbar'
+" Bundle 'taglist.vim'
+Bundle 'a.vim'
+Bundle 'tComment'
+" Bundle 'scrooloose/nerdtree'
+" map <C-e> :NERDTreeToggle<CR>
+" let NERDTreeShowBookmarks=1
+
+Bundle 'godlygeek/tabular'
+
+nmap <Leader>a& :Tabularize /& <CR>
+nmap <Leader>a= :Tabularize /= <CR>
+vmap <Leader>a& :Tabularize /& <CR>
+vmap <Leader>a= :Tabularize /= <CR>
 
 
-    Bundle 'JuliaLang/julia-vim'
+" ctrlp {{{
+Bundle 'ctrlp.vim'
+nnoremap <silent> <D-t> :CtrlP<CR>
+nnoremap <silent> <D-r> :CtrlPMRU<CR>
+nnoremap <silent> <Leader>r :CtrlPMRU<CR>
+nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
 
-    Bundle 'MatlabFilesEdition' 
+let g:ctrlp_lazy_update = 1
+let g:ctrlp_max_depth = 5
+let g:ctrlp_working_path_mode = 2
+" let g:ctrlp_working_path_mode='r'
+let g:ctrlp_user_command = {
+            \ 'types': {
+            \ 1: ['.git', 'cd %s && git ls-files'],
+            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+            \ },
+            \ 'fallback': ' find %s -type f' }
+let g:ctrlp_root_markers = ['.ctrlp','.git']
+"}}}
 
-    Bundle 'Lokaltog/vim-easymotion'
-
-    Bundle 'https://github.com/tpope/vim-fugitive.git'
-    autocmd BufReadPost fugitive://* set bufhidden=delete
-    autocmd User fugitive
-      \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-      \   nnoremap <buffer> .. :edit %:h<CR> |
-      \ endif
-
-    Bundle 'bling/vim-airline'
-
-    Bundle 'mileszs/ack.vim'
-    " Bundle 'taglist.vim'
-    Bundle 'a.vim'
-    Bundle 'majutsushi/tagbar'
-    Bundle 'tComment'
-    Bundle 'surround.vim'
-    Bundle 'mattn/calendar-vim'
-    Bundle 'vim-scripts/utl.vim'
-    " Bundle 'scrooloose/nerdtree'
-    Bundle 'godlygeek/tabular'
-
-    nmap <Leader>a& :Tabularize /& <CR>
-    nmap <Leader>a= :Tabularize /= <CR>
-    vmap <Leader>a& :Tabularize /& <CR>
-    vmap <Leader>a= :Tabularize /= <CR>
-
-
-    map <C-e> :NERDTreeToggle<CR>
-    let NERDTreeShowBookmarks=1
-
-    Bundle 'jmcantrell/vim-virtualenv'
-
-
-
-    " ctrlp {{{
-    Bundle 'ctrlp.vim'
-    nnoremap <silent> <D-t> :CtrlP<CR>
-    nnoremap <silent> <D-r> :CtrlPMRU<CR>
-    nnoremap <silent> <Leader>r :CtrlPMRU<CR>
-    nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-    let g:ctrlp_custom_ignore = {
-        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-        \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
-
-    let g:ctrlp_lazy_update = 1
-    let g:ctrlp_max_depth = 5
-    let g:ctrlp_working_path_mode = 2
-    " let g:ctrlp_working_path_mode='r'
-    let g:ctrlp_user_command = {
-                \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files'],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                \ },
-                \ 'fallback': ' find %s -type f' }
-    let g:ctrlp_root_markers = ['.ctrlp','.git']
-    "}}}
-
-    "Code completion"{{{
-    au FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
-    set complete+=k
+"Code completion"{{{
+au FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))
+set complete+=k
 
 
 
 
-    " Bundle 'neocomplcache'
-    " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
-    " others
+" Bundle 'neocomplcache'
+" 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
+" others
 
-    Bundle 'ervandew/supertab'
-    let g:SuperTabDefaultCompletionType = "context"
+Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "context"
 
-    Bundle 'davidhalter/jedi-vim'
-    autocmd FileType python setlocal omnifunc=jedi#completions
-    let g:jedi#usages_command = "<leader>z"
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#rename_command = "<leader>rr"
-    map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+Bundle 'davidhalter/jedi-vim'
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#usages_command = "<leader>z"
+let g:jedi#popup_on_dot = 0
+let g:jedi#rename_command = "<leader>rr"
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
-    Bundle 'Rip-Rip/clang_complete'
-    let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib"
-
-    Bundle 'stlrefvim'
-
-
-    if 0
+" C++ Stuff
+Bundle 'Rip-Rip/clang_complete'
+let g:clang_library_path  = "/Library/Developer/CommandLineTools/usr/lib"
+Bundle 'stlrefvim'
 
 
-        Bundle 'Shougo/neocomplete.vim'
-        let g:neocomplete#enable_at_startup = 1
-        " let g:neocomplete#disable_auto_complete = 1
+if 0
 
 
-        let g:neocomplete#force_overwrite_completefunc = 1
+    Bundle 'Shougo/neocomplete.vim'
+    let g:neocomplete#enable_at_startup = 1
+    " let g:neocomplete#disable_auto_complete = 1
 
-		if !exists('g:neocomplete#force_omni_input_patterns')
-		let g:neocomplete#force_omni_input_patterns = {}
-		endif
-		let g:neocomplete#force_omni_input_patterns.python =
-		\ '[^. *\t]\.\w*\|\h\w*::'
 
-        " For Clang complete from neocomplete docs
-        let g:neocomplete#force_omni_input_patterns.c =
-              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-        let g:neocomplete#force_omni_input_patterns.cpp =
-              \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-        let g:neocomplete#force_omni_input_patterns.objc =
-              \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
-        let g:neocomplete#force_omni_input_patterns.objcpp =
-              \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
+    let g:neocomplete#force_overwrite_completefunc = 1
 
-        " let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
-
-        let g:clang_complete_auto = 0
-        let g:clang_auto_select = 0
+    if !exists('g:neocomplete#force_omni_input_patterns')
+    let g:neocomplete#force_omni_input_patterns = {}
     endif
+    let g:neocomplete#force_omni_input_patterns.python =
+    \ '[^. *\t]\.\w*\|\h\w*::'
 
-    Bundle 'scrooloose/syntastic'
-    let g:syntastic_mode_map = { "mode": "active",
-                               \ "passive_filetypes": ["python"] }
-    let g:syntastic_cpp_compiler = 'clang++'
-    let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-    let g:syntastic_python_python_exec = '~/pyenv/bin/python'
-    let g:syntastic_quiet_messages = { "level": "warnings" }
+    " For Clang complete from neocomplete docs
+    let g:neocomplete#force_omni_input_patterns.c =
+          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+    let g:neocomplete#force_omni_input_patterns.cpp =
+          \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+    let g:neocomplete#force_omni_input_patterns.objc =
+          \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)'
+    let g:neocomplete#force_omni_input_patterns.objcpp =
+          \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-    nnoremap <F7> :SyntasticCheck <CR>
+    " let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 
-    Bundle 'FSwitch'
+    let g:clang_complete_auto = 0
+    let g:clang_auto_select = 0
+endif
 
+Bundle 'scrooloose/syntastic'
+let g:syntastic_mode_map = { "mode": "active",
+                           \ "passive_filetypes": ["python"] }
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_python_python_exec = '~/pyenv/bin/python'
+let g:syntastic_quiet_messages = { "level": "warnings" }
 
-    "" Snippets:
-    " Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
-    " 2014-06-15 00:53   Added ultisnips again. it's awesome.
-    Bundle 'honza/vim-snippets'
-    Bundle 'SirVer/ultisnips'
-    let g:UltiSnipsListSnippets="<c-tab>"
-    let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
-    "}}}
+nnoremap <F7> :SyntasticCheck <CR>
 
-
-
-    au BufRead,BufNewFile *.md  set filetype=pandoc
-
-
-    " Autoclosing
-    " Tried many plugins, Townk is bad, AutoClose is bad
-    " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
-
-    Bundle "jiangmiao/auto-pairs"
-    " au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
-    " au Filetype tex let b:AutoPairs = {"{": "}" }
-
-    " Colorschemes"{{{
-    Bundle 'Wombat'
-    Bundle 'Lokaltog/vim-distinguished'
-    Bundle 'jellybeans.vim'
-    Bundle 'zeis/vim-kolor'
-    Bundle 'altercation/vim-colors-solarized'
-    "}}}
-
-    Bundle 'laktek/distraction-free-writing-vim'
-
-    " Latex
-    " Need to download the latest version from sourcefourge and install psutil
-    set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
-    let g:tex_isk = ":,-,48-57,a-z,A-Z,192-255"
-    " Bundle 'AutomaticLaTeXPlugin'
-    " let g:atp_tab_map = 1
-
-    map <silent> <Leader>ls :silent
-            \ !/Applications/Skim.app/Contents/SharedSupport/displayline
-            \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
-            \ "%:p" <CR>
+Bundle 'FSwitch'
 
 
+"" Snippets:
+" Sat Aug 10 01:52:15 EDT 2013: UltiSnips is too slow
+" 2014-06-15 00:53   Added ultisnips again. it's awesome.
+Bundle 'honza/vim-snippets'
+Bundle 'SirVer/ultisnips'
+let g:UltiSnipsListSnippets="<c-tab>"
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+"}}}
 
 
-    " For matching in fortran"
-    Bundle 'matchit.zip'
-    Bundle 'ivanov/vim-ipython'
-    " let g:ipy_completefunc = 'local'
-    " Many useful shortucts
-    Bundle 'tpope/vim-unimpaired'
+" Autoclosing
+" Tried many plugins, Townk is bad, AutoClose is bad
+" http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
 
-    " Use repeat to use '.' with surround.
-    Bundle 'tpope/vim-repeat.git'
+Bundle "jiangmiao/auto-pairs"
+au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
+" au Filetype tex let b:AutoPairs = {"{": "}" }
+
+" Colorschemes"{{{
+Bundle 'Wombat'
+Bundle 'Lokaltog/vim-distinguished'
+Bundle 'jellybeans.vim'
+Bundle 'zeis/vim-kolor'
+Bundle 'altercation/vim-colors-solarized'
+"}}}
+
+
+" Latex
+" Need to download the latest version from sourcefourge and install psutil
+set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
+let g:tex_isk = ":,-,48-57,a-z,A-Z,192-255"
+" Bundle 'AutomaticLaTeXPlugin'
+" let g:atp_tab_map = 1
+
+map <silent> <Leader>ls :silent
+        \ !/Applications/Skim.app/Contents/SharedSupport/displayline
+        \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
+        \ "%:p" <CR>
+
+
+
+
+" For matching in fortran"
+Bundle 'matchit.zip'
+
+Bundle 'ivanov/vim-ipython'
 
 
 " }}}
@@ -300,11 +293,10 @@ filetype off                   " required!
     let g:fullscreen_font = "DejaVu\ Sans\ Mono\ Book\ 12"
     let g:normal_colorscheme = "default"
     let g:normal_font=&guifont
-    set incsearch                   " Find as you type search
 
 " }}}
 
-" Formatting {{{
+" Tab behavior {{{
 
     " Strip whitespace {
     function! StripTrailingWhitespace()
@@ -431,8 +423,8 @@ iab fo of
     nnoremap <Leader>cl :close <CR>
 
     " Folding
-    nnoremap <space> za
-    vnoremap <space> zf
+    nnoremap <Tab> za
+    vnoremap <Tab> zf
     set foldnestmax=2
 
 
