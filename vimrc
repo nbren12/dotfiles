@@ -248,11 +248,6 @@ let g:tex_pdf_map_leader_keys = 0
 let g:tex_isk = ":,-,48-57,a-z,A-Z,192-255"
 noremap <silent> <Leader>ll :BuildAndViewTexPdf<CR>
 
-map <silent> <Leader>ls :silent
-        \ !/Applications/Skim.app/Contents/SharedSupport/displayline
-        \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
-        \ "%:p" <CR>
-
 
 
 
@@ -394,6 +389,8 @@ iab fo of
     imap <C-a> <C-O>0
     imap <C-e> <C-O>$
 
+    " Spell checking
+    nmap <Leader>z 1z=
 
     " Movement
      " mapping to make movements operate on 1 screen line in wrap mode
