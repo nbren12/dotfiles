@@ -72,6 +72,7 @@ Bundle 'MatlabFilesEdition'
 
 Bundle 'Lokaltog/vim-easymotion'
 nmap <Space> <Plug>(easymotion-prefix)
+vmap <Space> <Plug>(easymotion-prefix)
 
 " Tim Pop  plugins
 " Many useful shortucts
@@ -91,6 +92,18 @@ Bundle 'bling/vim-airline'
 
 Bundle 'mileszs/ack.vim'
 Bundle 'majutsushi/tagbar'
+let g:tagbar_type_tex = {
+    \ 'ctagstype' : 'latex',
+    \ 'kinds'     : [
+        \ 's:sections',
+        \ 'g:graphics:0:0',
+        \ 'l:labels',
+        \ 'r:refs:1:0',
+        \ 'p:pagerefs:1:0'
+    \ ],
+    \ 'sort'    : 0,
+\ }
+
 " Bundle 'taglist.vim'
 Bundle 'a.vim'
 Bundle 'tComment'
@@ -135,7 +148,6 @@ set complete+=k
 
 
 
-
 " Bundle 'neocomplcache'
 " 2014-06-15 01:29: Using neocomplete, turned off supertab, and many
 " others
@@ -161,7 +173,7 @@ if 0
 
     Bundle 'Shougo/neocomplete.vim'
     let g:neocomplete#enable_at_startup = 1
-    " let g:neocomplete#disable_auto_complete = 1
+    let g:neocomplete#disable_auto_complete = 1
 
 
     let g:neocomplete#force_overwrite_completefunc = 1
@@ -182,7 +194,7 @@ if 0
     let g:neocomplete#force_omni_input_patterns.objcpp =
           \ '\[\h\w*\s\h\?\|\h\w*\%(\.\|->\)\|\h\w*::\w*'
 
-    " let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
+    let g:SuperTabDefaultCompletionType = "<c-x><c-u>"
 
     let g:clang_complete_auto = 0
     let g:clang_auto_select = 0
@@ -230,10 +242,11 @@ Bundle 'altercation/vim-colors-solarized'
 
 " Latex
 " Need to download the latest version from sourcefourge and install psutil
+Bundle 'TeX-PDF'
 set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
+let g:tex_pdf_map_leader_keys = 0
 let g:tex_isk = ":,-,48-57,a-z,A-Z,192-255"
-" Bundle 'AutomaticLaTeXPlugin'
-" let g:atp_tab_map = 1
+noremap <silent> <Leader>ll :BuildAndViewTexPdf<CR>
 
 map <silent> <Leader>ls :silent
         \ !/Applications/Skim.app/Contents/SharedSupport/displayline
@@ -442,8 +455,6 @@ iab fo of
 
 "}}}
 "  Programming {{{
-    " CTags Browsing
-    set tags=./tags;/
 
 
 
