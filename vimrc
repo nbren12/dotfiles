@@ -363,6 +363,10 @@ iab fo of
     " Search back
     nnoremap <leader>f F
 
+    " Google search 
+    if has('mac')
+        nmap <Leader>gg :silent !open -a Firefox.app "http://www.google.com/?q=<cword>" <CR>
+    endif
 
     " Windows Management Shortcuts
     nnoremap <C-h> <C-w>h
