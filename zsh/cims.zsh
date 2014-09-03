@@ -20,6 +20,8 @@ export FC=ifort
 source /opt/intel/composerxe/bin/compilervars.sh intel64
 
 module load python-2.7
+module load clang-3.5.0
+module load gcc-4.8.2
 VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/pyenv/bin/activate
 
 # Ruby
