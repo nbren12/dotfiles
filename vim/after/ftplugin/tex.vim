@@ -1,6 +1,7 @@
 setlocal wrap
 setlocal spell
 setlocal nocursorline
+setlocal lbr
 
 iab deg <BS>$^{\circ}$
 iab wihtout without

@@ -173,7 +173,7 @@ if 0
 
     Bundle 'Shougo/neocomplete.vim'
     let g:neocomplete#enable_at_startup = 1
-    let g:neocomplete#disable_auto_complete = 1
+    let g:neocomplete#disable_auto_complete = 0
 
 
     let g:neocomplete#force_overwrite_completefunc = 1
