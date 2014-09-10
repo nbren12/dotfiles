@@ -28,6 +28,7 @@ VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/pyenv/bin/activate
 module load ruby-1.9.3
 export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
 
+alias ipynb='ipython notebook --pdb --port=8889 --deep-reload --no-browser'
 
 #VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/noah/usr/python-env/bin/activate
 umask 2
