@@ -43,6 +43,12 @@ source ~/Sync/tropical_modeling/activate
 alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
+ipynb (){
+    ssh -L 8889:127.0.0.1:8889 $1  ' \
+        source ~/.zshrc && \
+        ipython notebook --pdb --port=8889 --deep-reload --no-browser'
+}
+
 MKL_NUM_THREADS=1
 export MKL_NUM_THREADS
 export PATH=/opt/local/bin:$PATH
