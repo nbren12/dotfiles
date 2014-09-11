@@ -69,6 +69,7 @@ Bundle 'surround.vim'
 Bundle 'JuliaLang/julia-vim'
 
 Bundle 'MatlabFilesEdition' 
+Bundle 'fortran.vim'
 
 Bundle 'Lokaltog/vim-easymotion'
 nmap <Space> <Plug>(easymotion-prefix)
