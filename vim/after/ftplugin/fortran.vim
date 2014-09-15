@@ -7,8 +7,9 @@ else
     unlet! fortran_free_source
 endif 
 
-setlocal shiftwidth=2                " Use indents of 2 spaces
+setlocal expandtab
 setlocal tabstop=2                   " An indentation every four columns
+setlocal shiftwidth=2                " Use indents of 2 spaces
 setlocal softtabstop=2               " Let backspace delete indent
 
 let fortran_do_enddo=1
