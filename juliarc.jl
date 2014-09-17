@@ -38,3 +38,9 @@ function rshp( arr, dims...)
 
     Base.reshape( arr,  dims)
 end 
+
+function einsum(subscripts, arrs...)
+    dimstrs = split(subscripts, ',')
+    println(dimstrs)
+end
+

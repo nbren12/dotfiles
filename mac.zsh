@@ -48,7 +48,11 @@ ipynb (){
         source ~/.zshrc && \
         ipython notebook --pdb --port=8889 --deep-reload --no-browser'
 }
-
+export UDUNITS2_XML_PATH=/Users/noah/anaconda/envs/iris/share/udunits/udunits2.xml
 MKL_NUM_THREADS=1
 export MKL_NUM_THREADS
 export PATH=/opt/local/bin:$PATH
+
+
+# Ifort
+source /opt/intel/bin/compilervars.sh intel64
