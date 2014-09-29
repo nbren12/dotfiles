@@ -30,6 +30,10 @@ export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH
 
 alias ipynb='ipython notebook --pdb --port=8889 --deep-reload --no-browser'
 
+# Julia
+module load gcc-4.8.2
+export PATH=/usr/local/pkg/julia/0.3.0/bin:$PATH
+
 #VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/noah/usr/python-env/bin/activate
 umask 2
 
