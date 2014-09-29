@@ -15,7 +15,7 @@ iab txt \text{
 
 
 let g:neocomplete#disable_auto_complete = 1
-set iskeyword+=;,-
+set iskeyword+=;,-,_
 let g:tex_flavor = "latex"
 
 let b:tex_flavor = 'pdflatex'

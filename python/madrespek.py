@@ -269,7 +269,7 @@ def wk_smooth121(ff, axis):
 
     return
 
-def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, **kwargs):
+def wk_plot(x, t, z, cmap = 'hot_r', smooth = True, title = None, colorbar= False, **kwargs):
     """
     Plotting raw frequency-wavenumber power spectrum for x-t data
 
@@ -284,11 +284,11 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, 
     from matplotlib import mlab
 
     # Demean data and calculate pow spec using fft
-    z = np.squeeze(cube.data)
-    z = mlab.demean(z)
-
-    x = cube.coord('longitude').points
-    t = cube.coord('time').points
+    # z = np.squeeze(cube.data)
+    # z = mlab.demean(z)
+    #
+    # x = cube.coord('longitude').points
+    # t = cube.coord('time').points
 
     nt, nx = z.shape
     dt = np.diff(t).mean()
@@ -364,6 +364,6 @@ def wk_plot(cube, cmap = 'hot_r', smooth = True, title = None, colorbar= False, 
     plt.ylim([0, min(.8, ft.max())])
     plt.xlabel('Zonal Wavenumber')
     plt.ylabel('CPD')
-    plt.title(cube.name())
+    # plt.title(cube.name())
 
 

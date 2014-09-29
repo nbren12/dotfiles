@@ -1,8 +1,4 @@
 #    source the local profile first
-if [[ -e $HOME/.profile.local ]]
-then
-    source $HOME/.profile.local 
-fi
 
 #######USER ALIASES########################
 
@@ -145,15 +141,6 @@ if [[ -e $HOME/.git-completion.bash ]]
 then
     source $HOME/.git-completion.bash
 fi
-
-# added by Miniconda 3.5.5 installer
-export PATH="/Users/noah/miniconda/bin:$PATH"
-
-# added by Miniconda 3.5.5 installer
-export PATH="/Users/noah/miniconda/bin:$PATH"
-
-# added by Miniconda 3.5.5 installer
-export PATH="/Users/noah/miniconda/bin:$PATH"
 
 # added by Anaconda 2.0.1 installer
 export PATH="/Users/noah/anaconda/bin:$PATH"

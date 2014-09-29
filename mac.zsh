@@ -13,7 +13,6 @@ alias tropnb="emacs /Users/noah/Sync/tropical_modeling/notebook/notebook.org"
 
 export GIT_EDITOR="/usr/bin/vim -u NONE"
 
-export UDUNITS2_XML_PATH=/anaconda/envs/aos/share/udunits/udunits2.xml
 
 export PATH=/usr/local/bin:/Users/noah/local/bin:/Users/noah/usr/bin:/Users/noah/.cabal/bin:/usr/local/texlive/2010/bin/x86_64-darwin:/Users/noah/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH
 # export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
@@ -22,9 +21,11 @@ export PATH=/Applications/Julia-0.3.0-rc2-3ddbaa1c03.app/Contents/Resources/juli
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/Library/ENV/pkgconfig/10.8:$PKG_CONFIG_PATH
 export PYTHONPATH=$DOTFILES/python:$PYTHONPATH
 
+# Add pythonpath for vim
 
-
-export PATH=/Users/noah/anaconda/bin:/usr/local/bin:$PATH
+export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/2.7/bin
+export PYTHONPATH=$PYTHONPATH:/Users/noah/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages 
+export PYTHONPATH=$PYTHONPATH:/Applications/Canopy.app/appdata/canopy-1.4.1.1975.macosx-x86_64/Canopy.app/Contents/lib/python2.7/site-packages
 
 export NCARG_ROOT=/opt/ncl-6.2.0
 export PATH=$NCARG_ROOT/bin:$PATH
@@ -37,8 +38,7 @@ export PATH
 export PYTHONPATH=/Users/noah/proj/rayben:$PYTHONPATH
 export VIRTUAL_ENV_DISABLE_PROMPT=1
 
-
-source ~/Sync/tropical_modeling/activate
+source ~/epd/bin/activate
 # source activate aos
 alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
