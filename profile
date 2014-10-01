@@ -144,3 +144,6 @@ fi
 
 # added by Anaconda 2.0.1 installer
 export PATH="/Users/noah/anaconda/bin:$PATH"
+
+# added by Anaconda3 2.0.1 installer
+export PATH="/Users/noah/anaconda3/bin:$PATH"

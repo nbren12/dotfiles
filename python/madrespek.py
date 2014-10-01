@@ -12,7 +12,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from math import sqrt, pi
-# from numba import f8, void, jit, autojit
+from numba import f8, void, jit, autojit
 # import pandas as pd
 
 
@@ -249,7 +249,7 @@ def anom(cube, axis=('time',)):
 #                        Wheeler-Kiladis Plots                        #
 #######################################################################
 
-# @autojit
+@autojit
 def wk_smooth121(ff, axis):
     """
     1-2-1 Filter for smoothing power spectrum data ala Wheeler-Kiladis

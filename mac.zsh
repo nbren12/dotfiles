@@ -19,27 +19,11 @@ export PATH=/usr/local/bin:/Users/noah/local/bin:/Users/noah/usr/bin:/Users/noah
 export PATH=/Applications/Julia-0.3.0-rc2-3ddbaa1c03.app/Contents/Resources/julia/bin:/usr/local/pkg/emacs/24.3/bin:$PATH
 
 export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig:/usr/local/Library/ENV/pkgconfig/10.8:$PKG_CONFIG_PATH
-export PYTHONPATH=$DOTFILES/python:$PYTHONPATH
 
-# Add pythonpath for vim
-
-export PYTHONPATH=$PYTHONPATH:/Library/Frameworks/Python.framework/Versions/2.7/bin
-export PYTHONPATH=$PYTHONPATH:/Users/noah/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages 
-export PYTHONPATH=$PYTHONPATH:/Applications/Canopy.app/appdata/canopy-1.4.1.1975.macosx-x86_64/Canopy.app/Contents/lib/python2.7/site-packages
 
 export NCARG_ROOT=/opt/ncl-6.2.0
 export PATH=$NCARG_ROOT/bin:$PATH
 
-# VIRTUAL_ENV_DISABLE_PROMPT=1 source /Users/noah/Library/Enthought/Canopy_64bit/User/bin/activate
-
-# Setting PATH for EPD-7.3-2
-# The orginal version is saved in .bash_profile.pysave
-export PATH
-export PYTHONPATH=/Users/noah/proj/rayben:$PYTHONPATH
-export VIRTUAL_ENV_DISABLE_PROMPT=1
-
-source ~/epd/bin/activate
-# source activate aos
 alias pynb='cd ~/Dropbox/ipython-notebooks && tmux new "ipython notebook"'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 
@@ -48,7 +32,6 @@ ipynb (){
         source ~/.zshrc && \
         ipython notebook --pdb --port=8889 --deep-reload --no-browser'
 }
-export UDUNITS2_XML_PATH=/Users/noah/anaconda/envs/iris/share/udunits/udunits2.xml
 MKL_NUM_THREADS=1
 export MKL_NUM_THREADS
 export PATH=/opt/local/bin:$PATH
@@ -56,3 +39,9 @@ export PATH=/opt/local/bin:$PATH
 
 # Ifort
 source /opt/intel/bin/compilervars.sh intel64
+
+# Anaconda
+export PATH=$HOME/anaconda3/bin:$PATH
+
+# Current projects
+export PYTHONPATH=$HOME/workspace/ergnum:$PYTHONPATH
