@@ -202,12 +202,14 @@ if 0
 endif
 
 Bundle 'scrooloose/syntastic'
-let g:syntastic_mode_map = { "mode": "active",
-                           \ "passive_filetypes": ["python"] }
+" let g:syntastic_mode_map = { "mode": "active",
+"                            \ "passive_filetypes": ["python"] }
+let g:syntastic_mode_map = { "mode": "active"}
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_python_python_exec = '~/pyenv/bin/python'
-let g:syntastic_quiet_messages = { "level": "warnings" }
+let g:syntastic_python_python_exec = '~/anaconda3/bin/python'
+let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_quiet_messages = { "level": "warnings" }
 
 nnoremap <F7> :SyntasticCheck <CR>
 
@@ -269,7 +271,7 @@ Bundle 'ivanov/vim-ipython'
         " colorscheme wombat
         " colorscheme zellner
         " colorscheme jellybeans
-        set background=light
+        set background=dark
         colorscheme solarized
 
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
