@@ -31,6 +31,12 @@
 "
 " Installed tim pope's repeat.vim plugin for repeating commands in other
 " plugins, like surround. Also installed vim easy motion.
+"
+" Oct 13, 2014 
+"
+" Installed latex-box again. It only gets really slow when using the
+" autopairs plugin. Solution: disable all pairs matching in latex files:
+"      au Filetype tex let b:AutoPairs = {}
 
 
 set nocompatible	"has to be first line
@@ -65,12 +71,9 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'surround.vim'
-
 Bundle 'JuliaLang/julia-vim'
-
 Bundle 'MatlabFilesEdition' 
 Bundle 'fortran.vim'
-
 Bundle 'Lokaltog/vim-easymotion'
 nmap <Space> <Plug>(easymotion-prefix)
 vmap <Space> <Plug>(easymotion-prefix)
@@ -231,8 +234,8 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 " http://stackoverflow.com/questions/883437/how-do-i-get-vim-to-automatically-put-ending-braces/883522#883522
 
 Bundle "jiangmiao/auto-pairs"
-au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
-" au Filetype tex let b:AutoPairs = {"{": "}" }
+" au Filetype tex let b:AutoPairs = {"{": "}", "$": "$"}
+au Filetype tex let b:AutoPairs = {}
 
 " Colorschemes"{{{
 Bundle 'Wombat'
@@ -245,11 +248,9 @@ Bundle 'altercation/vim-colors-solarized'
 
 " Latex
 " Need to download the latest version from sourcefourge and install psutil
-Bundle 'TeX-PDF'
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
+let g:LatexBox_Folding = 1
 set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
-let g:tex_pdf_map_leader_keys = 0
-let g:tex_isk = ":,-,48-57,a-z,A-Z,192-255"
-noremap <silent> <Leader>ll :BuildAndViewTexPdf<CR>
 
 
 

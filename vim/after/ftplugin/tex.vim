@@ -3,6 +3,9 @@ setlocal spell
 setlocal nocursorline
 setlocal lbr
 
+set iskeyword+=;,-,_
+set sw=2
+
 iab deg <BS>$^{\circ}$
 iab wihtout without
 iab waht what
@@ -15,9 +18,10 @@ iab txt \text{
 
 
 let g:neocomplete#disable_auto_complete = 1
-set iskeyword+=;,-,_
 let g:tex_flavor = "latex"
 
+
+" My own list of commands
 let b:tex_flavor = 'pdflatex'
 if has('mac') 
     let g:pdf_viewer = "open"
@@ -40,7 +44,7 @@ let b:pdfmain = Getpdfmain()
 silent execute "setlocal makeprg=rubber-info\\ ".Gettexmain()
 
 function! Compilepdf()
-    echom "Compling PDF"
+    echom "Compiling PDF"
     call system("latexmk -latexoption='-synctex=1' --silent --pdf -f ". Gettexmain()." &")
 endf
 
@@ -68,7 +72,10 @@ map <silent> <Leader>ls   :call ForwardSearchViewer() <CR>
 map <Plug>(make-pdf)   :call Compilepdf() <CR>
 map <Plug>(view-pdf)   :call Viewtexmain() <CR>
 map <Plug>(view-error) :call Viewerror() <CR>
+
+if 0 
 nmap <silent> <Leader>ll <Plug>(make-pdf)
 nmap <silent> <Leader>lv <Plug>(view-pdf)
 nmap <silent> <Leader>le <Plug>(view-error)
 
+endif
