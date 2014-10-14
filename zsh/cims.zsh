@@ -19,10 +19,11 @@ alias tropnb='emacs-24.3 /home/noah/Sync/tropical_modeling/notebook/notebook.org
 export FC=ifort
 source /opt/intel/composerxe/bin/compilervars.sh intel64
 
-module load python-2.7
+module load python-3.4.1
 module load clang-3.5.0
 module load gcc-4.8.2
-VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/pyenv/bin/activate
+# VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/pyenv/bin/activate
+VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/py3k/bin/activate
 
 # Ruby
 module load ruby-1.9.3
@@ -34,6 +35,8 @@ alias ipynb='ipython notebook --pdb --port=8889 --deep-reload --no-browser'
 module load gcc-4.8.2
 export PATH=/usr/local/pkg/julia/0.3.0/bin:$PATH
 
-#VIRTUAL_ENV_DISABLE_PROMPT=1 source /home/noah/usr/python-env/bin/activate
 umask 2
+
+#PYTHONPATH
+export PYTHONPATH=$HOME/workspace/skeleton/python:$PYTHONPATH
 

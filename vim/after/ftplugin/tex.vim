@@ -2,6 +2,7 @@ setlocal wrap
 setlocal spell
 setlocal nocursorline
 setlocal lbr
+let maplocalleader = "`"
 
 set iskeyword+=;,-,_
 set sw=2
@@ -11,13 +12,103 @@ iab wihtout without
 iab waht what
 iab <buffer> ,b \begin{
 iab <buffer> ,e \end{
-iab `a \alpha
-iab `b \beta
-iab `q \theta
+" iab `a \alpha
+" iab `b \beta
+" iab `q \theta
 iab txt \text{
 
-imap `T \overline{
-imap `~ \tilde{
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"               Greek letters and keybindings from auctex.vim                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Greek letters, AucTex style bindings {{{
+" No timeout. Applies to mappings such as `a for \alpha
+set notimeout
+inoremap <buffer> <LocalLeader><LocalLeader> <LocalLeader>
+inoremap <buffer> <LocalLeader>a \alpha
+inoremap <buffer> <LocalLeader>b \beta
+inoremap <buffer> <LocalLeader>c \chi
+inoremap <buffer> <LocalLeader>d \delta
+inoremap <buffer> <LocalLeader>e \epsilon
+" inoremap <buffer> <LocalLeader>e \varepsilon
+inoremap <buffer> <LocalLeader>f \phi
+" inoremap <buffer> <LocalLeader>f \varphi
+inoremap <buffer> <LocalLeader>g \gamma
+inoremap <buffer> <LocalLeader>h \eta
+inoremap <buffer> <LocalLeader>i \int_{}^{}<Esc>F}i
+" Or \iota or \infty or \in
+inoremap <buffer> <LocalLeader>k \kappa
+inoremap <buffer> <LocalLeader>l \lambda
+inoremap <buffer> <LocalLeader>m \mu
+inoremap <buffer> <LocalLeader>n \nu
+inoremap <buffer> <LocalLeader>o \omega
+inoremap <buffer> <LocalLeader>p \pi
+inoremap <buffer> <LocalLeader>q \theta
+inoremap <buffer> <LocalLeader>r \rho
+inoremap <buffer> <LocalLeader>s \sigma
+inoremap <buffer> <LocalLeader>t \tau
+inoremap <buffer> <LocalLeader>u \upsilon
+inoremap <buffer> <LocalLeader>v \vee
+inoremap <buffer> <LocalLeader>w \wedge
+inoremap <buffer> <LocalLeader>x \xi
+inoremap <buffer> <LocalLeader>y \psi
+inoremap <buffer> <LocalLeader>z \zeta
+inoremap <buffer> <LocalLeader>D \Delta
+inoremap <buffer> <LocalLeader>I \int_{}^{}<Esc>F}i
+inoremap <buffer> <LocalLeader>F \Phi
+inoremap <buffer> <LocalLeader>G \Gamma
+inoremap <buffer> <LocalLeader>L \Lambda
+inoremap <buffer> <LocalLeader>N \nabla
+inoremap <buffer> <LocalLeader>O \Omega
+inoremap <buffer> <LocalLeader>Q \Theta
+inoremap <buffer> <LocalLeader>R \varrho
+inoremap <buffer> <LocalLeader>S \sum_{}^{}<Esc>F}i
+inoremap <buffer> <LocalLeader>U \Upsilon
+inoremap <buffer> <LocalLeader>X \Xi
+inoremap <buffer> <LocalLeader>Y \Psi
+inoremap <buffer> <LocalLeader>0 \emptyset
+inoremap <buffer> <LocalLeader>1 \left
+inoremap <buffer> <LocalLeader>2 \right
+inoremap <buffer> <LocalLeader>3 \Big
+inoremap <buffer> <LocalLeader>6 \partial
+inoremap <buffer> <LocalLeader>8 \infty
+inoremap <buffer> <LocalLeader>/ \frac{}{}<Esc>F}i
+inoremap <buffer> <LocalLeader>% \frac{}{}<Esc>F}i
+inoremap <buffer> <LocalLeader>@ \circ
+inoremap <buffer> <LocalLeader>\| \Big\|
+inoremap <buffer> <LocalLeader>= \equiv
+inoremap <buffer> <LocalLeader>\ \setminus
+inoremap <buffer> <LocalLeader>. \cdot
+inoremap <buffer> <LocalLeader>* \times
+inoremap <buffer> <LocalLeader>& \wedge
+inoremap <buffer> <LocalLeader>- \bigcap
+inoremap <buffer> <LocalLeader>+ \bigcup
+inoremap <buffer> <LocalLeader>( \subset
+inoremap <buffer> <LocalLeader>) \supset
+inoremap <buffer> <LocalLeader>< \leq
+inoremap <buffer> <LocalLeader>> \geq
+inoremap <buffer> <LocalLeader>, \nonumber
+inoremap <buffer> <LocalLeader>: \dots
+inoremap <buffer> <LocalLeader>~ \tilde{}<Left>
+inoremap <buffer> <LocalLeader>^ \hat{}<Left>
+inoremap <buffer> <LocalLeader>; \dot{}<Left>
+inoremap <buffer> <LocalLeader>_ \bar{}<Left>
+inoremap <buffer> <LocalLeader><M-c> \cos
+inoremap <buffer> <LocalLeader><C-E> \exp\left(\right)<Esc>F(a
+inoremap <buffer> <LocalLeader><C-I> \in
+inoremap <buffer> <LocalLeader><C-J> \downarrow
+inoremap <buffer> <LocalLeader><C-L> \log
+inoremap <buffer> <LocalLeader><C-P> \uparrow
+inoremap <buffer> <LocalLeader><Up> \uparrow
+inoremap <buffer> <LocalLeader><C-N> \downarrow
+inoremap <buffer> <LocalLeader><Down> \downarrow
+inoremap <buffer> <LocalLeader><C-F> \to
+inoremap <buffer> <LocalLeader><Right> \lim_{}<Left>
+inoremap <buffer> <LocalLeader><C-S> \sin
+inoremap <buffer> <LocalLeader><C-T> \tan
+inoremap <buffer> <LocalLeader><M-l> \ell
+inoremap <buffer> <LocalLeader><CR> \nonumber\\<CR><HOME>&&<Left>
+" }}}
 
 let g:neocomplete#disable_auto_complete = 1
 

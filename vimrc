@@ -54,6 +54,8 @@ set completeopt=menuone,longest,preview
 set hidden          " Allows leaving ufinished buffers
 set cursorline
 set incsearch                   " Find as you type search
+set lines=40
+set columns=80
 
 " Basic Keystrokes
 " let mapleader=','
@@ -252,6 +254,7 @@ Bundle 'pyte'
 " Latex
 " Need to download the latest version from sourcefourge and install psutil
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
+let g:LatexBox_latexmk_async = 1
 let g:tex_flavor = "latex"
 let g:LatexBox_Folding = 1
 let g:LatexBox_fold_automatic = 0 " Needed for fast ultisnips expansion
@@ -447,8 +450,8 @@ iab fo of
     nnoremap <Leader>cl :close <CR>
 
     " Folding
-    nnoremap f za 
-    vnoremap f zf
+    nnoremap <BS> za 
+    vnoremap <BS> zf
     set foldnestmax=2
 
 
