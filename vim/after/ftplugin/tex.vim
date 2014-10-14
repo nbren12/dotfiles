@@ -20,10 +20,14 @@ imap `T \overline{
 imap `~ \tilde{
 
 let g:neocomplete#disable_auto_complete = 1
-let g:tex_flavor = "latex"
 
+map <silent> <Leader>ls :silent
+        \ !/Applications/Skim.app/Contents/SharedSupport/displayline
+        \ <C-R>=line('.')<CR> "<C-R>=LatexBox_GetOutputFile()<CR>"
+        \ "%:p" <CR>
 
 " My own list of commands
+if 0 
 let b:tex_flavor = 'pdflatex'
 if has('mac') 
     let g:pdf_viewer = "open"
@@ -75,7 +79,6 @@ map <Plug>(make-pdf)   :call Compilepdf() <CR>
 map <Plug>(view-pdf)   :call Viewtexmain() <CR>
 map <Plug>(view-error) :call Viewerror() <CR>
 
-if 0 
 nmap <silent> <Leader>ll <Plug>(make-pdf)
 nmap <silent> <Leader>lv <Plug>(view-pdf)
 nmap <silent> <Leader>le <Plug>(view-error)

@@ -37,6 +37,8 @@
 " Installed latex-box again. It only gets really slow when using the
 " autopairs plugin. Solution: disable all pairs matching in latex files:
 "      au Filetype tex let b:AutoPairs = {}
+" Switched folding to f key from tab. <C-I> did not work as expected with Tab
+" mapping.
 
 
 set nocompatible	"has to be first line
@@ -243,12 +245,14 @@ Bundle 'Lokaltog/vim-distinguished'
 Bundle 'jellybeans.vim'
 Bundle 'zeis/vim-kolor'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'pyte'
 "}}}
 
 
 " Latex
 " Need to download the latest version from sourcefourge and install psutil
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
+let g:tex_flavor = "latex"
 let g:LatexBox_Folding = 1
 let g:LatexBox_fold_automatic = 0 " Needed for fast ultisnips expansion
 set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
@@ -274,10 +278,11 @@ Bundle 'ivanov/vim-ipython'
         " colorscheme zellner
         " colorscheme jellybeans
         set background=dark
-        colorscheme solarized
+        " colorscheme solarized
+        colorscheme pyte
 
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
-        set guifont=Monospace\ 10,Consolas:h13
+        set guifont=Monospace\ 10,Consolas:h12
         " turn off the toolbar
         set guioptions-=T
     else
@@ -442,8 +447,8 @@ iab fo of
     nnoremap <Leader>cl :close <CR>
 
     " Folding
-    nnoremap <Tab> za
-    vnoremap <Tab> zf
+    nnoremap f za 
+    vnoremap f zf
     set foldnestmax=2
 
 

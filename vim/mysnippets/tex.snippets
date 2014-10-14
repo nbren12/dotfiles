@@ -355,3 +355,70 @@ endsnippet
 snippet \(
 \( $1 \)
 endsnippet
+
+snippet article1
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage[draft]{graphicx}
+\usepackage{longtable}
+% \usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[margin=1in]{geometry}
+
+\usepackage{subcaption}
+\usepackage{floatrow}
+\usepackage{multicol}
+
+\usepackage{amsmath}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                            User packages                            %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% usepackage{todonotes}
+
+\usepackage{tocvsec2}
+\settocdepth{subsection}
+
+\setcounter{secnumdepth}{3}
+
+
+% \graphicspath{{figs/}}
+
+\usepackage[toc,page]{appendix}
+
+\usepackage{placeins}
+\usepackage[backend=biber, citestyle=authoryear, url=false, isbn=false, natbib]{biblatex}
+
+% \bibliography{../ergnum.bib}
+\author{Noah D. Brenowitz, Andrew J. Majda, Xin T. Tong}
+\date{\today}
+\title{Practical Numerical Methods for PDMP}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  bookmarksdepth=subsection
+  }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         Custom Use Packages                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}
+
+\begin{document}
+
+% \maketitle
+$1
+\end{document}
+endsnippet
