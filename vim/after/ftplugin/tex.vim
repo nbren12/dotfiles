@@ -16,6 +16,8 @@ iab `b \beta
 iab `q \theta
 iab txt \text{
 
+imap `T \overline{
+imap `~ \tilde{
 
 let g:neocomplete#disable_auto_complete = 1
 let g:tex_flavor = "latex"

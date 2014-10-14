@@ -250,6 +250,7 @@ Bundle 'altercation/vim-colors-solarized'
 " Need to download the latest version from sourcefourge and install psutil
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
 let g:LatexBox_Folding = 1
+let g:LatexBox_fold_automatic = 0 " Needed for fast ultisnips expansion
 set suffixes+=.log,.aux,.bbl,.fdb_latexmk,.latexmain,.fls,.idx,.gz
 
 
