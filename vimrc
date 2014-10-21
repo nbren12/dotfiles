@@ -285,7 +285,7 @@ Bundle 'ivanov/vim-ipython'
         colorscheme pyte
 
         "set guifont=Mono\ Regular:h14,Menlo\ Regular:h14,Consolas\ Regular:h14,Courier\ New\ Regular:h16
-        set guifont=Monospace\ 10,Consolas:h12
+        set guifont=Monospace\ 10,Monaco,Consolas:h12
         " turn off the toolbar
         set guioptions-=T
     else
@@ -336,6 +336,9 @@ Bundle 'ivanov/vim-ipython'
             call cursor(l, c)
         endif
     endfunction
+    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+
     " set smartindent
     set nowrap                      " Wrap long lines
     set autoindent                  " Indent at the same level of the previous line
@@ -347,8 +350,6 @@ Bundle 'ivanov/vim-ipython'
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
-    autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 
 
 " }}}
@@ -376,10 +377,6 @@ iab fo of
     " Search back
     nnoremap <leader>f F
 
-    " Google search 
-    if has('mac')
-        nmap <Leader>gg :silent !open -a Firefox.app "http://www.google.com/?q=<cword>" <CR>
-    endif
 
     " Windows Management Shortcuts
     nnoremap <C-h> <C-w>h
@@ -433,6 +430,7 @@ iab fo of
     nnoremap <Leader>t :TagbarToggle<CR>
     nnoremap yg "+y
     vnoremap yg "+y
+    nnoremap pg "+p
 
     map <Leader>5 <F5>
 
@@ -463,14 +461,14 @@ iab fo of
 
 
 "}}}
-"  Programming {{{
 
 
+" Extras"{{{
 
-    " Fix Indenting Behavior with #
-    " inoremap # X#
-
-"}}}
+" Google search "{{{
+if has('mac')
+    nmap <Leader>gg :silent !open -a Firefox.app "http://www.google.com/?q=<cword>" <CR>
+endif"}}}
 
 " MVIM to iTerm "{{{
 function! SendToTerminal(args)
@@ -505,6 +503,7 @@ endfunction
 
 nnoremap <Leader>sdd :call ToggleyncDirs()<CR>
 nnoremap <Leader>sd  :call SyncDirs()<CR>
+"}}}
 "}}}
 
 filetype plugin indent on
