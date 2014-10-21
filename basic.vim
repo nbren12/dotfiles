@@ -7,9 +7,17 @@ set numberwidth=4
 
 set nobackup            " get rid of anoying ~file
 
+" Search incrementally with highlight
+set is hls
+
 
 " Tabs
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" Appearence
+
+set bg=dark
+set ruler
 
 let mapleader="\\"
 
