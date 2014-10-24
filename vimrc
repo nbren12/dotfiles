@@ -428,9 +428,6 @@ iab fo of
      set tags=tags;/
 
     nnoremap <Leader>t :TagbarToggle<CR>
-    nnoremap yg "+y
-    vnoremap yg "+y
-    nnoremap pg "+p
 
     map <Leader>5 <F5>
 

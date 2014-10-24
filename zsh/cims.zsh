@@ -38,5 +38,5 @@ export PATH=/usr/local/pkg/julia/0.3.0/bin:$PATH
 umask 2
 
 #PYTHONPATH
-export PYTHONPATH=$HOME/workspace/skeleton/python:$PYTHONPATH
+export PYTHONPATH=$HOME/Dropbox/gnl:$HOME/workspace/skeleton/python:$PYTHONPATH
 

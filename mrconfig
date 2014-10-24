@@ -12,3 +12,6 @@ checkout = git clone 'git@bitbucket.org:nbren12/skeleton_model.git' 'skeleton'
 
 [Dropbox/gnl]
 checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
+
+[workspace/skelfilter]
+checkout = git clone 'git@bitbucket.org:nbren12/skelfilter.git' 'skelfilter'
