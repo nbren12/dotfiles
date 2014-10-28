@@ -2,7 +2,6 @@ setlocal wrap
 setlocal spell
 setlocal nocursorline
 setlocal lbr
-let maplocalleader = "`"
 
 set iskeyword+=;,-,_
 set sw=2
@@ -23,6 +22,7 @@ iab txt \text{
 
 " Greek letters, AucTex style bindings {{{
 " No timeout. Applies to mappings such as `a for \alpha
+if 0 
 set notimeout
 inoremap <buffer> <LocalLeader><LocalLeader> <LocalLeader>
 inoremap <buffer> <LocalLeader>a \alpha
@@ -108,6 +108,7 @@ inoremap <buffer> <LocalLeader><C-S> \sin
 inoremap <buffer> <LocalLeader><C-T> \tan
 inoremap <buffer> <LocalLeader><M-l> \ell
 inoremap <buffer> <LocalLeader><CR> \nonumber\\<CR><HOME>&&<Left>
+endif
 " }}}
 
 let g:neocomplete#disable_auto_complete = 1
