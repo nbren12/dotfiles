@@ -126,29 +126,21 @@ nmap <Leader>a= :Tabularize /= <CR>
 vmap <Leader>a& :Tabularize /& <CR>
 vmap <Leader>a= :Tabularize /= <CR>
 
+Bundle 'Shuogo/neomru.vim'
+Bundle 'Shuogo/vimproc.vim'
+Bundle 'Shuogo/unite.vim'
 
-" ctrlp {{{
-Bundle 'ctrlp.vim'
-nnoremap <silent> <D-t> :CtrlP<CR>
-nnoremap <silent> <D-r> :CtrlPMRU<CR>
-nnoremap <silent> <Leader>r :CtrlPMRU<CR>
-nnoremap <silent> <Leader>b :CtrlPBuffer<CR>
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-    \ 'file': '\.swp$|\.exe$\|\.so$\|\.dll$' }
 
-let g:ctrlp_lazy_update = 1
-let g:ctrlp_max_depth = 5
-let g:ctrlp_working_path_mode = 2
-" let g:ctrlp_working_path_mode='r'
-let g:ctrlp_user_command = {
-            \ 'types': {
-            \ 1: ['.git', 'cd %s && git ls-files'],
-            \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-            \ },
-            \ 'fallback': ' find %s -type f' }
-let g:ctrlp_root_markers = ['.ctrlp','.git']
-"}}}
+nnoremap <C-p> :Unite  -buffer-name=files buffer file_rec/git file_mru file file_rec<CR>
+call unite#custom#profile('default', 'context', {
+\   'start_insert': 0,
+\   'winheight': 10,
+\   'direction': 'botright',
+\ })
+
+
+nnoremap <Space>/ :Unite grep:.<CR>
+nnoremap <Leader>q :Unite -quick-match buffer<CR>
 
 "Code completion"{{{
 au FileType * exec("setlocal dictionary+=".$HOME."/.vim/dictionaries/".expand('<amatch>'))

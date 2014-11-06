@@ -22,8 +22,9 @@ source /opt/intel/composerxe/bin/compilervars.sh intel64
 module load python-3.4.1
 module load clang-3.5.0
 module load gcc-4.8.2
+module load qt-4.8.5
 # VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/pyenv/bin/activate
-VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/py3k/bin/activate
+# VIRTUAL_ENV_DISABLE_PROMPT=1 source $HOME/py3k/bin/activate
 
 # Ruby
 module load ruby-1.9.3
@@ -38,5 +39,6 @@ export PATH=/usr/local/pkg/julia/0.3.0/bin:$PATH
 umask 2
 
 #PYTHONPATH
+export PATH=/scratch/noah/anaconda3/bin:$PATH
 export PYTHONPATH=$HOME/Dropbox/gnl:$HOME/workspace/skeleton/python:$PYTHONPATH
 
