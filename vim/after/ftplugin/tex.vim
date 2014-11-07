@@ -19,6 +19,12 @@ iab <buffer> ,e \end{
 " iab `q \theta
 iab txt \text{
 
+" Latex-Suite
+" imap <C-B> <Plug>Tex_MathBF
+" imap <C-C> <Plug>Tex_MathCal
+" imap  <C-t> <Plug>Tex_LeftRight
+" imap <C-I> <Plug>Tex_InsertItemOnThisLine
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "               Greek letters and keybindings from auctex.vim                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

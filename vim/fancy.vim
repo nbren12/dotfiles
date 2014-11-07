@@ -33,7 +33,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'surround.vim'
 NeoBundle 'tComment'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Lokaltog/vim-easymotion'
+
+" Latex
+NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
 " Testing plugins
 NeoBundle 'scrooloose/syntastic'
