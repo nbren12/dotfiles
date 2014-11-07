@@ -114,14 +114,6 @@ fi
 #                         Environmental Variables                         #
 ###########################################################################
 
-export PATH=/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
-
-export EDITOR='/usr/bin/env vim'
 
 export DOTFILES=$HOME/.dotfiles
 export PATH=$DOTFILES/bin:$PATH
-
-export ETS_TOOLKIT=qt4
-
-
-

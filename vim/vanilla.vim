@@ -17,6 +17,8 @@ set tags=tags;/
 set number
 set tw=79
 
+set suffixes+=.aux,.fls,.log   " Files to not search for
+
 " set smartindent
 set nowrap                      " Wrap long lines
 set autoindent                  " Indent at the same level of the previous line

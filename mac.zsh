@@ -2,6 +2,7 @@ export DOTFILES=$HOME/.dotfiles
 
 source $DOTFILES/zsh/common.zsh
 
+export EDITOR='/usr/bin/env vim'
 
 alias g='mvim --servername VIM1 --remote-silent'
 alias mlab='/Applications/MATLAB_R2013a.app/bin/matlab -nodesktop -nosplash'
@@ -13,6 +14,7 @@ alias tropnb="emacs /Users/noah/Sync/tropical_modeling/notebook/notebook.org"
 
 export GIT_EDITOR="/usr/bin/vim -u NONE"
 
+export PATH=/usr/local/texlive/2013/bin/x86_64-linux/:$PATH
 
 export PATH=/usr/local/bin:/Users/noah/local/bin:/Users/noah/usr/bin:/Users/noah/.cabal/bin:/usr/local/texlive/2010/bin/x86_64-darwin:/Users/noah/bin:/usr/local/share/python:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:$PATH
 # export PATH=/Applications/git-annex.app/Contents/MacOS:$PATH
@@ -44,4 +46,4 @@ source /opt/intel/bin/compilervars.sh intel64
 export PATH=$HOME/anaconda3/bin:$PATH
 
 # Current projects
-export PYTHONPATH=$HOME/workspace/ergnum:$HOME/workspace/skeleton/python:$PYTHONPATH
+export PYTHONPATH=$HOME/workspace/ergnum:$HOME/workspace/skeleton/python:~/Dropbox/gnl:$PYTHONPATH

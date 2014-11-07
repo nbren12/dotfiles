@@ -39,9 +39,13 @@ NeoBundle 'Lokaltog/vim-easymotion'
 " Latex
 NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
+" Python
+NeoBundle 'davidhalter/jedi-vim'
+
+
+
 " Testing plugins
 NeoBundle 'scrooloose/syntastic'
-NeoBundle 'davidhalter/jedi-vim'
 NeoBundle 'ivanov/vim-ipython'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
@@ -73,7 +77,10 @@ syntax on
 NeoBundleCheck
 "End NeoBundle Scripts-------------------------"}}}
 
-" Plugin Settings"{{{
+" Run basic settings
+ru vanilla.vim
+
+" Plugin Settings
 
 " Fugitive
 nnoremap <silent> <Leader>gs  :Gstatus<CR>
@@ -97,10 +104,14 @@ nnoremap <Leader>r :Unite  file_mru<CR>
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
-
 " Auto completion
 let g:neocomplete#enable_at_startup = 1"
+let g:neocomplete#use_vimproc = 1
+inoremap <expr><Tab>  neocomplete#start_manual_complete()
+inoremap <expr><C-g>     neocomplete#undo_completion()
 
+
+let g:neocomplete#force_omni_input_patterns = {}
 
 " Latex Box
 let g:LatexBox_Folding = 1
@@ -134,10 +145,15 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = "~/.vim/mysnippets"
 let g:syntastic_python_python_exec = '~/anaconda3/bin/python3'
 
-" }}}
+" Jedi Settings
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first =  0
 
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+" alternative pattern: '\h\w*\|[^. \t]\.\w*'
 
 colo wombat
 
-" Run basic settings
-ru vanilla.vim
