@@ -35,13 +35,13 @@ NeoBundle 'tComment'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'majutsushi/tagbar'
 
 " Latex
 NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
 
 " Python
 NeoBundle 'davidhalter/jedi-vim'
-
 
 
 " Testing plugins
@@ -107,7 +107,7 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 " Auto completion
 let g:neocomplete#enable_at_startup = 1"
 let g:neocomplete#use_vimproc = 1
-inoremap <expr><Tab>  neocomplete#start_manual_complete()
+" inoremap <expr><Tab>  neocomplete#start_manual_complete()
 inoremap <expr><C-g>     neocomplete#undo_completion()
 
 

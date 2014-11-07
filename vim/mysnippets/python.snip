@@ -49,3 +49,19 @@ snippet main
         
 snippet .
     self.
+
+snippet wrapper
+
+    def __getattr__(self, attr):
+        # see if this object has attr
+        # NOTE do not use hasattr, it goes into
+        # infinite recurrsion
+        if attr in self.__dict__:
+            # this object has it
+            return getattr(self, attr)
+        # proxy to the wrapped object
+        return getattr(self._arr, attr)
+
+    def __getitem__(self, *args,**kw):
+        return self._arr.__getitem__(*args, **kw)
+
