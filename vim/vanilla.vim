@@ -13,9 +13,9 @@ set hidden          " Allows leaving ufinished buffers
 set cursorline
 set incsearch                   " Find as you type search
 set hlsearch   " Highlight search
-set columns=80
 set tags=tags;/
 set number
+set tw=79
 
 " set smartindent
 set nowrap                      " Wrap long lines
@@ -96,7 +96,17 @@ vnoremap <BS> zf
 set foldnestmax=2
 
 
+" Abbreviations
 
+iab ndb Noah D. Brenowitz
+iab nb Noah Brenowitz
+iab em noah@cims.nyu.edu
+iab teh the
+iab adn and
+iab fo of
+
+" Date Time
+iab <expr> dts strftime("%b %d, %Y")
 
 "}}}
 
