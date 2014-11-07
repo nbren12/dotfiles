@@ -3,8 +3,11 @@ setlocal spell
 setlocal nocursorline
 setlocal lbr
 
-set iskeyword+=;,-,_
+setlocal iskeyword+=:,-,_
 set sw=2
+
+let g:tex_fold_enabled = 0
+" let g:neocomplete#disable_auto_complete = 1
 
 iab deg <BS>$^{\circ}$
 iab wihtout without
@@ -111,7 +114,6 @@ inoremap <buffer> <LocalLeader><CR> \nonumber\\<CR><HOME>&&<Left>
 endif
 " }}}
 
-let g:neocomplete#disable_auto_complete = 1
 
 map <silent> <Leader>ls :silent
         \ !/Applications/Skim.app/Contents/SharedSupport/displayline

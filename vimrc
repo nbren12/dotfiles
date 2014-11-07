@@ -1,6 +1,17 @@
-" vim: ft=vim fdm=marker
-
-"NeoBundle Scripts-----------------------------
+" vim: ft=vim fdm=marker fo=tcr tw=79
+"
+" 07 Nov 2014
+" -----------
+"
+" This is a new vimrc built from scratch based on the neobundle plugin
+" manager. Some tips I have noticed:
+"   1. Don't bother with python3 compilation. Just use jedi-vim with python2.7
+"   and set the PYTHONPATH environmental variable to include the things you
+"   want.
+"
+"   2. Use neosnippet, which is faster than ultisnips.
+"
+"NeoBundle Scripts-----------------------------"{{{
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
@@ -25,8 +36,10 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'Lokaltog/vim-easymotion'
 
 " Testing plugins
-NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'davidhalter/jedi-vim'
+NeoBundle 'ivanov/vim-ipython'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'honza/vim-snippets'
@@ -44,8 +57,9 @@ NeoBundle 'Shougo/vimproc.vim', {
 
 NeoBundle 'Shougo/unite.vim'
 
-call neobundle#end()
 " Required:
+call neobundle#end()
+
 " Required:
 filetype plugin indent on
 syntax on
@@ -53,8 +67,7 @@ syntax on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
-"End NeoBundle Scripts-------------------------
-
+"End NeoBundle Scripts-------------------------"}}}
 
 " Basic settings"{{{
 
@@ -198,21 +211,11 @@ let g:neocomplete#enable_at_startup = 1"
 " Latex Box
 let g:LatexBox_Folding = 1
 
-" Jedi
-
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#usages_command = "<leader>z"
-let g:jedi#popup_on_dot = 0
-let g:jedi#rename_command = "<leader>rr"
-
 nmap <Space> <Plug>(easymotion-prefix)
 vmap <Space> <Plug>(easymotion-prefix)
 
-" }}}
 
 " Snippet Settings
-
-
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -235,4 +238,6 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " Enable snipMate compatibility feature.
 let g:neosnippet#enable_snipmate_compatibility = 1
 let g:neosnippet#snippets_directory = "~/.vim/mysnippets"
+let g:syntastic_python_python_exec = '~/anaconda3/bin/python3'
 
+" }}}

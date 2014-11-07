@@ -44,4 +44,4 @@ source /opt/intel/bin/compilervars.sh intel64
 export PATH=$HOME/anaconda3/bin:$PATH
 
 # Current projects
-export PYTHONPATH=$HOME/workspace/ergnum:$HOME/workspace/skeleton/python:$HOME/Dropbox/gnl:$PYTHONPATH
+export PYTHONPATH=$HOME/workspace/ergnum:$HOME/workspace/skeleton/python:$PYTHONPATH
