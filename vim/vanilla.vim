@@ -120,3 +120,4 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 
 au FileType python set fdm=indent
+nmap <Leader>b ofrom IPython import embed; embed()
