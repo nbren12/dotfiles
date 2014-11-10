@@ -34,8 +34,13 @@ NeoBundle 'surround.vim'
 NeoBundle 'tComment'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
-NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'majutsushi/tagbar'
+
+
+" Motion aids
+" NeoBundle 'Lokaltog/vim-easymotion'
+NeoBundle 'justinmk/vim-sneak'
+let g:sneak#streak = 1
 
 " Latex
 NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
