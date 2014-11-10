@@ -153,6 +153,7 @@ let g:syntastic_python_python_exec = '~/anaconda3/bin/python3'
 " Jedi Settings
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first =  0
+let g:jedi#rename_command = "<c-r>r"
 
 autocmd FileType python setlocal omnifunc=jedi#completions
 let g:jedi#completions_enabled = 0
