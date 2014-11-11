@@ -120,4 +120,6 @@ autocmd InsertLeave,WinLeave * if exists('w:last_fdm') | let &l:foldmethod=w:las
 
 
 au FileType python set fdm=indent
-nmap <Leader>b ofrom IPython import embed; embed()
+nmap <Leader>be ofrom IPython import embed; embed()
+nmap <Leader>bb oimport ipdb; ipdb.set_trace()
+nmap <Leader>bd silent bufdo %g/^\s*import ipdb; ipdb.set_trace()/d

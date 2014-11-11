@@ -122,8 +122,6 @@ let g:neocomplete#force_omni_input_patterns = {}
 " Latex Box
 let g:LatexBox_Folding = 1
 
-nmap <Space> <Plug>(easymotion-prefix)
-vmap <Space> <Plug>(easymotion-prefix)
 
 
 " Snippet Settings

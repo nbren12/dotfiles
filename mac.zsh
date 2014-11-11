@@ -47,3 +47,4 @@ export PATH=$HOME/anaconda3/bin:$PATH
 
 # Current projects
 export PYTHONPATH=$HOME/workspace/ergnum:$HOME/workspace/skeleton/python:~/Dropbox/gnl:$PYTHONPATH
+export PYTHONPATH=/Users/noah/workspace/skelfilter:$PYTHONPATH
