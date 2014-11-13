@@ -7,7 +7,7 @@ setlocal iskeyword+=:,-,_
 set sw=2
 
 let g:tex_fold_enabled = 0
-" let g:neocomplete#disable_auto_complete = 1
+let g:neocomplete#disable_auto_complete = 1
 
 iab deg <BS>$^{\circ}$
 iab wihtout without
