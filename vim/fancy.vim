@@ -35,7 +35,7 @@ NeoBundle 'tComment'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'majutsushi/tagbar'
-
+NeoBundle 'godlygeek/tabular'
 
 " Motion aids
 " NeoBundle 'Lokaltog/vim-easymotion'
