@@ -51,6 +51,9 @@ NeoBundle 'davidhalter/jedi-vim'
 
 
 " Testing plugins
+NeoBundle 'christoomey/vim-tmux-navigator'
+
+
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'ivanov/vim-ipython'
 NeoBundle 'Shougo/neocomplete.vim'
@@ -160,5 +163,7 @@ let g:jedi#auto_vim_configuration = 0
 " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 " alternative pattern: '\h\w*\|[^. \t]\.\w*'
 
-colo wombat
+if has('gui')
+    colo wombat
+endif
 
