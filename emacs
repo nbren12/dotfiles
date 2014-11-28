@@ -1,229 +1,47 @@
-; -*-Lisp-*-
-(add-to-list 'load-path "~/.emacs.d/")
-(add-to-list 'load-path "~/.emacs.d/org-8.2.4/lisp")
-(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.87/")
 
-
-(setq noah-packages '(
-	evil 
-	evil-leader
-	deft
-	python-mode
-	jedi
-	auctex
-	ess
-	auto-complete  
-	websocket
-	request
-	smartrep 
-	popup 
-	fuzzy 
-	ein 
-	projectile
-))
-
-(require 'package)
-;(add-to-list 'package-archives
-;  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-
-(setq package-archives '(
-;			 ("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-;                         ("melpa" . "http://melpa.milkbox.net/packages/")
-))
+; Using Quelpa to manage packages
 (package-initialize)
-;; check if the packages is installed; if not, install it.
-(mapc
- (lambda (package)
-   (or (package-installed-p package)
-       ;(if (y-or-n-p (format "Package %s is missing. Install it? " package)) 
-           (package-install package)))
- noah-packages)
+(unless (require 'quelpa nil t)
+  (with-temp-buffer
+    (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
+    (eval-buffer)))
 
+(mapc 'quelpa '(evil evil-org evil-surround org reftex auctex
+      auto-complete yasnippet deft projectile ace-jump-mode color-theme))
 
+; Requires
 
-;; Requires
-
-(require 'org-install)
-(require 'evil)
-(require 'ess-site)
+(require 'org)
+(require 'reftex)
 (require 'auto-complete)
-(require 'deft)
-
-;; AucTex
-(require 'tex)
-(setq TeX-PDF-mode t)
-;(require 'ox-reveal)
-
-;;;; Org Mode
+(require 'yasnippet)
+(require 'evil-surround)
 
 
-; Some initial langauges we want org-babel to support
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (sh . t)
-   (python . t)
-   (R . t)
-   (ruby . t)
-   (ditaa . t)
-   (dot . t)
-   (octave . t)
-   (sqlite . t)
-   (perl . t)
-   ))
+; Settings 
+(evil-mode '1)
+(global-evil-surround-mode 1)
 
+; Evil keyboard maps
+(define-key evil-normal-state-map ";" 'execute-extended-command)
+; (define-key evil-insert-state-map "jj" 'evil-normal-state)
+(define-key evil-normal-state-map "`d" 'deft)
+(define-key evil-motion-state-map (kbd "SPC") #'evil-ace-jump-line-mode)
 
-(setq org-confirm-babel-evaluate nil)
-(setq org-export-with-smart-quotes t)
+(setq yas-snippet-dirs
+      '("~/.emacs.d/snippets"                 ;; personal snippets
+        ))
+(yas-global-mode 1)
 
-;;; EVIL Vim Mode
+; Projectile
 
-(evil-mode 1)
+(projectile-global-mode)
 
-;; Custom Evil Mode Key Bindings
+; Path
+(setenv "PATH" (concat "/usr/local/bin/:/usr/texbin" ":" (getenv "PATH")))
 
-(global-evil-leader-mode)
-
-;;; Latex Stuff
-;; to fix problems with amsmath conflicting with wasysym:
-(setq org-latex-to-pdf-process (list "latexmk -bibtex -f -pdf %s"))
-(setq latex-run-command "pdflatex")
-
-
-
-
-;; Ipython
-;(setq
-; python-shell-interpreter "ipython"
-; python-shell-interpreter-args ""
-; python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-; python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-; python-shell-completion-setup-code
-;   "from IPython.core.completerlib import module_completion"
-; python-shell-completion-module-string-code
-;   "';'.join(module_completion('''%s'''))\n"
-; python-shell-completion-string-code
-;   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-
-
-
-
-(setq ein:use-auto-complete-superpack t)
-
-
-
-;; Auto Complete
-(setq ac-auto-start 3)
-(setq ac-dwim t)
-;(global-auto-complete-mode t)
-
-(setq jedi:setup-keys t)                      ; optional
-(setq jedi:complete-on-dot t)
-
-
-
-
-;;(c-mode)
-
-;;(projectile-global-mode)
-;; Deft
-
+; Deft settings
 (setq deft-extension "org")
 (setq deft-text-mode 'org-mode)
-(setq deft-directory "~/Dropbox/org")
+(setq deft-directory "~/Dropbox/Notes")
 (setq deft-use-filename-as-title t)
-
-;; Appearance
-(tool-bar-mode -1)
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-;(load-theme 'wombat t)
-
-(setq evil-default-cursor t)
-(set-cursor-color "White")
-
-; Line numbers
-(global-linum-mode t)
-
-;; Hooks
-(add-hook 'org-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(setq reftex-plug-into-AUCTeX t)
-(add-hook 'org-mode-hook 'org-cdlatex-mode)
-(add-hook 'python-mode-hook 'jedi:setup)
-
-
-
-; Keybindings (list of evil-mode [[https://github.com/mbriggs/.emacs.d/blob/master/my-keymaps.el]])
-
-(define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
-(evil-leader/set-key "eb" 'eval-buffer)
-(evil-leader/set-key "nb" 'ein:notebooklist-open)
-
-;;; esc quits in evil mode
-(defun minibuffer-keyboard-quit ()
-  "Abort recursive edit.
-In Delete Selection mode, if the mark is active, just deactivate it;
-then it takes a second \\[keyboard-quit] to abort the minibuffer."
-  (interactive)
-  (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
-
-
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-
-;; Deft
-(evil-leader/set-key "d" 'deft "l" 'org-preview-latex-fragment)
-
-
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-normal-state-map (kbd "C-j") 'evil-window-next)
-
-;; IPython Notebook
-(define-key evil-normal-state-map (kbd "C-n") 'ein:worksheet-goto-next-input)
-;(define-key evil-normal-state-map (kbd "C-p") 'ein:worksheet-goto-prev-input)
-;; Org Mode
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-ca" 'org-agenda)
-(global-set-key "\C-cb" 'org-iswitchb)
-
-;; Projectile
-
-(define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
-
-;; Autocomplete
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
-
-; Misc
-(setq vc-follow-symlinks t)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(TeX-view-program-list (quote (("Evince Command" "evince --page-index=%(outpage)"))))
- '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" "1e7e097ec8cb1f8c3a912d7e1e0331caeed49fef6cff220be63bd2a6ba4cc365" "d070fa185078bf753dcfd873ec63be19fa36a55a0c97dc66848a6d20c5fffdad" default)))
- '(inhibit-startup-screen t)
- '(org-babel-python-command "/anaconda/envs/aos/bin/python"))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-
-
-;(load-file "~/.emacs.d/beamer.el")
-(load-file "~/.emacs.d/cdlatex.el")

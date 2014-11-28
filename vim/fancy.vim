@@ -10,7 +10,14 @@
 "   want.
 "
 "   2. Use neosnippet, which is faster than ultisnips.
+" 
+" Nov 27, 2014
+" ------------
 "
+"  Trying to install a good notetaking software, like notational velocity.
+"  `nvim` seems promising, but requires some difficult to install depedencies.
+"  For org-mode, just use emacs. Vim-notes is interesting but is not easily
+"  exportable to pdf.
 "NeoBundle Scripts-----------------------------"{{{
 if has('vim_starting')
   set nocompatible               " Be iMproved
@@ -28,7 +35,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Add or remove your Bundles here:
 
-" Essential Plugins
+" Level 0: Essential Plugins
 
 NeoBundle 'surround.vim'
 NeoBundle 'tComment'
@@ -36,31 +43,24 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'godlygeek/tabular'
-
-" Motion aids
-" NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'justinmk/vim-sneak'
-let g:sneak#streak = 1
-let g:sneak#use_ic_scs = 1
 
-" Latex
-NeoBundle 'git://git.code.sf.net/p/vim-latex/vim-latex'
+" Level 1: Non-essential Plugins
 
 " Python
 NeoBundle 'davidhalter/jedi-vim'
 
-
-" Testing plugins
+" Tmux stuff
 NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'benmills/vimux'
+NeoBundle 'julienr/vimux-pyutils'
 
-
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'ivanov/vim-ipython'
-NeoBundle 'Shougo/neocomplete.vim'
+" Snippets
 NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
+
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
@@ -73,6 +73,13 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 
 NeoBundle 'Shougo/unite.vim'
+
+" Level 2: Testing plugins
+" UTL.vim 
+NeoBundle 'vim-scripts/utl.vim' 
+
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'flazz/vim-colorschemes'
 
 " Required:
 call neobundle#end()
@@ -91,6 +98,8 @@ ru vanilla.vim
 
 " Plugin Settings
 
+" Level 0:
+
 " Fugitive
 nnoremap <silent> <Leader>gs  :Gstatus<CR>
 
@@ -107,7 +116,10 @@ nnoremap <Space>/ :Unite grep:.<CR>
 nnoremap <Leader>q :Unite -quick-match buffer<CR>
 nnoremap <Leader>r :Unite  file_mru<CR>
 
+let g:sneak#streak = 1
+let g:sneak#use_ic_scs = 1
 
+" Level 1:
 
 " Tab neosnippet
 
@@ -163,7 +175,9 @@ let g:jedi#auto_vim_configuration = 0
 " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 " alternative pattern: '\h\w*\|[^. \t]\.\w*'
 
-if has('gui')
-    colo wombat
-endif
+" Tmux settings
+map <Leader>vr :call VimuxRunCommand("clear; ipython ".bufname("%"))<cr>
+
+" Level 2
+let g:notes_directories = ['~/Dropbox/Notes',]
 
