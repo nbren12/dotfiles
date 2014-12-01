@@ -7,7 +7,7 @@
     (eval-buffer)))
 
 (mapc 'quelpa '(evil evil-org evil-surround org reftex auctex
-      auto-complete yasnippet deft projectile ace-jump-mode color-theme))
+      auto-complete yasnippet deft projectile  color-theme))
 
 ; Requires
 
@@ -23,10 +23,10 @@
 (global-evil-surround-mode 1)
 
 ; Evil keyboard maps
-(define-key evil-normal-state-map ";" 'execute-extended-command)
+;(define-key evil-normal-state-map ";" 'execute-extended-command)
 ; (define-key evil-insert-state-map "jj" 'evil-normal-state)
-(define-key evil-normal-state-map "`d" 'deft)
-(define-key evil-motion-state-map (kbd "SPC") #'evil-ace-jump-line-mode)
+(define-key evil-normal-state-map "`dd" 'deft)
+(define-key evil-normal-state-map "`op" 'org-preview-latex-fragment)
 
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"                 ;; personal snippets
@@ -45,3 +45,15 @@
 (setq deft-text-mode 'org-mode)
 (setq deft-directory "~/Dropbox/Notes")
 (setq deft-use-filename-as-title t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Dropbox/Notes/Climate Dynamics Rejection.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
