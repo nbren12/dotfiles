@@ -22,12 +22,17 @@
 ; Settings 
 (evil-mode '1)
 (global-evil-surround-mode 1)
+(add-hook 'prog-mode-hook 'hs-minor-mode)
+
 
 ; Evil keyboard maps
 ;(define-key evil-normal-state-map ";" 'execute-extended-command)
 ; (define-key evil-insert-state-map "jj" 'evil-normal-state)
 (define-key evil-normal-state-map "`dd" 'deft)
 (define-key evil-normal-state-map "`op" 'org-preview-latex-fragment)
+(define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
+
+; YASSnippet
 
 (setq yas-snippet-dirs
       '("~/.emacs.d/snippets"                 ;; personal snippets
@@ -43,7 +48,6 @@
 
 ; Global Stuff
 (add-hook 'after-init-hook #'global-flycheck-mode)
-
 ;Auto-correct
 (setq-default ac-sources '(ac-source-filename ac-source-functions
 				      ac-source-symbols
