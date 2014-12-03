@@ -11,7 +11,6 @@
 		     jedi flycheck))
 
 ; Requires
-
 (require 'org)
 (require 'reftex)
 (require 'auto-complete)
@@ -20,9 +19,13 @@
 
 
 ; Settings 
+(setq evil-want-C-u-scroll t)
+(require 'evil)
 (evil-mode '1)
 (global-evil-surround-mode 1)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'auto-complete-mode)
 
 
 ; Evil keyboard maps
@@ -31,13 +34,32 @@
 (define-key evil-normal-state-map "`dd" 'deft)
 (define-key evil-normal-state-map "`op" 'org-preview-latex-fragment)
 (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
+(define-key evil-normal-state-map "`s" 'speedbar-get-focus)
 
-; YASSnippet
 
-(setq yas-snippet-dirs
-      '("~/.emacs.d/snippets"                 ;; personal snippets
-        ))
-(yas-global-mode 1)
+;; Turn on snippets
+(require 'yasnippet)
+(setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+(yas-global-mode t)
+
+;; Remove Yasnippet's default tab key binding
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+;; Set Yasnippet's key binding to shift+tab
+(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
+
+
+;; Auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+(ac-config-default)
+(global-auto-complete-mode t)
+(ac-set-trigger-key "TAB")
+(ac-set-trigger-key "<tab>")
+
+(setq-default ac-sources '(ac-source-filename ac-source-functions
+				      ac-source-symbols
+				      ac-source-variables ))
 
 ; Projectile
 
@@ -48,15 +70,13 @@
 
 ; Global Stuff
 (add-hook 'after-init-hook #'global-flycheck-mode)
-;Auto-correct
-(setq-default ac-sources '(ac-source-filename ac-source-functions
-				      ac-source-symbols
-				      ac-source-variables ))
+
 
 ; Python mode stuff
 (add-hook 'python-mode-hook 'jedi:setup)
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (setq jedi:complete-on-dot t)                 ; optional
+(define-key evil-normal-state-map "`pb" (lambda () (insert "from ipdb import set_trace ; set_trace()")))
 
 ;; IPython
 (setq
@@ -81,6 +101,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" default)))
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/Dropbox/Notes/Climate Dynamics Rejection.org"))))
 (custom-set-faces
