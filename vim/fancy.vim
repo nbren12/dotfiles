@@ -75,10 +75,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 NeoBundle 'Shougo/unite.vim'
 
 " Level 2: Testing plugins
-" UTL.vim 
-NeoBundle 'vim-scripts/utl.vim' 
-
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'flazz/vim-colorschemes'
 
 " Required:
@@ -178,6 +174,4 @@ let g:jedi#auto_vim_configuration = 0
 " Tmux settings
 map <Leader>vr :call VimuxRunCommand("clear; ipython ".bufname("%"))<cr>
 
-" Level 2
-let g:notes_directories = ['~/Dropbox/Notes',]
 
