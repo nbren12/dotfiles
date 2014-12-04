@@ -6,21 +6,24 @@
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
     (eval-buffer)))
 
-(mapc 'quelpa '(evil evil-org evil-surround org reftex auctex
-		     auto-complete yasnippet deft projectile  
-		     jedi flycheck))
+(mapc 'quelpa '(evil evil-org evil-surround evil-leader org
+		     reftex auctex auto-complete yasnippet deft
+		     projectile jedi flycheck))
 
 ; Requires
 (require 'org)
 (require 'reftex)
-(require 'auto-complete)
-(require 'yasnippet)
-(require 'evil-surround)
 
 
 ; Settings 
+
 (setq evil-want-C-u-scroll t)
+
+(require 'evil-leader)
 (require 'evil)
+(require 'evil-surround)
+
+(global-evil-leader-mode)
 (evil-mode '1)
 (global-evil-surround-mode 1)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -29,13 +32,19 @@
 
 
 ; Evil keyboard maps
-;(define-key evil-normal-state-map ";" 'execute-extended-command)
-; (define-key evil-insert-state-map "jj" 'evil-normal-state)
-(define-key evil-normal-state-map "`dd" 'deft)
-(define-key evil-normal-state-map "`op" 'org-preview-latex-fragment)
-(define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
-(define-key evil-normal-state-map "`s" 'speedbar-get-focus)
+; (define-key evil-normal-state-map ";" 'execute-extended-command)
 
+(define-key evil-insert-state-map "jj" 'evil-normal-state)
+
+(evil-leader/set-key 
+ "dd" 'deft 
+ "op" 'org-preview-latex-fragment
+ "s"  'speedbar-get-focus)
+
+(define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
+
+; window movement
+(global-set-key (kbd "C-j") 'other-window)
 
 ;; Turn on snippets
 (require 'yasnippet)
@@ -50,6 +59,7 @@
 
 
 ;; Auto-complete
+(require 'auto-complete)
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
