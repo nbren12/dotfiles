@@ -9,11 +9,12 @@
 (mapc 'quelpa '(evil evil-org evil-surround evil-leader org
 		     cdlatex reftex auctex auto-complete
 		     yasnippet deft projectile jedi flycheck helm
-		     helm-ls-git ))
+		     helm-ls-git magit))
 
 ; Requires
 (require 'org)
 (require 'reftex)
+(require 'magit)
 
 
 ; Evil Settings 
@@ -41,7 +42,8 @@
  "dd" 'deft 
  "op" 'org-preview-latex-fragment
  "s"  'speedbar-get-focus
- "." 'eshell)
+ "." 'eshell
+ "gs" 'magit-status)
 
 (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
