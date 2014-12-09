@@ -113,6 +113,14 @@
  python-shell-completion-string-code
    "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
+;; Debugger
+(defun pdb-run () 
+  (interactive)
+  (pdb (concat "python -m pdb " buffer-file-name)))
+
+(evil-leader/set-key "pd" 'pdb-run)
+(add-hook 'debugger-mode-hook 'evil-emacs-state
+
 ; Deft settings
 (setq deft-extension "org")
 (setq deft-text-mode 'org-mode)
