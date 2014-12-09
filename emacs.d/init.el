@@ -7,15 +7,16 @@
     (eval-buffer)))
 
 (mapc 'quelpa '(evil evil-org evil-surround evil-leader org
-		     reftex auctex auto-complete yasnippet deft
-		     projectile jedi flycheck))
+		     cdlatex reftex auctex auto-complete
+		     yasnippet deft projectile jedi flycheck helm
+		     helm-ls-git ))
 
 ; Requires
 (require 'org)
 (require 'reftex)
 
 
-; Settings 
+; Evil Settings 
 
 (setq evil-want-C-u-scroll t)
 
@@ -39,7 +40,8 @@
 (evil-leader/set-key 
  "dd" 'deft 
  "op" 'org-preview-latex-fragment
- "s"  'speedbar-get-focus)
+ "s"  'speedbar-get-focus
+ "." 'eshell)
 
 (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
@@ -64,22 +66,30 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 (ac-config-default)
 (global-auto-complete-mode t)
-(ac-set-trigger-key "TAB")
-(ac-set-trigger-key "<tab>")
-
 (setq-default ac-sources '(ac-source-filename ac-source-functions
 				      ac-source-symbols
 				      ac-source-variables ))
-
-; Projectile
-
-(projectile-global-mode)
 
 ; Path
 (setenv "PATH" (concat "/usr/local/bin/:/usr/texbin" ":" (getenv "PATH")))
 
 ; Global Stuff
 (add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+; Helm (really awesome for interactive completion)
+(require 'helm)
+(require 'helm-config)
+(require 'helm-ls-git)
+(setq helm-bookmark-show-location t)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+
+(define-key evil-normal-state-map "  " 'helm-mini)
+(define-key evil-normal-state-map " b" 'helm-bookmarks)
+(define-key evil-normal-state-map " i" 'helm-imenu)
+(define-key evil-normal-state-map " p" 'helm-browse-project)
 
 
 ; Python mode stuff
@@ -106,3 +116,7 @@
 (setq deft-text-mode 'org-mode)
 (setq deft-directory "~/Dropbox/Notes")
 (setq deft-use-filename-as-title t)
+(add-hook 'deft-mode-hook 'evil-emacs-state)
+
+; Org-mode settings
+(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
