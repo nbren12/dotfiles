@@ -29,12 +29,12 @@
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'auto-complete-mode)
+(add-hook 'view-mode-hook 'evil-emacs-state)
 
 
 ; Evil keyboard maps
 ; (define-key evil-normal-state-map ";" 'execute-extended-command)
 
-(define-key evil-insert-state-map "jj" 'evil-normal-state)
 
 (evil-leader/set-key 
  "dd" 'deft 
