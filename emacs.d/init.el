@@ -9,7 +9,7 @@
 (mapc 'quelpa '(evil evil-org evil-surround evil-leader org
 		     cdlatex reftex auctex auto-complete
 		     yasnippet deft projectile jedi flycheck helm
-		     helm-ls-git magit))
+		     helm-ls-git magit cython-mode))
 
 ; Requires
 (require 'org)
