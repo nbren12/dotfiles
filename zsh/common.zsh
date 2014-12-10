@@ -106,7 +106,10 @@ else
     alias mlab='matlab -nodisplay'
     alias vim='vim -X'
 fi
-    
+
+alias emacsd='emacs --daemon'
+alias emacsc='emacsclient -c'
+alias ec='emacsclient -c'
 
 
 

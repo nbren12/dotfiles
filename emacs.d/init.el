@@ -119,7 +119,6 @@
   (pdb (concat "python -m pdb " buffer-file-name)))
 
 (evil-leader/set-key "pd" 'pdb-run)
-(add-hook 'debugger-mode-hook 'evil-emacs-state
 
 ; Deft settings
 (setq deft-extension "org")
