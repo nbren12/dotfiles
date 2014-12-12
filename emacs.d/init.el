@@ -1,15 +1,22 @@
-
 ; Using Quelpa to manage packages
 (package-initialize)
+(require 'quelpa)
 (unless (require 'quelpa nil t)
   (with-temp-buffer
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
     (eval-buffer)))
 
-(mapc 'quelpa '(evil evil-org evil-surround evil-leader org
-		     cdlatex reftex auctex auto-complete
-		     yasnippet deft projectile jedi flycheck helm
-		     helm-ls-git magit cython-mode))
+; List of plugins
+(setq my-plugins '(evil-org evil-surround evil-leader
+		     evil-nerd-commenter org cdlatex reftex
+		     auctex auto-complete yasnippet deft
+		     projectile jedi flycheck helm helm-ls-git
+		     magit cython-mode))
+
+; Install list of plugins 
+(dolist (plugin my-plugins)
+      (unless (package-installed-p plugin) 
+	(quelpa plugin)))
 
 ; Requires
 (require 'org)
@@ -46,6 +53,9 @@
  "gs" 'magit-status)
 
 (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
+(setq evilnc-hotkey-comment-operator "gc")
+(require 'evil-nerd-commenter)
+;; (evilnc-default-hotkeys)
 
 ; window movement
 (global-set-key (kbd "C-j") 'other-window)
