@@ -42,7 +42,7 @@ def pgram(x, fs=1.0):
     """
     from numpy import fft
     ps  = abs(fft.fft(x**2))**2/x.shape[0]
-    print ps.max()
+    print(ps.max())
     fs  = fft.fftfreq(x.shape[0],fs)
 
     return plt.loglog(fs, ps)
