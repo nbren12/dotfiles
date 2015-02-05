@@ -10,7 +10,7 @@ alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=0
 
 # some nice terminals
 function t1 {
-        command xterm -sb -sl 1000 -fa Monaco -fs 11 -bg lemonchiffon3 &
+        command xterm -sb -sl 1000 -fa Monaco -fs 11  &
         }
 function t2 {
         command xterm -sb -sl 1000 -fa Monaco -fs 11 -bg lightyellow3 &
@@ -26,6 +26,7 @@ function t4 {
 # alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias vim='vim -X'
 
 # shortcut to fire up emacs 
 function em {
@@ -84,8 +85,37 @@ module load gtkplus
 export PYTHONPATH=/home/ndb245/.dotfiles/python:$PYTHONPATH
 # User Paths
 export PATH=$HOME/.dotfiles/bin:/home/ndb245/usr/bin:$PATH
+source /home/ndb245/pyenv/bin/activate
 
-#source /home/ndb245/python-env/bin/activate
+
+# Function for ipytohn notebook
+ipynb ()
+{
+
+    #!/bin/sh
+    #PBS -l nodes=1,ppn=8,walltime=4:00:00
+    
+    source $HOME/pyenv/bin/activate
+    PORT=$1
+    
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-0 &
+    PID1=$!
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-1 &
+    PID2=$!
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-2 &
+    PID3=$!
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-3 &
+    PID4=$!
+
+    ipython notebook --port=${PORT}
+    echo "Killing procs"
+    
+    kill $PID1
+    kill $PID2
+    kill $PID3
+    kill $PID4
+    
+}
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
