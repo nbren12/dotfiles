@@ -133,7 +133,7 @@
 ; Deft settings
 (setq deft-extension "org")
 (setq deft-text-mode 'org-mode)
-(setq deft-directory "~/Dropbox/Notes")
+(setq deft-directory "~/Dropbox/notes")
 (setq deft-use-filename-as-title t)
 (add-hook 'deft-mode-hook 'evil-emacs-state)
 
