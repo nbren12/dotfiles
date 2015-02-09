@@ -123,3 +123,4 @@ au FileType python set fdm=indent
 nmap <Leader>be ofrom IPython import embed; embed()
 nmap <Leader>bb oimport ipdb; ipdb.set_trace()
 nmap <Leader>bd silent bufdo %g/^\s*import ipdb; ipdb.set_trace()/d
+syntax on
