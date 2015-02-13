@@ -1,16 +1,18 @@
 ; Using Quelpa to manage packages
 (package-initialize)
-(require 'quelpa)
-(unless (require 'quelpa nil t)
+
+(if (require 'quelpa nil t)
+    (quelpa-self-upgrade)
   (with-temp-buffer
     (url-insert-file-contents "https://raw.github.com/quelpa/quelpa/master/bootstrap.el")
     (eval-buffer)))
+
 
 ; List of plugins
 (setq my-plugins '(evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
 		     auctex auto-complete yasnippet deft
-		     projectile jedi flycheck helm helm-ls-git
+		     projectile jedi flycheck helm
 		     magit cython-mode))
 
 ; Install list of plugins 
@@ -80,7 +82,8 @@
 (global-auto-complete-mode t)
 (setq-default ac-sources '(ac-source-filename ac-source-functions
 				      ac-source-symbols
-				      ac-source-variables ))
+				      ac-source-variables
+				      ))
 
 ; Path
 (setenv "PATH" (concat "/usr/local/bin/:/usr/texbin" ":" (getenv "PATH")))
@@ -139,8 +142,12 @@
 
 ; Org-mode settings
 (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
 ;Auctex
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
 ;; make latexmk available via C-c C-c
 ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)

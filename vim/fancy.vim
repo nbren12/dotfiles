@@ -60,7 +60,6 @@ NeoBundle 'Shougo/neosnippet.vim'
 NeoBundle 'Shougo/neosnippet-snippets'
 
 NeoBundle 'honza/vim-snippets'
-NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'Shougo/vimproc.vim', {
 \ 'build' : {
@@ -74,7 +73,10 @@ NeoBundle 'Shougo/vimproc.vim', {
 
 NeoBundle 'Shougo/unite.vim'
 
-" Level 2: Testing plugins
+" Level 2: Plugins with annoying depedencies
+NeoBundle 'Shougo/neocomplete.vim'
+
+" Level 3: Testing plugins
 NeoBundle 'flazz/vim-colorschemes'
 
 " Required:
