@@ -111,6 +111,7 @@
 (ido-mode t)
 (ido-everywhere t)
 (define-key evil-normal-state-map " i" 'idomenu)
+(define-key evil-normal-state-map " b" 'ido-switch-buffer)
 
 
 ;;; Useful for used files
