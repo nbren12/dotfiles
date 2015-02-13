@@ -12,7 +12,7 @@
 (setq my-plugins '(evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
 		     auctex auto-complete yasnippet deft
-		     projectile jedi flycheck helm
+		     projectile jedi flycheck idomenu
 		     magit cython-mode))
 
 ; Install list of plugins 
@@ -91,20 +91,42 @@
 ; Global Stuff
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
+;;; Interactive completion stuff
+;; (require 'helm)
+;; (require 'helm-config)
+;; (require 'helm-ls-git)
+;; (setq helm-bookmark-show-location t)
 
-; Helm (really awesome for interactive completion)
-(require 'helm)
-(require 'helm-config)
-(require 'helm-ls-git)
-(setq helm-bookmark-show-location t)
-
-(global-set-key (kbd "M-x") 'helm-M-x)
+;; (global-set-key (kbd "M-x") 'helm-M-x)
 
 
-(define-key evil-normal-state-map "  " 'helm-mini)
-(define-key evil-normal-state-map " b" 'helm-bookmarks)
-(define-key evil-normal-state-map " i" 'helm-imenu)
-(define-key evil-normal-state-map " p" 'helm-browse-project)
+;; (define-key evil-normal-state-map "  " 'helm-mini)
+;; (define-key evil-normal-state-map " b" 'helm-bookmarks)
+;; (define-key evil-normal-state-map " i" 'helm-imenu)
+;; (define-key evil-normal-state-map " p" 'helm-browse-project)
+
+(require 'ido)
+(require 'imenu)
+
+(ido-mode t)
+(ido-everywhere t)
+(define-key evil-normal-state-map " i" 'idomenu)
+
+
+;;; Useful for used files
+(require 'recentf)
+
+(recentf-mode 1)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+(defun recentf-ido-find-file ()
+  "Find a recent file using Ido."
+  (interactive)
+  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
+    (when file
+      (find-file file))))
+
+(define-key evil-normal-state-map " r" 'recentf-ido-find-file)
 
 
 ; Python mode stuff
