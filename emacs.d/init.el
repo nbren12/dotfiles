@@ -13,7 +13,7 @@
 		     evil-nerd-commenter org cdlatex reftex
 		     auctex auto-complete yasnippet deft
 		     projectile jedi flycheck idomenu
-		     magit cython-mode))
+		     magit cython-mode monokai-theme))
 
 ; Install list of plugins 
 (dolist (plugin my-plugins)
@@ -187,3 +187,6 @@
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
 (setq TeX-view-program-list
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+
+(load-theme 'monokai)
+(provide 'init)
