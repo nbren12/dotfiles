@@ -1,4 +1,5 @@
 ; Using Quelpa to manage packages
+(server-start)
 (package-initialize)
 
 (if (require 'quelpa nil t)
@@ -11,7 +12,7 @@
 ; List of plugins
 (setq my-plugins '(evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
-		     auctex auto-complete yasnippet deft
+		     auctex company yasnippet deft
 		     projectile jedi flycheck idomenu
 		     magit cython-mode monokai-theme))
 
@@ -28,6 +29,7 @@
 
 ; Evil Settings 
 
+
 (setq evil-want-C-u-scroll t)
 
 (require 'evil-leader)
@@ -39,7 +41,6 @@
 (global-evil-surround-mode 1)
 (add-hook 'prog-mode-hook 'hs-minor-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'prog-mode-hook 'auto-complete-mode)
 (add-hook 'view-mode-hook 'evil-emacs-state)
 
 
@@ -67,24 +68,11 @@
 (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 (yas-global-mode t)
 
-;; Remove Yasnippet's default tab key binding
-(define-key yas-minor-mode-map (kbd "<tab>") nil)
-(define-key yas-minor-mode-map (kbd "TAB") nil)
-;; Set Yasnippet's key binding to shift+tab
-(define-key yas-minor-mode-map (kbd "<backtab>") 'yas-expand)
-
 
 ;; Auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-(ac-config-default)
-(global-auto-complete-mode t)
-(setq-default ac-sources '(ac-source-filename ac-source-functions
-				      ac-source-symbols
-				      ac-source-variables
-				      ))
-
+;; (add-hook 'prog-mode-hook 'auto-complete-mode)
+(add-hook 'after-init-hook 'global-company-mode)
+(global-set-key (kbd "<S-tab>") 'company-complete)
 ; Path
 (setenv "PATH" (concat "/usr/local/bin/:/usr/texbin" ":" (getenv "PATH")))
 
@@ -188,5 +176,4 @@
 (setq TeX-view-program-list
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
-(load-theme 'monokai)
 (provide 'init)
