@@ -111,6 +111,7 @@ call unite#custom#profile('default', 'context', {
 
 
 nnoremap <Space>/ :Unite grep:.<CR>
+nnoremap <Space>. :Unite grep:%<CR>
 nnoremap <Leader>q :Unite -quick-match buffer<CR>
 nnoremap <Leader>r :Unite  file_mru<CR>
 
