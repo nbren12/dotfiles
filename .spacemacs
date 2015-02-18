@@ -32,10 +32,11 @@
  ;; List of themes, the first of the list is loaded when spacemacs starts.
  ;; Press <SPC> T n to cycle to the next theme in the list (works great
  ;; with 2 themes variants, one dark and one light)
- dotspacemacs-themes '(solarized-light
+ dotspacemacs-themes '(
                        solarized-dark
-                       leuven
                        monokai
+                       leuven
+                       solarized-light
                        zenburn)
  ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
  ;; size to make separators look not too crappy.
@@ -106,7 +107,9 @@
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
-)
+  (evil-leader/set-key
+    "bi" 'helm-imenu
+    "ok" 'kill-emacs))
 
 ;; Custom variables
 ;; ----------------
@@ -115,3 +118,28 @@ This function is called at the very end of Spacemacs initialization."
 ;; auto-generate custom variable definitions.
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-PDF-mode t)
+ '(TeX-view-predicate-list (quote ((Name\ =\ Evince\ Command\ evince\ --page-index=%\(outpage\) nil))))
+ '(TeX-view-program-list nil)
+ '(TeX-view-program-selection (quote ((output-pdf "Evince"))))
+ '(ac-ispell-requires 4)
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(inhibit-startup-screen t)
+ '(magit-use-overlays nil)
+ '(ring-bell-function (quote ignore) t)
+ '(vc-follow-symlinks t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
