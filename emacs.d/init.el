@@ -48,8 +48,13 @@
 ; (define-key evil-normal-state-map ";" 'execute-extended-command)
 
 
+(evil-leader/set-leader "<SPC>")
 (evil-leader/set-key 
- "dd" 'deft 
+  "ff" 'ido-find-file
+  "fr" 'recentf-ido-find-file
+  "bb" 'ido-switch-buffer
+  "bk" 'ido-kill-buffer
+ "dd" 'deft
  "op" 'org-preview-latex-fragment
  "s"  'speedbar-get-focus
  "." 'eshell
@@ -115,7 +120,6 @@
     (when file
       (find-file file))))
 
-(define-key evil-normal-state-map " r" 'recentf-ido-find-file)
 
 
 ; Python mode stuff
