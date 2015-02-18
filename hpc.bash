@@ -70,7 +70,7 @@ export NCARG_ROOT=/share/apps/ncl/6.2.0/lib/ncarg/
 module load matlab
 
 module unload udunits
-module load iris
+# module load iris
 
 module load git
 
@@ -85,7 +85,6 @@ module load gtkplus
 export PYTHONPATH=/home/ndb245/.dotfiles/python:$PYTHONPATH
 # User Paths
 export PATH=$HOME/.dotfiles/bin:/home/ndb245/usr/bin:$PATH
-source /home/ndb245/pyenv/bin/activate
 
 
 # Function for ipytohn notebook
