@@ -11,7 +11,7 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load. If it is the symbol `all' instead
  ;; of a list then all discovered layers will be installed.
- dotspacemacs-configuration-layers '(auctex c-c++ python noah)
+ dotspacemacs-configuration-layers '(company-mode auctex c-c++ python noah)
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '()
  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -124,7 +124,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-PDF-mode t)
- '(TeX-view-predicate-list (quote ((Name\ =\ Evince\ Command\ evince\ --page-index=%\(outpage\) nil))))
+ '(TeX-view-predicate-list
+   (quote
+    ((Name\ =\ Evince\ Command\ evince\ --page-index=%\(outpage\) nil))))
  '(TeX-view-program-list nil)
  '(TeX-view-program-selection (quote ((output-pdf "Evince"))))
  '(ac-ispell-requires 4)
@@ -135,6 +137,7 @@ This function is called at the very end of Spacemacs initialization."
  '(ahs-inhibit-face-list nil)
  '(inhibit-startup-screen t)
  '(magit-use-overlays nil)
+ '(org-src-fontify-natively t)
  '(ring-bell-function (quote ignore) t)
  '(vc-follow-symlinks t))
 (custom-set-faces
