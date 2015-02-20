@@ -1,3 +1,12 @@
+#!/bin/bash
+# A script useful for bootstrapping my configurations on a new
+# computer
+
+if ! [ -e ~/.dotfiles/ ]
+then
+    git clone https://github.com/nbren12/dotfiles.git ~/.dotfiles
+fi
+
 pushd ~/.dotfiles
 
 # Setup vim
