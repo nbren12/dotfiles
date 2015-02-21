@@ -9,6 +9,9 @@ fi
 
 pushd ~/.dotfiles
 
+# Setup git
+ln -s ~/.dotfiles/gitconfig ~/.gitconfig
+
 # Setup vim
 ln -s ~/.dotfiles/vim ~/.vim
 cp vimrc ~/.vimrc
