@@ -48,3 +48,4 @@ export PATH=$HOME/anaconda3/bin:$PATH
 # Current projects
 export PYTHONPATH=$HOME/workspace/ergnum:$HOME/workspace/skeleton/python:$PYTHONPATH
 export PYTHONPATH=/Users/noah/workspace/skelfilter:$PYTHONPATH
+export PYTHONPATH=$HOME/Dropbox/gnl:$PYTHONPATH

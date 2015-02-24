@@ -29,6 +29,7 @@ set softtabstop=4               " Let backspace delete indent
 "set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
+let mapleader=" "
 let maplocalleader = "-"
 "}}}
 

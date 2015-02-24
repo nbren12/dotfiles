@@ -44,6 +44,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'majutsushi/tagbar'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'justinmk/vim-sneak'
+NeoBundle 'terryma/vim-expand-region'
 
 " Level 1: Non-essential Plugins
 
@@ -78,6 +79,7 @@ NeoBundle 'Shougo/neocomplete.vim'
 
 " Level 3: Testing plugins
 NeoBundle 'flazz/vim-colorschemes'
+NeoBundle 'julienr/vim-cellmode'
 
 " Required:
 call neobundle#end()
@@ -112,8 +114,9 @@ call unite#custom#profile('default', 'context', {
 
 nnoremap <Space>/ :Unite grep:.<CR>
 nnoremap <Space>. :Unite grep:%<CR>
-nnoremap <Leader>q :Unite -quick-match buffer<CR>
-nnoremap <Leader>r :Unite  file_mru<CR>
+nnoremap <Leader>bb :Unite -quick-match buffer<CR>
+nnoremap <Leader>fr :Unite  file_mru<CR>
+nnoremap <Leader>ff :Unite  file/async<CR>
 
 let g:sneak#streak = 1
 let g:sneak#use_ic_scs = 1
@@ -136,7 +139,11 @@ let g:neocomplete#force_omni_input_patterns = {}
 " Latex Box
 let g:LatexBox_Folding = 1
 
+function! Init_vimux()
+    au FileType python nnoremap <Leader>rr :VimuxRunCommand("clear; python ".bufname("%"))<CR>
+endfunction
 
+call Init_vimux()
 
 " Snippet Settings
 
@@ -177,4 +184,6 @@ let g:jedi#auto_vim_configuration = 0
 " Tmux settings
 map <Leader>vr :call VimuxRunCommand("clear; ipython ".bufname("%"))<cr>
 
-
+" Level 3
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
