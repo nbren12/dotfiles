@@ -18,7 +18,10 @@
 "  `nvim` seems promising, but requires some difficult to install depedencies.
 "  For org-mode, just use emacs. Vim-notes is interesting but is not easily
 "  exportable to pdf.
-"NeoBundle Scripts-----------------------------"{{{
+
+
+
+"NeoBundle Scripts-----------------------------{{{
 if has('vim_starting')
   set nocompatible               " Be iMproved
 
@@ -46,7 +49,10 @@ NeoBundle 'godlygeek/tabular'
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'terryma/vim-expand-region'
 
+
+
 " Level 1: Non-essential Plugins
+if g:plugin_level >= 1
 
 " Python
 NeoBundle 'davidhalter/jedi-vim'
@@ -74,12 +80,22 @@ NeoBundle 'Shougo/vimproc.vim', {
 
 NeoBundle 'Shougo/unite.vim'
 
+
+endif
+
 " Level 2: Plugins with annoying depedencies
+
+if g:plugin_level >= 2
 NeoBundle 'Shougo/neocomplete.vim'
+endif
 
 " Level 3: Testing plugins
+if g:plugin_level >= 3
+
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'julienr/vim-cellmode'
+
+endif
 
 " Required:
 call neobundle#end()
@@ -96,94 +112,114 @@ NeoBundleCheck
 " Run basic settings
 ru vanilla.vim
 
-" Plugin Settings
-
-" Level 0:
-
-" Fugitive
-nnoremap <silent> <Leader>gs  :Gstatus<CR>
-
-nnoremap <C-p> :Unite  -buffer-name=files buffer file_rec/git file_mru file file_rec<CR>
-
-call unite#custom#profile('default', 'context', {
-\   'start_insert': 0,
-\   'winheight': 10,
-\   'direction': 'botright',
-\ })
-
-
-nnoremap <Space>/ :Unite grep:.<CR>
-nnoremap <Space>. :Unite grep:%<CR>
-nnoremap <Leader>bb :Unite -quick-match buffer<CR>
-nnoremap <Leader>fr :Unite  file_mru<CR>
-nnoremap <Leader>ff :Unite  file/async<CR>
-
-let g:sneak#streak = 1
-let g:sneak#use_ic_scs = 1
+" Plugin Settings"{{{
 
 " Level 1:
 
-" Tab neosnippet
-
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
-
-" Auto completion
-let g:neocomplete#enable_at_startup = 1"
-let g:neocomplete#use_vimproc = 1
-" inoremap <expr><Tab>  neocomplete#start_manual_complete()
-inoremap <expr><C-g>     neocomplete#undo_completion()
+function! Config_level0()
+    " Fugitive
+    nnoremap <silent> <Leader>gs  :Gstatus<CR>
 
 
-let g:neocomplete#force_omni_input_patterns = {}
+    let g:sneak#streak = 1
+    let g:sneak#use_ic_scs = 1
 
-" Latex Box
-let g:LatexBox_Folding = 1
 
-function! Init_vimux()
-    au FileType python nnoremap <Leader>rr :VimuxRunCommand("clear; python ".bufname("%"))<CR>
 endfunction
 
-call Init_vimux()
+function! Config_level1()
+    " Unite
+    nnoremap <C-p> :Unite  -buffer-name=files buffer file_rec/git file_mru file file_rec<CR>
 
-" Snippet Settings
+    call unite#custom#profile('default', 'context', {
+                \   'start_insert': 0,
+                \   'winheight': 10,
+                \   'direction': 'botright',
+                \ })
 
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets' behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+    nnoremap <Space>/ :Unite grep:.<CR>
+    nnoremap <Space>. :Unite grep:%<CR>
+    nnoremap <Leader>bb :Unite -quick-match buffer<CR>
+    nnoremap <Leader>fr :Unite  file_mru<CR>
+    nnoremap <Leader>ff :Unite  file/async<CR>
+    " Tab neosnippet
 
-" For snippet_complete marker.
-" if has('conceal')
-"   set conceallevel=2 concealcursor=i
-" endif
+    let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
-" Enable snipMate compatibility feature.
-let g:neosnippet#enable_snipmate_compatibility = 1
-let g:neosnippet#snippets_directory = "~/.vim/mysnippets"
-let g:syntastic_python_python_exec = '~/anaconda3/bin/python3'
+    " Auto completion
+    let g:neocomplete#enable_at_startup = 1"
+    let g:neocomplete#use_vimproc = 1
+    " inoremap <expr><Tab>  neocomplete#start_manual_complete()
+    inoremap <expr><C-g>     neocomplete#undo_completion()
 
-" Jedi Settings
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first =  0
-let g:jedi#rename_command = "<c-r>r"
 
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-" let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-" alternative pattern: '\h\w*\|[^. \t]\.\w*'
 
-" Tmux settings
-map <Leader>vr :call VimuxRunCommand("clear; ipython ".bufname("%"))<cr>
+    " Latex Box
+    let g:LatexBox_Folding = 1
+
+
+    " Vimux
+    au FileType python nnoremap <Leader>rr :VimuxRunCommand("clear; python ".bufname("%"))<CR>
+
+    " Snippet Settings
+
+    " Plugin key-mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+    " SuperTab like snippets' behavior.
+    imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                \ "\<Plug>(neosnippet_expand_or_jump)"
+                \: pumvisible() ? "\<C-n>" : "\<TAB>"
+    smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+                \ "\<Plug>(neosnippet_expand_or_jump)"
+                \: "\<TAB>"
+
+    " For snippet_complete marker.
+    " if has('conceal')
+    "   set conceallevel=2 concealcursor=i
+    " endif
+
+    " Enable snipMate compatibility feature.
+    let g:neosnippet#enable_snipmate_compatibility = 1
+    let g:neosnippet#snippets_directory = "~/.vim/mysnippets"
+    let g:syntastic_python_python_exec = '~/anaconda3/bin/python3'
+
+    " Jedi Settings
+    let g:jedi#popup_on_dot = 0
+    let g:jedi#popup_select_first =  0
+    let g:jedi#rename_command = "<c-r>r"
+
+    autocmd FileType python setlocal omnifunc=jedi#completions
+    let g:jedi#completions_enabled = 0
+    let g:jedi#auto_vim_configuration = 0
+    " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+    " alternative pattern: '\h\w*\|[^. \t]\.\w*'
+
+    " Tmux settings
+    map <Leader>vr :call VimuxRunCommand("clear; ipython ".bufname("%"))<cr>
+
+endfunction
+
+function! Config_level2()
+    let g:neocomplete#force_omni_input_patterns = {}
+endfunction
 
 " Level 3
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+
+function! Config_level3()
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
+endfunction"}}}
+
+if g:plugin_level >= 0 
+    call Config_level0()
+elseif g:plugin_level >= 1
+    call Config_level1()
+elseif g:plugin_level >= 2
+    call Config_level2()
+elseif g:plugin_level >= 3
+    call Config_level3()
+endif
