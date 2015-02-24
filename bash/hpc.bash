@@ -42,8 +42,11 @@ module load git
 # Vim
 module load vim/gnu/7.4
 
+# Emacs
+module load emacs/gnu/24.3
+
 # Set user path and pythonpath
-export TERM="gnome-256color"
+export TERM="xterm-256color"
 export PATH=$HOME/usr/bin:$PATH
 
 

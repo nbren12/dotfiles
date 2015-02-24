@@ -33,8 +33,8 @@
  ;; Press <SPC> T n to cycle to the next theme in the list (works great
  ;; with 2 themes variants, one dark and one light)
  dotspacemacs-themes '(
-                       solarized-dark
                        monokai
+                       solarized-dark
                        leuven
                        solarized-light
                        zenburn)
@@ -109,9 +109,16 @@
 This function is called at the very end of Spacemacs initialization."
   (evil-leader/set-key
     "bi" 'helm-imenu
-    "ok" 'kill-emacs))
+    "ok" 'kill-emacs)
 
-;; Custom variables
+
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (define-key evil-normal-state-map (kbd "M-.")
+              'anaconda-mode-goto))))
+
+
+;; Customdk variables
 ;; ----------------
 
 ;; Do not write anything in this section. This is where Emacs will
