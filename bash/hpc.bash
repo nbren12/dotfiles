@@ -39,10 +39,6 @@ module unload udunits
 
 module load git
 
-# Python
-source  ~/py3k/bin/activate
-export PYTHONPATH=$HOME/gnl:$PYTHONPATH
-
 # Vim
 module load vim/gnu/7.4
 
@@ -50,6 +46,10 @@ module load vim/gnu/7.4
 export TERM="gnome-256color"
 export PATH=$HOME/usr/bin:$PATH
 
+
+# Python
+source  ~/py3k/bin/activate
+export PYTHONPATH=$HOME/gnl:$PYTHONPATH
 
 # This make everything readable.  This means that your files are not private, 
 # allowing other people to share your data and output, which aids in research
