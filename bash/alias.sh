@@ -1,4 +1,5 @@
 # User specific aliases and functions
+alias ssh='ssh -Y'
 alias qs='qstat -u ndb245'
 alias qb='qsub'
 alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
