@@ -33,9 +33,9 @@
  ;; Press <SPC> T n to cycle to the next theme in the list (works great
  ;; with 2 themes variants, one dark and one light)
  dotspacemacs-themes '(
+                       leuven
                        monokai
                        solarized-dark
-                       leuven
                        solarized-light
                        zenburn)
  ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -111,11 +111,12 @@ This function is called at the very end of Spacemacs initialization."
     "bi" 'helm-imenu
     "ok" 'kill-emacs)
 
+  (require 'ob-python)
 
   (add-hook 'python-mode-hook
             (lambda ()
               (define-key evil-normal-state-map (kbd "M-.")
-              'anaconda-mode-goto))))
+                'anaconda-mode-goto))))
 
 
 ;; Customdk variables
