@@ -13,7 +13,7 @@
 (defvar noah-packages
   '(
     ;; package noahs go here
-    deft magit htmlize
+    deft magit htmlize ;irony
     )
   "List of all packages to install and/or initialize. Built-in packages
 which require an initialization must be listed explicitly in the list.")
@@ -48,3 +48,21 @@ which require an initialization must be listed explicitly in the list.")
   (use-package magit
     :config
     (evil-leader/set-key "og" 'magit-status)))
+
+(defun justincase ()
+  (use-package irony
+    :config
+    (progn
+      (add-hook 'c++-mode-hook 'irony-mode)
+      (add-hook 'c-mode-hook 'irony-mode)
+      (add-hook 'objc-mode-hook 'irony-mode)
+
+      ;; replace the `completion-at-point' and `complete-symbol' bindings in
+      ;; irony-mode's buffers by irony-mode's function
+      (defun my-irony-mode-hook ()
+        (define-key irony-mode-map [remap completion-at-point]
+          'irony-completion-at-point-async)
+        (define-key irony-mode-map [remap complete-symbol]
+          'irony-completion-at-point-async))
+      (add-hook 'irony-mode-hook 'my-irony-mode-hook)
+      (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))))
