@@ -133,9 +133,7 @@ This function is called at the very end of Spacemacs initialization."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(TeX-PDF-mode t)
- '(TeX-view-predicate-list
-   (quote
-    ((Name\ =\ Evince\ Command\ evince\ --page-index=%\(outpage\) nil))))
+ '(TeX-view-predicate-list (quote ((Name\ =\ Evince\ Command\ evince\ --page-index=%\(outpage\) nil))))
  '(TeX-view-program-list nil)
  '(TeX-view-program-selection (quote ((output-pdf "Evince"))))
  '(ac-ispell-requires 4)
