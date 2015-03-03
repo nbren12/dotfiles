@@ -112,6 +112,7 @@ This function is called at the very end of Spacemacs initialization."
     "ok" 'kill-emacs)
 
   (require 'ob-python)
+  (setq company-idle-delay 0.5)
 
   (add-hook 'python-mode-hook
             (lambda ()
