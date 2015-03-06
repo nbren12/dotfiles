@@ -54,8 +54,6 @@ NeoBundle 'terryma/vim-expand-region'
 " Level 1: Non-essential Plugins
 if g:plugin_level >= 1
 
-" Python
-NeoBundle 'davidhalter/jedi-vim'
 
 " Tmux stuff
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -91,6 +89,9 @@ endif
 
 " Level 3: Testing plugins
 if g:plugin_level >= 3
+
+" Python
+NeoBundle 'davidhalter/jedi-vim'
 
 NeoBundle 'flazz/vim-colorschemes'
 NeoBundle 'julienr/vim-cellmode'
@@ -187,16 +188,6 @@ function! Config_level1()
     let g:neosnippet#snippets_directory = "~/.vim/mysnippets"
     let g:syntastic_python_python_exec = '~/anaconda3/bin/python3'
 
-    " Jedi Settings
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#popup_select_first =  0
-    let g:jedi#rename_command = "<c-r>r"
-
-    autocmd FileType python setlocal omnifunc=jedi#completions
-    let g:jedi#completions_enabled = 0
-    let g:jedi#auto_vim_configuration = 0
-    " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
-    " alternative pattern: '\h\w*\|[^. \t]\.\w*'
 
     " Tmux settings
     map <Leader>vr :call VimuxRunCommand("clear; ipython ".bufname("%"))<cr>
@@ -212,6 +203,17 @@ endfunction
 function! Config_level3()
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
+
+    " Jedi Settings
+    let g:jedi#popup_on_dot = 0
+    let g:jedi#popup_select_first =  0
+    let g:jedi#rename_command = "<c-r>r"
+
+    autocmd FileType python setlocal omnifunc=jedi#completions
+    let g:jedi#completions_enabled = 0
+    let g:jedi#auto_vim_configuration = 0
+    " let g:neocomplete#force_omni_input_patterns.python = '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+    " alternative pattern: '\h\w*\|[^. \t]\.\w*'
 endfunction"}}}
 
 if g:plugin_level >= 0 
