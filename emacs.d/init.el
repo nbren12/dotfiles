@@ -1,30 +1,28 @@
-; Using Quelpa to manage packages
 (server-start)
 
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+
 (package-initialize)
+
+
 ; List of plugins
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
 		     company yasnippet deft 
-		     projectile jedi flycheck idomenu
+		     projectile  flycheck idomenu
 		     magit cython-mode monokai-theme))
+
 ; Install list of plugins 
 (dolist (plugin my-plugins)
       (unless (package-installed-p plugin) 
 	(package-install plugin)))
 
-; Requires
-(require 'org)
-(require 'reftex)
-(require 'magit)
-
 (require 'use-package)
+
 (use-package evil
-  :ensure t
   :init
   (setq evil-want-C-u-scroll t)
   :config
@@ -40,7 +38,6 @@
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
 
 (use-package evil-leader
-  :ensure t
   :config
   (progn
     (evil-leader/set-leader "<SPC>")
@@ -64,7 +61,6 @@
 (global-set-key (kbd "C-j") 'other-window)
 
 (use-package yasnippet
-  :ensure t
   :config
   (progn 
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
@@ -79,7 +75,6 @@
 
 
 (use-package company-anaconda
-  :ensure t
   :config
   (progn
     (add-to-list 'company-backends 'company-anaconda)
@@ -160,9 +155,9 @@
 (defun hbin-remove-mm-lighter (mm)
   "Remove minor lighter from the mode line."
   (setcar (cdr (assq mm minor-mode-alist)) nil))
+
 (hbin-remove-mm-lighter 'undo-tree-mode)
 (hbin-remove-mm-lighter 'yas-minor-mode)
-(hbin-remove-mm-lighter 'magit-auto-revert-mode)
 
 (load-theme 'leuven)
 
