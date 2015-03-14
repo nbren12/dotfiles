@@ -113,7 +113,16 @@ This function is called at the very end of Spacemacs initialization."
 
   (require 'ob-python)
   (setq company-idle-delay 0.5)
+  ;; active Babel languages
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((R . t)
+     (emacs-lisp . t)
+     (python . t)
+     (sh . t)
+     ))
 
+  (spacemacs/load-yasnippet)
   (add-hook 'python-mode-hook
             (lambda ()
               (define-key evil-normal-state-map (kbd "M-.")

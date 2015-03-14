@@ -11,6 +11,7 @@ Hostname mercer
 port 22
 user ndb245
 ProxyCommand ssh -A hpc nc %h %p
+LocalForward 127.0.0.1:10001 127.0.0.1:10001
 
 Host mm
 Hostname noah-macmini.local

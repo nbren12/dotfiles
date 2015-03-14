@@ -22,9 +22,14 @@ if ! [ -e ~/.emacs.d ]
 then
     mv ~/.emacs.d ~/.emacs.d.bak
 
-    git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
-    ln -s ~/.dotfiles/.spacemacs ~/.spacemacs
-    ln -s ~/.dotfiles/spacemacs-private/* ~/.emacs.d/private/
+    # git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
+    # ln -s ~/.dotfiles/.spacemacs ~/.spacemacs
+    # ln -s ~/.dotfiles/spacemacs-private/* ~/.emacs.d/private/
+
+    ln -s ~/.dotfiles ~/.emacs.d
+    pushd ~/.emacs.d
+    git clone https://github.com/AndreaCrotti/yasnippet-snippets.git snippets
+    popd
 fi
 
 # Setup mr
