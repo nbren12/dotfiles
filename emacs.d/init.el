@@ -96,6 +96,7 @@
     (setq python-shell-interpreter "python")))
 
 (add-hook 'python-mode-hook 'python-setup-shell)
+
 ; Path
 (setenv "PATH" (concat "/usr/local/bin/:/usr/texbin" ":" (getenv "PATH")))
 
@@ -110,20 +111,25 @@
 
 ;; (global-set-key (kbd "M-x") 'helm-M-x)
 
-(require 'ido)
-(require 'imenu)
+(use-package ido
+  :config
+  (progn
+    (ido-mode t)
+    (ido-everywhere t)
+    (define-key evil-normal-state-map " b" 'ido-switch-buffer)))
 
-(ido-mode t)
-(ido-everywhere t)
-(define-key evil-normal-state-map " i" 'idomenu)
-(define-key evil-normal-state-map " b" 'ido-switch-buffer)
+(use-package imenu
+  :config
+    (define-key evil-normal-state-map " i" 'idomenu))
+  
 
 
 ;;; Useful for used files
-(require 'recentf)
-
-(recentf-mode 1)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(use-package recentf
+  :config
+  (progn
+    (recentf-mode 1)
+    (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
 
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
@@ -134,17 +140,21 @@
 
 
 
-; Deft settings
-(setq deft-extension "org")
-(setq deft-text-mode 'org-mode)
-(setq deft-directory "~/Dropbox/notes")
-(setq deft-use-filename-as-title t)
-(add-hook 'deft-mode-hook 'evil-emacs-state)
+(use-package deft
+  :config
+  (progn
+    (setq deft-extension "org")
+    (setq deft-text-mode 'org-mode)
+    (setq deft-directory "~/Dropbox/notes")
+    (setq deft-use-filename-as-title t)
+    (add-hook 'deft-mode-hook 'evil-emacs-state)))
 
-; Org-mode settings
-(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-(add-hook 'org-mode-hook 'auto-fill-mode)
-(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org
+  :config
+  (progn
+    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    (add-hook 'org-mode-hook 'auto-fill-mode)
+    (add-hook 'org-mode-hook 'org-indent-mode)))
 
 ;Auctex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
