@@ -109,7 +109,12 @@
 ;; (require 'helm-ls-git)
 ;; (setq helm-bookmark-show-location t)
 
-;; (global-set-key (kbd "M-x") 'helm-M-x)
+(use-package helm
+  :config
+  (progn
+    (evil-leader/set-key "bs" 'helm-mini)
+    (global-set-key (kbd "C-x b" 'helm-mini))
+    (global-set-key (kbd "M-x") 'helm-M-x)))
 
 (use-package ido
   :config
