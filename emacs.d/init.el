@@ -13,7 +13,8 @@
 		     evil-nerd-commenter org cdlatex reftex
 		     company yasnippet deft 
 		     projectile  flycheck idomenu
-		     magit cython-mode monokai-theme))
+		     magit cython-mode monokai-theme
+		     ido-vertical-mode))
 
 ; Install list of plugins 
 (dolist (plugin my-plugins)
@@ -42,6 +43,8 @@
   (progn
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key 
+      "cc" 'compile
+      "cr" 'recompile
       "ff" 'ido-find-file
       "fr" 'recentf-ido-find-file
       "bb" 'ido-switch-buffer
@@ -110,6 +113,8 @@
 ;; (setq helm-bookmark-show-location t)
 
 (use-package helm
+  :init
+  (global-set-key (kbd "M-x") 'helm-M-x)
   :config
   (progn
     (evil-leader/set-key "bs" 'helm-mini)
@@ -123,9 +128,14 @@
     (ido-everywhere t)
     (define-key evil-normal-state-map " b" 'ido-switch-buffer)))
 
+(use-package ido-vertical-mode
+  :config
+  (ido-vertical-mode 1))
+
 (use-package imenu
   :config
-    (define-key evil-normal-state-map " i" 'idomenu))
+  (progn
+    (evil-leader/set-key "bi" 'idomenu)))
   
 
 
