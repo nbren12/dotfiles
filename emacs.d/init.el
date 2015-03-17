@@ -35,6 +35,7 @@
     (add-hook 'prog-mode-hook 'hs-minor-mode)
     (add-hook 'prog-mode-hook 'linum-mode)
     (add-hook 'view-mode-hook 'evil-emacs-state)
+    (setq-default evil-symbol-word-search 'symbol)
 
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
 
@@ -43,6 +44,8 @@
   (progn
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key 
+      "u" 'universal-argument
+      "ta" 'align-regexp
       "cc" 'compile
       "cr" 'recompile
       "ff" 'ido-find-file
@@ -101,7 +104,10 @@
 (add-hook 'python-mode-hook 'python-setup-shell)
 
 ; Path
-(setenv "PATH" (concat "/usr/local/bin/:/usr/texbin" ":" (getenv "PATH")))
+(setenv "PATH" (concat "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
+
+					; Make "_" part of word
+(modify-syntax-entry ?_ "w" )
 
 ; Global Stuff
 (add-hook 'after-init-hook #'global-flycheck-mode)
