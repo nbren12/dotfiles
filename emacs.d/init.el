@@ -44,6 +44,9 @@
   (progn
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key 
+      "ro" 'helm-occur
+      "rr" 'rgrep
+      "rg" 'helm-git-grep
       "u" 'universal-argument
       "ta" 'align-regexp
       "cc" 'compile
@@ -120,12 +123,18 @@
 
 (use-package helm
   :init
-  (global-set-key (kbd "M-x") 'helm-M-x)
+  (progn
+    (require 'helm-config)
+    )
   :config
   (progn
     (evil-leader/set-key "bs" 'helm-mini)
-    (global-set-key (kbd "C-x b" 'helm-mini))
-    (global-set-key (kbd "M-x") 'helm-M-x)))
+    (global-set-key (kbd "C-x b") 'helm-mini)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (evil-leader/set-key "h" 'helm-command-prefix)
+    (helm-mode 1)
+    ))
+
 
 (use-package ido
   :config
