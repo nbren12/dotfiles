@@ -218,10 +218,13 @@ endfunction"}}}
 
 if g:plugin_level >= 0 
     call Config_level0()
-elseif g:plugin_level >= 1
+endif
+if g:plugin_level >= 1
     call Config_level1()
-elseif g:plugin_level >= 2
+endif
+if g:plugin_level >= 2
     call Config_level2()
-elseif g:plugin_level >= 3
+endif
+if g:plugin_level >= 3
     call Config_level3()
 endif
