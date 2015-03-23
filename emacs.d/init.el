@@ -15,9 +15,9 @@
 ; List of plugins
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
-		     company yasnippet deft 
-		     projectile  flycheck idomenu
-		     magit cython-mode monokai-theme
+		     company yasnippet deft company-anaconda
+		     projectile  flycheck idomenu 
+		     magit cython-mode monokai-theme leuven-theme
 		     ido-vertical-mode))
 
 ; Install list of plugins 
@@ -203,7 +203,6 @@
 (hbin-remove-mm-lighter 'undo-tree-mode)
 (hbin-remove-mm-lighter 'yas-minor-mode)
 
-(load-theme 'leuven)
 
 ;; make latexmk available via C-c C-c
 ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
