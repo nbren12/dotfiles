@@ -53,6 +53,7 @@
   (progn
     (evil-leader/set-leader "<SPC>")
     (evil-leader/set-key 
+      "hb" 'helm-bookmarks
       "ro" 'helm-occur
       "rr" 'rgrep
       "rg" 'helm-git-grep
