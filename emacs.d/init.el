@@ -16,7 +16,7 @@
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
 		     company yasnippet deft company-anaconda
-		     projectile  flycheck idomenu 
+		     projectile  flycheck idomenu helm-projectile
 		     magit cython-mode monokai-theme leuven-theme
 		     ido-vertical-mode))
 
@@ -26,6 +26,11 @@
 	(package-install plugin)))
 
 (require 'use-package)
+
+; Remove superfluous mode line indicators
+(defun hbin-remove-mm-lighter (mm)
+  "Remove minor lighter from the mode line."
+  (setcar (cdr (assq mm minor-mode-alist)) nil))
 
 (use-package evil
   :init
@@ -137,6 +142,7 @@
     (global-set-key (kbd "M-x") 'helm-M-x)
     (evil-leader/set-key "h" 'helm-command-prefix)
     (helm-mode 1)
+    (evil-leader/set-key "hb" 'helm-bookmarks)
     ))
 
 
@@ -155,7 +161,17 @@
   :config
   (progn
     (evil-leader/set-key "bi" 'idomenu)))
-  
+
+(use-package projectile
+  :config
+  (progn
+    (projectile-global-mode 1)
+    (hbin-remove-mm-lighter 'projectile-mode)
+    (evil-leader/set-key
+      "pf" 'helm-projectile
+      "pg" 'helm-projectile-grep
+      "pa" 'helm-projectile-ack
+      "pp" 'projectile-switch-project)))
 
 
 ;;; Useful for used files
