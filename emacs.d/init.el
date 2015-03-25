@@ -16,9 +16,9 @@
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
 		     company yasnippet deft company-anaconda
-		     projectile  flycheck idomenu helm-projectile
+		     projectile flycheck idomenu helm-projectile
 		     magit cython-mode monokai-theme leuven-theme
-		     ido-vertical-mode))
+		     ido-vertical-mode function-args))
 
 ; Install list of plugins 
 (dolist (plugin my-plugins)
@@ -86,8 +86,13 @@
     (yas-global-mode t)))
 
 
-(add-hook 'after-init-hook 'global-company-mode)
-(global-set-key (kbd "<S-tab>") 'company-complete)
+(use-package company
+  :config
+  (progn
+    (global-company-mode)
+    (global-set-key (kbd "<S-tab>") 'company-complete)
+    (hbin-remove-mm-lighter 'company-mode)))
+    
 
 
 					; Python
@@ -119,11 +124,36 @@
 ; Path
 (setenv "PATH" (concat "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
 
+
+					; C/C++
+
+(defun setup-c-langs ()
+  (require 'cc-mode)
+  (require 'semantic)
+
+
+  (global-semanticdb-minor-mode 1)
+  (global-semantic-idle-scheduler-mode 1)
+
+  (semantic-mode 1)
+
+  (use-package function-args
+    :config
+    (progn
+      (fa-config-default))))
+
+(setup-c-langs)
+
 					; Make "_" part of word
 (modify-syntax-entry ?_ "w" )
 
 ; Global Stuff
-(add-hook 'after-init-hook #'global-flycheck-mode)
+
+(use-package flycheck
+  :config
+  (progn
+    (add-hook 'after-init-hook #'global-flycheck-mode)))
+;; (hbin-remove-mm-lighter 'flycheck-mode)
 
 ;;; Interactive completion stuff
 ;; (require 'helm)
@@ -144,6 +174,7 @@
     (evil-leader/set-key "h" 'helm-command-prefix)
     (helm-mode 1)
     (evil-leader/set-key "hb" 'helm-bookmarks)
+    (hbin-remove-mm-lighter 'helm-mode)
     ))
 
 
@@ -205,7 +236,14 @@
   (progn
     (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
     (add-hook 'org-mode-hook 'auto-fill-mode)
-    (add-hook 'org-mode-hook 'org-indent-mode)))
+    (add-hook 'org-mode-hook 'org-indent-mode)
+
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       (sh . t)
+       (R . t)))
+    ))
 
 ;Auctex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)

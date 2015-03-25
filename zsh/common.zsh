@@ -107,9 +107,9 @@ else
     alias vim='vim -X'
 fi
 
-alias emacsd='emacs --daemon'
-alias emacsc='emacsclient -c'
+alias ed='emacs --daemon'
 alias ec='emacsclient -c'
+alias ecw='emacsclient -c'
 
 
 
