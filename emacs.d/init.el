@@ -15,7 +15,8 @@
 ; List of plugins
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
-		     company yasnippet deft company-anaconda
+		     company yasnippet deft 
+		     company-anaconda python-cell
 		     projectile flycheck idomenu helm-projectile
 		     magit cython-mode monokai-theme leuven-theme
 		     ido-vertical-mode function-args))
@@ -103,6 +104,12 @@
   (progn
     (add-to-list 'company-backends 'company-anaconda)
     (add-hook 'python-mode-hook 'anaconda-mode)))
+
+(use-package python-cell
+  :config
+  (progn
+    (add-hook 'python-mode-hook 'python-cell-mode)
+    (hbin-remove-mm-lighter 'python-cell-mode)))
 
 
 (defun python-setup-shell ()
@@ -236,7 +243,7 @@
   (progn
     (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
     (add-hook 'org-mode-hook 'auto-fill-mode)
-    (add-hook 'org-mode-hook 'org-indent-mode)
+    ;; (add-hook 'org-mode-hook 'org-indent-mode)
 
     (org-babel-do-load-languages
      'org-babel-load-languages
