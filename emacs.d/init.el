@@ -23,9 +23,9 @@
 		     evil-nerd-commenter org cdlatex reftex
 		     company yasnippet deft 
 		     elpy python-cell
-		     projectile flycheck idomenu helm-projectile
+		     projectile flycheck helm-projectile
 		     magit cython-mode monokai-theme leuven-theme
-		     ido-vertical-mode function-args))
+		     function-args))
 
 ; Install list of plugins 
 (dolist (plugin my-plugins)
@@ -68,10 +68,9 @@
       "ta" 'align-regexp
       "cc" 'compile
       "cr" 'recompile
-      "ff" 'ido-find-file
-      "fr" 'recentf-ido-find-file
-      "bb" 'ido-switch-buffer
-      "bk" 'ido-kill-buffer
+      "ff" 'helm-find-files
+      "fr" 'helm-recentf
+      "bb" 'helm-mini
       "dd" 'deft
       "op" 'org-preview-latex-fragment
       "s"  'speedbar-get-focus
@@ -93,24 +92,32 @@
     (yas-global-mode t)))
 
 
+(defun insert-or-company-files ()
+  (interactive)
+  (insert "/")
+  (company-files))
+
 (use-package company
   :config
   (progn
     (global-company-mode)
+    (define-key global-map (kbd "C-.") 'company-files)
     (global-set-key (kbd "<S-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
-    
+
 
 
 					; Python
-;; (use-package elpy
-;;   :config
-;;   (progn 
-;;     (add-to-list 'company-backends 'elpy-company-backend)
-;;     (add-hook 'python-mode-hook 'elpy-mode)
-;;     ))
-  
+(use-package elpy
+  :config
+  (progn 
+    (add-hook 'python-mode-hook 'elpy-mode)
+    (elpy-use-ipython)
+    ))
 
+
+
+  
 ;; (use-package company-anaconda
 ;;   :config
 ;;   (progn
@@ -195,21 +202,11 @@
     ))
 
 
-(use-package ido
-  :config
-  (progn
-    (ido-mode t)
-    (ido-everywhere t)
-    (define-key evil-normal-state-map " b" 'ido-switch-buffer)))
-
-(use-package ido-vertical-mode
-  :config
-  (ido-vertical-mode 1))
 
 (use-package imenu
   :config
   (progn
-    (evil-leader/set-key "bi" 'idomenu)))
+    (evil-leader/set-key "bi" 'helm-imenu)))
 
 (use-package projectile
   :config
@@ -229,14 +226,6 @@
   (progn
     (recentf-mode 1)
     (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
-
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-
 
 
 (use-package deft
