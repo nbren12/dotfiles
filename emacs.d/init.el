@@ -1,6 +1,6 @@
 ;;; init.el --- My init.el
-;;; Commentary:
-;;;
+;; Commentary:
+;;
 ;;; Code:
 (server-start)
 
@@ -21,16 +21,15 @@
 ; List of plugins
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
-		     company yasnippet deft 
-		     elpy python-cell
-		     projectile flycheck helm-projectile
-		     magit cython-mode monokai-theme leuven-theme
+		     company yasnippet deft elpy python-cell
+		     projectile flycheck helm-projectile magit
+		     cython-mode monokai-theme leuven-theme
 		     function-args))
 
-; Install list of plugins 
-(dolist (plugin my-plugins)
-      (unless (package-installed-p plugin) 
-	(package-install plugin)))
+;; ; Install list of plugins 
+;; (dolist (plugin my-plugins)
+;;       (unless (package-installed-p plugin) 
+;; 	(package-install plugin)))
 
 (require 'use-package)
 
@@ -40,6 +39,7 @@
   (setcar (cdr (assq mm minor-mode-alist)) nil))
 
 (use-package evil
+  :ensure t
   :init
   (setq evil-want-C-u-scroll t)
   :config
@@ -56,6 +56,7 @@
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
 
 (use-package evil-leader
+  :ensure t
   :config
   (progn
     (evil-leader/set-leader "<SPC>")
@@ -86,6 +87,7 @@
 (global-set-key (kbd "C-j") 'other-window)
 
 (use-package yasnippet
+  :ensure t
   :config
   (progn 
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
@@ -98,6 +100,7 @@
   (company-files))
 
 (use-package company
+  :ensure t
   :config
   (progn
     (global-company-mode)
@@ -109,6 +112,7 @@
 
 					; Python
 (use-package elpy
+  :ensure t
   :config
   (progn 
     (add-hook 'python-mode-hook 'elpy-mode)
@@ -125,6 +129,7 @@
 ;;     (add-hook 'python-mode-hook 'anaconda-mode)))
 
 (use-package python-cell
+  :ensure t
   :config
   (progn
     (add-hook 'python-mode-hook 'python-cell-mode)
@@ -145,6 +150,7 @@
   (semantic-mode 1)
 
   (use-package function-args
+    :ensure t
     :config
     (progn
       (fa-config-default))))
@@ -154,21 +160,18 @@
 					; Make "_" part of word
 (modify-syntax-entry ?_ "w" )
 
-; Global Stuff
+					; Global Stuff
 
 (use-package flycheck
+  :ensure t
   :config
   (progn
     (add-hook 'after-init-hook #'global-flycheck-mode)))
-;; (hbin-remove-mm-lighter 'flycheck-mode)
 
-;;; Interactive completion stuff
-;; (require 'helm)
-;; (require 'helm-config)
-;; (require 'helm-ls-git)
-;; (setq helm-bookmark-show-location t)
+					; Interactive completion stuff
 
 (use-package helm
+  :ensure t
   :init
   (progn
     (require 'helm-config)
@@ -187,11 +190,13 @@
 
 
 (use-package imenu
+  :ensure t
   :config
   (progn
     (evil-leader/set-key "bi" 'helm-imenu)))
 
 (use-package projectile
+  :ensure t
   :config
   (progn
     (projectile-global-mode 1)
@@ -205,6 +210,7 @@
 
 ;;; Useful for used files
 (use-package recentf
+  :ensure t
   :config
   (progn
     (recentf-mode 1)
@@ -212,6 +218,7 @@
 
 
 (use-package deft
+  :ensure t
   :config
   (progn
     (setq deft-extension "org")
@@ -221,6 +228,7 @@
     (add-hook 'deft-mode-hook 'evil-emacs-state)))
 
 (use-package org
+  :ensure t
   :config
   (progn
     (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
@@ -234,7 +242,8 @@
        (R . t)))
     ))
 
-;Auctex
+					; LaTeX
+
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
