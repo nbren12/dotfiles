@@ -94,18 +94,13 @@
     (yas-global-mode t)))
 
 
-(defun insert-or-company-files ()
-  (interactive)
-  (insert "/")
-  (company-files))
-
 (use-package company
   :ensure t
   :config
   (progn
     (global-company-mode)
     (define-key global-map (kbd "C-.") 'company-files)
-    (global-set-key (kbd "<S-tab>") 'company-complete)
+    (global-set-key (kbd "<C-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
 
 
