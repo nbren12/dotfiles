@@ -4,10 +4,16 @@
 ;;; Code:
 (server-start)
 
+					; Environmental variables
+; Path
+(setenv "PATH" (concat "/Users/noah/anaconda/bin" ":" "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
+	
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("elpy" . "http://jorgenschaefer.github.io/packages/") t)
 
 (package-initialize)
 
@@ -16,7 +22,7 @@
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
 		     company yasnippet deft 
-		     company-anaconda python-cell
+		     elpy python-cell
 		     projectile flycheck idomenu helm-projectile
 		     magit cython-mode monokai-theme leuven-theme
 		     ido-vertical-mode function-args))
@@ -97,13 +103,19 @@
 
 
 					; Python
+;; (use-package elpy
+;;   :config
+;;   (progn 
+;;     (add-to-list 'company-backends 'elpy-company-backend)
+;;     (add-hook 'python-mode-hook 'elpy-mode)
+;;     ))
+  
 
-
-(use-package company-anaconda
-  :config
-  (progn
-    (add-to-list 'company-backends 'company-anaconda)
-    (add-hook 'python-mode-hook 'anaconda-mode)))
+;; (use-package company-anaconda
+;;   :config
+;;   (progn
+;;     (add-to-list 'company-backends 'company-anaconda)
+;;     (add-hook 'python-mode-hook 'anaconda-mode)))
 
 (use-package python-cell
   :config
@@ -128,8 +140,6 @@
 
 (add-hook 'python-mode-hook 'python-setup-shell)
 
-; Path
-(setenv "PATH" (concat "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
 
 
 					; C/C++
