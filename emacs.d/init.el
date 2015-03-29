@@ -1,5 +1,5 @@
 ;;; init.el --- My init.el
-;; Commentary:
+;;; Commentary:
 ;;
 ;;; Code:
 (server-start)
