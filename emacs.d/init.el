@@ -131,23 +131,6 @@
     (hbin-remove-mm-lighter 'python-cell-mode)))
 
 
-(defun python-setup-shell ()
-  (if (executable-find "ipython")
-      (setq python-shell-interpreter "ipython"
-	    ;; python-shell-interpreter-args (if (system-is-mac)
-	    ;;                                   "--gui=osx --matplotlib=osx --colors=Linux"
-	    ;;                                 (if (system-is-linux)
-	    ;;                                     "--gui=wx --matplotlib=wx --colors=Linux"))
-	    python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-	    python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-	    python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
-	    python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
-	    python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-    (setq python-shell-interpreter "python")))
-
-(add-hook 'python-mode-hook 'python-setup-shell)
-
-
 
 					; C/C++
 
