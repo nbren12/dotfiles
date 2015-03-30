@@ -95,10 +95,12 @@
     (hbin-remove-mm-lighter 'company-mode)))
     
 
+					; Matlab
+
+(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+(require 'matlab-load)
 
 					; Python
-
-
 (use-package company-anaconda
   :config
   (progn
