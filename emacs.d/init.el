@@ -1,13 +1,19 @@
 ;;; init.el --- My init.el
 ;;; Commentary:
-;;;
+;;
 ;;; Code:
 (server-start)
 
+					; Environmental variables
+; Path
+(setenv "PATH" (concat "/Users/noah/anaconda/bin" ":" "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
+	
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("elpy" . "http://jorgenschaefer.github.io/packages/") t)
 
 (package-initialize)
 
@@ -15,16 +21,15 @@
 ; List of plugins
 (setq my-plugins '(use-package evil-org evil-surround evil-leader
 		     evil-nerd-commenter org cdlatex reftex
-		     company yasnippet deft 
-		     company-anaconda python-cell
-		     projectile flycheck idomenu helm-projectile
-		     magit cython-mode monokai-theme leuven-theme
-		     ido-vertical-mode function-args))
+		     company yasnippet deft elpy python-cell
+		     projectile flycheck helm-projectile magit
+		     cython-mode monokai-theme leuven-theme
+		     function-args))
 
-; Install list of plugins 
-(dolist (plugin my-plugins)
-      (unless (package-installed-p plugin) 
-	(package-install plugin)))
+;; ; Install list of plugins 
+;; (dolist (plugin my-plugins)
+;;       (unless (package-installed-p plugin) 
+;; 	(package-install plugin)))
 
 (require 'use-package)
 
@@ -34,6 +39,7 @@
   (setcar (cdr (assq mm minor-mode-alist)) nil))
 
 (use-package evil
+  :ensure t
   :init
   (setq evil-want-C-u-scroll t)
   :config
@@ -50,6 +56,7 @@
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
 
 (use-package evil-leader
+  :ensure t
   :config
   (progn
     (evil-leader/set-leader "<SPC>")
@@ -62,10 +69,9 @@
       "ta" 'align-regexp
       "cc" 'compile
       "cr" 'recompile
-      "ff" 'ido-find-file
-      "fr" 'recentf-ido-find-file
-      "bb" 'ido-switch-buffer
-      "bk" 'ido-kill-buffer
+      "ff" 'helm-find-files
+      "fr" 'helm-recentf
+      "bb" 'helm-mini
       "dd" 'deft
       "op" 'org-preview-latex-fragment
       "s"  'speedbar-get-focus
@@ -81,19 +87,27 @@
 (global-set-key (kbd "C-j") 'other-window)
 
 (use-package yasnippet
+  :ensure t
   :config
   (progn 
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (yas-global-mode t)))
 
 
+(defun insert-or-company-files ()
+  (interactive)
+  (insert "/")
+  (company-files))
+
 (use-package company
+  :ensure t
   :config
   (progn
     (global-company-mode)
+    (define-key global-map (kbd "C-.") 'company-files)
     (global-set-key (kbd "<S-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
-    
+
 
 					; Matlab
 
@@ -101,37 +115,30 @@
 (require 'matlab-load)
 
 					; Python
-(use-package company-anaconda
+(use-package elpy
+  :ensure t
   :config
-  (progn
-    (add-to-list 'company-backends 'company-anaconda)
-    (add-hook 'python-mode-hook 'anaconda-mode)))
+  (progn 
+    (add-hook 'python-mode-hook 'elpy-mode)
+    (elpy-use-ipython)
+    ))
+
+
+
+  
+;; (use-package company-anaconda
+;;   :config
+;;   (progn
+;;     (add-to-list 'company-backends 'company-anaconda)
+;;     (add-hook 'python-mode-hook 'anaconda-mode)))
 
 (use-package python-cell
+  :ensure t
   :config
   (progn
     (add-hook 'python-mode-hook 'python-cell-mode)
     (hbin-remove-mm-lighter 'python-cell-mode)))
 
-
-(defun python-setup-shell ()
-  (if (executable-find "ipython")
-      (setq python-shell-interpreter "ipython"
-	    ;; python-shell-interpreter-args (if (system-is-mac)
-	    ;;                                   "--gui=osx --matplotlib=osx --colors=Linux"
-	    ;;                                 (if (system-is-linux)
-	    ;;                                     "--gui=wx --matplotlib=wx --colors=Linux"))
-	    python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-	    python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-	    python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
-	    python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
-	    python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
-    (setq python-shell-interpreter "python")))
-
-(add-hook 'python-mode-hook 'python-setup-shell)
-
-; Path
-(setenv "PATH" (concat "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
 
 
 					; C/C++
@@ -147,6 +154,7 @@
   (semantic-mode 1)
 
   (use-package function-args
+    :ensure t
     :config
     (progn
       (fa-config-default))))
@@ -156,21 +164,18 @@
 					; Make "_" part of word
 (modify-syntax-entry ?_ "w" )
 
-; Global Stuff
+					; Global Stuff
 
 (use-package flycheck
+  :ensure t
   :config
   (progn
     (add-hook 'after-init-hook #'global-flycheck-mode)))
-;; (hbin-remove-mm-lighter 'flycheck-mode)
 
-;;; Interactive completion stuff
-;; (require 'helm)
-;; (require 'helm-config)
-;; (require 'helm-ls-git)
-;; (setq helm-bookmark-show-location t)
+					; Interactive completion stuff
 
 (use-package helm
+  :ensure t
   :init
   (progn
     (require 'helm-config)
@@ -187,23 +192,15 @@
     ))
 
 
-(use-package ido
-  :config
-  (progn
-    (ido-mode t)
-    (ido-everywhere t)
-    (define-key evil-normal-state-map " b" 'ido-switch-buffer)))
-
-(use-package ido-vertical-mode
-  :config
-  (ido-vertical-mode 1))
 
 (use-package imenu
+  :ensure t
   :config
   (progn
-    (evil-leader/set-key "bi" 'idomenu)))
+    (evil-leader/set-key "bi" 'helm-imenu)))
 
 (use-package projectile
+  :ensure t
   :config
   (progn
     (projectile-global-mode 1)
@@ -217,21 +214,15 @@
 
 ;;; Useful for used files
 (use-package recentf
+  :ensure t
   :config
   (progn
     (recentf-mode 1)
     (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
 
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: " recentf-list nil t)))
-    (when file
-      (find-file file))))
-
-
 
 (use-package deft
+  :ensure t
   :config
   (progn
     (setq deft-extension "org")
@@ -241,6 +232,7 @@
     (add-hook 'deft-mode-hook 'evil-emacs-state)))
 
 (use-package org
+  :ensure t
   :config
   (progn
     (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
@@ -254,7 +246,8 @@
        (R . t)))
     ))
 
-;Auctex
+					; LaTeX
+
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
