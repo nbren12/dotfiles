@@ -27,9 +27,9 @@
 		     function-args))
 
 ;; ; Install list of plugins 
-;; (dolist (plugin my-plugins)
-;;       (unless (package-installed-p plugin) 
-;; 	(package-install plugin)))
+(dolist (plugin my-plugins)
+      (unless (package-installed-p plugin) 
+	(package-install plugin)))
 
 (require 'use-package)
 
@@ -116,9 +116,12 @@
 
 					; Matlab
 
-(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
-(require 'matlab-load)
 
+(defun config-cims ()
+  (add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+  (require 'matlab-load))
+
+(when (string-match "cims.nyu.edu$" system-name) (config-cims))
 					; Python
 (use-package elpy
   :ensure t
@@ -204,8 +207,8 @@
   (if (file-directory-p (helm-get-selection))
       (apply orig-fun args)
     (helm-maybe-exit-minibuffer)))
-(advice-add 'helm-execute-persistent-action :around #'fu/helm-find-files-navigate-forward)
-(define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+;; (advice-add 'helm-execute-persistent-action :around #'fu/helm-find-files-navigate-forward)
+;; (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
 
 
 (use-package imenu
@@ -292,3 +295,17 @@
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
 (provide 'init)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector [default default default italic underline success warning error])
+ '(custom-enabled-themes (quote (monokai)))
+ '(custom-safe-themes (quote ("4dd1b115bc46c0f998e4526a3b546985ebd35685de09bc4c84297971c822750e" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

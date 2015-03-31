@@ -26,7 +26,7 @@ then
     # ln -s ~/.dotfiles/.spacemacs ~/.spacemacs
     # ln -s ~/.dotfiles/spacemacs-private/* ~/.emacs.d/private/
 
-    ln -s ~/.dotfiles/.emacs.d ~/.emacs.d
+    ln -s ~/.dotfiles/emacs.d ~/.emacs.d
     pushd ~/.emacs.d
     git clone https://github.com/AndreaCrotti/yasnippet-snippets.git snippets
     popd
