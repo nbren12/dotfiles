@@ -114,6 +114,10 @@
 	    (global-evil-matchit-mode 1)))
 
 
+					; Matlab
+
+(add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+(require 'matlab-load)
 
 					; Python
 (use-package elpy
