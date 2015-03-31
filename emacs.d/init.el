@@ -33,6 +33,9 @@
 
 (require 'use-package)
 
+					; Apearance
+
+
 ; Remove superfluous mode line indicators
 (defun hbin-remove-mm-lighter (mm)
   "Remove minor lighter from the mode line."
@@ -103,6 +106,13 @@
     (global-set-key (kbd "<C-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
 
+					; Fortran
+
+(use-package evil-matchit
+  :ensure t
+  :config (progn
+	    (global-evil-matchit-mode 1)))
+
 
 
 					; Python
@@ -167,12 +177,15 @@
 
 (use-package helm
   :ensure t
-  :init
-  (progn
-    (require 'helm-config)
-    )
   :config
   (progn
+
+    (require 'helm)
+    (require 'helm-config)
+
+
+;; Some keybindings
+    
     (evil-leader/set-key "bs" 'helm-mini)
     (global-set-key (kbd "C-x b") 'helm-mini)
     (global-set-key (kbd "M-x") 'helm-M-x)
@@ -182,6 +195,13 @@
     (hbin-remove-mm-lighter 'helm-mode)
     ))
 
+;; in helm-find-files enter directory with enter
+(defun fu/helm-find-files-navigate-forward (orig-fun &rest args)
+  (if (file-directory-p (helm-get-selection))
+      (apply orig-fun args)
+    (helm-maybe-exit-minibuffer)))
+(advice-add 'helm-execute-persistent-action :around #'fu/helm-find-files-navigate-forward)
+(define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
 
 
 (use-package imenu
