@@ -161,6 +161,12 @@
 
   (semantic-mode 1)
 
+  (use-package c-eldoc
+    :ensure t
+    :config
+    (progn
+      (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))
+
   (use-package function-args
     :ensure t
     :config
@@ -265,6 +271,9 @@
     ))
 
 					; LaTeX
+
+(use-package company-auctex
+  :ensure t)
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
