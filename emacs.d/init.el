@@ -55,6 +55,10 @@
     (add-hook 'prog-mode-hook 'linum-mode)
     (add-hook 'view-mode-hook 'evil-emacs-state)
     (setq-default evil-symbol-word-search 'symbol)
+    
+    (setq evil-emacs-state-modes 
+	  (append evil-emacs-state-modes 
+		  '(view-mode TeX-output-mode)))
 
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
 
