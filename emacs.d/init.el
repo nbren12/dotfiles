@@ -106,6 +106,18 @@
     (global-set-key (kbd "<C-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
 
+
+					; Tags browsing
+
+(use-package ggtags
+  :ensure t
+  :config
+  (progn
+    (defun fix-keybindings ()
+      (define-key evil-normal-state-map (kbd "C-]") 'ggtags-find-tag-dwim))
+    (add-hook 'ggtags-mode-hook 'fix-keybindings)
+    ))
+
 					; Fortran
 
 (use-package evil-matchit
