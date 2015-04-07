@@ -290,6 +290,11 @@
 
 					; LaTeX
 
+;;; To enable synctex just make a latexmkrc file that contains:
+;;;
+;;; $ cat ~/.latexmkrc
+;;; $pdflatex='pdflatex -line-error  -synctex=1'
+
 (use-package company-auctex
   :ensure t)
 
