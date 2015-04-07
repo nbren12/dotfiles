@@ -189,8 +189,10 @@
     (progn
       (fa-config-default))))
 
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 (setup-c-langs)
-
 					; Make "_" part of word
 (modify-syntax-entry ?_ "w" )
 
@@ -312,5 +314,24 @@
       :help "Run latexmk on file")
     TeX-command-list)))
 (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+
+
+;;; Use this function to fill lines on sentence breaks.
+(defun fill-sentence ()
+  (interactive)
+  (save-excursion
+    (or (eq (point) (point-max)) (forward-char))
+    (forward-sentence -1)
+    (indent-relative t)
+    (let ((beg (point))
+          (ix (string-match "LaTeX" mode-name)))
+      (forward-sentence)
+      (if (and ix (equal "LaTeX" (substring mode-name ix)))
+          (LaTeX-fill-region-as-paragraph beg (point))
+        (fill-region-as-paragraph beg (point))))))
+
+;;; Key binding for the above function
+(global-set-key (kbd "M-j") 'fill-sentence)
+
 
 (provide 'init)
