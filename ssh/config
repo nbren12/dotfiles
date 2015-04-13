@@ -22,6 +22,7 @@ Hostname kontiki1
 port 22
 user noah
 ProxyCommand ssh -A cims nc %h %p
+LocalForward 127.0.0.1:10001 127.0.0.1:10001
 
 Host desk
 Hostname box520
