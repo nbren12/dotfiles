@@ -52,13 +52,13 @@
     (evil-mode '1)
     (global-evil-surround-mode 1)
     (add-hook 'prog-mode-hook 'hs-minor-mode)
-    (add-hook 'prog-mode-hook 'linum-mode)
-    (add-hook 'view-mode-hook 'evil-emacs-state)
+    ;; (add-hook 'prog-mode-hook 'linum-mode)
     (setq-default evil-symbol-word-search 'symbol)
     
     (setq evil-emacs-state-modes 
 	  (append evil-emacs-state-modes 
-		  '(view-mode TeX-output-mode)))
+		  '(view-mode TeX-output-mode view-mode
+		    customize-mode)))
 
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
 
