@@ -60,7 +60,18 @@
 		  '(view-mode TeX-output-mode view-mode
 		    customize-mode)))
 
-    (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)))
+    (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
+
+
+    ;;; org-goto emacs mode from
+    ;;; http://emacs.stackexchange.com/questions/883/using-evil-mode-with-a-function-that-does-not-work-well-with-evil-mode
+    (defadvice org-goto (around make-it-evil activate)
+      (let ((orig-state evil-state)
+	    (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
+	ad-do-it
+	(evil-change-state orig-state)))
+
+    ))
 
 (use-package evil-leader
   :ensure t
@@ -273,20 +284,21 @@
     (setq deft-use-filename-as-title t)
     (add-hook 'deft-mode-hook 'evil-emacs-state)))
 
+(setq org-use-speed-commands t)
 (use-package org
   :ensure t
+  :init
   :config
   (progn
     (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
     (add-hook 'org-mode-hook 'auto-fill-mode)
-    ;; (add-hook 'org-mode-hook 'org-indent-mode)
 
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((python . t)
        (sh . t)
-       (R . t)))
-    ))
+       (R . t))))
+  :bind ("C-c a" . org-agenda))
 
 					; LaTeX
 
