@@ -60,4 +60,13 @@ export PYTHONPATH=$HOME/gnl:$PYTHONPATH
 # As a general rule, you should not put personal information on a public 
 # system like this.  
 
+function killhpc(){
+
+    for i in `seq 1 4` 
+    do
+        ssh login-0-$i killall $1
+    done
+}
+
+
 umask u=rwx,g=rx,o=rx
