@@ -300,8 +300,8 @@
        (R . t))))
   :bind ("C-c a" . org-agenda))
 
+(setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
 					; LaTeX
-
 ;;; To enable synctex just make a latexmkrc file that contains:
 ;;;
 ;;; $ cat ~/.latexmkrc
