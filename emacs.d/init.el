@@ -4,10 +4,6 @@
 ;;; Code:
 (server-start)
 
-					; Environmental variables
-; Path
-(setenv "PATH" (concat "/Users/noah/anaconda/bin" ":" "/usr/local/bin:/usr/texbin" ":" (getenv "PATH")))
-	
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
@@ -27,11 +23,25 @@
 		     function-args))
 
 ;; ; Install list of plugins 
-(dolist (plugin my-plugins)
-      (unless (package-installed-p plugin) 
-	(package-install plugin)))
+;; (dolist (plugin my-plugins)
+;;       (unless (package-installed-p plugin) 
+;; 	(package-install plugin)))
 
+
+; Bootstrap Use-Package
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 (require 'use-package)
+					; General
+
+(setq config-list (list))
+
+(defun config/general ()
+  (add-hook 'prog-mode-hook 'electric-pair-mode)
+  (modify-syntax-entry ?_ "w" )  ; Make "_" part of word
+  )
+
+(add-to-list 'config-list 'config/general)
 
 					; Apearance
 
@@ -204,8 +214,7 @@
   (lambda() 
     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 (setup-c-langs)
-					; Make "_" part of word
-(modify-syntax-entry ?_ "w" )
+					
 
 					; Global Stuff
 
@@ -242,8 +251,6 @@
   (if (file-directory-p (helm-get-selection))
       (apply orig-fun args)
     (helm-maybe-exit-minibuffer)))
-;; (advice-add 'helm-execute-persistent-action :around #'fu/helm-find-files-navigate-forward)
-;; (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
 
 
 (use-package imenu
@@ -300,38 +307,47 @@
        (R . t))))
   :bind ("C-c a" . org-agenda))
 
-(setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 					; LaTeX
+(defun config/latex  ()
+  (setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
+
 ;;; To enable synctex just make a latexmkrc file that contains:
 ;;;
 ;;; $ cat ~/.latexmkrc
 ;;; $pdflatex='pdflatex -line-error  -synctex=1'
 
-(use-package company-auctex
-  :ensure t)
+  (use-package company-auctex
+    :ensure t)
 
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
-(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
-; Remove superfluous mode line indicators
-(defun hbin-remove-mm-lighter (mm)
-  "Remove minor lighter from the mode line."
-  (setcar (cdr (assq mm minor-mode-alist)) nil))
+					; Remove superfluous mode line indicators
+  (defun hbin-remove-mm-lighter (mm)
+    "Remove minor lighter from the mode line."
+    (setcar (cdr (assq mm minor-mode-alist)) nil))
 
-(hbin-remove-mm-lighter 'undo-tree-mode)
-(hbin-remove-mm-lighter 'yas-minor-mode)
+  (hbin-remove-mm-lighter 'undo-tree-mode)
+  (hbin-remove-mm-lighter 'yas-minor-mode)
 
 
-;; make latexmk available via C-c C-c
-;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
-(add-hook 'LaTeX-mode-hook (lambda ()
-  (push
-    '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
-      :help "Run latexmk on file")
-    TeX-command-list)))
-(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+  ;; make latexmk available via C-c C-c
+  ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+  (add-hook 'LaTeX-mode-hook (lambda ()
+			       (push
+				'("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
+				  :help "Run latexmk on file")
+				TeX-command-list)))
+  (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+  )
 
+(add-to-list 'config-list 'config/latex)
 
 ;;; Use this function to fill lines on sentence breaks.
 (defun fill-sentence ()
@@ -350,5 +366,8 @@
 ;;; Key binding for the above function
 (global-set-key (kbd "M-j") 'fill-sentence)
 
+
+;; Execute all functions
+(mapcar 'funcall  config-list)
 
 (provide 'init)
