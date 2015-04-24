@@ -31,14 +31,22 @@
 ; Bootstrap Use-Package
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-(require 'use-package)
+  (require 'use-package)
 					; General
+
+  (defun hbin-remove-mm-lighter (mm)
+    "Remove minor lighter from the mode line."
+    (setcar (cdr (assq mm minor-mode-alist)) nil))
 
 (setq config-list (list))
 
 (defun config/general ()
   (add-hook 'prog-mode-hook 'electric-pair-mode)
   (modify-syntax-entry ?_ "w" )  ; Make "_" part of word
+
+
+  (hbin-remove-mm-lighter 'undo-tree-mode)
+  (hbin-remove-mm-lighter 'yas-minor-mode)
   )
 
 (add-to-list 'config-list 'config/general)
@@ -46,10 +54,6 @@
 					; Apearance
 
 
-; Remove superfluous mode line indicators
-(defun hbin-remove-mm-lighter (mm)
-  "Remove minor lighter from the mode line."
-  (setcar (cdr (assq mm minor-mode-alist)) nil))
 
 (use-package evil
   :ensure t
@@ -113,6 +117,9 @@
 
 ; window movement
 (global-set-key (kbd "C-j") 'other-window)
+
+
+					; Autocompletion
 
 (use-package yasnippet
   :ensure t
@@ -329,12 +336,6 @@
   (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
 					; Remove superfluous mode line indicators
-  (defun hbin-remove-mm-lighter (mm)
-    "Remove minor lighter from the mode line."
-    (setcar (cdr (assq mm minor-mode-alist)) nil))
-
-  (hbin-remove-mm-lighter 'undo-tree-mode)
-  (hbin-remove-mm-lighter 'yas-minor-mode)
 
 
   ;; make latexmk available via C-c C-c
@@ -366,8 +367,21 @@
 ;;; Key binding for the above function
 (global-set-key (kbd "M-j") 'fill-sentence)
 
+					; Testing configurations
+(defun config/test ()
+  (use-package flyspell
+    :ensure t
+    :config
+    (progn
+      (setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
+      (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
+
+      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+      (add-hook 'LaTeX-mode-hook 'flyspell-buffer)))
+  )
+
+(add-to-list 'config-list 'config/test)
 
 ;; Execute all functions
 (mapcar 'funcall  config-list)
-
 (provide 'init)
