@@ -73,6 +73,9 @@
 	  (append evil-emacs-state-modes 
 		  '(view-mode TeX-output-mode view-mode
 		    customize-mode)))
+    
+    ; Browse yank ring
+    (define-key evil-normal-state-map (kbd "RET") 'evil-paste-pop-next)
 
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
@@ -167,13 +170,13 @@
 
 (when (string-match "cims.nyu.edu$" system-name) (config-cims))
 					; Python
-(use-package elpy
-  :ensure t
-  :config
-  (progn 
-    (add-hook 'python-mode-hook 'elpy-mode)
-    (elpy-use-ipython)
-    ))
+;; (use-package elpy
+;;   :ensure t
+;;   :config
+;;   (progn 
+;;     (add-hook 'python-mode-hook 'elpy-mode)
+;;     (elpy-use-ipython)
+;;     ))
 
 
 
