@@ -279,7 +279,7 @@
       "pf" 'helm-projectile
       "pg" 'helm-projectile-grep
       "pa" 'helm-projectile-ack
-      "pp" 'projectile-switch-project)))
+      "pp" 'helm-projectile-switch-project)))
 
 
 ;;; Useful for used files
