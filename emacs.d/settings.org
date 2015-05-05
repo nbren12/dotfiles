@@ -1,3 +1,7 @@
+  
+
+* Introduction
+
 This is an org document for literate configuration. To load it put the
 following in =init.el=.
 
@@ -136,7 +140,7 @@ following in =init.el=.
         "bb" 'helm-mini
         "dd" 'deft
         "op" 'org-preview-latex-fragment
-        "s"  'speedbar-get-focus
+        "ss"  'speedbar-get-focus
         "." 'eshell
         "gs" 'magit-status)))
 
@@ -155,6 +159,28 @@ following in =init.el=.
     :ensure t
     :config (progn
               (global-evil-matchit-mode 1)))
+
+
+#+END_SRC
+
+* Settings.org
+
+These are some commands and key bindings related to this settings file.
+#+BEGIN_SRC emacs-lisp
+  (defun reload-settings ()
+    (interactive)
+    (org-babel-load-file
+     (expand-file-name "settings.org"
+                       user-emacs-directory)))
+
+  (defun find-settings ()
+           (interactive)
+           (find-file "~/.emacs.d/settings.org"))
+
+
+  (evil-leader/set-key
+    "fs" 'find-settings
+    "sr" 'reload-settings)
 
 
 #+END_SRC
@@ -382,28 +408,29 @@ following in =init.el=.
 
 #+BEGIN_SRC emacs-lisp
 
-                                          ; Org Mode
+                                            ; Org Mode
 
-  (setq org-use-speed-commands t)
-  (use-package org
-    :ensure t
-    :init
-    :config
-    (progn
-      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-      (add-hook 'org-mode-hook 'auto-fill-mode)
+    (setq org-use-speed-commands t)
+    (use-package org
+      :ensure t
+      :init
+      :config
+      (progn
+        (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+        (add-hook 'org-mode-hook 'auto-fill-mode)
 
-      (org-babel-do-load-languages
-       'org-babel-load-languages
-       '((python . t)
-         (sh . t)
-         (R . t))))
-    :bind ("C-c a" . org-agenda))
+        (setq org-src-fontify-natively t)    ;; Pretty formatting
+        (org-babel-do-load-languages
+         'org-babel-load-languages
+         '((python . t)
+           (sh . t)
+           (R . t))))
+      :bind ("C-c a" . org-agenda))
 
-  (use-package org-bullets
-    :ensure t
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+    (use-package org-bullets
+      :ensure t
+      :config
+      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
 
 ** Latex  
@@ -457,14 +484,6 @@ following in =init.el=.
   ;;; Key binding for the above function
   (global-set-key (kbd "M-j") 'fill-sentence)
 
-#+END_SRC
-  
-* General Keybindings
- 
-#+BEGIN_SRC emacs-lisp
-  (evil-leader/set-key "fs" (lambda ()
-                              (interactive)
-                              (find-file "~/.emacs.d/settings.org")))
 #+END_SRC
 
 * Testing
