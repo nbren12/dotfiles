@@ -1,4 +1,4 @@
-  
+#+OPTIONS: header-args:emacs-lisp :results none  
   
 * Introduction
 
@@ -22,43 +22,48 @@ following in =init.el=.
 * Bootstrap package manager
 
 #+BEGIN_SRC emacs-lisp
-
   ;;; init.el --- My init.el
   ;;; Commentary:
   ;;
   ;;; Code:
-  (server-start)
+
+  ; This should only run if the settings.org hasn't been loaded before
+  (unless (boundp 'settings-loaded)
+    (server-start)
 
 
-  (require 'package) ;; You might already have this line
-  (add-to-list 'package-archives
-               '("melpa" . "http://melpa.org/packages/") t)
-  (add-to-list 'package-archives
-               '("elpy" . "http://jorgenschaefer.github.io/packages/") t)
+    (require 'package) ;; You might already have this line
+    (add-to-list 'package-archives
+                 '("melpa" . "http://melpa.org/packages/") t)
+    (add-to-list 'package-archives
+                 '("elpy" . "http://jorgenschaefer.github.io/packages/") t)
 
-  (package-initialize)
-
-
-  ; List of plugins
-  (setq my-plugins '(use-package evil-org evil-surround evil-leader
-                       evil-nerd-commenter org cdlatex reftex
-                       company yasnippet deft elpy python-cell
-                       projectile flycheck helm-projectile magit
-                       cython-mode monokai-theme leuven-theme
-                       function-args))
-
-  ;; ; Install list of plugins 
-  ;; (dolist (plugin my-plugins)
-  ;;       (unless (package-installed-p plugin) 
-  ;;      (package-install plugin)))
+    (package-initialize)
 
 
-  ; Bootstrap Use-Package
-  (unless (package-installed-p 'use-package)
-    (package-install 'use-package))
+                                          ; List of plugins
+    (setq my-plugins '(use-package evil-org evil-surround evil-leader
+                        evil-nerd-commenter org cdlatex reftex
+                        company yasnippet deft elpy python-cell
+                        projectile flycheck helm-projectile magit
+                        cython-mode monokai-theme leuven-theme
+                        function-args))
+
+    ;; ; Install list of plugins 
+    ;; (dolist (plugin my-plugins)
+    ;;       (unless (package-installed-p plugin) 
+    ;;      (package-install plugin)))
+
+
+                                          ; Bootstrap Use-Package
+    (unless (package-installed-p 'use-package)
+      (package-install 'use-package))
     (require 'use-package)
-
+    )
 #+END_SRC
+
+#+RESULTS:
+
 
 * Evil and general configuration  
 
@@ -511,6 +516,7 @@ These are some commands and key bindings related to this settings file.
 
   ;; Execute all functions
   (mapcar 'funcall  config-list)
+  (setq settings-loaded t)
 #+END_SRC
   
   
