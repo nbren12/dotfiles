@@ -493,3 +493,4 @@ following in =init.el=.
   (mapcar 'funcall  config-list)
 #+END_SRC
   
+  
