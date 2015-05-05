@@ -425,30 +425,32 @@ These are some commands and key bindings related to this settings file.
 
 #+BEGIN_SRC emacs-lisp
 
-                                            ; Org Mode
+                                          ; Org Mode
 
-    (setq org-use-speed-commands t)
-    (use-package org
-      :ensure t
-      :init
-      :config
-      (progn
-        (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-        (add-hook 'org-mode-hook 'auto-fill-mode)
+  (setq org-use-speed-commands t)
+  (use-package org
+    :ensure t
+    :init
+    :config
+    (progn
+      (require 'org-special-blocks)
+      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+      (add-hook 'org-mode-hook 'auto-fill-mode)
 
-        (setq org-src-fontify-natively t)    ;; Pretty formatting
-        (org-babel-do-load-languages
-         'org-babel-load-languages
-         '((python . t)
-           (sh . t)
-           (R . t))))
-      :bind ("C-c a" . org-agenda))
+      (setq org-src-fontify-natively t)    ;; Pretty formatting
+      (org-babel-do-load-languages
+       'org-babel-load-languages
+       '((python . t)
+         (sh . t)
+         (R . t))))
+    :bind ("C-c a" . org-agenda))
 
-    (use-package org-bullets
-      :ensure t
-      :config
-      (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 #+END_SRC
+
 
 ** Latex  
 
