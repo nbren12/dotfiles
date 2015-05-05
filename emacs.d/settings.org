@@ -1,5 +1,5 @@
   
-
+  
 * Introduction
 
 This is an org document for literate configuration. To load it put the
@@ -305,7 +305,7 @@ These are some commands and key bindings related to this settings file.
                                           
 #+END_SRC
 
-
+   
 ** Syntax and spell checking
 
 #+BEGIN_SRC emacs-lisp
@@ -316,8 +316,18 @@ These are some commands and key bindings related to this settings file.
     (progn
       ;; (add-hook 'after-init-hook #'global-flycheck-mode)
       ))
+
+  (use-package flyspell
+    :ensure t
+    :config
+    (progn
+      (setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
+      (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
+
+      (add-hook 'LaTeX-mode-hook 'flyspell-mode)
+      (add-hook 'LaTeX-mode-hook 'flyspell-buffer)))
 #+END_SRC
-   
+
 
 ** Interactive completion stuff (helm)
 
@@ -491,15 +501,6 @@ These are some commands and key bindings related to this settings file.
 #+BEGIN_SRC emacs-lisp
                                           ; Testing configurations
   (defun config/test ()
-    (use-package flyspell
-      :ensure t
-      :config
-      (progn
-        (setq ispell-program-name "aspell") ; could be ispell as well, depending on your preferences
-        (setq ispell-dictionary "english") ; this can obviously be set to any language your spell-checking program supports
-
-        (add-hook 'LaTeX-mode-hook 'flyspell-mode)
-        (add-hook 'LaTeX-mode-hook 'flyspell-buffer)))
     )
 #+END_SRC
   
