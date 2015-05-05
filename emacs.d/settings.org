@@ -111,7 +111,6 @@ following in =init.el=.
                       customize-mode)))
       
       ; Browse yank ring
-      (define-key evil-normal-state-map (kbd "RET") 'evil-paste-pop-next)
 
       (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
@@ -370,7 +369,7 @@ These are some commands and key bindings related to this settings file.
     :ensure t
     :config
     (progn
-      (evil-leader/set-key "bi" 'helm-imenu)))
+      (evil-leader/set-key "hi" 'helm-imenu)))
 
   (use-package projectile
     :ensure t
