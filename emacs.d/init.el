@@ -275,12 +275,19 @@
   (progn
     (projectile-global-mode 1)
     (hbin-remove-mm-lighter 'projectile-mode)
+    ))
+
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (progn
     (evil-leader/set-key
       "pf" 'helm-projectile
       "pg" 'helm-projectile-grep
       "pa" 'helm-projectile-ack
-      "pp" 'helm-projectile-switch-project)))
-
+      "pp" 'helm-projectile-switch-project)
+    ))
 
 ;;; Useful for used files
 (use-package recentf
