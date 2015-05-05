@@ -3,18 +3,21 @@
 * Introduction
 
 This is an org document for literate configuration. To load it put the
-following in =init.el=.
+following in =init.el=. Note that =package= needs to be initialized
+before org according to [[http://stackoverflow.com/questions/16281359/org-mode-broken-dynamic-clock-symbols-function-definition-is-void-org-defvara][StackOverflow]].
 
 #+BEGIN_EXAMPLE
   ;;; init.el --- My init.el
   ;;; Commentary:
   ;;
   ;;; Code:
+(require 'package)
+(package-initialize)
 
-  (require 'org)
-  (org-babel-load-file
-   (expand-file-name "settings.org"
-                     user-emacs-directory))
+(require 'org)
+(org-babel-load-file
+ (expand-file-name "settings.org"
+		   user-emacs-directory))
 
 
 #+END_EXAMPLE
