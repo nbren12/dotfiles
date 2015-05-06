@@ -205,7 +205,12 @@ These are some commands and key bindings related to this settings file.
     :config
     (progn 
       (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
-      (yas-global-mode t)))
+
+      (yas-global-mode t)
+      (add-hook 'term-mode-hook (lambda()
+                                  (yas-minor-mode -1)))
+
+      ))
 
 
   (use-package company
