@@ -23,7 +23,7 @@ before org according to [[http://stackoverflow.com/questions/16281359/org-mode-b
 #+END_EXAMPLE
 
 * Bootstrap package manager
-
+  
 #+BEGIN_SRC emacs-lisp
   ;;; init.el --- My init.el
   ;;; Commentary:
@@ -171,7 +171,7 @@ before org according to [[http://stackoverflow.com/questions/16281359/org-mode-b
 #+END_SRC
 
 * Settings.org
-
+  
 These are some commands and key bindings related to this settings file.
 #+BEGIN_SRC emacs-lisp
   (defun reload-settings ()
