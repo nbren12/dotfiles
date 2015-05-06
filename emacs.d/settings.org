@@ -526,6 +526,25 @@ This plugin is for distraction free text editing
     (progn
       (evil-leader/set-key "ow" 'writeroom-mode)))
 #+END_SRC
+
+* Keybindings
+
+#+BEGIN_SRC emacs-lisp
+  (defun open-or-switch-to-ansi-term ()
+    ;; Function for opening/switching to a terminal
+    (interactive)
+    (let ((buf (get-buffer "*ansi-term*")))
+
+      (if buf
+          (switch-to-buffer buf)
+        (ansi-term "/bin/zsh" "*ansi-term*")
+        )))
+
+  (evil-leader/set-key 
+    "ot" 'open-or-switch-to-ansi-term
+    "om" 'man)
+#+END_SRC
+
 * Testing
 
 #+BEGIN_SRC emacs-lisp
