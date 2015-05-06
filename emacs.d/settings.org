@@ -527,7 +527,9 @@ This plugin is for distraction free text editing
       (evil-leader/set-key "ow" 'writeroom-mode)))
 #+END_SRC
 
-* Keybindings
+* Keybindings and general
+  
+** Terminal
 
 #+BEGIN_SRC emacs-lisp
   (defun open-or-switch-to-ansi-term ()
@@ -537,14 +539,16 @@ This plugin is for distraction free text editing
 
       (if buf
           (switch-to-buffer buf)
-        (ansi-term "/bin/zsh" "*ansi-term*")
+        (ansi-term "/bin/zsh")
         )))
 
   (evil-leader/set-key 
     "ot" 'open-or-switch-to-ansi-term
     "om" 'man)
 #+END_SRC
-  
+   
+*** TODO make term mode use emacs-mode
+   
 ** Buffers
 
 #+BEGIN_SRC emacs-lisp
@@ -552,7 +556,7 @@ This plugin is for distraction free text editing
     "bd" 'kill-buffer)
 #+END_SRC
 
-
+   
 * Testing
 
 #+BEGIN_SRC emacs-lisp
