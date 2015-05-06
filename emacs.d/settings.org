@@ -544,6 +544,14 @@ This plugin is for distraction free text editing
     "ot" 'open-or-switch-to-ansi-term
     "om" 'man)
 #+END_SRC
+  
+** Buffers
+
+#+BEGIN_SRC emacs-lisp
+  (evil-leader/set-key
+    "bd" 'kill-buffer)
+#+END_SRC
+
 
 * Testing
 
