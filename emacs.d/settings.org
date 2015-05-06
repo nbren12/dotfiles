@@ -433,7 +433,7 @@ These are some commands and key bindings related to this settings file.
     :init
     :config
     (progn
-      (require 'org-special-blocks)
+      ;; (require 'org-special-blocks)
       
       ; Use latexmk for latex
       (setq org-latex-pdf-process (list "latexmk -f -pdf %f"))
