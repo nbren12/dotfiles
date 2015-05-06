@@ -509,6 +509,18 @@ These are some commands and key bindings related to this settings file.
 
 #+END_SRC
 
+   
+** writeroom
+
+This plugin is for distraction free text editing
+
+#+BEGIN_SRC emacs-lisp
+  (use-package writeroom-mode
+    :ensure t
+    :config
+    (progn
+      (evil-leader/set-key "ow" 'writeroom-mode)))
+#+END_SRC
 * Testing
 
 #+BEGIN_SRC emacs-lisp
