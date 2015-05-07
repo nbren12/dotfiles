@@ -564,7 +564,10 @@ This plugin is for distraction free text editing
 
 #+BEGIN_SRC emacs-lisp
   (evil-leader/set-key
-    "bd" 'kill-buffer)
+    "bd" 'kill-buffer
+    "<right>" 'next-buffer
+    "<left>" 'previous-buffer
+    "<down>" 'other-window)
 #+END_SRC
 
    
