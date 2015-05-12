@@ -12,11 +12,15 @@
 
 (package-initialize)
 
-;;;;; Bootstrap use-package
+;;;;; Bootstrap packages
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+(setq bootstrap-packages '(use-package org))
+
+
+(dolist (pkg bootstrap-packages)
+  (unless (package-installed-p pkg)
+    (package-refresh-contents)
+    (package-install pkg)))
 
 (require 'use-package)
 
