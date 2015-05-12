@@ -1,64 +1,447 @@
-  ;;; init.el --- My init.el
-  ;;; Commentary:
-  ;;
-  ;;; Code:
+;;; init.el --- My init.el
+;;; Commentary:
+;;
+;;; Code:
+;;; Initial Stuff
+;;;; Package Manager Initialize
 (require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("elpy" . "http://jorgenschaefer.github.io/packages/") t)
+
 (package-initialize)
 
-(require 'org)
-(org-babel-load-file
- (expand-file-name "settings.org"
-		   user-emacs-directory))
+;;;;; Bootstrap use-package
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+
+
+;;; Functions
+
+(defun hbin-remove-mm-lighter (mm)
+  "Remove minor lighter from the mode line."
+  (setcar (cdr (assq mm minor-mode-alist)) nil))
+(setq config-list (list))
+
+
+
+(defun open-or-switch-to-ansi-term ()
+  ;; Function for opening/switching to a terminal
+  (interactive)
+  (let ((buf (get-buffer "*ansi-term*")))
+
+    (if buf
+        (switch-to-buffer buf)
+      (ansi-term "/bin/zsh")
+      )))
+
+;;; Evil
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-C-u-scroll t)
+  :config
+  (progn
+
+    (global-evil-leader-mode)
+    (evil-mode '1)
+;    (global-evil-surround-mode 1)      
+    (add-hook 'prog-mode-hook 'hs-minor-mode)
+    ;; (add-hook 'prog-mode-hook 'linum-mode)
+    (setq-default evil-symbol-word-search 'symbol)
+    
+    (setq evil-emacs-state-modes 
+          (append evil-emacs-state-modes 
+                  '(view-mode TeX-output-mode view-mode
+                    customize-mode)))
+    
+    ; Browse yank ring
+
+    (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
+
+
+    ;;; org-goto emacs mode from
+    ;;; http://emacs.stackexchange.com/questions/883/using-evil-mode-with-a-function-that-does-not-work-well-with-evil-mode
+    (defadvice org-goto (around make-it-evil activate)
+      (let ((orig-state evil-state)
+            (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
+        ad-do-it
+        (evil-change-state orig-state)))
+
+    ))
+
+(use-package evil-leader
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-leader "<SPC>")
+    (evil-leader/set-key 
+      "hb" 'helm-bookmarks
+      "ro" 'helm-occur
+      "rr" 'rgrep
+      "rg" 'helm-git-grep
+      "u" 'universal-argument
+      "ta" 'align-regexp
+      "cc" 'compile
+      "cr" 'recompile
+      "ff" 'helm-find-files
+      "fr" 'helm-recentf
+      "bb" 'helm-mini
+      "dd" 'deft
+      "op" 'org-preview-latex-fragment
+      "ss"  'speedbar-get-focus
+      "." 'eshell
+      "gs" 'magit-status)))
+
+    
+(use-package evil-nerd-commenter
+  :ensure t
+  :init 
+  (setq evilnc-hotkey-comment-operator "gc"))
+
+
+                                        ; Fortran
+
+(use-package evil-matchit
+  :ensure t
+  :config (progn
+            (global-evil-matchit-mode 1)))
+
+;;; Autocompletion
+
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (progn 
+    (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+
+    (yas-global-mode t)
+    (add-hook 'term-mode-hook (lambda()
+                                (yas-minor-mode -1)))
+
+    ))
+
+
+(use-package company
+  :ensure t
+  :config
+  (progn
+    (global-company-mode)
+    (define-key global-map (kbd "C-.") 'company-files)
+    (global-set-key (kbd "<C-tab>") 'company-complete)
+    (hbin-remove-mm-lighter 'company-mode)))
+
+;;;; Tags browsing
+
+
+(use-package ggtags
+  :ensure t
+  :config
+  (progn
+    (defun fix-keybindings ()
+      (define-key evil-normal-state-map (kbd "C-]") 'ggtags-find-tag-dwim))
+    (add-hook 'ggtags-mode-hook 'fix-keybindings)
+    ))
+;;; Modes
+
+;;;; Matlab (CIMS only)
+
+(defun config-cims ()
+  (add-to-list 'load-path "~/.emacs.d/matlab-emacs")
+  (require 'matlab-load))
+
+(when (string-match "cims.nyu.edu$" system-name) (config-cims))
+
+;;;; Python
+
+(use-package elpy
+  :ensure t
+  :config
+  (progn 
+    (add-hook 'python-mode-hook 'elpy-mode)
+    (elpy-use-ipython)
+    ))
+
+
+
+  
+;; (use-package company-anaconda
+;;   :config
+;;   (progn
+;;     (add-to-list 'company-backends 'company-anaconda)
+;;     (add-hook 'python-mode-hook 'anaconda-mode)))
+
+(use-package python-cell
+  :ensure t
+  :config
+  (progn
+    (add-hook 'python-mode-hook 'python-cell-mode)
+    (hbin-remove-mm-lighter 'python-cell-mode)))
+
+;;;; C/C++
+
+(defun setup-c-langs ()
+  (require 'cc-mode)
+  (require 'semantic)
+
+
+  (global-semanticdb-minor-mode 1)
+  (global-semantic-idle-scheduler-mode 1)
+
+  (semantic-mode 1)
+
+  (use-package c-eldoc
+    :ensure t
+    :config
+    (progn
+      (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))
+
+  (use-package function-args
+    :ensure t
+    :config
+    (progn
+      (fa-config-default))))
+
+(add-hook 'c-mode-common-hook
+  (lambda() 
+    (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
+(setup-c-langs)
+
+
+;;;; LaTeX
+
+(defun config/latex  ()
+  (setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
+
+  ;;; To enable synctex just make a latexmkrc file that contains:
+  ;;;
+  ;;; $ cat ~/.latexmkrc
+  ;;; $pdflatex='pdflatex -line-error  -synctex=1'
+
+  (use-package company-auctex
+    :ensure t)
+
+  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+
+                                        ; Remove superfluous mode line indicators
+
+
+  ;; make latexmk available via C-c C-c
+  ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+  (add-hook 'LaTeX-mode-hook (lambda ()
+                               (push
+                                '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
+                                  :help "Run latexmk on file")
+                                TeX-command-list)))
+  (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+
+  ;; use Skim as default pdf viewer
+  ;; Skim's displayline is used for forward search (from .tex to .pdf)
+  ;; option -b highlights the current line; option -g opens Skim in the background  
+  (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+  (setq TeX-view-program-list
+        '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+
+  )
+
+(add-to-list 'config-list 'config/latex)
+
+;;;;; Use this function to fill lines on sentence breaks.
+(defun fill-sentence ()
+  (interactive)
+  (save-excursion
+    (or (eq (point) (point-max)) (forward-char))
+    (forward-sentence -1)
+    (indent-relative t)
+    (let ((beg (point))
+          (ix (string-match "LaTeX" mode-name)))
+      (forward-sentence)
+      (if (and ix (equal "LaTeX" (substring mode-name ix)))
+          (LaTeX-fill-region-as-paragraph beg (point))
+        (fill-region-as-paragraph beg (point))))))
+
+;; Key binding for the above function
+(global-set-key (kbd "M-j") 'fill-sentence)
+
+
+
+;;;; Writeroom mode
+
+(use-package writeroom-mode
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key "ow" 'writeroom-mode)))
+
+
+
+;;;; Outshine Mode
+(use-package outshine
+  :ensure t
+  :init 
+  (defvar outline-minor-mode-prefix "\M-#")
+  :config
+  (progn 
+    (require 'outshine)
+    (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
+    (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)))
+
+;;;; Org
+(setq org-use-speed-commands t)
+(use-package org
+  :ensure t
+  :init
+  :config
+  (progn
+    ;; (require 'org-special-blocks)
+    
+    ; Use latexmk for latex
+    (setq org-latex-pdf-process (list "latexmk -f -pdf %f"))
+
+    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    (add-hook 'org-mode-hook 'auto-fill-mode)
+
+    (setq org-src-fontify-natively t)    ;; Pretty formatting
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((python . t)
+       (sh . t)
+       (R . t))))
+  :bind ("C-c a" . org-agenda))
+
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;;; Helm and friends
+
+
+(use-package helm
+  :ensure t
+  :config
+  (progn
+
+    (require 'helm)
+    (require 'helm-config)
+
+
+;; Some keybindings
+    
+    (evil-leader/set-key "bs" 'helm-mini)
+    (global-set-key (kbd "C-x b") 'helm-mini)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (evil-leader/set-key "h" 'helm-command-prefix)
+    (helm-mode 1)
+    (evil-leader/set-key "hb" 'helm-bookmarks)
+    (hbin-remove-mm-lighter 'helm-mode)
+    ))
+
+;; in helm-find-files enter directory with enter
+(defun fu/helm-find-files-navigate-forward (orig-fun &rest args)
+  (if (file-directory-p (helm-get-selection))
+      (apply orig-fun args)
+    (helm-maybe-exit-minibuffer)))
+
+
+(use-package imenu
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key "hi" 'helm-imenu)))
+
+(use-package projectile
+  :ensure t
+  :config
+  (progn
+    (projectile-global-mode 1)
+    (hbin-remove-mm-lighter 'projectile-mode)
+    ))
+
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key
+      "pf" 'helm-projectile
+      "pg" 'helm-projectile-grep
+      "pa" 'helm-projectile-ack
+      "pp" 'helm-projectile-switch-project)
+    ))
+
+;;;; Recentf
+(use-package recentf
+  :ensure t
+  :config
+  (progn
+    (recentf-mode 1)
+    (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
+
+;;;; Deft
+
+
+(use-package deft
+  :ensure t
+  :config
+  (progn
+    (setq deft-extension "org")
+    (setq deft-text-mode 'org-mode)
+    (setq deft-directory "~/Dropbox/notes")
+    (setq deft-use-filename-as-title t)
+    (add-hook 'deft-mode-hook 'evil-emacs-state)))
+
+
+
+
+
+
+
+;;; General Configuration
+
+(defun config/general ()
+  (add-hook 'prog-mode-hook 'electric-pair-mode)
+  (modify-syntax-entry ?_ "w" )  ; Make "_" part of word
+
+
+  (hbin-remove-mm-lighter 'undo-tree-mode)
+  (hbin-remove-mm-lighter 'yas-minor-mode)
+  )
+
+(add-to-list 'config-list 'config/general)
+
+;;;; Bindings
+
+
+(evil-leader/set-key 
+  "ot" 'open-or-switch-to-ansi-term
+  "om" 'man)
+
+(evil-leader/set-key
+  "bd" 'kill-buffer
+  "<right>" 'next-buffer
+  "<left>" 'previous-buffer
+  "<down>" 'other-window)
+
+
+
+;;; Customize
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(compilation-message-face (quote default))
- '(custom-enabled-themes (quote (leuven)))
- '(custom-safe-themes
-   (quote
-    ("cf205b711e61963020e2d1561e87cdbe7727679b58af25dcabfe5073572b16f0" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" "d9a09bb02e2a1c54869dfd6a1412553fe5cb2d01a94ba25ef2be4634d1ca2c79" default)))
- '(fci-rule-color "#49483E")
- '(highlight-changes-colors ("#FD5FF0" "#AE81FF"))
- '(highlight-tail-colors
-   (("#49483E" . 0)
-    ("#67930F" . 20)
-    ("#349B8D" . 30)
-    ("#21889B" . 50)
-    ("#968B26" . 60)
-    ("#A45E0A" . 70)
-    ("#A41F99" . 85)
-    ("#49483E" . 100)))
- '(magit-use-overlays nil)
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   (unspecified "#272822" "#49483E" "#A20C41" "#F92672" "#67930F" "#A6E22E" "#968B26" "#E6DB74" "#21889B" "#66D9EF" "#A41F99" "#FD5FF0" "#349B8D" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+ '(custom-enabled-themes (quote (wombat)))
+ '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
