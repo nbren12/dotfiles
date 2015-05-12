@@ -69,8 +69,8 @@
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
 
-    ;;; org-goto emacs mode from
-    ;;; http://emacs.stackexchange.com/questions/883/using-evil-mode-with-a-function-that-does-not-work-well-with-evil-mode
+    ;; org-goto emacs mode from
+    ;; http://emacs.stackexchange.com/questions/883/using-evil-mode-with-a-function-that-does-not-work-well-with-evil-mode
     (defadvice org-goto (around make-it-evil activate)
       (let ((orig-state evil-state)
             (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
@@ -461,6 +461,7 @@
 
 ;; Use tab for outline-cycling
 (define-key evil-normal-state-map (kbd "<tab>") 'outline-cycle)
+(define-key evil-normal-state-map (kbd "TAB") 'outline-cycle)
 
 (evil-leader/set-key 
   "ot" 'open-or-switch-to-ansi-term
