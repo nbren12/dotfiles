@@ -149,6 +149,10 @@
     (add-hook 'ggtags-mode-hook 'fix-keybindings)
     ))
 ;;; Modes
+;;;; Magit (git)
+
+(use-package magit
+  :ensure t)
 
 ;;;; Matlab (CIMS only)
 
@@ -431,6 +435,13 @@
   "<left>" 'previous-buffer
   "<down>" 'other-window)
 
+;;;; Find Settings file
+(defun find-settings-file ()
+  (interactive)
+  (find-file "~/.emacs.d/init.el"))
+
+(evil-leader/set-key
+  "fs" 'find-settings-file)
 
 
 ;;; Customize
