@@ -461,6 +461,7 @@
 
 ;; Use tab for outline-cycling
 (define-key evil-normal-state-map (kbd "<tab>") 'outline-cycle)
+;; Tab binding necessary for terminal sessions
 (define-key evil-normal-state-map (kbd "TAB") 'outline-cycle)
 
 (evil-leader/set-key 
