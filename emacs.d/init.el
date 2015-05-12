@@ -135,9 +135,9 @@
   :config
   (progn
     (global-company-mode)
-    (define-key global-map (kbd "C-.") 'company-files)
     (global-set-key (kbd "<C-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
+
 
 ;;;; Tags browsing
 
@@ -392,9 +392,8 @@
     (require 'helm)
     (require 'helm-config)
 
-
+    (global-set-key (kbd "C-.") 'helm-complete-file-name-at-point)
 ;; Some keybindings
-    
     (evil-leader/set-key "bs" 'helm-mini)
     (global-set-key (kbd "C-x b") 'helm-mini)
     (global-set-key (kbd "M-x") 'helm-M-x)
