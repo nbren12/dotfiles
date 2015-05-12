@@ -105,8 +105,6 @@
   (setq evilnc-hotkey-comment-operator "gc"))
 
 
-                                        ; Fortran
-
 (use-package evil-matchit
   :ensure t
   :config (progn
@@ -152,7 +150,9 @@
 ;;;; Magit (git)
 
 (use-package magit
-  :ensure t)
+  :ensure t
+  :init
+  (setq magit-last-seen-setup-instructions "1.4.0"))
 
 ;;;; Matlab (CIMS only)
 
@@ -190,32 +190,30 @@
 
 ;;;; C/C++
 
-(defun setup-c-langs ()
-  (require 'cc-mode)
-  (require 'semantic)
+(require 'cc-mode)
+(require 'semantic)
 
 
-  (global-semanticdb-minor-mode 1)
-  (global-semantic-idle-scheduler-mode 1)
+(global-semanticdb-minor-mode 1)
+(global-semantic-idle-scheduler-mode 1)
 
-  (semantic-mode 1)
+(semantic-mode 1)
 
-  (use-package c-eldoc
-    :ensure t
-    :config
-    (progn
-      (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))
+(use-package c-eldoc
+  :ensure t
+  :config
+  (progn
+    (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))
 
-  (use-package function-args
-    :ensure t
-    :config
-    (progn
-      (fa-config-default))))
+(use-package function-args
+  :ensure t
+  :config
+  (progn
+    (fa-config-default)))
 
 (add-hook 'c-mode-common-hook
   (lambda() 
     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
-(setup-c-langs)
 
 
 ;;;; LaTeX
@@ -326,8 +324,27 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-;;; Helm and friends
+;;;; Deft
 
+
+(use-package deft
+  :ensure t
+  :config
+  (progn
+    (setq deft-extension "org")
+    (setq deft-text-mode 'org-mode)
+    (setq deft-directory "~/Dropbox/notes")
+    (setq deft-use-filename-as-title t)
+    (add-hook 'deft-mode-hook 'evil-emacs-state)))
+
+
+
+
+
+
+
+;;; Helm and friends
+;;;; Helm
 
 (use-package helm
   :ensure t
@@ -390,26 +407,7 @@
     (recentf-mode 1)
     (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
 
-;;;; Deft
-
-
-(use-package deft
-  :ensure t
-  :config
-  (progn
-    (setq deft-extension "org")
-    (setq deft-text-mode 'org-mode)
-    (setq deft-directory "~/Dropbox/notes")
-    (setq deft-use-filename-as-title t)
-    (add-hook 'deft-mode-hook 'evil-emacs-state)))
-
-
-
-
-
-
-
-;;; General Configuration
+;;; General
 
 (defun config/general ()
   (add-hook 'prog-mode-hook 'electric-pair-mode)
@@ -445,6 +443,10 @@
 (evil-leader/set-key
   "fs" 'find-settings-file)
 
+
+;;; Execute all "config" function
+(mapcar 'funcall  config-list)
+(setq settings-loaded t)
 
 ;;; Customize
 
