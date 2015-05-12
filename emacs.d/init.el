@@ -424,6 +424,8 @@
 
 ;;;; Bindings
 
+;; Use tab for outline-cycling
+(define-key evil-normal-state-map (kbd "<tab>") 'outline-cycle)
 
 (evil-leader/set-key 
   "ot" 'open-or-switch-to-ansi-term
