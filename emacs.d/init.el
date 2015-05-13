@@ -43,6 +43,8 @@
         (switch-to-buffer buf)
       (ansi-term "/bin/zsh")
       )))
+(defun cimsp ()
+  (string-match "cims.nyu.edu$" system-name))
 
 ;;; Evil
 (use-package evil
@@ -168,22 +170,19 @@
 
 ;;;; Python
 
-(use-package elpy
+;; (use-package elpy
+;;   :ensure t
+;;   :config
+;;   (progn 
+;;     (add-hook 'python-mode-hook 'elpy-mode)
+;;     (elpy-use-ipython)
+;;     ))
+(use-package company-anaconda
   :ensure t
   :config
-  (progn 
-    (add-hook 'python-mode-hook 'elpy-mode)
-    (elpy-use-ipython)
-    ))
-
-
-
-  
-;; (use-package company-anaconda
-;;   :config
-;;   (progn
-;;     (add-to-list 'company-backends 'company-anaconda)
-;;     (add-hook 'python-mode-hook 'anaconda-mode)))
+  (progn
+    (add-to-list 'company-backends 'company-anaconda)
+    (add-hook 'python-mode-hook 'anaconda-mode)))
 
 (use-package python-cell
   :ensure t
@@ -272,6 +271,11 @@
 
   ;; make latexmk available via C-c C-c
   ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+  ;; .latexmkrc:
+  ;; $pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
+  ;; $pdf_previewer = 'open -a skim';
+  ;; $clean_ext = 'bbl rel %R-blx.bib %R.synctex.gz';
+
   (add-hook 'LaTeX-mode-hook (lambda ()
                                (push
                                 '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
@@ -287,6 +291,27 @@
         '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
   )
+
+;;;;; Okular (cims)
+(when (cimsp)
+
+  (setq TeX-view-program-list '(("Okular" "okular --unique %u")))
+
+  (add-hook 'LaTeX-mode-hook '(lambda ()
+				(add-to-list 'TeX-expand-list
+					     '("%u" Okular-make-url))))
+
+  (defun Okular-make-url () (concat
+			     "file://"
+			     (expand-file-name (funcall file (TeX-output-extension) t)
+					       (file-name-directory (TeX-master-file)))
+			     "#src:"
+			     (TeX-current-line)
+			     (expand-file-name (TeX-master-directory))
+			     "./"
+			     (TeX-current-file-name-master-relative)))
+
+  (setq TeX-view-program-selection '((output-pdf "Okular"))))
 
 (add-to-list 'config-list 'config/latex)
 
@@ -495,6 +520,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (wombat)))
+ '(elpy-modules (quote (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
  '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
