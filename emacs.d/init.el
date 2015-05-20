@@ -45,7 +45,6 @@
       )))
 (defun cimsp ()
   (string-match "cims.nyu.edu$" system-name))
-
 ;;; Evil
 (use-package evil
   :ensure t
@@ -83,6 +82,7 @@
 (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
 (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 ; Make horizontal movement cross lines                                    
 (setq-default evil-cross-lines t)
     ))
@@ -463,9 +463,29 @@
 
 ;;;; Markdown
 
-(use-package markdown-mode
-  :ensure t
-  )
+(use-package markdown-mode :ensure t
+  :config
+  (progn
+    (add-hook 'markdown-mode-hook 'turn-on-reftex)
+    ))
+
+;;;;; Pandoc reftex
+(defun sjoin (list sep)
+  ; Join list of strings with the string in sep
+  (let ((a (car list)))
+    (mapc (lambda (x)
+	    (setq a (concat a sep x)))
+	  (cdr list))
+    a))
+
+
+(defun pandoc-reftex ()
+  ; Format pandoc citation using reftex
+  (sjoin (mapcar (lambda (x) (concat "@" x))
+		 (reftex-citation 1))
+	 "; "))
+
+
 ;;; Helm and friends
 ;;;; Helm
 
