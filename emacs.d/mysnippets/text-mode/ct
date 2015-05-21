@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: autocite \autocite
+# key: ct
+# [@${2:label$(unless yas/modified-p (reftex-citation
+# 'dont-insert))}]$0
+# --
+
+[`(unless yas/modified-p (pandoc-reftex))`]$0
+
