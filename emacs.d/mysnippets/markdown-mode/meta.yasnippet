@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: Markdown header - pandoc version
+# contributor: Phillip DIXON <phil@dixon.gen.nz>
+# key: meta
+# --
+---
+title:  ${1:Title}
+author: ${2:Noah D. Brenowitz}
+date:   ${3:`(format-time-string "%B %d, %Y")`}
+bibliography: ${4:references.bib}
+---
+
+<!-- \bibliography{$4} --!>
+
+$0
