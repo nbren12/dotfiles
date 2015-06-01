@@ -55,7 +55,7 @@
 
     (global-evil-leader-mode)
     (evil-mode '1)
-;    (global-evil-surround-mode 1)      
+					;    (global-evil-surround-mode 1)      
     (add-hook 'prog-mode-hook 'hs-minor-mode)
     ;; (add-hook 'prog-mode-hook 'linum-mode)
     (setq-default evil-symbol-word-search 'symbol)
@@ -63,9 +63,9 @@
     (setq evil-emacs-state-modes 
           (append evil-emacs-state-modes 
                   '(view-mode TeX-output-mode view-mode
-                    customize-mode)))
+			      customize-mode)))
     
-    ; Browse yank ring
+					; Browse yank ring
 
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
@@ -77,14 +77,14 @@
             (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
         ad-do-it
         (evil-change-state orig-state)))
-;; Make movement keys work like they should
-(define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
-(define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
-(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
-; Make horizontal movement cross lines                                    
-(setq-default evil-cross-lines t)
+    ;; Make movement keys work like they should
+    (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+    (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+    (define-key evil-motion-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
+    (define-key evil-motion-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
+    (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+					; Make horizontal movement cross lines                                    
+    (setq-default evil-cross-lines t)
     ))
 
 (use-package evil-leader
@@ -553,6 +553,17 @@
 	 "; "))
 
 
+;;;; AceJump
+
+(use-package ace-jump-mode
+  :ensure t
+  :config
+  (progn
+    ;; AceJump bindings
+    (evil-leader/set-key "jj" 'evil-ace-jump-line-mode)
+    (evil-leader/set-key "jk" 'evil-ace-jump-word-mode)
+    ))
+
 ;;; Reference Software 
 ;;;; ebib
 
@@ -584,12 +595,12 @@
     (unless (package-installed-p prog)
       (package-install prog)))
 
-  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+  (setq reftex-default-bibliography '("~/Dropbox/Papers/references.bib"))
 
   ;; see org-ref for use of these variables
-  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
-	org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
-	org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/")
+  (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
+	org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
+	org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
 
   ;; Some key bindings
   (global-set-key [f10] 'org-ref-open-bibtex-notes)
@@ -636,6 +647,8 @@
   "<right>" 'next-buffer
   "<left>" 'previous-buffer
   "<down>" 'other-window)
+
+
 
 ;;;; Find Settings file
 (defun find-settings-file ()
