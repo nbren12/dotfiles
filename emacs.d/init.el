@@ -113,8 +113,9 @@
     
 (use-package evil-nerd-commenter
   :ensure t
-  :init 
-  (setq evilnc-hotkey-comment-operator "gc"))
+  :config
+  (progn
+    (evil-leader/set-key ";" 'evilnc-comment-operator)))
 
 
 (use-package evil-matchit
