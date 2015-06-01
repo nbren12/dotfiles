@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: bib
+# key: bib
+# binding: direct-keybinding
+# --
+
+
+
+#+LATEX_HEADER: \usepackage{biblatex}
+#+LATEX_HEADER: \bibliography{${1:references}}
+
+
+$0
+#+LATEX: \printbibliography

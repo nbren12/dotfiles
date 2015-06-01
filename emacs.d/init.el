@@ -160,6 +160,69 @@
       (define-key evil-normal-state-map (kbd "C-]") 'ggtags-find-tag-dwim))
     (add-hook 'ggtags-mode-hook 'fix-keybindings)
     ))
+;;; Helm and friends
+;;;; Helm
+
+(use-package helm
+  :ensure t
+  :config
+  (progn
+
+    (require 'helm)
+    (require 'helm-config)
+
+    (global-set-key (kbd "C-.") 'helm-complete-file-name-at-point)
+;; Some keybindings
+    (evil-leader/set-key "bs" 'helm-mini)
+    (global-set-key (kbd "C-x b") 'helm-mini)
+    (global-set-key (kbd "M-x") 'helm-M-x)
+    (evil-leader/set-key "h" 'helm-command-prefix)
+    (helm-mode 1)
+    (evil-leader/set-key "hb" 'helm-bookmarks)
+    (hbin-remove-mm-lighter 'helm-mode)
+    ))
+
+;; in helm-find-files enter directory with enter
+(defun fu/helm-find-files-navigate-forward (orig-fun &rest args)
+  (if (file-directory-p (helm-get-selection))
+      (apply orig-fun args)
+    (helm-maybe-exit-minibuffer)))
+
+
+(use-package imenu
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key "hi" 'helm-imenu)))
+
+(use-package projectile
+  :ensure t
+  :config
+  (progn
+    (projectile-global-mode 1)
+    (hbin-remove-mm-lighter 'projectile-mode)
+    ))
+
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (progn
+    (evil-leader/set-key
+      "pf" 'helm-projectile
+      "pg" 'helm-projectile-grep
+      "pa" 'helm-projectile-ack
+      "pp" 'helm-projectile-switch-project)
+    ))
+
+;;;; Recentf
+(use-package recentf
+  :ensure t
+  :config
+  (progn
+    (recentf-mode 1)
+    (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
+
 ;;; Modes
 ;;;; Magit (git)
 
@@ -469,7 +532,11 @@
     (add-hook 'markdown-mode-hook 'turn-on-reftex)
     ))
 
-;;;;; Pandoc reftex
+(use-package pandoc-mode :ensure t
+  :config
+  (progn
+    (add-hook 'markdown-mode-hook 'pandoc-mode)))
+
 (defun sjoin (list sep)
   ; Join list of strings with the string in sep
   (let ((a (car list)))
@@ -478,7 +545,7 @@
 	  (cdr list))
     a))
 
-
+;; Pandoc reftex
 (defun pandoc-reftex ()
   ; Format pandoc citation using reftex
   (sjoin (mapcar (lambda (x) (concat "@" x))
@@ -486,68 +553,59 @@
 	 "; "))
 
 
-;;; Helm and friends
-;;;; Helm
+;;; Reference Software 
+;;;; ebib
 
-(use-package helm
+(use-package ebib
   :ensure t
   :config
   (progn
+    (add-to-list 'evil-emacs-state-modes 'ebib-index-mode)
+    (evil-leader/set-key "bb" 'ebib)))
 
-    (require 'helm)
-    (require 'helm-config)
+;;;; Helm-bibtex
 
-    (global-set-key (kbd "C-.") 'helm-complete-file-name-at-point)
-;; Some keybindings
-    (evil-leader/set-key "bs" 'helm-mini)
-    (global-set-key (kbd "C-x b") 'helm-mini)
-    (global-set-key (kbd "M-x") 'helm-M-x)
-    (evil-leader/set-key "h" 'helm-command-prefix)
-    (helm-mode 1)
-    (evil-leader/set-key "hb" 'helm-bookmarks)
-    (hbin-remove-mm-lighter 'helm-mode)
-    ))
-
-;; in helm-find-files enter directory with enter
-(defun fu/helm-find-files-navigate-forward (orig-fun &rest args)
-  (if (file-directory-p (helm-get-selection))
-      (apply orig-fun args)
-    (helm-maybe-exit-minibuffer)))
-
-
-(use-package imenu
-  :ensure t
+(use-package helm-bibtex :ensure t
   :config
   (progn
-    (evil-leader/set-key "hi" 'helm-imenu)))
-
-(use-package projectile
-  :ensure t
-  :config
-  (progn
-    (projectile-global-mode 1)
-    (hbin-remove-mm-lighter 'projectile-mode)
-    ))
+    (setq helm-bibtex-bibliography '("~/Dropbox/Papers/references.bib"))))
 
 
-(use-package helm-projectile
-  :ensure t
-  :config
-  (progn
-    (evil-leader/set-key
-      "pf" 'helm-projectile
-      "pg" 'helm-projectile-grep
-      "pa" 'helm-projectile-ack
-      "pp" 'helm-projectile-switch-project)
-    ))
+;;;; Org-ref :off:
 
-;;;; Recentf
-(use-package recentf
-  :ensure t
-  :config
-  (progn
-    (recentf-mode 1)
-    (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
+    ;; Download org-ref from git
+    (let ((path "~/.emacs.d/org-ref"))
+      (unless (file-exists-p path)
+	(shell-commmand (concat "git clone https://github.com/jkitchin/org-ref " path)))
+      (add-to-list 'load-path path))
+
+  ;; Install org-ref dependencies
+  (dolist (prog '(helm-bibtex ebib hydra key-chord))
+    (unless (package-installed-p prog)
+      (package-install prog)))
+
+  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+
+  ;; see org-ref for use of these variables
+  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org"
+	org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib")
+	org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs/")
+
+  ;; Some key bindings
+  (global-set-key [f10] 'org-ref-open-bibtex-notes)
+  (global-set-key [f11] 'org-ref-open-bibtex-pdf)
+  (global-set-key [f12] 'org-ref-open-in-browser)
+
+  ;; make sure you have dash, helm, helm-bibtex, ebib, s, f, hydra and key-chord
+  ;; in your load-path
+  (require 'org-ref)
+
+  ;; optional but very useful libraries in org-ref
+  (require 'doi-utils)
+  (require 'jmax-bibtex)
+  (require 'pubmed)
+  (require 'arxiv)
+  (require 'sci-id)
 
 ;;; General
 
@@ -600,10 +658,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (leuven)))
+ '(ebib-preload-bib-files (quote ("~/Dropbox/Papers/references.bib")))
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
+ '(org-agenda-files (quote ("~/Dropbox/notes/2015 Summer Projects.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
