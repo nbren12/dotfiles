@@ -45,6 +45,7 @@
       )))
 (defun cimsp ()
   (string-match "cims.nyu.edu$" system-name))
+
 ;;; Evil
 (use-package evil
   :ensure t
@@ -376,46 +377,43 @@
     ))
 ;;;; LaTeX
 
-(defun config/latex  ()
-  (setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
+(setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
 
-  ;;; To enable synctex just make a latexmkrc file that contains:
-  ;;;
-  ;;; $ cat ~/.latexmkrc
-  ;;; $pdflatex='pdflatex -line-error  -synctex=1'
+;; To enable synctex just make a latexmkrc file that contains:
+;;
+;; $ cat ~/.latexmkrc
+;; $pdflatex='pdflatex -line-error  -synctex=1'
 
-  (use-package company-auctex
-    :ensure t)
+(use-package company-auctex
+  :ensure t)
 
-  (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-  (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
-  (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 
                                         ; Remove superfluous mode line indicators
 
 
-  ;; make latexmk available via C-c C-c
-  ;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
-  ;; .latexmkrc:
-  ;; $pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
-  ;; $pdf_previewer = 'open -a skim';
-  ;; $clean_ext = 'bbl rel %R-blx.bib %R.synctex.gz';
+;; make latexmk available via C-c C-c
+;; Note: SyncTeX is setup via ~/.latexmkrc (see below)
+;; .latexmkrc:
+;; $pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
+;; $pdf_previewer = 'open -a skim';
+;; $clean_ext = 'bbl rel %R-blx.bib %R.synctex.gz';
 
-  (add-hook 'LaTeX-mode-hook (lambda ()
-                               (push
-                                '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
-                                  :help "Run latexmk on file")
-                                TeX-command-list)))
-  (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (push
+			      '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
+				:help "Run latexmk on file")
+			      TeX-command-list)))
+(add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
 
-  ;; use Skim as default pdf viewer
-  ;; Skim's displayline is used for forward search (from .tex to .pdf)
-  ;; option -b highlights the current line; option -g opens Skim in the background  
-  (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-  (setq TeX-view-program-list
-        '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
-
-  )
+;; use Skim as default pdf viewer
+;; Skim's displayline is used for forward search (from .tex to .pdf)
+;; option -b highlights the current line; option -g opens Skim in the background  
+(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+(setq TeX-view-program-list
+      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
 ;;;;; Okular (cims)
 (when (cimsp)
@@ -437,8 +435,6 @@
 			     (TeX-current-file-name-master-relative)))
 
   (setq TeX-view-program-selection '((output-pdf "Okular"))))
-
-(add-to-list 'config-list 'config/latex)
 
 ;;;;; Use this function to fill lines on sentence breaks.
 (defun fill-sentence ()
@@ -588,7 +584,7 @@
     ;; Download org-ref from git
     (let ((path "~/.emacs.d/org-ref"))
       (unless (file-exists-p path)
-	(shell-commmand (concat "git clone https://github.com/jkitchin/org-ref " path)))
+	(shell-command (concat "git clone https://github.com/jkitchin/org-ref " path)))
       (add-to-list 'load-path path))
 
   ;; Install org-ref dependencies
@@ -672,10 +668,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (leuven)))
+ '(custom-safe-themes (quote ("9efaa1292e9180cb33a277f24f29b296bd0fe5b4546ea05368e6e393abb90881" default)))
  '(ebib-preload-bib-files (quote ("~/Dropbox/Papers/references.bib")))
- '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
+ '(elpy-modules (quote (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
  '(inhibit-startup-screen t)
  '(org-agenda-files (quote ("~/Dropbox/notes/2015 Summer Projects.org"))))
 (custom-set-faces
