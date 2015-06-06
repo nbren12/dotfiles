@@ -1,9 +1,12 @@
 ;;; init.el --- My init.el
 ;;; Commentary:
-;;
+
+;; Nothing much to say here. This file is best read using the [[https://github.com/tj64/outshine][outshine]]
+;; package for outline-minor-mode.
+
 ;;; Code:
-;;; Initial Stuff
-;;;; Package Manager Initialize
+;;;; Initial Stuff
+;;;;; Package Manager Initialize
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "http://melpa.org/packages/") t)
@@ -12,7 +15,7 @@
 
 (package-initialize)
 
-;;;; Bootstrap packages
+;;;;; Bootstrap packages
 
 (setq bootstrap-packages '(use-package org))
 
@@ -24,8 +27,10 @@
 
 (require 'use-package)
 
+;; This needs to be done before outline-mode is loaded
+(defvar outline-minor-mode-prefix "\M-#")
 
-;;; Functions
+;;;; Functions
 
 (defun hbin-remove-mm-lighter (mm)
   "Remove minor lighter from the mode line."
@@ -46,9 +51,8 @@
 (defun cimsp ()
   (string-match "cims.nyu.edu$" system-name))
 
-;; This needs to be done before outline-mode is loaded
-(defvar outline-minor-mode-prefix "\M-#")
-;;; Evil
+
+;;;; Evil
 (use-package evil
   :ensure t
   :init
@@ -126,9 +130,9 @@
   :config (progn
             (global-evil-matchit-mode 1)))
 
-;;; Autocompletion
+;;;; Autocompletion
 
-;;;; yasnippet
+;;;;; yasnippet
 (use-package yasnippet
   :ensure t
   :config
@@ -143,7 +147,7 @@
                                 (yas-minor-mode -1)))
     ))
 
-;;;; company mode
+;;;;; company mode
 ;;    autocomplete mode is an alternative
 (use-package company
   :ensure t
@@ -153,7 +157,7 @@
     (global-set-key (kbd "<C-tab>") 'company-complete)
     (hbin-remove-mm-lighter 'company-mode)))
 
-;;;; Insert file name at point
+;;;;; Insert file name at point
 ;; This code comes from the [[http://www.emacswiki.org/emacs/InsertFileName][emacs wiki]].
 
  (defun my-insert-file-name (filename &optional args)
@@ -179,7 +183,7 @@
 
 (global-set-key (kbd "C-.") 'my-insert-file-name)
 
-;;;; Tags browsing
+;;;;; Tags browsing
 
 
 (use-package ggtags
@@ -190,8 +194,9 @@
       (define-key evil-normal-state-map (kbd "C-]") 'ggtags-find-tag-dwim))
     (add-hook 'ggtags-mode-hook 'fix-keybindings)
     ))
-;;; Helm and friends
-;;;; Helm
+
+;;;; Helm and friends
+;;;;; Helm
 
 (use-package helm
   :ensure t
@@ -244,7 +249,7 @@
       "pp" 'helm-projectile-switch-project)
     ))
 
-;;;; Recentf
+;;;;; Recentf
 (use-package recentf
   :ensure t
   :config
@@ -252,15 +257,15 @@
     (recentf-mode 1)
     (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
 
-;;; Modes
-;;;; Magit (git)
+;;;; Modes
+;;;;; Magit (git)
 
 (use-package magit
   :ensure t
   :init
   (setq magit-last-seen-setup-instructions "1.4.0"))
 
-;;;; Matlab (CIMS only)
+;;;;; Matlab (CIMS only)
 
 (defun config-cims ()
   (add-to-list 'load-path "~/.emacs.d/matlab-emacs")
@@ -268,7 +273,7 @@
 
 (when (string-match "cims.nyu.edu$" system-name) (config-cims))
 
-;;;; Python
+;;;;; Python
 
 ;; Anaconda mode
 ;; (use-package elpy
@@ -302,8 +307,8 @@
     (hbin-remove-mm-lighter 'python-cell-mode)))
 
 
-;;;; C/C++
-
+;;;;; C/C++
+    
 (require 'cc-mode)
 (require 'semantic)
 
@@ -360,12 +365,13 @@
     ;;     std::|
     (add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
     ))
-;;;; LaTeX
+
+;;;;; LaTeX
 
 (setq org-latex-pdf-process (quote  ( "latexmk -pdf %f" )))
 
 ;; To enable synctex just make a latexmkrc file that contains:
-;;
+
 ;; $ cat ~/.latexmkrc
 ;; $pdflatex='pdflatex -line-error  -synctex=1'
 
@@ -400,7 +406,7 @@
 (setq TeX-view-program-list
       '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
-;;;;; Okular (cims)
+;;;;;; Okular (cims)
 (when (cimsp)
 
   (setq TeX-view-program-list '(("Okular" "okular --unique %u")))
@@ -421,7 +427,7 @@
 
   (setq TeX-view-program-selection '((output-pdf "Okular"))))
 
-;;;;; Use this function to fill lines on sentence breaks.
+;;;;;; Use this function to fill lines on sentence breaks.
 (defun fill-sentence ()
   (interactive)
   (save-excursion
@@ -440,7 +446,7 @@
 
 
 
-;;;; Writeroom mode
+;;;;; Writeroom mode
 
 (use-package writeroom-mode
   :ensure t
@@ -450,7 +456,7 @@
 
 
 
-;;;; Outshine Mode
+;;;;; Outshine Mode
 
 (use-package outshine
   :ensure t
@@ -463,9 +469,12 @@
 
     ; Fix company completion in outshine buffers
     (add-to-list 'company-begin-commands 'outshine-self-insert-command)
+
+    (evil-leader/set-key "on" 'outshine-navi)
+    (add-to-list 'evil-emacs-state-modes 'navi-mode)
     ))
 
-;;;; Org
+;;;;; Org
 (setq org-use-speed-commands t)
 (use-package org
   :ensure t
@@ -493,7 +502,7 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-;;;; Deft
+;;;;; Deft
 
 
 (use-package deft
@@ -506,7 +515,7 @@
     (setq deft-use-filename-as-title t)
     (add-hook 'deft-mode-hook 'evil-emacs-state)))
 
-;;;; Markdown
+;;;;; Markdown
 
 (use-package markdown-mode :ensure t
   :config
@@ -535,7 +544,7 @@
 	 "; "))
 
 
-;;;; AceJump
+;;;;; AceJump
 
 (use-package ace-jump-mode
   :ensure t
@@ -546,8 +555,8 @@
     (evil-leader/set-key "jk" 'evil-ace-jump-word-mode)
     ))
 
-;;; Reference Software 
-;;;; ebib
+;;;; Reference Software 
+;;;;; ebib
 
 (use-package ebib
   :ensure t
@@ -556,7 +565,7 @@
     (add-to-list 'evil-emacs-state-modes 'ebib-index-mode)
     (evil-leader/set-key "bb" 'ebib)))
 
-;;;; Helm-bibtex
+;;;;; Helm-bibtex
 
 (use-package helm-bibtex :ensure t
   :config
@@ -564,7 +573,7 @@
     (setq helm-bibtex-bibliography '("~/Dropbox/Papers/references.bib"))))
 
 
-;;;; Org-ref :off:
+;;;;; Org-ref :off:
 
     ;; Download org-ref from git
     (let ((path "~/.emacs.d/org-ref"))
@@ -600,7 +609,7 @@
   (require 'arxiv)
   (require 'sci-id)
 
-;;; General
+;;;; General
 
 (defun config/general ()
   (add-hook 'prog-mode-hook 'electric-pair-mode)
@@ -613,7 +622,7 @@
 
 (add-to-list 'config-list 'config/general)
 
-;;;; Bindings
+;;;;; Bindings
 
 ;; Use tab for outline-cycling
 (define-key evil-normal-state-map (kbd "<tab>") 'outline-cycle)
@@ -632,7 +641,7 @@
 
 
 
-;;;; Find Settings file
+;;;;; Find Settings file
 (defun find-settings-file ()
   (interactive)
   (find-file "~/.emacs.d/init.el"))
@@ -641,7 +650,7 @@
   "fs" 'find-settings-file)
 
 
-;;; Execute all "config" function
+;;;; Execute all "config" function
 (mapcar 'funcall  config-list)
 (setq settings-loaded t)
 
