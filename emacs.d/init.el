@@ -4,6 +4,16 @@
 ;; Nothing much to say here. This file is best read using the [[https://github.com/tj64/outshine][outshine]]
 ;; package for outline-minor-mode.
 
+;; Convection for key bindings:
+
+;; |--------+---------------------|
+;; | Prefix | Meaning             |
+;; |--------+---------------------|
+;; | r      | Regex and searching |
+;; | b      | buffers             |
+;; | f      | file searching      |
+;; | o      | other               |
+
 ;;; Code:
 ;;;; Initial Stuff
 ;;;;; Package Manager Initialize
@@ -70,7 +80,7 @@
     (setq evil-emacs-state-modes 
           (append evil-emacs-state-modes 
                   '(view-mode TeX-output-mode view-mode
-			      customize-mode)))
+			      customize-mode dired-mode)))
     
 					; Browse yank ring
 
