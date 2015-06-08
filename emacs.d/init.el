@@ -599,40 +599,43 @@
 
 
 ;;;;; Org-ref :off:
-
-    ;; Download org-ref from git
+(use-package org-ref
+  :init
+  (progn
+    ;; Download org-ref into .emacs.d
     (let ((path "~/.emacs.d/org-ref"))
       (unless (file-exists-p path)
 	(shell-command (concat "git clone https://github.com/jkitchin/org-ref " path)))
       (add-to-list 'load-path path))
 
-  ;; Install org-ref dependencies
-  (dolist (prog '(helm-bibtex ebib hydra key-chord))
-    (unless (package-installed-p prog)
-      (package-install prog)))
+    ;; Install org-ref dependencies
+    (dolist (prog '(helm-bibtex ebib hydra key-chord))
+      (unless (package-installed-p prog)
+	(package-install prog)))
 
-  (setq reftex-default-bibliography '("~/Dropbox/Papers/references.bib"))
+    (setq reftex-default-bibliography '("~/Dropbox/Papers/references.bib"))
 
-  ;; see org-ref for use of these variables
-  (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-	org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
-	org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+    ;; see org-ref for use of these variables
+    (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
+	  org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
+	  org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
 
-  ;; Some key bindings
-  (global-set-key [f10] 'org-ref-open-bibtex-notes)
-  (global-set-key [f11] 'org-ref-open-bibtex-pdf)
-  (global-set-key [f12] 'org-ref-open-in-browser)
+    ;; Some key bindings
+    (global-set-key [f10] 'org-ref-open-bibtex-notes)
+    (global-set-key [f11] 'org-ref-open-bibtex-pdf)
+    (global-set-key [f12] 'org-ref-open-in-browser))
+  :config
+  (progn 
+    ;; make sure you have dash, helm, helm-bibtex, ebib, s, f, hydra and key-chord
+    ;; in your load-path
+    (require 'org-ref)
 
-  ;; make sure you have dash, helm, helm-bibtex, ebib, s, f, hydra and key-chord
-  ;; in your load-path
-  (require 'org-ref)
-
-  ;; optional but very useful libraries in org-ref
-  (require 'doi-utils)
-  (require 'jmax-bibtex)
-  (require 'pubmed)
-  (require 'arxiv)
-  (require 'sci-id)
+    ;; optional but very useful libraries in org-ref
+    (require 'doi-utils)
+    (require 'jmax-bibtex)
+    (require 'pubmed)
+    (require 'arxiv)
+    (require 'sci-id)))
 
 ;;;; General
 
