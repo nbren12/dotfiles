@@ -703,10 +703,19 @@
 
 ;;;;; Bindings
 
+
+(defun my-outline-cycle ()
+  ;; Cycle outline-mode or org-mode
+  (interactive)
+  (if (derived-mode-p 'org-mode)
+      (org-cycle)
+    (outline-cycle)))
+
 ;; Use tab for outline-cycling
-(define-key evil-normal-state-map (kbd "<tab>") 'outline-cycle)
+(define-key evil-normal-state-map (kbd "<tab>") 'my-outline-cycle)
+
 ;; Tab binding necessary for terminal sessions
-(define-key evil-normal-state-map (kbd "TAB") 'outline-cycle)
+(define-key evil-normal-state-map (kbd "TAB") 'my-outline-cycle)
 
 (evil-leader/set-key 
   "ot" 'open-or-switch-to-ansi-term
