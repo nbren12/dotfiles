@@ -98,7 +98,8 @@
     (setq evil-emacs-state-modes 
           (append evil-emacs-state-modes 
                   '(view-mode TeX-output-mode view-mode
-			      customize-mode dired-mode)))
+			      customize-mode dired-mode
+			      special-mode)))
     
 					; Browse yank ring
 
@@ -555,7 +556,7 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-;; Ipytohn integration with org
+;; Ipython integration with org
 (use-package ob-ipython
   :init
   (install-from-git "https://github.com/gregsexton/ob-ipython"
@@ -563,6 +564,10 @@
 		    '(dash-functional dash s f))
   )
 
+(setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
+
+;; display/update images in the buffer after I evaluate
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
 ;;;;; Deft
 
