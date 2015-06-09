@@ -1,0 +1,14 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: head
+# key: hdr
+# binding: direct-keybinding
+# --
+
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+${1:
+#+LATEX_HEADER: \usepackage{biblatex}
+#+LATEX_HEADER: \bibliography{${2:references}}}
+
+
+$0
+#+LATEX: \printbibliography
