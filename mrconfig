@@ -1,14 +1,8 @@
 [.dotfiles]
 checkout = git clone 'ssh://git@github.com/nbren12/dotfiles.git' '.dotfiles'
 
-[workspace/stochmc]
-checkout = git clone 'git@bitbucket.org:nbren12/stochmc.git' 'stochmc'
-
 [Dropbox/gnl]
 checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
-
-[workspace/skelfilter]
-checkout = git clone 'git@bitbucket.org:nbren12/skelfilter.git' 'skelfilter'
 
 [workspace/cin]
 checkout = git clone 'git@bitbucket.org:nbren12/cin.git' 'cin'
