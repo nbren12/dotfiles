@@ -184,9 +184,11 @@
   (progn
     (global-company-mode)
     (global-set-key (kbd "<C-tab>") 'company-complete)
-    (hbin-remove-mm-lighter 'company-mode)))
+    (hbin-remove-mm-lighter 'company-mode)
+    (define-key evil-insert-state-map (kbd "<C-SPC>") 'completion-at-point)))
 
-;;;;; Insert file name at point
+
+;; Insert file name at point
 ;; This code comes from the [[http://www.emacswiki.org/emacs/InsertFileName][emacs wiki]].
 
  (defun my-insert-file-name (filename &optional args)
@@ -562,6 +564,9 @@
   (install-from-git "https://github.com/gregsexton/ob-ipython"
 		    "ob-ipython"
 		    '(dash-functional dash s f))
+  :config
+  (progn
+    (define-key python-mode-map (kbd "M-?") 'ob-ipython-inspect))
   )
 
 (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
