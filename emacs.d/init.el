@@ -61,6 +61,24 @@
 (defun cimsp ()
   (string-match "cims.nyu.edu$" system-name))
 
+(defun guarded-install (seq)
+  ;; Install elements of seq if not already installed
+  (dolist (prog seq)
+    (unless (package-installed-p prog)
+      (package-install prog))))
+
+(defun install-from-git (repo path &optional dep)
+  (interactive "P")
+  ;; Install the repository to the local path
+
+  ;; Install 
+  (unless (file-exists-p path)
+    (shell-command
+     (concat "git clone " repo " " path)))
+  (add-to-list 'load-path path)
+
+  (if dep (guarded-install dep)))
+  
 
 ;;;; Evil
 (use-package evil
@@ -536,6 +554,15 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+;; Ipytohn integration with org
+(use-package ob-ipython
+  :init
+  (install-from-git "https://github.com/gregsexton/ob-ipython"
+		    "ob-ipython"
+		    '(dash-functional dash s f))
+  )
+
 
 ;;;;; Deft
 
