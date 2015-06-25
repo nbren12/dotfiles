@@ -6,3 +6,6 @@ checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
 
 [workspace/cin]
 checkout = git clone 'git@bitbucket.org:nbren12/cin.git' 'cin'
+
+[workspace/rayben]
+checkout = git clone 'ssh://kontiki3/kontiki_array1/noah/rayben_clean' 'rayben'

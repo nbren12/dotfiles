@@ -312,6 +312,19 @@
   (progn 
     (elpy-enable)
     (elpy-use-ipython)
+
+    (setq elpy-modules (delq 'elpy-module-company elpy-modules))
+    (elpy-enable)
+
+    (add-hook 'python-mode-hook
+	      (lambda ()
+		;; explicitly load company for the occasion when the deferred
+		;; loading with use-package hasn't kicked in yet
+		(company-mode)
+		(add-to-list 'company-backends
+			     (company-mode/backend-with-yas 'elpy-company-backend))))
+
+    
     ))
 
 ;; (use-package company-anaconda
@@ -338,34 +351,7 @@
     (add-hook 'python-mode-hook 'python-cell-mode)
     (hbin-remove-mm-lighter 'python-cell-mode)))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(company-begin-commands
-   (quote
-    (outshine-self-insert-command self-insert-command org-self-insert-command orgtbl-self-insert-command c-scope-operator c-electric-colon c-electric-lt-gt c-electric-slash)))
- '(company-idle-delay 0.2)
- '(custom-enabled-themes (quote (leuven)))
- '(custom-safe-themes
-   (quote
-    ("9efaa1292e9180cb33a277f24f29b296bd0fe5b4546ea05368e6e393abb90881" default)))
- '(ebib-preload-bib-files (quote ("~/Dropbox/Papers/references.bib")))
- '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
- '(elpy-rpc-backend "jedi")
- '(inhibit-startup-screen t)
- '(org-agenda-files (quote ("~/Dropbox/notes/2015 Summer Projects.org"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
 
 ;;;;; C/C++
     
@@ -564,10 +550,7 @@
 
 ;; Ipython integration with org
 (use-package ob-ipython
-  :init
-  (install-from-git "https://github.com/gregsexton/ob-ipython"
-		    "ob-ipython"
-		    '(dash-functional dash s f))
+  :ensure t
   :config
   (progn
     (define-key python-mode-map (kbd "M-?") 'ob-ipython-inspect))
@@ -746,3 +729,27 @@
 
 
 
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(custom-enabled-themes (quote (leuven)))
+ '(custom-safe-themes
+   (quote
+    ("9efaa1292e9180cb33a277f24f29b296bd0fe5b4546ea05368e6e393abb90881" default)))
+ '(ebib-preload-bib-files (quote ("~/Dropbox/Papers/references.bib")))
+ '(elpy-modules
+   (quote
+    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
+ '(inhibit-startup-screen t)
+ '(org-agenda-files (quote ("~/Dropbox/notes/2015 Summer Projects.org"))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
