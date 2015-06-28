@@ -312,20 +312,13 @@
   (progn 
     (elpy-enable)
     (elpy-use-ipython)
+    (setq elpy-rpc-backend "jedi")
+    (evil-leader/set-key-for-mode 'python-mode "md" 'elpy-goto-definition)
 
-    (setq elpy-modules (delq 'elpy-module-company elpy-modules))
-    (elpy-enable)
-
-    (add-hook 'python-mode-hook
-	      (lambda ()
-		;; explicitly load company for the occasion when the deferred
-		;; loading with use-package hasn't kicked in yet
-		(company-mode)
-		(add-to-list 'company-backends
-			     (company-mode/backend-with-yas 'elpy-company-backend))))
-
-    
     ))
+
+;; (use-package anaconda-mode
+;;   :ensure t)
 
 ;; (use-package company-anaconda
 ;;   :ensure t
