@@ -300,7 +300,12 @@
   :config
   (progn
     (add-hook 'python-mode-hook 'anaconda-mode)
-    (add-hook 'python-mode-hook 'eldoc-mode)))
+    (add-hook 'python-mode-hook 'eldoc-mode)
+
+
+    (define-key anaconda-mode-map (kbd "M-.") 'anaconda-mode-goto)
+    (evil-leader/set-key-for-mode 'python-mode "md" 'anaconda-mode-goto)
+    ))
 
 (use-package company-anaconda
   :ensure t
@@ -543,11 +548,7 @@
 
 ;; Ipython integration with org
 (use-package ob-ipython
-  :ensure t
-  :config
-  (progn
-    (define-key python-mode-map (kbd "M-?") 'ob-ipython-inspect))
-  )
+  :ensure t)
 
 (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
 
