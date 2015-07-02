@@ -295,6 +295,8 @@
 
 ;;;;; Python
 
+(use-package snakemake-mode :ensure t)
+
 (use-package anaconda-mode
   :ensure t
   :config
@@ -302,9 +304,9 @@
     (add-hook 'python-mode-hook 'anaconda-mode)
     (add-hook 'python-mode-hook 'eldoc-mode)
 
-
-    (define-key anaconda-mode-map (kbd "M-.") 'anaconda-mode-goto)
-    (evil-leader/set-key-for-mode 'python-mode "md" 'anaconda-mode-goto)
+    (evil-leader/set-key-for-mode 'python-mode
+      "md" 'anaconda-mode-goto
+      "mh" 'anaconda-mode-view-doc)
     ))
 
 (use-package company-anaconda
@@ -322,14 +324,6 @@
 ;;     (setq elpy-rpc-backend "jedi")
 ;;     (evil-leader/set-key-for-mode 'python-mode "md" 'elpy-goto-definition)))
 
-;; (use-package company-jedi
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (defun my/python-mode-hook ()
-;;       (add-to-list 'company-backends 'company-jedi))
-
-;;     (add-hook 'python-mode-hook 'my/python-mode-hook)))
 
 ;; Insert breakpoint with leader binding
 (defun python-break-point ()
@@ -608,6 +602,11 @@
     (evil-leader/set-key "jk" 'evil-ace-jump-word-mode)
     ))
 
+;;;; Themes
+
+(use-package leuven :ensure t)
+(use-package solarized-theme :ensure t)
+
 ;;;; Reference Software 
 ;;;;; Helm-bibtex
 
@@ -724,7 +723,7 @@
  '(custom-enabled-themes (quote (leuven)))
  '(custom-safe-themes
    (quote
-    ("9efaa1292e9180cb33a277f24f29b296bd0fe5b4546ea05368e6e393abb90881" default)))
+    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "9efaa1292e9180cb33a277f24f29b296bd0fe5b4546ea05368e6e393abb90881" default)))
  '(ebib-preload-bib-files (quote ("~/Dropbox/Papers/references.bib")))
  '(elpy-modules
    (quote
