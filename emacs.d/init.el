@@ -295,17 +295,36 @@
 
 ;;;;; Python
 
-(use-package elpy
+(use-package anaconda-mode
   :ensure t
-  :defer t
   :config
-  (progn 
-    (elpy-enable)
-    (elpy-use-ipython)
-    (setq elpy-rpc-backend "jedi")
-    (evil-leader/set-key-for-mode 'python-mode "md" 'elpy-goto-definition)))
+  (progn
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    (add-hook 'python-mode-hook 'eldoc-mode)))
 
+(use-package company-anaconda
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'company-backends 'company-anaconda)))
+;; (use-package elpy
+;;   :ensure t
+;;   :defer t
+;;   :config
+;;   (progn 
+;;     (elpy-enable)
+;;     (elpy-use-ipython)
+;;     (setq elpy-rpc-backend "jedi")
+;;     (evil-leader/set-key-for-mode 'python-mode "md" 'elpy-goto-definition)))
 
+;; (use-package company-jedi
+;;   :ensure t
+;;   :config
+;;   (progn
+;;     (defun my/python-mode-hook ()
+;;       (add-to-list 'company-backends 'company-jedi))
+
+;;     (add-hook 'python-mode-hook 'my/python-mode-hook)))
 
 ;; Insert breakpoint with leader binding
 (defun python-break-point ()

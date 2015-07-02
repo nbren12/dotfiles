@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: Markdown header - pandoc version
+# contributor: Phillip DIXON <phil@dixon.gen.nz>
+# key: pkg
+# --
+
+(use-package $1
+   :ensure t
+   :config
+   (progn
+     $2))
+$0
