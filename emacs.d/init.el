@@ -105,14 +105,6 @@
 
     (define-key evil-normal-state-map (kbd "") 'evil-toggle-fold)
 
-
-    ;; org-goto emacs mode from
-    ;; http://emacs.stackexchange.com/questions/883/using-evil-mode-with-a-function-that-does-not-work-well-with-evil-mode
-    (defadvice org-goto (around make-it-evil activate)
-      (let ((orig-state evil-state)
-            (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
-        ad-do-it
-        (evil-change-state orig-state)))
     ;; Make movement keys work like they should
     (define-key evil-normal-state-map (kbd "<remap> <evil-next-line>") 'evil-next-visual-line)
     (define-key evil-normal-state-map (kbd "<remap> <evil-previous-line>") 'evil-previous-visual-line)
@@ -162,18 +154,19 @@
 ;;;; Autocompletion
 
 ;;;;; yasnippet
+    
+;; This junk is necesary to prevent autoloading on startup. See
+;; [[http://emacs.stackexchange.com/questions/3439/stop-yasnippet-from-autoloading][stackoverflow.com]].
 (use-package yasnippet
-  :ensure t
+  :diminish yas-minor-mode
+  :commands (yas-global-mode yas-minor-mode) :defer t
   :config
   (progn 
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
 
     ;; Personal snippets
     (add-to-list 'yas-snippet-dirs "~/.emacs.d/mysnippets")
-
-    (yas-global-mode 1)
-    (add-hook 'term-mode-hook (lambda()
-                                (yas-minor-mode -1)))
+    (yas-global-mode)
     ))
 
 ;;;;; company mode
@@ -282,11 +275,7 @@
 
 ;;;;; Recentf
 (use-package recentf
-  :ensure t
-  :config
-  (progn
-    (recentf-mode 1)
-    (global-set-key "\C-x\ \C-r" 'recentf-open-files)))
+  :ensure t)
 
 ;;;; Modes
 ;;;;; Magit (git)
@@ -308,25 +297,14 @@
 
 (use-package elpy
   :ensure t
+  :defer t
   :config
   (progn 
     (elpy-enable)
     (elpy-use-ipython)
     (setq elpy-rpc-backend "jedi")
-    (evil-leader/set-key-for-mode 'python-mode "md" 'elpy-goto-definition)
+    (evil-leader/set-key-for-mode 'python-mode "md" 'elpy-goto-definition)))
 
-    ))
-
-;; (use-package anaconda-mode
-;;   :ensure t)
-
-;; (use-package company-anaconda
-;;   :ensure t
-;;   :config
-;;   (progn
-;;     (add-to-list 'company-backends 'company-anaconda)
-;;     (add-hook 'python-mode-hook 'eldoc-mode)
-;;     (add-hook 'python-mode-hook 'anaconda-mode)))
 
 
 ;; Insert breakpoint with leader binding
@@ -375,6 +353,7 @@
 
 (use-package  irony
   :ensure t
+  :defer t
   :config
   (progn
     (add-hook 'c++-mode-hook 'irony-mode)
@@ -393,6 +372,7 @@
     ))
 
 (use-package company-irony
+  :defer t
   :ensure t
   :config
   (progn
@@ -414,8 +394,6 @@
 ;; $ cat ~/.latexmkrc
 ;; $pdflatex='pdflatex -line-error  -synctex=1'
 
-(use-package company-auctex
-  :ensure t)
 
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LaTeX-mode-hook 'turn-on-cdlatex)
@@ -499,13 +477,16 @@
 
 (use-package outshine
   :ensure t
+  :defer t
+  :commands (outshine-hook-function)
+  :preface
+  (progn
+    (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
+    (add-hook 'outline-minor-mode-hook 'outshine-hook-function))
   :init 
   :config
   (progn 
     (require 'outshine)
-    (add-hook 'outline-minor-mode-hook 'outshine-hook-function)
-    (add-hook 'emacs-lisp-mode-hook 'outline-minor-mode)
-
     ; Fix company completion in outshine buffers
     (add-to-list 'company-begin-commands 'outshine-self-insert-command)
 
@@ -608,15 +589,6 @@
     ))
 
 ;;;; Reference Software 
-;;;;; ebib
-
-(use-package ebib
-  :ensure t
-  :config
-  (progn
-    (add-to-list 'evil-emacs-state-modes 'ebib-index-mode)
-    (evil-leader/set-key "bb" 'ebib)))
-
 ;;;;; Helm-bibtex
 
 (use-package helm-bibtex :ensure t
@@ -672,7 +644,6 @@
 
 
   (hbin-remove-mm-lighter 'undo-tree-mode)
-  (hbin-remove-mm-lighter 'yas-minor-mode)
   )
 
 (add-to-list 'config-list 'config/general)
