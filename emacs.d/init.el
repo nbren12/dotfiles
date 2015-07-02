@@ -13,6 +13,7 @@
 ;; | b      | buffers             |
 ;; | f      | file searching      |
 ;; | o      | other               |
+;; |--------+---------------------|
 
 ;;; Code:
 ;;;; Initial Stuff
