@@ -77,7 +77,14 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 
 NeoBundle 'Shougo/unite.vim'
-
+map <Leader>uf :Unite -toggle -start-insert file_rec<CR>
+map <Leader>ug :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite quickfix -no-quit -auto-preview<CR>
+map <Leader>u* :exe 'silent Ggrep -i '.expand("<cword>")<Bar>Unite quickfix -no-quit<CR>
+map <Leader>ub :Unite -toggle -start-insert buffer<CR>
+map <Leader>uq :Unite -toggle quickfix<CR>
+map <Leader>ux :Unite command<CR>
+map <Leader>ut :Unite -toggle -start-insert tab<CR>
+map <Leader>up :Unite -toggle -start-insert process<CR>
 
 endif
 
