@@ -168,6 +168,8 @@ layers configuration."
     (setq magit-last-seen-setup-instructions "1.4.0")
     :config
     (progn
+      (add-to-list 'evil-emacs-state-modes 'magit-mode)
+      (add-to-list 'evil-emacs-state-modes 'magit-popup-mode)
       (evil-leader/set-key "gs" 'magit-status)))
 )
 
