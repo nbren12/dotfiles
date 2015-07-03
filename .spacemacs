@@ -26,15 +26,16 @@
      ;; markdown
      org
      ;; shell
-     ;; syntax-checking
+     syntax-checking
      python
      c-c++
+     deft ;; notational velocity clone
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(deft snakemake-mode magit)
+   dotspacemacs-additional-packages '(snakemake-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -157,22 +158,12 @@ layers configuration."
   (use-package deft
     :config
     (progn
-      (evil-leader/set-key "od" 'deft)
       (setq deft-extension "org")
       (setq deft-text-mode 'org-mode)
       (setq deft-directory "~/Dropbox/notes")
       (setq deft-use-filename-as-title t)
-      (add-hook 'deft-mode-hook 'evil-emacs-state)))
+      ))
 
-  (use-package magit
-    :ensure t
-    :init
-    (setq magit-last-seen-setup-instructions "1.4.0")
-    :config
-    (progn
-      (add-to-list 'evil-emacs-state-modes 'magit-mode)
-      (add-to-list 'evil-emacs-state-modes 'magit-popup-mode)
-      (evil-leader/set-key "gs" 'magit-status)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
