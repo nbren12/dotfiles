@@ -30,6 +30,7 @@
      python
      c-c++
      deft ;; notational velocity clone
+     neotree
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
