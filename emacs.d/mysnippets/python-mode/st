@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: set_trace
+# key: st
+# binding: direct-keybinding
+# --
+import pdb; pdb.set_trace()
