@@ -89,7 +89,6 @@
   :config
   (progn
 
-    (global-evil-leader-mode)
     (evil-mode '1)
 					;    (global-evil-surround-mode 1)      
     (add-hook 'prog-mode-hook 'hs-minor-mode)
@@ -121,6 +120,7 @@
   :config
   (progn
     (evil-leader/set-leader "<SPC>")
+    (global-evil-leader-mode)
     (evil-leader/set-key 
       "hb" 'helm-bookmarks
       "ro" 'helm-occur
@@ -292,7 +292,7 @@
   (add-to-list 'load-path "~/.emacs.d/matlab-emacs")
   (require 'matlab-load))
 
-(when (string-match "cims.nyu.edu$" system-name) (config-cims))
+;; (when (string-match "cims.nyu.edu$" system-name) (config-cims))
 
 ;;;;; Python
 
@@ -605,7 +605,6 @@
 
 ;;;; Themes
 
-(use-package leuven :ensure t)
 (use-package solarized-theme :ensure t)
 
 ;;;; Reference Software 
@@ -616,45 +615,6 @@
   (progn
     (setq helm-bibtex-bibliography '("~/Dropbox/Papers/references.bib"))))
 
-
-;;;;; Org-ref :off:
-(use-package org-ref
-  :init
-  (progn
-    ;; Download org-ref into .emacs.d
-    (let ((path "~/.emacs.d/org-ref"))
-      (unless (file-exists-p path)
-	(shell-command (concat "git clone https://github.com/jkitchin/org-ref " path)))
-      (add-to-list 'load-path path))
-
-    ;; Install org-ref dependencies
-    (dolist (prog '(helm-bibtex ebib hydra key-chord))
-      (unless (package-installed-p prog)
-	(package-install prog)))
-
-    (setq reftex-default-bibliography '("~/Dropbox/Papers/references.bib"))
-
-    ;; see org-ref for use of these variables
-    (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-	  org-ref-default-bibliography '("~/Dropbox/Papers/references.bib")
-	  org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
-
-    ;; Some key bindings
-    (global-set-key [f10] 'org-ref-open-bibtex-notes)
-    (global-set-key [f11] 'org-ref-open-bibtex-pdf)
-    (global-set-key [f12] 'org-ref-open-in-browser))
-  :config
-  (progn 
-    ;; make sure you have dash, helm, helm-bibtex, ebib, s, f, hydra and key-chord
-    ;; in your load-path
-    (require 'org-ref)
-
-    ;; optional but very useful libraries in org-ref
-    (require 'doi-utils)
-    (require 'jmax-bibtex)
-    (require 'pubmed)
-    (require 'arxiv)
-    (require 'sci-id)))
 
 ;;;; General
 
@@ -708,29 +668,15 @@
 ;;;; Execute all "config" function
 (mapcar 'funcall  config-list)
 (setq settings-loaded t)
-
-;;; Customize
-
-
-
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (leuven)))
+ '(custom-enabled-themes (quote (solarized-dark)))
  '(custom-safe-themes
    (quote
-    ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "9efaa1292e9180cb33a277f24f29b296bd0fe5b4546ea05368e6e393abb90881" default)))
- '(ebib-preload-bib-files (quote ("~/Dropbox/Papers/references.bib")))
- '(elpy-modules
-   (quote
-    (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-yasnippet elpy-module-sane-defaults)))
- '(inhibit-startup-screen t)
- '(org-agenda-files (quote ("~/Dropbox/notes/2015 Summer Projects.org"))))
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

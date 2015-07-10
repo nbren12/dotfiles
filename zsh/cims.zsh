@@ -40,8 +40,15 @@ umask 2
 
 #PYTHONPATH
 export PATH=/scratch/noah/anaconda3/bin:$PATH
-export PYTHONPATH=$HOME/Dropbox/gnl:$HOME/workspace/skeleton/python:$PYTHONPATH
+export PYTHONPATH=$HOME/gnl:$HOME/workspace/skeleton/python:$PYTHONPATH
 export PYTHONPATH=$HOME/workspace/skelfilter:$PYTHONPATH
 
 # Git annex
 export PATH=$HOME/.git-annex:$PATH
+
+# Emacs
+module load emacs-24.4
+
+# LYx
+
+module load  lyx-2.1.3
