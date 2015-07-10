@@ -40,3 +40,14 @@ LocalForward 127.0.0.1:10001 127.0.0.1:10001
 Host pooper
 Hostname pooper.local
 User admin
+
+Host hpcADtunnel
+HostName hpc.abudhabi.nyu.edu
+Port 4410
+User ndb245
+
+Host butinah
+HostName butinah.abudhabi.nyu.edu 
+ForwardX11 yes
+ProxyCommand ssh -A hpcADtunnel nc %h %p
+User ndb245
