@@ -29,6 +29,7 @@
      syntax-checking
      python
      c-c++
+     clojure
      deft ;; notational velocity clone
      neotree
      )
