@@ -73,18 +73,9 @@ __git_files () {
 export DOTFILES="$HOME/.dotfiles"
 export PYTHONPATH=${DOTFILES}/python:$PYTHONPATH
 
-#   Ipython completion
-source $DOTFILES/ipython-completion.bash
-
 #######USER ALIASES########################
 
-alias prox='ssh -YD 9999 ndb245@access.cims.nyu.edu'
-alias webd="cd ~/Sites/"
 alias ssh='ssh -Y'
-alias mnt_helix='sshfs -o transform_symlinks,follow_symlinks helix: /Users/noah/shares/helix'
-alias aria='aria2c -d $HOME/Desktop -j 4 -x 4 --load-cookies=$HOME/.cookies -Z'
-alias fserve='aria2c -d $HOME/Downloads/Warez -j 4 -x 4 --load-cookies=$HOME/.cookies -Z'
-alias ipy='ipython qtconsole --pylab=inline'
 
 alias screen='screen -R'
 alias p='pushd'
@@ -94,29 +85,19 @@ alias d='dirs -v'
 alias lmk='latexmk -pdf -pvc'
 alias pyhttp='python -m SimpleHTTPServer'
 alias ml='matlab -nodesktop -nosplash'
-alias ijulia='ipython --profile=julia'
-alias ijulianb='ipython notebook --profile=julia'
 
 alias vi="vim -u NONE"
-if [[ $(uname) == "Darwin" ]] 
-then
-
-else
-    alias g='gvim --servername VIM1 --remote-silent'
-    alias mlab='matlab -nodisplay'
-    alias vim='vim -X'
-fi
+alias g='gvim --servername VIM1 --remote-silent'
+alias vim='vim -X'
 
 alias ed='emacs --daemon'
 alias ec='emacsclient -c'
-alias ecw='emacsclient -c'
 
 
 
 ###########################################################################
 #                         Environmental Variables                         #
 ###########################################################################
-
 
 export DOTFILES=$HOME/.dotfiles
 export PATH=$DOTFILES/bin:$PATH
