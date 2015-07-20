@@ -148,8 +148,7 @@ before layers configuration."
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now.
-   dotspacemacs-default-package-repository nil
-   )
+   dotspacemacs-default-package-repository nil)
   ;; User initialization goes here
   )
 
@@ -170,7 +169,33 @@ layers configuration."
   ;; Follow symlinks automatically
   (setq vc-follow-symlinks )
 
-)
+  ;; Paredit bindings
+  (sp-use-smartparens-bindings)
+  (define-key evil-normal-state-map (kbd "-") 'sp-backward-sexp)
+  (define-key evil-normal-state-map (kbd "=") 'sp-next-sexp)
+  (define-key evil-normal-state-map (kbd "_") 'sp-backward-up-sexp)
+  (define-key evil-normal-state-map (kbd "+") 'sp-down-sexp))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
+ '(ahs-idle-timer 0 t)
+ '(ahs-inhibit-face-list nil)
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(company-idle-delay 0.5)
+ '(ring-bell-function (quote ignore) t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

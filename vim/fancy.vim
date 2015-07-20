@@ -48,6 +48,8 @@ NeoBundle 'majutsushi/tagbar'
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'guns/vim-sexp'
+
 
 
 
