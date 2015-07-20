@@ -44,7 +44,7 @@ export PYTHONPATH=$HOME/gnl:$HOME/workspace/skeleton/python:$PYTHONPATH
 export PYTHONPATH=$HOME/workspace/skelfilter:$PYTHONPATH
 
 # Git annex
-export PATH=$HOME/.git-annex:$PATH
+export PATH=$HOME/usr/git-annex.linux:$PATH
 
 # Emacs
 module load emacs-24.4
