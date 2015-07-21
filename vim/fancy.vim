@@ -37,7 +37,17 @@ Plug 'justinmk/vim-sneak' " quick movement
 Plug 'surround.vim'       " Parenthesis
 Plug 'guns/vim-sexp'      " Lisp
 
+"" Tmux
+" Navigate between panes (very useful)
 Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
+
+" Send text to external REPL
+Plug 'benmills/vimux'
+ function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+ endfunction
+
 
 """ Nonessential
 Plug 'bfredl/nvim-ipy'
@@ -60,6 +70,11 @@ ru vanilla.vim
 
 " Ctrlp Settings
 nmap <leader>fr :CtrlPMRUFiles<CR>
+
+" Bidnings
+
+ map <Leader>vp :VimuxPromptCommand<CR>
+ map <Leader>vs "vy :call VimuxSlime()<CR>
 
 " Themeing
 colo monokai
