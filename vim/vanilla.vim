@@ -52,8 +52,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-l> <C-w>l
 nnoremap <C-n> <C-w>n
 nnoremap <C-x> <C-w>x
-nnoremap <Leader>wh <C-w>H
-nnoremap <Leader>wj <C-w>J
 
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 

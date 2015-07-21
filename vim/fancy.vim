@@ -37,8 +37,31 @@ Plug 'justinmk/vim-sneak' " quick movement
 Plug 'surround.vim'       " Parenthesis
 Plug 'guns/vim-sexp'      " Lisp
 
-"" Tmux
-" Navigate between panes (very useful)
+""" Nonessential
+
+""" Testing
+Plug 'tpope/vim-fireplace'
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
+
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+
+
+" Themes
+Plug 'sickill/vim-monokai'
+
+"
+" VIM/NVIM specific plugins
+"
+if !has('nvim')
 Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
 
 " Send text to external REPL
@@ -48,15 +71,9 @@ Plug 'benmills/vimux'
   call VimuxSendKeys("Enter")
  endfunction
 
-
-""" Nonessential
+else
 Plug 'bfredl/nvim-ipy'
-
-""" Testing
-Plug 'tpope/vim-fireplace'
-
-" Themes
-Plug 'sickill/vim-monokai'
+endif
 
 " Required:
 call plug#end()
@@ -79,4 +96,16 @@ nmap <leader>fr :CtrlPMRUFiles<CR>
 " Themeing
 colo monokai
 
+"
+" VIM/NVIM Settings
+"
 
+if !has('nvim')
+
+
+else
+endif
+
+" YCM Settings
+" let g:ycm_semantic_triggers = {} 
+" let g:ycm_semantic_triggers.clojure = ['re!.']
