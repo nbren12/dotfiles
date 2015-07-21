@@ -55,9 +55,6 @@ endfunction
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 
-" Themes
-Plug 'sickill/vim-monokai'
-
 "
 " VIM/NVIM specific plugins
 "
@@ -92,9 +89,6 @@ nmap <leader>fr :CtrlPMRUFiles<CR>
 
  map <Leader>vp :VimuxPromptCommand<CR>
  map <Leader>vs "vy :call VimuxSlime()<CR>
-
-" Themeing
-colo monokai
 
 "
 " VIM/NVIM Settings
