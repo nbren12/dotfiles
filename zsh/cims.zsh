@@ -36,6 +36,9 @@ export PATH=$HOME/usr/git-annex.linux:$PATH
 module load emacs-24.4
 
 # LYx
-
 module load  lyx-2.1.3
+
+# VIM
+module load vim-7.4
+
 umask 2

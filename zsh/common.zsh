@@ -93,7 +93,7 @@ alias vim='vim -X'
 alias ed='emacs --daemon'
 alias ec='emacsclient -c'
 
-
+alias tmux='tmux -2' # For 256 colors
 
 ###########################################################################
 #                         Environmental Variables                         #
