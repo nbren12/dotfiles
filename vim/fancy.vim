@@ -23,21 +23,30 @@
 " ------------
 "
 "  Back in vim land after using emacs for a while.  I am using neovim and Plug
-"  for managing the plugins
+"  for managing the plugins. Again, YouCompleteMe has proved to be a giant pain
+"  in the ass to install.
 call plug#begin('~/.nvim/plugged')
 
-Plug 'kien/ctrlp.vim'
-Plug 'surround.vim'
-Plug 'tComment'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-repeat'
-Plug 'majutsushi/tagbar'
-Plug 'godlygeek/tabular'
-Plug 'justinmk/vim-sneak'
-Plug 'terryma/vim-expand-region'
-Plug 'guns/vim-sexp'
+""" Essential Plugins
+Plug 'kien/ctrlp.vim'     " file finding
+Plug 'tComment'           " Commenting
+Plug 'tpope/vim-fugitive' " Git
+Plug 'tpope/vim-repeat'   " Repeat everything with  .
+Plug 'godlygeek/tabular'  " Like regex-align
+Plug 'justinmk/vim-sneak' " quick movement
+Plug 'surround.vim'       " Parenthesis
+Plug 'guns/vim-sexp'      " Lisp
+
+Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
+
+""" Nonessential
 Plug 'bfredl/nvim-ipy'
 
+""" Testing
+Plug 'tpope/vim-fireplace'
+
+" Themes
+Plug 'sickill/vim-monokai'
 
 " Required:
 call plug#end()
@@ -51,5 +60,8 @@ ru vanilla.vim
 
 " Ctrlp Settings
 nmap <leader>fr :CtrlPMRUFiles<CR>
+
+" Themeing
+colo monokai
 
 
