@@ -35,7 +35,7 @@ let maplocalleader = "-"
 
 "{{{ Basic Key maps
 
-imap jj <Esc>
+imap jk <Esc>
 
 
 "Insert mode movement
