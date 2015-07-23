@@ -40,5 +40,6 @@ module load  lyx-2.1.3
 
 # VIM
 module load vim-7.4
+alias vim=/usr/local/pkg/vim/7.4/bin/vim
 
 umask 2

@@ -36,6 +36,7 @@ Plug 'godlygeek/tabular'  " Like regex-align
 Plug 'justinmk/vim-sneak' " quick movement
 Plug 'surround.vim'       " Parenthesis
 Plug 'guns/vim-sexp'      " Lisp
+Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 
 """ Nonessential
 

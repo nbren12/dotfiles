@@ -88,8 +88,6 @@ alias ml='matlab -nodesktop -nosplash'
 
 alias vi="vim -u NONE"
 alias g='gvim --servername VIM1 --remote-silent'
-alias vim='vim -X'
-
 alias ed='emacs --daemon'
 alias ec='emacsclient -c'
 
