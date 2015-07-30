@@ -25,6 +25,10 @@
 "  Back in vim land after using emacs for a while.  I am using neovim and Plug
 "  for managing the plugins. Again, YouCompleteMe has proved to be a giant pain
 "  in the ass to install.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                   BEGIN PLUG SECTION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.nvim/plugged')
 
 """ Essential Plugins
@@ -38,10 +42,28 @@ Plug 'surround.vim'       " Parenthesis
 Plug 'guns/vim-sexp'      " Lisp
 Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 
-""" Nonessential
+""" TMUX
+Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
+
+" Send text to external REPL
+Plug 'benmills/vimux'
+ function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+ endfunction
+
+""" Language specific plugins 
+" Julia
+Plug 'JuliaLang/julia-vim'
+
+" Python
+let g:jedi#force_py_version = 3
+Plug 'davidhalter/jedi-vim'
+
+" Clojure 
+Plug 'tpope/vim-fireplace'
 
 """ Testing
-Plug 'tpope/vim-fireplace'
 
 function! BuildYCM(info)
   " info is a dictionary with 3 fields
@@ -53,28 +75,22 @@ function! BuildYCM(info)
   endif
 endfunction
 
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 
 
 "
 " VIM/NVIM specific plugins
 "
-if !has('nvim')
-Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
-
-" Send text to external REPL
-Plug 'benmills/vimux'
- function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
- endfunction
-
-else
+if has('nvim')
 Plug 'bfredl/nvim-ipy'
+Plug 'benekastah/neomake'
 endif
 
 " Required:
 call plug#end()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                   END OF PLUG SECTION
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Required:
 filetype plugin indent on
@@ -95,12 +111,11 @@ nmap <leader>fr :CtrlPMRUFiles<CR>
 " VIM/NVIM Settings
 "
 
-if !has('nvim')
+if has('nvim')
+" vim-ipy 
+autocmd FileType python nmap <F5> ggVG<Plug>(IPy-Run)<C-o><C-o>
 
 
 else
 endif
 
-" YCM Settings
-" let g:ycm_semantic_triggers = {} 
-" let g:ycm_semantic_triggers.clojure = ['re!.']

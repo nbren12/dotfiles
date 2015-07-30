@@ -1,0 +1,45 @@
+"*":
+  "exception-reporting":
+    userId: "4545abde-a072-4c44-895c-42838c14bae4"
+  welcome:
+    showOnStartup: false
+  "autocomplete-python":
+    pythonPath: "/Users/noah/anaconda3/bin"
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+    wrapLeftRightMotion: true
+  core:
+    disabledPackages: [
+      "symbols-view"
+      "academic"
+      "academic"
+      "academic"
+      "atom-ctags"
+    ]
+    themes: [
+      "unity-ui"
+      "pen-paper-coffee-syntax"
+    ]
+  editor:
+    invisibles: {}
+    fontSize: 10
+    softWrap: true
+    softWrapAtPreferredLineLength: true
+  latex: {}
+  "one-dark-ui": {}
+  pandoc:
+    args: "pandoc --filter pandoc-citeproc -s --bibliography=/Users/noah/Dropbox/My\\ Library.bib"
+    cmd: "/usr/local/bin/pandoc"
+  "git-plus": {}
+  "spell-check":
+    grammars: [
+      "text.tex.latex"
+      "source.gfm"
+      "text.plain"
+      "text.git-commit"
+    ]
+  "atom-ctags": {}
+  "autocomplete-bibtex":
+    bibtex: "/Users/noah/Dropbox/My Library.bib"
+  "markdown-preview": {}

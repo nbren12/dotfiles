@@ -31,7 +31,7 @@ ProxyCommand ssh -A cims nc %h %p
 LocalForward 127.0.0.1:10001 127.0.0.1:10001
 
 Host desk
-Hostname box637
+Hostname box636
 port 22
 user noah
 ProxyCommand ssh -A cims nc %h %p
