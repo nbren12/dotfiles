@@ -23,7 +23,7 @@
     ]
   editor:
     invisibles: {}
-    fontSize: 10
+    fontSize: 11
     softWrap: true
     softWrapAtPreferredLineLength: true
   latex: {}
