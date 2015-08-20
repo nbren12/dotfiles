@@ -51,3 +51,8 @@ HostName butinah.abudhabi.nyu.edu
 ForwardX11 yes
 ProxyCommand ssh -A hpcADtunnel nc %h %p
 User ndb245
+
+host vm
+hostname 127.0.0.1
+port 3022
+user noah

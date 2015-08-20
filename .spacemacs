@@ -32,6 +32,8 @@
      clojure
      deft ;; notational velocity clone
      neotree
+     latex
+     ess
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -70,9 +72,9 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
+   dotspacemacs-themes '(leuven
+                         monokai
                          zenburn
-                         leuven
                          solarized-light
                          solarized-dark)
    ;; If non nil the cursor color matches the state color.
@@ -170,11 +172,12 @@ layers configuration."
   (setq vc-follow-symlinks )
 
   ;; Paredit bindings
-  (sp-use-smartparens-bindings)
-  (define-key evil-normal-state-map (kbd "-") 'sp-backward-sexp)
-  (define-key evil-normal-state-map (kbd "=") 'sp-next-sexp)
-  (define-key evil-normal-state-map (kbd "_") 'sp-backward-up-sexp)
-  (define-key evil-normal-state-map (kbd "+") 'sp-down-sexp))
+  ;; (sp-use-smartparens-bindings)
+  ;; (define-key evil-normal-state-map (kbd "-") 'sp-backward-sexp)
+  ;; (define-key evil-normal-state-map (kbd "=") 'sp-next-sexp)
+  ;; (define-key evil-normal-state-map (kbd "_") 'sp-backward-up-sexp)
+  ;; (define-key evil-normal-state-map (kbd "+") 'sp-down-sexp))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.

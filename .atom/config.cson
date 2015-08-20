@@ -16,14 +16,15 @@
       "academic"
       "academic"
       "atom-ctags"
+      "minimap"
     ]
     themes: [
       "unity-ui"
-      "pen-paper-coffee-syntax"
+      "base16-tomorrow-dark-theme"
     ]
   editor:
     invisibles: {}
-    fontSize: 11
+    fontSize: 12
     softWrap: true
     softWrapAtPreferredLineLength: true
   latex: {}
@@ -40,6 +41,9 @@
       "text.git-commit"
     ]
   "atom-ctags": {}
-  "autocomplete-bibtex":
-    bibtex: "/Users/noah/Dropbox/My Library.bib"
+  "autocomplete-bibtex": {}
   "markdown-preview": {}
+  Hydrogen: {}
+  "python-jedi": {}
+  minimap:
+    displayCodeHighlights: false

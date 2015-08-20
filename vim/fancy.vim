@@ -32,15 +32,18 @@
 call plug#begin('~/.nvim/plugged')
 
 """ Essential Plugins
-Plug 'kien/ctrlp.vim'     " file finding
 Plug 'tComment'           " Commenting
 Plug 'tpope/vim-fugitive' " Git
 Plug 'tpope/vim-repeat'   " Repeat everything with  .
 Plug 'godlygeek/tabular'  " Like regex-align
 Plug 'justinmk/vim-sneak' " quick movement
 Plug 'surround.vim'       " Parenthesis
-Plug 'guns/vim-sexp'      " Lisp
-Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
+" Plug 'guns/vim-sexp'      " Lisp
+" Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
+
+" Fuzzy file finding
+" Plug 'kien/ctrlp.vim'     " file finding
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 """ TMUX
 Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator

@@ -3,3 +3,6 @@ checkout = git clone 'ssh://git@github.com/nbren12/dotfiles.git' '.dotfiles'
 
 [gnl]
 checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
+
+[workspace/rayben]
+checkout = git clone 'desk:~/scratch/rayben_clean' 'rayben'
