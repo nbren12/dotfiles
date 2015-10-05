@@ -41,7 +41,10 @@
       "text.git-commit"
     ]
   "atom-ctags": {}
-  "autocomplete-bibtex": {}
+  "autocomplete-bibtex":
+    bibtex: [
+      "/Users/noah/Dropbox/Papers/references.bib"
+    ]
   "markdown-preview": {}
   Hydrogen: {}
   "python-jedi": {}

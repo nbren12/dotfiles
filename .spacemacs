@@ -28,12 +28,9 @@
      ;; shell
      syntax-checking
      python
-     c-c++
      clojure
      deft ;; notational velocity clone
      neotree
-     latex
-     ess
      ;; For editing markdown files
      markdown
      pandoc
@@ -42,7 +39,7 @@
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(snakemake-mode yaml-mode)
+   dotspacemacs-additional-packages '(snakemake-mode yaml-mode ncl-mode)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -75,11 +72,12 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(leuven
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light
+                         leuven
                          monokai
                          zenburn
-                         solarized-light
-                         solarized-dark)
+                         )
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -197,6 +195,9 @@ layers configuration."
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
  '(company-idle-delay 0.5)
+ '(custom-safe-themes
+   (quote
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
