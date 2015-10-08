@@ -25,15 +25,17 @@
      ;;      git-gutter-use-fringe t)
      ;; markdown
      org
+     html
      ;; shell
      syntax-checking
      python
      clojure
      deft ;; notational velocity clone
-     neotree
+     ;; neotree
      ;; For editing markdown files
      markdown
      pandoc
+     latex
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -198,6 +200,9 @@ layers configuration."
  '(custom-safe-themes
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(org-agenda-files
+   (quote
+    ("/scratch/noah/rayben_clean/doc/seminar2015/seminar.org")))
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

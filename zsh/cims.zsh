@@ -42,4 +42,12 @@ module load  lyx-2.1.3
 module load vim-7.4
 alias vim=/usr/local/pkg/vim/7.4/bin/vim
 
+# NCL
+module load ncl-6.2
+
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 umask 2
+
