@@ -180,6 +180,11 @@ layers configuration."
   ;; (define-key evil-normal-state-map (kbd "=") 'sp-next-sexp)
   ;; (define-key evil-normal-state-map (kbd "_") 'sp-backward-up-sexp)
   ;; (define-key evil-normal-state-map (kbd "+") 'sp-down-sexp))
+
+
+  ;; j and k go down visual lines
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
