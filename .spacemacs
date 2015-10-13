@@ -44,9 +44,8 @@
    dotspacemacs-additional-packages '(snakemake-mode
                                       yaml-mode
                                       ncl-mode
-                                      helm-bibtex
                                       cdlatex
-                                      ebib)
+                                      helm-bibtex)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -195,18 +194,21 @@ layers configuration."
   ;;; Authoring tools
 
   ;; Bibliography management
-  (use-package helm-bibtex
+  (add-to-list 'load-path "~/.emacs.d/org-ref")
+  (use-package org-ref
     :config
     (progn
-      (setq helm-bibtex-bibliography
-            '("~/Dropbox/Papers/My Library.bib"))
+      (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
 
-      ;; Make citation first
-      (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
-      (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
+      ;; see org-ref for use of these variables
+      (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
+            org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
+            org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
 
-      ;; Key binding
-      (define-key global-map (kbd "C-c )") 'helm-bibtex)))
+      ;; need to setup helm-bibtex as well
+      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")
+
+      ))
 
   ;; latex shortcuts
   (use-package cdlatex)
@@ -214,7 +216,6 @@ layers configuration."
   (use-package org-mode
     :config
     (progn
-      (org-add-link-type "ebib" 'ebib)
       (add-hook 'org-mode-hook 'turn-on-org-cdlatex))))
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -236,7 +237,9 @@ layers configuration."
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
- '(org-agenda-files (quote ("~/Dropbox/notes/Meetings.org")))
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/notes/Ideas.org" "~/Dropbox/notes/Meetings.org")))
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
