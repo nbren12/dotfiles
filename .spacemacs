@@ -41,7 +41,12 @@
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(snakemake-mode yaml-mode ncl-mode)
+   dotspacemacs-additional-packages '(snakemake-mode
+                                      yaml-mode
+                                      ncl-mode
+                                      helm-bibtex
+                                      cdlatex
+                                      ebib)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -157,7 +162,7 @@ before layers configuration."
   ;; User initialization goes here
   )
 
-(defun dotspacemacs/config ()
+(defun dotspacemacs/user-config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
@@ -185,7 +190,32 @@ layers configuration."
   ;; j and k go down visual lines
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-  )
+
+
+  ;;; Authoring tools
+
+  ;; Bibliography management
+  (use-package helm-bibtex
+    :config
+    (progn
+      (setq helm-bibtex-bibliography
+            '("~/Dropbox/Papers/My Library.bib"))
+
+      ;; Make citation first
+      (helm-delete-action-from-source "Insert citation" helm-source-bibtex)
+      (helm-add-action-to-source "Insert citation" 'helm-bibtex-insert-citation helm-source-bibtex 0)
+
+      ;; Key binding
+      (define-key global-map (kbd "C-c )") 'helm-bibtex)))
+
+  ;; latex shortcuts
+  (use-package cdlatex)
+
+  (use-package org-mode
+    :config
+    (progn
+      (org-add-link-type "ebib" 'ebib)
+      (add-hook 'org-mode-hook 'turn-on-org-cdlatex))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -205,9 +235,8 @@ layers configuration."
  '(custom-safe-themes
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
- '(org-agenda-files
-   (quote
-    ("/scratch/noah/rayben_clean/doc/seminar2015/seminar.org")))
+ '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
+ '(org-agenda-files (quote ("~/Dropbox/notes/Meetings.org")))
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
