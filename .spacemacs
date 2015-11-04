@@ -42,10 +42,12 @@
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(snakemake-mode
+                                      org-plus-contrib
                                       yaml-mode
                                       ncl-mode
                                       cdlatex
-                                      helm-bibtex)
+                                      helm-bibtex
+                                      ebib)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -58,7 +60,7 @@
 This function is called at the very startup of Spacemacs initialization
 before layers configuration."
   ;; This setq-default sexp is an exhaustive list of all the supported
-  ;; spacemacs settings.
+
   (setq-default
    ;; Either `vim' or `emacs'. Evil is always enabled but if the variable
    ;; is `emacs' then the `holy-mode' is enabled at startup.
@@ -210,13 +212,29 @@ layers configuration."
 
       ))
 
+  (use-package ebib
+    :config
+    ((org-add-link-type "ebib" 'ebib)))
+
   ;; latex shortcuts
   (use-package cdlatex)
 
+  ;;; org mode
   (use-package org-mode
     :config
     (progn
-      (add-hook 'org-mode-hook 'turn-on-org-cdlatex))))
+      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)))
+
+  ;; Remove evil mode for org-goto
+  (defadvice org-goto (around make-it-evil activate)
+    (let ((orig-state evil-state)
+          (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
+      ad-do-it
+      (evil-change-state orig-state)))
+
+
+  ;; Fortran
+  (add-hook 'fortran-mode-hook 'flycheck-mode))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -239,7 +257,8 @@ layers configuration."
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Ideas.org" "~/Dropbox/notes/Meetings.org")))
+    ("~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
+ '(org-goto-auto-isearch nil)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
