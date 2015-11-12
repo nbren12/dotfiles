@@ -34,7 +34,7 @@
      ;; neotree
      ;; For editing markdown files
      markdown
-     pandoc
+     ;; pandoc
      latex
      )
    ;; List of additional packages that will be installed wihout being
@@ -211,10 +211,6 @@ layers configuration."
       (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")
 
       ))
-
-  (use-package ebib
-    :config
-    ((org-add-link-type "ebib" 'ebib)))
 
   ;; latex shortcuts
   (use-package cdlatex)
