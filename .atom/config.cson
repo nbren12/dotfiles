@@ -17,6 +17,7 @@
       "academic"
       "atom-ctags"
       "minimap"
+      "vim-mode"
     ]
     themes: [
       "unity-ui"

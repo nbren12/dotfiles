@@ -29,7 +29,8 @@
      ;; shell
      syntax-checking
      python
-     clojure
+     ess
+     ;; clojure
      deft ;; notational velocity clone
      ;; neotree
      ;; For editing markdown files
@@ -253,7 +254,7 @@ layers configuration."
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
+    ("~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
  '(org-goto-auto-isearch nil)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
