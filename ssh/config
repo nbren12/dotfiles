@@ -38,8 +38,15 @@ ProxyCommand ssh -A cims nc %h %p
 LocalForward 127.0.0.1:10001 127.0.0.1:10001
 
 Host pooper
-Hostname pooper.local
+Hostname  pooper.local
 User admin
+
+Host pooperr
+Hostname mypooper.duckdns.org
+User admin
+Port 2222
+LocalForward 127.0.0.1:32400 127.0.0.1:32400
+LocalForward 127.0.0.1:8888 192.168.1.1:80
 
 Host hpcADtunnel
 HostName hpc.abudhabi.nyu.edu

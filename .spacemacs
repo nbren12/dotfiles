@@ -42,13 +42,15 @@
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
-   dotspacemacs-additional-packages '(snakemake-mode
+   dotspacemacs-additional-packages '(cython
+                                      snakemake-mode
                                       org-plus-contrib
                                       yaml-mode
                                       ncl-mode
                                       cdlatex
                                       helm-bibtex
-                                      ebib)
+                                      ebib
+                                      ob-ipython)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -194,6 +196,10 @@ layers configuration."
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
 
+  ;;; Hide show mode
+  (define-key evil-normal-state-map (kbd "<DEL>") 'evil-toggle-fold)
+
+
   ;;; Authoring tools
 
   ;; Bibliography management
@@ -219,8 +225,9 @@ layers configuration."
   ;;; org mode
   (use-package org-mode
     :config
-    (progn
-      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)))
+    (pnanrogn
+      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+      (require 'ob-ipython)))
 
   ;; Remove evil mode for org-goto
   (defadvice org-goto (around make-it-evil activate)
@@ -254,13 +261,24 @@ layers configuration."
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
+    ("~/Dropbox/notes/Personal.org" "~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
  '(org-goto-auto-isearch nil)
- '(ring-bell-function (quote ignore) t))
+ '(org-image-actual-width (quote (400)))
+ '(python-shell-interpreter "python")
+ '(ring-bell-function (quote ignore) t)
+ '(safe-local-variable-values
+   (quote
+    ((eval setq-local org-babel-default-header-args:Python
+           (quote
+            ((:exports . "both"))))
+     (eval setq-local org-babel-default-header-args:Python
+           (quote
+            ((:export . "both"))))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
+ '(flycheck-warning ((t (:underline (:color "Cyan" :style wave))))))
