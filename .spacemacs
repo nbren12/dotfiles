@@ -169,6 +169,10 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  ;; Turn on auto fill mode
+  (spacemacs/toggle-auto-fill-mode-on)
+
   (use-package deft
     :config
     (progn
