@@ -1,5 +1,10 @@
 " vim: ft=vim fdm=marker fo=tcr tw=79
 "
+" Jan 20, 2016
+" ------------
+"
+"  - Disable jedi-vim because it is slow and annoying
+"
 " 07 Nov 2014
 " -----------
 "
@@ -42,8 +47,8 @@ Plug 'surround.vim'       " Parenthesis
 " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 
 " Fuzzy file finding
-" Plug 'kien/ctrlp.vim'     " file finding
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'kien/ctrlp.vim'     " file finding
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 """ TMUX
 Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
@@ -60,8 +65,8 @@ Plug 'benmills/vimux'
 Plug 'JuliaLang/julia-vim'
 
 " Python
-let g:jedi#force_py_version = 3
-Plug 'davidhalter/jedi-vim'
+" let g:jedi#force_py_version = 3
+" Plug 'davidhalter/jedi-vim'
 
 " Clojure 
 Plug 'tpope/vim-fireplace'
