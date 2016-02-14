@@ -251,6 +251,15 @@ layers configuration."
     (progn
       (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
+  ;; Flycheck can be really pedantic with many stupid error codes. The following
+  ;; configuration file goes in ~/.config/flake8 and disables many of the stupid
+  ;; warnings.
+  ;; 
+  ;; [flake8]
+  ;; ignore = E221,E501,E203,E202,E272,E251,E211,E222,E701,E303,E225,E226,E231
+  ;; max-line-length = 160
+  ;; exclude = tests/*
+  ;; max-complexity = 10
 
   ;; my own functions
   (defun remove-blank-spaces ()
