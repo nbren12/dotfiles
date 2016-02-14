@@ -254,7 +254,14 @@ layers configuration."
       (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
 
-  )
+  ;; my own functions
+  (defun remove-blank-spaces ()
+    (interactive)
+    (beginning-of-buffer)  ;; This adds mark at beginning of buffer
+    (replace-regexp "^ +$" "")
+    (pop-global-mark))
+
+  (evil-leader/set-key "ors" 'remove-blank-spaces))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
