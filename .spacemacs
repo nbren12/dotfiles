@@ -247,6 +247,13 @@ layers configuration."
   ;; Fortran
   (add-hook 'fortran-mode-hook 'flycheck-mode)
 
+  ;; diff-hl settings
+
+  (use-package diff-hl
+    :config
+    (progn
+      (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
+
 
   )
 
@@ -268,6 +275,8 @@ layers configuration."
  '(custom-safe-themes
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
+ '(diff-hl-side (quote right))
+ '(global-diff-hl-mode t)
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
    (quote
