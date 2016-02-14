@@ -20,9 +20,9 @@
      auto-completion
      ;; better-defaults
      emacs-lisp
-     git
-     ;; (git :variables
-     ;;      git-gutter-use-fringe t)
+     ;; git
+     (git :variables
+          git-gutter-use-fringe t)
      ;; markdown
      org
      html
@@ -170,6 +170,10 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+
+  ;; Follow symlinks automatically
+  (setq vc-follow-symlinks t)
+
   ;; Turn on auto fill mode
   (spacemacs/toggle-auto-fill-mode-on)
 
@@ -183,8 +187,6 @@ layers configuration."
       ))
 
 
-  ;; Follow symlinks automatically
-  (setq vc-follow-symlinks )
 
   ;; Paredit bindings
   ;; (sp-use-smartparens-bindings)
@@ -228,7 +230,7 @@ layers configuration."
   ;;; org mode
   (use-package org-mode
     :config
-    (pnanrogn
+    (progn
       (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
       (require 'ob-ipython)))
 
@@ -241,7 +243,10 @@ layers configuration."
 
 
   ;; Fortran
-  (add-hook 'fortran-mode-hook 'flycheck-mode))
+  (add-hook 'fortran-mode-hook 'flycheck-mode)
+
+
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
