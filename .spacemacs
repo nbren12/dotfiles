@@ -20,9 +20,9 @@
      auto-completion
      ;; better-defaults
      emacs-lisp
-     ;; git
-     (git :variables
-          git-gutter-use-fringe t)
+     git
+     ;; (git :variables
+     ;;      git-gutter-use-fringe t)
      ;; markdown
      org
      html
@@ -49,7 +49,9 @@
                                       cdlatex
                                       helm-bibtex
                                       ebib
-                                      ob-ipython)
+                                      ob-ipython
+                                      diff-hl ; a better version of git-gutter
+                                      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
