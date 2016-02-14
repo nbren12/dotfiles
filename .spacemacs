@@ -271,6 +271,7 @@ layers configuration."
 
   (evil-leader/set-key "ors" 'remove-blank-spaces)
   (evil-leader/set-key "oc" 'customize-group)
+  (evil-leader/set-key "oi" 'helm-imenu)
 
   (define-key global-map (kbd "C-.") 'company-files))
 
