@@ -188,8 +188,6 @@ layers configuration."
       (setq deft-use-filename-as-title t)
       ))
 
-
-
   ;; Paredit bindings
   (sp-use-smartparens-bindings)
   ;; (define-key evil-normal-state-map (kbd "-") 'sp-backward-sexp)
@@ -256,12 +254,17 @@ layers configuration."
 
   ;; my own functions
   (defun remove-blank-spaces ()
+    ;; Remove annoying trailing spaces
     (interactive)
     (beginning-of-buffer)  ;; This adds mark at beginning of buffer
     (replace-regexp " +$" "")
     (pop-global-mark))
 
-  (evil-leader/set-key "ors" 'remove-blank-spaces))
+  (evil-leader/set-key "ors" 'remove-blank-spaces)
+  (evil-leader/set-key "oc" 'customize-group)
+
+  (define-key global-map (kbd "C-.") 'company-files))
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
