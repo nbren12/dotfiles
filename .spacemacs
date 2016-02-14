@@ -249,6 +249,7 @@ layers configuration."
   (use-package diff-hl
     :config
     (progn
+      (global-diff-hl-mode)
       (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
   ;; Flycheck can be really pedantic with many stupid error codes. The following
