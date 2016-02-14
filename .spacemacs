@@ -44,11 +44,11 @@
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(snakemake-mode
                                       org-plus-contrib
+                                      org-ref
                                       yaml-mode
                                       ncl-mode
                                       cdlatex
                                       helm-bibtex
-                                      ebib
                                       ob-ipython
                                       diff-hl ; a better version of git-gutter
                                       )
@@ -210,7 +210,6 @@ layers configuration."
   ;;; Authoring tools
 
   ;; Bibliography management
-  (add-to-list 'load-path "~/.emacs.d/org-ref")
   (use-package org-ref
     :config
     (progn
@@ -280,7 +279,7 @@ layers configuration."
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Personal.org" "~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
+    ("~/Dropbox/cmt/results/notebook/notebook.org" "~/Dropbox/notes/Personal.org" "~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
  '(org-goto-auto-isearch nil)
  '(org-image-actual-width (quote (400)))
  '(python-shell-interpreter "python")

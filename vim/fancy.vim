@@ -1,5 +1,10 @@
 " vim: ft=vim fdm=marker fo=tcr tw=79
 "
+" Jan 20, 2016
+" ------------
+"
+"  - Disable jedi-vim because it is slow and annoying
+"
 " 07 Nov 2014
 " -----------
 "
