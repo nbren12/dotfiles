@@ -258,7 +258,7 @@ layers configuration."
   (defun remove-blank-spaces ()
     (interactive)
     (beginning-of-buffer)  ;; This adds mark at beginning of buffer
-    (replace-regexp "^ +$" "")
+    (replace-regexp " +$" "")
     (pop-global-mark))
 
   (evil-leader/set-key "ors" 'remove-blank-spaces))
