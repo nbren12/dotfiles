@@ -191,7 +191,7 @@ layers configuration."
 
 
   ;; Paredit bindings
-  ;; (sp-use-smartparens-bindings)
+  (sp-use-smartparens-bindings)
   ;; (define-key evil-normal-state-map (kbd "-") 'sp-backward-sexp)
   ;; (define-key evil-normal-state-map (kbd "=") 'sp-next-sexp)
   ;; (define-key evil-normal-state-map (kbd "_") 'sp-backward-up-sexp)
