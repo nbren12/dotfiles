@@ -341,6 +341,7 @@ layers configuration."
    (quote
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default)))
  '(diff-hl-side (quote right))
+ '(fortran-line-length 9999)
  '(global-diff-hl-mode t)
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
