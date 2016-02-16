@@ -311,7 +311,15 @@ layers configuration."
   (evil-leader/set-key "oc" 'customize-group)
   (evil-leader/set-key "oi" 'helm-imenu)
 
-  (define-key global-map (kbd "C-.") 'company-files))
+  (define-key global-map (kbd "C-.") 'company-files)
+
+
+  ;; Window navivation
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  )
 
 
 ;; Do not write anything past this comment. This is where Emacs will
