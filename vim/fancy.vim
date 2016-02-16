@@ -77,27 +77,16 @@ Plug 'tpope/vim-fireplace'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'ag.vim'
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
+" Plug 'Shougo/deoplete.nvim'
+" let g:deoplete#enable_at_startup = 1
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 let g:pandoc#biblio#bibs= ["~/Dropbox/Papers/zotero.bib",]
 let g:pandoc#biblio#use_bibtool=1
 
-function! BuildYCM(info)
-  " info is a dictionary with 3 fields
-  " - name:   name of the plugin
-  " - status: 'installed', 'updated', or 'unchanged'
-  " - force:  set on PlugInstall! or PlugUpdate!
-  if a:info.status == 'installed' || a:info.force
-    !./install.sh
-  endif
-endfunction
 
-" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
-
+Plug 'terryma/vim-multiple-cursors'
 "
 " VIM/NVIM specific plugins
 "
