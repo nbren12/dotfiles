@@ -286,7 +286,7 @@ layers configuration."
 
       (global-evil-mc-mode  1)
       (global-unset-key (kbd "M-<down-mouse-1>"))
-      (global-set-key (kbd  "M-<mouse-1>") 'my-meta-click)))
+      (global-set-key (kbd  "M-<mouse-1>") 'evil-mc-add-cursor-on-click)))
 
 
   ;; Flycheck can be really pedantic with many stupid error codes. The following
@@ -317,8 +317,12 @@ layers configuration."
   ;; Window navivation
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-h C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+
+  ;; buffer navigation
+  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+
   )
 
 
