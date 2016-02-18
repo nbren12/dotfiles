@@ -13,9 +13,10 @@ pushd ~/.dotfiles
 ln -s ~/.dotfiles/gitconfig ~/.gitconfig
 
 # Setup vim
-ln -s ~/.dotfiles/vim ~/.vim
-cp vimrc ~/.vimrc
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+if ! [ -e ~/.vim ]; then
+    ln -s ~/.dotfiles/vim ~/.vim
+    cp vimrc ~/.vimrc
+fi
 
 # Setup emacs
 if ! [ -e ~/.emacs.d ]
@@ -39,7 +40,7 @@ chmod 755 mr
 popd
 
 # Setup zsh
-if ! [ -e ~/.zprezto ]
+if ! [ -e ~/.zprezto ]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 
     # move config files to home dir
