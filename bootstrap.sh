@@ -36,5 +36,16 @@ fi
 pushd ~/usr/bin
 curl https://raw.githubusercontent.com/joeyh/myrepos/master/mr > mr
 chmod 755 mr
-
 popd
+
+# Setup zsh
+if ! [ -e ~/.zprezto ]
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+    # move config files to home dir
+    setopt EXTENDED_GLOB
+    for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    done
+fi
+
