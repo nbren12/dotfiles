@@ -261,10 +261,14 @@ layers configuration."
       (global-set-key (kbd  "M-<mouse-1>") 'mc/add-cursor-on-click)
       (define-key evil-n-state-map (kbd "C-n") 'mc/mark-next-like-this-word)))
 
-  ;; This multiple cursors package works better with evil
+  ;;
+  ;; Evil-mc setting
+  ;;
+
   (use-package evil-mc
     :config
     (progn
+      (global-evil-mc-mode 1)
 
       (defun evil-mc-add-cursor-on-click (event)
         "Add a cursor where you click."
@@ -279,14 +283,20 @@ layers configuration."
           (if (numberp (posn-point position))
               (save-excursion
                 (goto-char (posn-point position))
-                (evil-mc-make-cursor-here)))
-            ; (mc/maybe-multiple-cursors-mode)
-          ))
+                (evil-mc-make-cursor-here)))))
+                                        ; (mc/maybe-multiple-cursors-mode)
 
+      ;; Bind esc to remove cursors
+      (advice-add 'evil-force-normal-state :after
+                  (lambda ()
+                    (interactive)
+                    (message "Removing multiple cursors")
+                    (evil-mc-undo-all-cursors)))
 
-      (global-evil-mc-mode  1)
       (global-unset-key (kbd "M-<down-mouse-1>"))
       (global-set-key (kbd  "M-<mouse-1>") 'evil-mc-add-cursor-on-click)))
+
+
 
 
   ;; Flycheck can be really pedantic with many stupid error codes. The following
@@ -321,9 +331,7 @@ layers configuration."
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
   ;; buffer navigation
-  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
-
-  )
+  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
