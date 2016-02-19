@@ -271,7 +271,7 @@ layers configuration."
       (global-evil-mc-mode 1)
 
       (defun evil-mc-add-cursor-on-click (event)
-        "Add a cursor where you click."
+        "Add a cursor where you click. Borrowed from multiple-cursors.el"
         (interactive "e")
         (mouse-minibuffer-check event)
         ;; Use event-end in case called from mouse-drag-region.
@@ -285,6 +285,23 @@ layers configuration."
                 (goto-char (posn-point position))
                 (evil-mc-make-cursor-here)))))
                                         ; (mc/maybe-multiple-cursors-mode)
+
+      ;; Add bindings for adding cursor on next and previous lines
+      (defun evil-mc-add-cursor-next-line ()
+        (interactive)
+        (evil-mc-make-cursor-here)
+        (next-line))
+
+      (defun evil-mc-add-cursor-previous-line ()
+        (interactive)
+        (evil-mc-make-cursor-here)
+        (previous-line))
+
+      (define-key evil-normal-state-map (kbd "M-j")
+                'evil-mc-add-cursor-next-line)
+
+      (define-key evil-normal-state-map (kbd "M-k")
+                'evil-mc-add-cursor-previous-line)
 
       ;; Bind esc to remove cursors
       (advice-add 'evil-force-normal-state :after
