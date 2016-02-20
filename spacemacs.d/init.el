@@ -38,7 +38,10 @@
      markdown
      ;; pandoc
      latex
+
+     ;; My layers
      vimish-fold
+     multiple-cursors
      )
    ;; List of additional packages that will be installed wihout being
    ;; wrapped in a layer. If you need some configuration for these
@@ -173,7 +176,6 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-
   ;; Follow symlinks automatically
   (setq vc-follow-symlinks t)
 
@@ -203,7 +205,7 @@ layers configuration."
 
 
   ;;; Hide show mode
-  (define-key evil-normal-state-map (kbd "<DEL>") 'evil-toggle-fold)
+  ;; (define-key evil-normal-state-map (kbd "<DEL>") 'evil-toggle-fold)
 
 
   ;;; Authoring tools
@@ -253,69 +255,6 @@ layers configuration."
       (global-diff-hl-mode)
       (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)))
 
-  ;; Multiple cursors
-  (use-package multiple-cursors
-    :disabled t
-    :config
-    (progn
-      (global-unset-key (kbd "M-<down-mouse-1>"))
-      (global-set-key (kbd  "M-<mouse-1>") 'mc/add-cursor-on-click)
-      (define-key evil-n-state-map (kbd "C-n") 'mc/mark-next-like-this-word)))
-
-  ;;
-  ;; Evil-mc setting
-  ;;
-
-  (use-package evil-mc
-    :config
-    (progn
-      (global-evil-mc-mode 1)
-
-      (defun evil-mc-add-cursor-on-click (event)
-        "Add a cursor where you click. Borrowed from multiple-cursors.el"
-        (interactive "e")
-        (mouse-minibuffer-check event)
-        ;; Use event-end in case called from mouse-drag-region.
-        ;; If EVENT is a click, event-end and event-start give same value.
-        (let ((position (event-end event)))
-          (if (not (windowp (posn-window position)))
-              (error "Position not in text area of window"))
-          (select-window (posn-window position))
-          (if (numberp (posn-point position))
-              (save-excursion
-                (goto-char (posn-point position))
-                (evil-mc-make-cursor-here)))))
-                                        ; (mc/maybe-multiple-cursors-mode)
-
-      ;; Add bindings for adding cursor on next and previous lines
-      (defun evil-mc-add-cursor-next-line ()
-        (interactive)
-        (evil-mc-make-cursor-here)
-        (next-line))
-
-      (defun evil-mc-add-cursor-previous-line ()
-        (interactive)
-        (evil-mc-make-cursor-here)
-        (previous-line))
-
-      (define-key evil-normal-state-map (kbd "M-j")
-                'evil-mc-add-cursor-next-line)
-
-      (define-key evil-normal-state-map (kbd "M-k")
-                'evil-mc-add-cursor-previous-line)
-
-      ;; Bind esc to remove cursors
-      (advice-add 'evil-force-normal-state :after
-                  (lambda ()
-                    (interactive)
-                    (message "Removing multiple cursors")
-                    (evil-mc-undo-all-cursors)))
-
-      (global-unset-key (kbd "M-<down-mouse-1>"))
-      (global-set-key (kbd  "M-<mouse-1>") 'evil-mc-add-cursor-on-click)))
-
-
-
 
   ;; Flycheck can be really pedantic with many stupid error codes. The following
   ;; configuration file goes in ~/.config/flake8 and disables many of the stupid
@@ -337,7 +276,7 @@ layers configuration."
 
   (evil-leader/set-key "ors" 'remove-blank-spaces)
   (evil-leader/set-key "oc" 'customize-group)
-  (evil-leader/set-key "oi" 'helm-imenu)
+  (evil-leader/set-key "oo" 'occur)
 
   (define-key global-map (kbd "C-.") 'company-files)
 

@@ -59,8 +59,9 @@ Each entry is either:
         recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
 (defun vimish-fold/init-vimish-fold ()
   (use-package vimish-fold
-    :ensure t
-    :config (setq vimish-fold-global-mode t)))
+    :demand t
+    :config
+    (vimish-fold-global-mode 1)))
 
 (defun vimish-fold/init-evil-vimish-fold ()
   (use-package evil-vimish-fold
