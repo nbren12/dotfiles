@@ -30,10 +30,21 @@
 "  Back in vim land after using emacs for a while.  I am using neovim and Plug
 "  for managing the plugins. Again, YouCompleteMe has proved to be a giant pain
 "  in the ass to install.
+" 
+" Feb 25, 2016
+" ------------
+"
+"  Installing FZF key bindings, and putting the sourcing of vanilla.vim in the
+"  front of the file. Also installed ultisnips with lazy loading.
+
+
+" Run basic settings before anything else
+ru  vanilla.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                   BEGIN PLUG SECTION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 call plug#begin('~/.nvim/plugged')
 
 """ Essential Plugins
@@ -45,6 +56,7 @@ Plug 'justinmk/vim-sneak' " quick movement
 Plug 'surround.vim'       " Parenthesis
 " Plug 'guns/vim-sexp'      " Lisp
 " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
+Plug 'airblade/vim-gitgutter' " see git diffs near the line no
 
 " Fuzzy file finding
 Plug 'kien/ctrlp.vim'     " file finding
@@ -62,19 +74,37 @@ Plug 'benmills/vimux'
 
 """ Language specific plugins 
 " Julia
-Plug 'JuliaLang/julia-vim'
+" Plug 'JuliaLang/julia-vim'
 
 " Python
-let g:jedi#force_py_version = 3
-Plug 'davidhalter/jedi-vim'
-let g:jedi#popup_on_dot = 0
+" let g:jedi#force_py_version = 3
+" Plug 'davidhalter/jedi-vim'
+" let g:jedi#popup_on_dot = 0
 
 " Clojure 
 Plug 'tpope/vim-fireplace'
 
 """ Testing
 
-Plug 'airblade/vim-gitgutter'
+" Snippets: use lazy loading
+Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
+autocmd InsertEnter * call plug#load('ultisnips')
+
+" FZF
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
+command! FZFMru call fzf#run({
+            \  'source':  v:oldfiles,
+            \  'sink':    'e',
+            \  'options': '-m -x +s',
+            \  'down':    '40%'})
+
+nnoremap <leader>ff :FZF<CR>
+nnoremap <leader>fs :Snippets<CR>
+nnoremap <leader>fr :FZFMru<CR>
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
 
 Plug 'ag.vim'
 " Plug 'Shougo/deoplete.nvim'
@@ -105,11 +135,6 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
-" Run basic settings
-ru vanilla.vim
-
-" Ctrlp Settings
-nmap <leader>fr :CtrlPMRUFiles<CR>
 
 " Bidnings
 
