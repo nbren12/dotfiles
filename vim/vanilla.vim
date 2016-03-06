@@ -7,7 +7,7 @@ set laststatus=2    " Always show status line
 set listchars=""
 set wildignore+=*.so,*.swp,*.zip
 set wildignore+=*.Trash/*
-set autochdir
+" set autochdir
 set completeopt=menuone,longest,preview
 set hidden          " Allows leaving ufinished buffers
 set cursorline
