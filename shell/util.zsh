@@ -27,3 +27,4 @@ function findignore()
 }
 
 alias lp='findignore `projectroot` | fzf'
+alias lpv='vim $(lp)'
