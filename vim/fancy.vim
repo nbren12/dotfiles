@@ -57,10 +57,10 @@ Plug 'surround.vim'       " Parenthesis
 " Plug 'guns/vim-sexp'      " Lisp
 " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 Plug 'airblade/vim-gitgutter' " see git diffs near the line no
+Plug 'airblade/vim-rooter'
 
 " Fuzzy file finding
 Plug 'kien/ctrlp.vim'     " file finding
-" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 
 """ TMUX
 Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
@@ -92,7 +92,7 @@ autocmd InsertEnter * call plug#load('ultisnips')
 
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim' | Plug 'dbakker/vim-projectroot'
 
 command! FZFMru call fzf#run({
             \  'source':  v:oldfiles,
