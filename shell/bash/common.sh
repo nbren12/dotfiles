@@ -25,6 +25,7 @@ export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W \$\[\033[00m\] '
 
 
 export EDITOR='/usr/bin/env vim'
+export PAGER=less
 export LANG='en_US.UTF-8'
 
 
