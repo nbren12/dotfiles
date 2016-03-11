@@ -71,16 +71,25 @@ pman()
 # name of file
 na ()
 {
-    name=$(readlink -f $1)
+
+    if [[ "$1" != "" ]] then
+        name=$(readlink -f $1)
+    else
+        name=$(pwd)
+    fi
 
     echo $name
     echo /ssh:mercer:$name
+    echo scp mercer:$name 
 }
+
+# HPC aliases
+alias qs='qstat -u ndb245'
+alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
+alias is='interactive_session'
+
 # User specific aliases and functions
 alias ssh='ssh -Y'
-alias qs='qstat -u ndb245'
-alias qb='qsub'
-alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=12,walltime=04:00:00'
 
 # alias rm='rm -i'
 alias cp='cp -i'
@@ -98,3 +107,11 @@ alias screen='screen -R'
 alias p='pushd'
 alias o='popd' 
 alias d='dirs -v'
+
+alias lmk='latexmk -pdf -pvc'
+alias pyhttp='python -m SimpleHTTPServer'
+alias ml='matlab -nodesktop -nosplash'
+
+
+alias g='git'
+alias gls='git status -s | less'
