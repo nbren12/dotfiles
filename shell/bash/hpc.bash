@@ -6,9 +6,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Load user aliases and funs
-source ~/.dotfiles/bash/common.sh
-source ~/.dotfiles/bash/alias.sh
-source ~/.dotfiles/bash/funs.sh
+source ~/.dotfiles/shell/bash/common.sh
+source ~/.dotfiles/shell/bash/funalias.sh
 
 # load modules
 #source /etc/profile.d/env-modules.sh
@@ -54,6 +53,12 @@ export PATH=$HOME/usr/bin:$PATH
 source  ~/py3k/bin/activate
 export PYTHONPATH=$HOME/gnl:$PYTHONPATH
 
+# vapor
+source ~/vapor-2.5.0/bin/vapor-setup.sh > /dev/null
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # This make everything readable.  This means that your files are not private, 
 # allowing other people to share your data and output, which aids in research
 # and enables me to help you if you have a problem.  
@@ -67,6 +72,7 @@ function killhpc(){
         ssh login-0-$i killall $1
     done
 }
+
 
 
 umask u=rwx,g=rx,o=rx
