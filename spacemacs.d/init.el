@@ -25,13 +25,13 @@
      ;;      git-gutter-use-fringe t)
      ;; markdown
      org
-     html
+     ;; html
      ;; shell
      syntax-checking
      python
-     ess
+     ;; ess
      clojure
-     go
+     ;; go
      deft ;; notational velocity clone
      ;; neotree
      ;; For editing markdown files
@@ -176,6 +176,9 @@ before layers configuration."
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+  ;; Enable evil-matchit for all buffers
+  (global-evil-matchit-mode)
+
   ;; Follow symlinks automatically
   (setq vc-follow-symlinks t)
 
@@ -245,7 +248,7 @@ layers configuration."
 
 
   ;; Fortran
-  (add-hook 'fortran-mode-hook 'flycheck-mode)
+  (add-to-list 'auto-mode-alist '("\\.F\\'" . f90-mode))
 
   ;; diff-hl settings
 
@@ -315,7 +318,7 @@ layers configuration."
  '(helm-bibtex-bibliography (quote ("~/Dropbox/Papers/My Library.bib")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/cmt/results/notebook/notebook.org" "~/Dropbox/notes/Personal.org" "~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
+    ("~/Dropbox/notes/CRM.org" "~/Dropbox/cmt/results/notebook/notebook.org" "~/Dropbox/notes/Personal.org" "~/Dropbox/cmt/README.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Ideas.org")))
  '(org-goto-auto-isearch nil)
  '(org-image-actual-width (quote (400)))
  '(python-shell-interpreter "python")
