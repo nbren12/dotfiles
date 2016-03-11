@@ -72,7 +72,7 @@ pman()
 na ()
 {
 
-    if [[ "$1" != "" ]] then
+    if [  "$1" != "" ]; then
         name=$(readlink -f $1)
     else
         name=$(pwd)
