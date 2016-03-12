@@ -89,10 +89,11 @@ before layers configuration."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
-                         leuven
+   dotspacemacs-themes '(spacemacs-light
                          spacemacs-dark
-                         spacemacs-light
+                         monokai
+                         default
+                         leuven
                          zenburn)
    ;; If non nil the cursor color matches the state color.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -175,6 +176,12 @@ before layers configuration."
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+
+  ;; turn off line highlighting
+  (global-hl-line-mode -1)
+
+  ;; turn off line number
+  (global-linum-mode -1)
 
   ;; Enable evil-matchit for all buffers
   (global-evil-matchit-mode)
@@ -262,7 +269,7 @@ layers configuration."
   ;; Flycheck can be really pedantic with many stupid error codes. The following
   ;; configuration file goes in ~/.config/flake8 and disables many of the stupid
   ;; warnings.
-  ;; 
+  ;;
   ;; [flake8]
   ;; ignore = E221,E501,E203,E202,E272,E251,E211,E222,E701,E303,E225,E226,E231
   ;; max-line-length = 160

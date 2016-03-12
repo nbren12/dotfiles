@@ -85,6 +85,8 @@ Plug 'benmills/vimux'
 Plug 'tpope/vim-fireplace'
 
 """ Testing
+Plug 'baruchel/vim-notebook' 
+Plug 'tpope/vim-markdown'
 
 " Snippets: use lazy loading
 Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
