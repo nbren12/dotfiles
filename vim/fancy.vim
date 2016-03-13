@@ -72,26 +72,6 @@ Plug 'benmills/vimux'
   call VimuxSendKeys("Enter")
  endfunction
 
-""" Language specific plugins 
-" Julia
-" Plug 'JuliaLang/julia-vim'
-
-" Python
-" let g:jedi#force_py_version = 3
-" Plug 'davidhalter/jedi-vim'
-" let g:jedi#popup_on_dot = 0
-
-" Clojure 
-Plug 'tpope/vim-fireplace'
-
-""" Testing
-Plug 'baruchel/vim-notebook' 
-Plug 'tpope/vim-markdown'
-
-" Snippets: use lazy loading
-Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
-autocmd InsertEnter * call plug#load('ultisnips')
-
 " FZF
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim' | Plug 'dbakker/vim-projectroot'
@@ -109,6 +89,28 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 
 Plug 'ag.vim'
+""" Language specific plugins 
+" Julia
+" Plug 'JuliaLang/julia-vim'
+
+" Python
+" let g:jedi#force_py_version = 3
+" Plug 'davidhalter/jedi-vim'
+" let g:jedi#popup_on_dot = 0
+
+" Clojure 
+Plug 'tpope/vim-fireplace'
+
+""" Testing
+Plug 'baruchel/vim-notebook' 
+Plug 'tpope/vim-markdown'
+
+" 
+
+" Snippets: use lazy loading
+Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
+autocmd InsertEnter * call plug#load('ultisnips')
+
 " Plug 'Shougo/deoplete.nvim'
 " let g:deoplete#enable_at_startup = 1
 
