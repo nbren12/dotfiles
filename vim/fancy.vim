@@ -111,8 +111,6 @@ Plug 'tpope/vim-markdown'
 Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
 autocmd InsertEnter * call plug#load('ultisnips')
 
-" Plug 'Shougo/deoplete.nvim'
-" let g:deoplete#enable_at_startup = 1
 
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -125,8 +123,17 @@ Plug 'terryma/vim-multiple-cursors'
 " VIM/NVIM specific plugins
 "
 if has('nvim')
-Plug 'bfredl/nvim-ipy'
+" Plug 'bfredl/nvim-ipy'
 Plug 'benekastah/neomake'
+" Plug 'Shougo/deoplete.nvim' | Plug 'Rip-Rip/clang_complete'
+" let g:deoplete#enable_at_startup = 1
+"
+" let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib"
+
+    Plug 'Valloric/YouCompleteMe'
+else
+    Plug 'Valloric/YouCompleteMe'
+
 endif
 
 " Required:

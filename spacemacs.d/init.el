@@ -38,6 +38,7 @@
      markdown
      ;; pandoc
      latex
+     c-c++
 
      ;; My layers
      vimish-fold
@@ -56,6 +57,7 @@
                                       helm-bibtex
                                       ob-ipython
                                       diff-hl ; a better version of git-gutter
+                                      dash-at-point ; for dash browser
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -253,6 +255,9 @@ layers configuration."
       ad-do-it
       (evil-change-state orig-state)))
 
+  ;; Dash at point
+  (evil-leader/set-key "odd" 'dash-at-point)
+  (evil-leader/set-key "ode" 'dash-at-point-with-docset)
 
   ;; Fortran
   (add-to-list 'auto-mode-alist '("\\.F\\'" . f90-mode))
@@ -337,7 +342,10 @@ layers configuration."
             ((:exports . "both"))))
      (eval setq-local org-babel-default-header-args:Python
            (quote
-            ((:export . "both"))))))))
+            ((:export . "both")))))))
+ '(yas-snippet-dirs
+   (quote
+    ("/Users/noah/.spacemacs.d/snippets" yas-installed-snippets-dir "/Users/noah/.emacs.d/layers/auto-completion/snippets")) nil (yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
