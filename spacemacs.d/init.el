@@ -29,7 +29,7 @@
      ;; shell
      syntax-checking
      python
-     ;; ess
+     ess
      clojure
      ;; go
      deft ;; notational velocity clone
@@ -38,8 +38,7 @@
      markdown
      ;; pandoc
      latex
-     c-c++
-
+     dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      vimish-fold
      multiple-cursors
@@ -202,6 +201,10 @@ layers configuration."
       (setq deft-directory "~/Dropbox/notes")
       (setq deft-use-filename-as-title t)
       ))
+
+  ;; Julia
+
+  (setq inferior-julia-program-name "/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia")
 
   ;; Paredit bindings
   (sp-use-smartparens-bindings)
