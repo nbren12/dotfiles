@@ -1,0 +1,28 @@
+# -*- mode: snippet -*-
+# name: explicit size sub
+# key: its
+# --
+subroutine ${1:name}(p0, phi, p1, u, y,&
+       ids, ide, jds, jde, kds, kde,&
+       ims, ime, jms, jme, kms, kme,&
+       its, ite, jts, jte)
+
+    integer, intent(in) :: ids, ide, jds, jde, kds, kde,&
+         ims, ime, jms, jme, kms, kme,&
+         its, ite, jts, jte
+    real, dimension(ims:ime, jms:jme, kms:kme), intent(in) :: u
+    real, dimension(kms:kme), intent(in) :: phi, p0, p1
+    real, dimension(ims:ime, jms:jme), intent(out) :: y
+
+    ! work arrays
+    integer i, j
+
+    do j=jms,jme
+       do i=ims,ime
+          ! this memory access is going to be slow
+          ! might be worth reshaping `u` prior to iteration
+          y(i,j) = inner_prod(p0, phi, p1, u(i,j,:))
+       end do
+    end do
+
+end subroutine $1
