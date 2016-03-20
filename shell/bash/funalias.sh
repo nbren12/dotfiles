@@ -83,6 +83,51 @@ na ()
     echo scp mercer:$name 
 }
 
+# FZF stuff
+
+fzf_cd ()
+{
+    file=$(fzf)
+    [[ -f $file ]] && goto=$(dirname $file)
+    [[ -d $file ]] && goto=$file
+
+    cd $goto
+
+}
+
+alias cf=fzf_cd
+
+function fd ()
+{
+    cd $(find . -maxdepth 3 -not -path '*/\.*' -type d | fzf )
+}
+
+function projectroot ()
+{
+    markers=(.git .top)
+    d=`pwd`
+    gdir="/"
+
+    while [[ ! $d == "/" ]]
+    do
+        for marker in $markers; do
+            if [[ -e $d/$marker ]]; then
+                gdir=$d
+            fi
+        done
+        d=$(dirname $d)
+    done
+    echo $gdir
+}
+
+function findignore()
+{
+    find $1 -not -path '*\.git/*'
+}
+
+alias lp='findignore `projectroot` | fzf'
+alias lpv='vim $(lp)'
+
 # HPC aliases
 alias qs='qstat -u ndb245'
 alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
