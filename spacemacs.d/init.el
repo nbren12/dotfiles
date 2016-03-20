@@ -342,9 +342,7 @@ layers configuration."
             org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
 
       ;; need to setup helm-bibtex as well
-      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")
-
-      ))
+      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
 
   ;; latex shortcuts
   (use-package cdlatex)
@@ -421,13 +419,10 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(yas-snippet-dirs
-   (quote
-    ("/Users/noah/.spacemacs.d/snippets" yas-installed-snippets-dir "/Users/noah/.emacs.d/layers/auto-completion/snippets" "/Users/noah/.emacs.d/elpa/clojure-snippets-20160305.602/snippets")) nil (yasnippet)))
+ '(org-agenda-files (quote ("~/Dropbox/notes/CRM.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
+ )
