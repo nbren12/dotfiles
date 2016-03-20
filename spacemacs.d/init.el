@@ -298,6 +298,10 @@ layers configuration."
   ;; Turn on auto fill mode
   (spacemacs/toggle-auto-fill-mode-on)
 
+  ;; abbreviations
+  (setq abbrev-file-name (concat dotspacemacs-directory "abbrev_def"))
+  (read-abbrev-file abbrev-file-name)
+
   (use-package deft
     :config
     (progn
