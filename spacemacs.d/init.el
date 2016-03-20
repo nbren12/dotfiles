@@ -352,6 +352,14 @@ layers configuration."
     :config
     (progn
       (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+      (setq org-capture-templates
+            '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
+               "* TODO %?\nEntered on %U\n  %i\n  %a")
+              ("w" "Work todo" entry (file+headline "~/Dropbox/notes/Admin.org" "Inbox")
+               "* TODO %?\nEntered on %U\n  %i\n  %a")
+              ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
+               "* %?\nEntered on %U\n  %i\n  %a")))
       (require 'ob-ipython)))
 
   ;; Remove evil mode for org-goto
@@ -419,10 +427,13 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/notes/CRM.org"))))
+ '(org-agenda-files (quote ("~/Dropbox/notes/CRM.org")))
+ '(org-directory "~/Dropbox/notes")
+ '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
