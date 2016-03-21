@@ -421,7 +421,9 @@ layers configuration."
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
   ;; buffer navigation
-  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward))
+  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+  (global-set-key (kbd "C-x <C-left>") 'spacemacs/previous-useful-buffer)
+  (global-set-key (kbd "C-x <C-right>") 'spacemacs/next-useful-buffer))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
