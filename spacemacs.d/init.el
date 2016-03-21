@@ -308,28 +308,25 @@ layers configuration."
       (setq deft-extension "org")
       (setq deft-text-mode 'org-mode)
       (setq deft-directory "~/Dropbox/notes")
-      (setq deft-use-filename-as-title t)
-      ))
+      (setq deft-use-filename-as-title t)))
 
   ;; Julia
-
   (setq inferior-julia-program-name "/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia")
 
   ;; Paredit bindings
-  (sp-use-smartparens-bindings)
-  ;; (define-key evil-normal-state-map (kbd "-") 'sp-backward-sexp)
-  ;; (define-key evil-normal-state-map (kbd "=") 'sp-next-sexp)
-  ;; (define-key evil-normal-state-map (kbd "_") 'sp-backward-up-sexp)
-  ;; (define-key evil-normal-state-map (kbd "+") 'sp-down-sexp))
+  (dolist (lang-map '(emacs-lisp-mode-map))
+    (progn
+      (sp-use-smartparens-bindings)
+      (evil-define-key 'normal emacs-lisp-mode-map
+        "-" 'sp-backward-sexp
+        "=" 'sp-next-sexp
+        "_" 'sp-backward-up-sexp
+        "+" 'sp-down-sexp)))
 
 
   ;; j and k go down visual lines
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-
-
-  ;;; Hide show mode
-  ;; (define-key evil-normal-state-map (kbd "<DEL>") 'evil-toggle-fold)
 
 
   ;;; Authoring tools
