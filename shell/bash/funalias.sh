@@ -87,9 +87,10 @@ na ()
 
 fzf_cd ()
 {
-    file=$(fzf)
-    [[ -f $file ]] && goto=$(dirname $file)
-    [[ -d $file ]] && goto=$file
+    # file=$(fzf)
+    # [[ -f $file ]] && goto=$(dirname $file)
+    # [[ -d $file ]] && goto=$file
+    goto=$(find . -type d | fzf)
 
     cd $goto
 
@@ -160,3 +161,5 @@ alias ml='matlab -nodesktop -nosplash'
 
 alias g='git'
 alias gls='git status -s | less'
+
+alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py'

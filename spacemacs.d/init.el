@@ -26,7 +26,11 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     auto-completion
+     (auto-completion :variables
+                                     auto-completion-return-key-behavior 'complete
+                                     auto-completion-tab-key-behavior 'cycle
+                                     auto-completion-complete-with-key-sequence "jk"
+                                     auto-completion-complete-with-key-sequence-delay 0.3)
      ;; better-defaults
      emacs-lisp
      git
@@ -41,6 +45,10 @@ values."
      ess
      clojure
      ;; go
+     (c-c++
+      :variables c-c++-enable-clang-support t
+      )
+     ycmd
      deft ;; notational velocity clone
      ;; neotree
      ;; For editing markdown files
@@ -302,6 +310,13 @@ layers configuration."
   (setq abbrev-file-name (concat dotspacemacs-directory "abbrev_def"))
   (read-abbrev-file abbrev-file-name)
 
+
+  ;; YCMD
+  (set-variable 'ycmd-server-command '("python2" "/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
+
+
+
+
   (use-package deft
     :config
     (progn
@@ -408,7 +423,10 @@ layers configuration."
   (evil-leader/set-key "oc" 'customize-group)
   (evil-leader/set-key "oo" 'occur)
 
+
+  ;; auto-completion
   (define-key global-map (kbd "C-.") 'company-files)
+  (evil-define-key 'insert prog-mod-map (kbd "<C-space>") 'company-complete)
 
 
   ;; Window navivation

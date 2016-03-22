@@ -9,3 +9,6 @@ checkout = git clone 'git@github.com:nbren12/prezto.git' '.zprezto'
 
 [workspace/bous]
 checkout = git clone 'git@bitbucket.org:nbren12/bous.git' 'bous'
+
+[workspace/wrf]
+checkout = git clone 'git@bitbucket.org:nbren12/wrf.git' 'wrf'
