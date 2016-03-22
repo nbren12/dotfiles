@@ -15,13 +15,14 @@ function t4 {
 
 # shortcut to fire up emacs 
 function em {
- command emacs "$@" &
+    nohup emacsclient --alternate-editor="" -c $@ > /dev/null&
 }
+
 
 # shortcut for ncview
 function nv {
         command ncview "$@" &
-        }
+}
 
 
 
