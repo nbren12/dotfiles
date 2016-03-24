@@ -132,8 +132,19 @@ alias lpv='vim $(lp)'
 
 # HPC aliases
 alias qs='qstat -u ndb245'
+alias wqs='watch -n 1 qstat -u ndb245'
+
+function sst ()
+{
+    job=$(qstat -u ndb245 | tail -n 1 | awk -F' ' '{print $1}')
+    showstart  $job
+}
+alias wst='watch -n 5 sst'
 alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
 alias is='interactive_session'
+
+# Docker aliases
+alias docker_env='eval $(docker-machine env default)'
 
 # User specific aliases and functions
 alias ssh='ssh -Y'
