@@ -334,7 +334,7 @@ layers configuration."
       (sp-use-smartparens-bindings)
       (evil-define-key 'normal emacs-lisp-mode-map
         "-" 'sp-backward-sexp
-        "=" 'sp-next-sexp
+        ;; "=" 'sp-next-sexp
         "_" 'sp-backward-up-sexp
         "+" 'sp-down-sexp)))
 
@@ -363,21 +363,23 @@ layers configuration."
   ;; latex shortcuts
   (use-package cdlatex)
 
-  ;;; org mode
-  (add-hook 'org-mode-hook 'auto-fill-mode)
-  (use-package org-mode
-    :config
-    (progn
-      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+  (defun my-org-config ()
+    ;; org mode
+    (add-hook 'org-mode-hook 'auto-fill-mode)
+    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
-      (setq org-capture-templates
-            '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
-               "* TODO %?\nEntered on %U\n  %i\n  %a")
-              ("w" "Work todo" entry (file+headline "~/Dropbox/notes/Admin.org" "Inbox")
-               "* TODO %?\nEntered on %U\n  %i\n  %a")
-              ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
-               "* %?\nEntered on %U\n  %i\n  %a")))
-      (require 'ob-ipython)))
+    (setq org-capture-templates
+          '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
+             "* TODO %?\nEntered on %U\n  %i\n  %a")
+            ("w" "Work todo" entry (file+headline "~/Dropbox/notes/Admin.org" "Inbox")
+             "* TODO %?\nEntered on %U\n  %i\n  %a")
+            ("h" "Howto" entry (file+headline "~/Dropbox/notes/Howto.org" "Inbox")
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
+             "* %?\nEntered on %U\n  %i\n  %a")))
+    (require 'ob-ipython))
+
+  (my-org-config)
 
   ;; Remove evil mode for org-goto
   (defadvice org-goto (around make-it-evil activate)
