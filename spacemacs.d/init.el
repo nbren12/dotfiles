@@ -364,6 +364,7 @@ layers configuration."
   (use-package cdlatex)
 
   ;;; org mode
+  (add-hook 'org-mode-hook 'auto-fill-mode)
   (use-package org-mode
     :config
     (progn
