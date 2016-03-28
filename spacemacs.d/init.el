@@ -388,10 +388,6 @@ layers configuration."
       ad-do-it
       (evil-change-state orig-state)))
 
-  ;; Dash at point
-  (evil-leader/set-key "odd" 'dash-at-point)
-  (evil-leader/set-key "ode" 'dash-at-point-with-docset)
-
   ;; Fortran
   (add-to-list 'auto-mode-alist '("\\.F\\'" . f90-mode))
 
