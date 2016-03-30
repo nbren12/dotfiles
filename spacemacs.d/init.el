@@ -314,9 +314,10 @@ layers configuration."
 
 
   ;; YCMD
-  (set-variable 'ycmd-server-command '("python2" "/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
-
-
+  (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
+  (let (( my-ycmd-path (-first 'file-exists-p ycmd-search-paths)))
+        (message (concat "<noah> Setting my ycmd path to " my-ycmd-path))
+        (set-variable 'ycmd-server-command '("python2" my-ycmd-path)))
 
 
   (use-package deft
