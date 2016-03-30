@@ -15,7 +15,13 @@ function t4 {
 
 # shortcut to fire up emacs 
 function em {
-    nohup emacsclient --alternate-editor="" -c $@ > /dev/null&
+    args=$@
+    if [[ ! "$@" =~ "-nw" ]]; then
+        args="-c $args"
+        nohup emacsclient --alternate-editor="" $args > /dev/null&
+    else
+        emacsclient --alternate-editor="" $args 
+    fi
 }
 
 
@@ -149,6 +155,9 @@ alias docker_env='eval $(docker-machine env default)'
 # User specific aliases and functions
 alias ssh='ssh -Y'
 
+# cmake alias
+alias rmcmake='rm -rf CMakefiles CMakeCache.txt'
+
 # alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -163,7 +172,7 @@ alias ecw='emacsclient -nw'
 
 alias screen='screen -R'
 alias p='pushd'
-alias o='popd' 
+alias o='popd'
 alias d='dirs -v'
 
 alias lmk='latexmk -pdf -pvc'

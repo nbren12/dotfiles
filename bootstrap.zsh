@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 # A script useful for bootstrapping my configurations on a new
 # computer
 
