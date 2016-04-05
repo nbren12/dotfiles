@@ -308,6 +308,9 @@ layers configuration."
   ;; Turn on auto fill mode
   (spacemacs/toggle-auto-fill-mode-on)
 
+  ;; Change autosave interval
+  (setq auto-save-timeout 30)
+
   ;; abbreviations
   (setq abbrev-file-name (concat dotspacemacs-directory "abbrev_def"))
   (read-abbrev-file abbrev-file-name)
@@ -450,7 +453,9 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files (quote ("~/Dropbox/notes/CRM.org")))
+ '(org-agenda-files
+   (quote
+    ("~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/"))
 (custom-set-faces
