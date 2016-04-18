@@ -274,7 +274,7 @@ values."
    ;; `trailing' to delete only the whitespace at end of lines, `changed'to
    ;; delete only whitespace for changed lines or `nil' to disable cleanup.
    ;; (default nil)
-   dotspacemacs-whitespace-cleanup 'all
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
@@ -455,7 +455,7 @@ layers configuration."
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
+    ("~/Dropbox/notes/Admin.org" "~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/"))
 (custom-set-faces
