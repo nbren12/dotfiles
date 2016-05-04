@@ -98,7 +98,6 @@ set foldnestmax=2
 
 iab ndb Noah D. Brenowitz
 iab nb Noah Brenowitz
-iab em noah@cims.nyu.edu
 iab teh the
 iab adn and
 iab fo of

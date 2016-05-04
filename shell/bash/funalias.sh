@@ -13,16 +13,7 @@ function t4 {
         command xterm -sb -sl 1000 -fa Monaco -fs 11 -bg LavenderBlush3 &
         }
 
-# shortcut to fire up emacs 
-function em {
-    args=$@
-    if [[ ! "$@" =~ "-nw" ]]; then
-        args="-c $args"
-        nohup emacsclient --alternate-editor="" $args > /dev/null&
-    else
-        emacsclient --alternate-editor="" $args 
-    fi
-}
+alias em='emacsclient --alternate-editor="" $args'
 
 
 # shortcut for ncview
