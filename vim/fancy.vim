@@ -132,7 +132,8 @@ Plug 'benekastah/neomake'
 
     Plug 'Valloric/YouCompleteMe'
 else
-    Plug 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe', {'on': []}
+    autocmd InsertEnter * call plug#load('YouCompleteMe')
 
 endif
 

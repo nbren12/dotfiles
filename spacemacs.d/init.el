@@ -54,7 +54,7 @@ values."
      ;; For editing markdown files
      markdown
      ;; pandoc
-     latex
+     (latex :variables latex-enable-folding t)
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      vimish-fold
@@ -108,6 +108,7 @@ values."
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
    ;; unchanged. (default 'vim)
    dotspacemacs-editing-style 'vim
+   ;; dotspacemacs-editing-style 'emacs
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
