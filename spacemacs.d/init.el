@@ -384,6 +384,7 @@ layers configuration."
              "* %?\nEntered on %U\n  %i\n  %a")
             ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
              "* %?\nEntered on %U\n  %i\n  %a")))
+    (require 'ob-dot)
     (require 'ob-ipython))
 
   (my-org-config)
