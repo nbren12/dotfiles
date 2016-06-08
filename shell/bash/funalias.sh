@@ -166,7 +166,7 @@ alias p='pushd'
 alias o='popd'
 alias d='dirs -v'
 
-alias lmk='latexmk -pdf -pvc'
+alias lmk='latexmk -pdf'
 alias pyhttp='python -m SimpleHTTPServer'
 alias ml='matlab -nodesktop -nosplash'
 
@@ -175,3 +175,4 @@ alias g='git'
 alias gls='git status -s | less'
 
 alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py'
+alias mkdir_date='mkdir $(date +%F)'
