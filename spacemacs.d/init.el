@@ -55,12 +55,10 @@ values."
      markdown
      ;; pandoc
      (latex :variables latex-enable-folding t)
-     bibtex
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      vimish-fold
      multiple-cursors
-     shell
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -355,16 +353,19 @@ layers configuration."
 
   ;;; Authoring tools
 
-  ;; bibtex layer configuration
-  (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
+  ;; Bibliography management
+  (use-package org-ref
+    :config
+    (progn
+      (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
 
-  ;; see org-ref for use of these variables
-  (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-        org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
-        org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+      ;; see org-ref for use of these variables
+      (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
+            org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
+            org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
 
-  ;; need to setup helm-bibtex as well
-  (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")
+      ;; need to setup helm-bibtex as well
+      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
 
   ;; latex shortcuts
   (use-package cdlatex)
@@ -454,10 +455,9 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
    (quote
-    ("~/workspace/multicmt/doc/current/outline.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/CRM.org")))
+    ("~/Dropbox/notes/Admin.org" "~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/" t)
  '(word-wrap t))
