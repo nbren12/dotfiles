@@ -459,7 +459,8 @@ layers configuration."
    (quote
     ("~/workspace/multicmt/doc/current/outline.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
- '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/"))
+ '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/" t)
+ '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
