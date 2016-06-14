@@ -48,7 +48,7 @@ values."
      (c-c++
       :variables c-c++-enable-clang-support t
       )
-     ycmd
+     ;; ycmd
      deft ;; notational velocity clone
      ;; neotree
      ;; For editing markdown files
@@ -319,10 +319,10 @@ layers configuration."
 
 
   ;; YCMD
-  (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
-  (let (( my-ycmd-path (-first 'file-exists-p ycmd-search-paths)))
-        (message (concat "<noah> Setting my ycmd path to " my-ycmd-path))
-        (set-variable 'ycmd-server-command '("python2" my-ycmd-path)))
+  ;; (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
+  ;; (let (( my-ycmd-path (-first 'file-exists-p ycmd-search-paths)))
+  ;;       (message (concat "<noah> Setting my ycmd path to " my-ycmd-path))
+  ;;       (set-variable 'ycmd-server-command '("python2" my-ycmd-path)))
 
 
   (use-package deft
