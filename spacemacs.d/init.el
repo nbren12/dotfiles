@@ -55,6 +55,7 @@ values."
      markdown
      ;; pandoc
      (latex :variables latex-enable-folding t)
+     bibtex
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      vimish-fold
@@ -456,11 +457,13 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
    (quote
     ("~/Dropbox/notes/Admin.org" "~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
- '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/" t)
+ '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+ '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape"))))
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
