@@ -48,13 +48,14 @@ values."
      (c-c++
       :variables c-c++-enable-clang-support t
       )
-     ycmd
+     ;; ycmd
      deft ;; notational velocity clone
      ;; neotree
      ;; For editing markdown files
      markdown
      ;; pandoc
      (latex :variables latex-enable-folding t)
+     bibtex
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      vimish-fold
@@ -320,10 +321,10 @@ layers configuration."
 
 
   ;; YCMD
-  (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
-  (let (( my-ycmd-path (-first 'file-exists-p ycmd-search-paths)))
-        (message (concat "<noah> Setting my ycmd path to " my-ycmd-path))
-        (set-variable 'ycmd-server-command '("python2" my-ycmd-path)))
+  ;; (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
+  ;; (let (( my-ycmd-path (-first 'file-exists-p ycmd-search-paths)))
+  ;;       (message (concat "<noah> Setting my ycmd path to " my-ycmd-path))
+  ;;       (set-variable 'ycmd-server-command '("python2" my-ycmd-path)))
 
 
   (use-package deft
@@ -463,6 +464,7 @@ layers configuration."
     ("~/Dropbox/journal/2016-06-09/questions.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+ '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape"))))
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
