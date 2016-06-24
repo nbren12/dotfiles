@@ -19,10 +19,10 @@ if [ "$TERM" != "dumb" ]; then
  export CLICOLOR=1
 fi
 
-export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W \$\[\033[00m\] '
-export PS1=':; '
-#export PS1='[\[\033[01;32m\]\u\[\033[01;34m\] \W \[\033[00m\]]'
-#export PS1='[\[\033[01;34m\]\W\[\033[0m\]] '
+# export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W \$\[\033[00m\] '
+# export PS1=':; '
+# export PS1='[\[\033[01;32m\]\u\[\033[01;34m\] \W \[\033[00m\]]'
+export PS1='[\[\033[01;34m\]\W\[\033[0m\]] '
 
 # vim mode
 set -o vi
