@@ -159,6 +159,7 @@ alias rs='rsync -aHv'
 alias emacs='emacs'
 alias ed='emacs --daemon'
 alias ec='emacsclient'
+alias ecc='emacsclient -c'
 alias ecw='emacsclient -nw'
 
 alias screen='screen -R'
