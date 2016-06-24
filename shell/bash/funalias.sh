@@ -88,7 +88,7 @@ fzf_cd ()
     # file=$(fzf)
     # [[ -f $file ]] && goto=$(dirname $file)
     # [[ -d $file ]] && goto=$file
-    goto=$(find . -type d | fzf)
+    goto=$(find . -type d | grep -v '.git' | fzf)
 
     cd $goto
 

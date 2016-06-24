@@ -20,10 +20,12 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 export PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W \$\[\033[00m\] '
+export PS1=':; '
 #export PS1='[\[\033[01;32m\]\u\[\033[01;34m\] \W \[\033[00m\]]'
 #export PS1='[\[\033[01;34m\]\W\[\033[0m\]] '
 
-
+# vim mode
+set -o vi
 export EDITOR='/usr/bin/env vim'
 export PAGER=less
 export LANG='en_US.UTF-8'
@@ -33,3 +35,9 @@ if [[ -e $HOME/.git-completion.bash ]]
 then
     source $HOME/.git-completion.bash
 fi
+
+# z
+[[ -e ~/usr/bin/z.sh ]] && . ~/usr/bin/z.sh
+
+# fzf
+[ -f ~/.fzf.bash ] && . ~/.fzf.bash
