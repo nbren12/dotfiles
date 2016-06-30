@@ -464,6 +464,8 @@ layers configuration."
     ("~/Dropbox/journal/2016-06-09/questions.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+ '(projectile-globally-ignored-file-suffixes (quote (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc")))
+ '(projectile-globally-ignored-files (quote ("TAGS" "*CMakeFiles/*")))
  '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape"))))
  '(word-wrap t))
 (custom-set-faces
