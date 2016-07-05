@@ -1085,7 +1085,7 @@
 (define-abbrev-table 'vc-git-log-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'vc-git-log-view-mode-abbrev-table '())
-(define-abbrev-table 'f90-mode
+(define-abbrev-table 'f90-mode-abbrev-table
   '(
     ( "`r" "real(8)" nil 0)
     ( "`i" "integer" nil 0)

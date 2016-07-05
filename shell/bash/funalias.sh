@@ -163,9 +163,14 @@ alias ecc='emacsclient -c'
 alias ecw='emacsclient -nw'
 
 alias screen='screen -R'
+
+
+# Directory movement
 alias p='pushd'
 alias o='popd'
 alias d='dirs -v'
+alias ..='cd ..'
+alias ...='cd ../..'
 
 alias lmk='latexmk -pdf'
 alias pyhttp='python -m SimpleHTTPServer'
