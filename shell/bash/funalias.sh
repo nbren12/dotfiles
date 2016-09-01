@@ -95,6 +95,10 @@ fzf_cd ()
 }
 
 alias cf=fzf_cd
+function c ()
+{
+    cd $(ls -1 | fzf)
+}
 
 function fd ()
 {
