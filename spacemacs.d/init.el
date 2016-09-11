@@ -62,6 +62,7 @@ values."
      multiple-cursors
      shell
      bibtex
+     scala
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -250,7 +251,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -264,7 +265,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -462,7 +463,7 @@ layers configuration."
  '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/journal/2016-06-09/questions.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/EAC/EAC.org" "~/Dropbox/notes/CRM.org")))
+    ("~/Dropbox/notes/Jobs.org" "~/Dropbox/journal/2016-06-09/questions.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/CRM.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
  '(projectile-globally-ignored-file-suffixes (quote (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc")))
