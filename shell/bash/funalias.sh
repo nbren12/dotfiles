@@ -95,6 +95,10 @@ fzf_cd ()
 }
 
 alias cf=fzf_cd
+function c ()
+{
+    cd $(ls -1 | fzf)
+}
 
 function fd ()
 {
@@ -147,7 +151,7 @@ alias docker_env='eval $(docker-machine env default)'
 alias ssh='ssh -Y'
 
 # cmake alias
-alias rmcmake='rm -rf CMakefiles CMakeCache.txt'
+alias rmcmake='rm -rf CMakeFiles CMakeCache.txt'
 
 # alias rm='rm -i'
 alias cp='cp -i'
@@ -156,7 +160,6 @@ alias vim='vim -X'
 alias ml='matlab -nodesktop -nosplash'
 alias rs='rsync -aHv'
 
-alias emacs='emacs'
 alias ed='emacs --daemon'
 alias ec='emacsclient'
 alias ecc='emacsclient -c'
