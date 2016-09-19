@@ -168,6 +168,9 @@ alias ecw='emacsclient -nw'
 alias screen='screen -R'
 
 
+# Process management
+alias pss='ps aux | fzf'
+
 # Directory movement
 alias p='pushd'
 alias o='popd'
