@@ -251,7 +251,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers t
+   dotspacemacs-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -358,18 +358,18 @@ layers configuration."
   ;;; Authoring tools
 
   ;; Bibliography management
-  (use-package org-ref
-    :config
-    (progn
-      (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
+  ;; (use-package org-ref
+  ;;   :config
+  ;;   (progn
+  ;;     (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
 
-      ;; see org-ref for use of these variables
-      (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-            org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
-            org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+  ;;     ;; see org-ref for use of these variables
+  ;;     (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
+  ;;           org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
+  ;;           org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
 
-      ;; need to setup helm-bibtex as well
-      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
+  ;;     ;; need to setup helm-bibtex as well
+  ;;     (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
 
   ;; latex shortcuts
   (use-package cdlatex)
@@ -457,14 +457,15 @@ layers configuration."
 
   ;; mac os stuff
   (if (eq system-type 'darwin)
-      (define-key global-map (kbd "s-w") 'spacemacs/frame-killer)
-      (defadvice handle-delete-frame (around my-handle-delete-frame-advice activate)
-        "Hide Emacs instead of closing the last frame"
-        (let ((frame   (posn-window (event-start event)))
-              (numfrs  (length (frame-list))))
-          (if (> numfrs 1)
-              ad-do-it
-            (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false"))))))
+      (progn
+        (define-key global-map (kbd "s-w") 'spacemacs/frame-killer)
+        (defadvice handle-delete-frame (around my-handle-delete-frame-advice activate)
+          "Hide Emacs instead of closing the last frame"
+          (let ((frame   (posn-window (event-start event)))
+                (numfrs  (length (frame-list))))
+            (if (> numfrs 1)
+                ad-do-it
+              (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false")))))))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
