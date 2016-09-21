@@ -449,7 +449,22 @@ layers configuration."
   ;; buffer navigation
   (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
   (global-set-key (kbd "C-x <C-left>") 'spacemacs/previous-useful-buffer)
-  (global-set-key (kbd "C-x <C-right>") 'spacemacs/next-useful-buffer))
+  (global-set-key (kbd "C-x <C-right>") 'spacemacs/next-useful-buffer)
+
+  ;; Window maximization
+  (add-to-list 'default-frame-alist '(fullscreen . fullheight))
+  (add-to-list 'default-frame-alist '(fullscreen-restore . fullheight))
+
+  ;; mac os stuff
+  (if (eq system-type 'darwin)
+      (define-key global-map (kbd "s-w") 'spacemacs/frame-killer)
+      (defadvice handle-delete-frame (around my-handle-delete-frame-advice activate)
+        "Hide Emacs instead of closing the last frame"
+        (let ((frame   (posn-window (event-start event)))
+              (numfrs  (length (frame-list))))
+          (if (> numfrs 1)
+              ad-do-it
+            (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false"))))))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
