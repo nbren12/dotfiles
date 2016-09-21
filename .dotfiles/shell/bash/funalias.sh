@@ -164,6 +164,7 @@ alias ed='emacs --daemon'
 alias ec='emacsclient'
 alias ecc='emacsclient -c'
 alias ecw='emacsclient -nw'
+alias ee='emacsclient -c -a emacs'
 
 alias screen='screen -R'
 
