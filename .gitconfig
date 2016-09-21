@@ -9,6 +9,7 @@
     st = status -s
     cl = clone
     ci = commit
+    cm = commit --amend
     ; diff = diff --word-diff
     dc = diff --cached
     ttc = clean -x -d 
