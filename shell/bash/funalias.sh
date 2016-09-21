@@ -189,3 +189,8 @@ alias ga='git commit --amend'
 
 alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py'
 alias mkdir_date='mkdir $(date +%F)'
+
+# configuration management
+# from https://news.ycombinator.com/item?id=11070797
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/'
+
