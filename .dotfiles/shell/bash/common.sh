@@ -32,6 +32,9 @@ export GIT_EDITOR=$EDITOR
 export PAGER=less
 export LANG='en_US.UTF-8'
 
+# path
+export PATH=$HOME/bin:$PATH
+
 
 if [[ -e $HOME/.git-completion.bash ]]
 then
