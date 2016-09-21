@@ -11,7 +11,7 @@ Hostname access.cims.nyu.edu
 user noah
 
 Host desk
-Hostname box636
+Hostname box624
 port 22
 user noah
 ProxyCommand ssh -A cims nc %h %p
