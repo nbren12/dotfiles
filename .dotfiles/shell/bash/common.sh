@@ -33,7 +33,7 @@ export PAGER=less
 export LANG='en_US.UTF-8'
 
 # path
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/Dropbox/gnl/bin:$PATH
 
 
 if [[ -e $HOME/.git-completion.bash ]]
