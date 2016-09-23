@@ -38,7 +38,7 @@ export PATH=$HOME/bin:$HOME/Dropbox/gnl/bin:$PATH
 
 if [[ -e $HOME/.git-completion.bash ]]
 then
-    source $HOME/.git-completion.bash
+    source $HOME/.dotfiles/git-completion.bash
 fi
 
 # z
