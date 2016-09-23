@@ -193,6 +193,6 @@ alias mkdir_date='mkdir $(date +%F)'
 
 # configuration management
 # from https://news.ycombinator.com/item?id=11070797
-alias config='/usr/bin/git --git-dir=$HOME/.myconf/'
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
 
