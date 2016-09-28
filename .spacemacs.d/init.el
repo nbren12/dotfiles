@@ -479,7 +479,7 @@ layers configuration."
  '(evil-want-Y-yank-to-eol nil)
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Jobs.org" "~/Dropbox/journal/2016-06-09/questions.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/CRM.org")))
+    ("~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
  '(package-selected-packages
