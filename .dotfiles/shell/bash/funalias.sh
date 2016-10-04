@@ -128,6 +128,7 @@ function findignore()
     find $1 -not -path '*\.git/*'
 }
 
+
 alias lp='findignore `projectroot` | fzf'
 alias lpv='vim $(lp)'
 
@@ -140,6 +141,12 @@ function sst ()
     job=$(qstat -u ndb245 | tail -n 1 | awk -F' ' '{print $1}')
     showstart  $job
 }
+
+# Print first matching group
+function regexp() {
+    perl -n -e "/$1/ && print \$1 . \"\n\""
+}
+
 alias wst='watch -n 5 sst'
 alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
 alias is='interactive_session'
@@ -195,4 +202,5 @@ alias mkdir_date='mkdir $(date +%F)'
 # from https://news.ycombinator.com/item?id=11070797
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
+
 
