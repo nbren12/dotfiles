@@ -1,5 +1,2 @@
 channels:
   - defaults
-  - https://conda.binstar.org/asmeurer
-  - https://conda.binstar.org/nbren12
-  - https://conda.binstar.org/public
