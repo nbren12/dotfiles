@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: docopt
+# key: doc
+# --
+from docopt import docopt
+args = docopt(__doc__)
