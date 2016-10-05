@@ -62,7 +62,6 @@ values."
      multiple-cursors
      shell
      bibtex
-     scala
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -134,15 +133,12 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(spacemacs-light
-                         spacemacs-dark
-                         solarized-light
+   dotspacemacs-themes '(spacemacs-dark
+                         spacemacs-light
                          solarized-dark
+                         solarized-light
                          leuven
-                         monokai
-                         default
-                         leuven
-                         zenburn)
+                         monokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -247,7 +243,7 @@ values."
    ;; If non nil smooth scrolling (native-scrolling) is enabled. Smooth
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
-   dotspacemacs-smooth-scrolling t
+   dotspacemacs-smooth-scrolling nil
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
@@ -319,7 +315,6 @@ layers configuration."
   ;; abbreviations
   (setq abbrev-file-name (concat dotspacemacs-directory "abbrev_def"))
   (read-abbrev-file abbrev-file-name)
-
 
   ;; YCMD
   ;; (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
@@ -465,7 +460,10 @@ layers configuration."
                 (numfrs  (length (frame-list))))
             (if (> numfrs 1)
                 ad-do-it
-              (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false")))))))
+              (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false"))))))
+
+  ;; kill ring forward binding
+  (global-set-key "\M-Y" 'evil-paste-pop-next))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
