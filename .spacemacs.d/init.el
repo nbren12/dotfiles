@@ -39,19 +39,17 @@ values."
      ;; markdown
      org
      ;; html
-     ;; shell
+     shell
      syntax-checking
      python
      ess
-     clojure
+     ;; clojure
      ;; go
-     (c-c++
-      :variables c-c++-enable-clang-support t
-      )
+     ;; (c-c++
+     ;;  :variables c-c++-enable-clang-support t
+     ;;  )
      ;; ycmd
      deft ;; notational velocity clone
-     ;; neotree
-     ;; For editing markdown files
      markdown
      ;; pandoc
      (latex :variables latex-enable-folding t)
@@ -59,7 +57,7 @@ values."
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      vimish-fold
-     multiple-cursors
+     ;; multiple-cursors
      shell
      bibtex
      )
