@@ -268,6 +268,7 @@ axes.formatter.limits : -2, 3 # use scientific notation if log10
                                # rather than hyphen.  See
                                # http://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes
 #axes.prop_cycle    : cycler('color', 'bgrcmyk')
+axes.prop_cycle    : cycler('color', 'bgckmyr')
                                             # color cycle for plot lines
                                             # as list of string colorspecs:
                                             # single letter, long name, or
