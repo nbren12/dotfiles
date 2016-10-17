@@ -1,18 +1,1 @@
-#+BEGIN_EXAMPLE
-    git init --bare $HOME/.myconf
-    alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
-    config config status.showUntrackedFiles no
-
-#+END_EXAMPLE
-
-* Bootstrap
-
-#+BEGIN_EXAMPLE
- git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
-    cp ~/myconf-tmp/.gitmodules ~  # If you use Git submodules
-rsync -av ~/myconf-tmp/ $HOME/
-    rm -r ~/myconf-tmp/
-    alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
-
-#+END_EXAMPLE
-
+: curl https://raw.githubusercontent.com/nbren12/dotfiles/master/.dotfiles/bootstrap.sh | sh
