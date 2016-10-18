@@ -37,9 +37,6 @@ export PATH=/scratch/noah/clion-2016.1/bin:/scratch/noah/pycharm-2016.1/bin:$PAT
 # git
 export PATH=/scratch/noah/git-annex.linux:$PATH
 
-# latex
-module load texlive-2016
-
 # emacs
 module load emacs-24.5
 export PATH=/usr/local/stow/emacs-24.5/bin:/usr/local/pkg/emacs/24.5/bin:$PATH
