@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: logging_config
+# key: loginfo 
+# --
+import logging
+logging.basicConfig(level=logging.INFO)
