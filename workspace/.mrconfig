@@ -1,0 +1,9 @@
+
+[multicloudstochfmk13]
+checkout = git clone 'git@bitbucket.org:nbren12/multicloudstochfmk13.git' 'multicloudstochfmk13'
+
+[multicmt]
+checkout = git clone 'git@bitbucket.org:nbren12/multicmt.git' 'multicmt'
+
+[pynlsa]
+checkout = git clone 'git@bitbucket.org:nbren12/pynlsa.git' 'pynlsa'
