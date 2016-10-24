@@ -1,2 +1,3 @@
 channels:
+  - https://conda.anaconda.org/nbren12
   - defaults
