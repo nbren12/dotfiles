@@ -9,9 +9,6 @@ fi
 [[ -f /usr/local/lib/.system.bashrc ]] && . /usr/local/lib/.system.bashrc
 export PYTHONPATH=""
 
-# Load user aliases and funs
-source ~/.dotfiles/shell/bash/common.sh
-source ~/.dotfiles/shell/bash/funalias.sh
 
 # vapor
 # . /scratch/noah/vapor-2.5.0/bin/vapor-setup.sh > /dev/null
@@ -68,5 +65,10 @@ function killhpc(){
 # local files
 export PATH=$HOME/usr/bin:$PATH
 
+# Load user aliases and funs
+source ~/.dotfiles/shell/bash/common.sh
+source ~/.dotfiles/shell/bash/funalias.sh
+
+module load texlive-2016 2> /dev/null
 
 umask u=rwx,g=rx,o=rx
