@@ -406,6 +406,7 @@ axes.prop_cycle    : cycler('color', 'bgckmyr')
 #savefig.edgecolor   : white    # figure edgecolor when saving
 #savefig.format      : png      # png, ps, pdf, svg
 #savefig.bbox        : standard # 'tight' or 'standard'.
+savefig.bbox        : 'tight' # 'tight' or 'standard'.
                                 # 'tight' is incompatible with pipe-based animation
                                 # backends but will workd with temporary file based ones:
                                 # e.g. setting animation.writer to ffmpeg will not work,

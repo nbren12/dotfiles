@@ -5,6 +5,7 @@
     ls = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
     lss = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
     ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    lsf = ls-files
     cp = cherry-pick
     st = status -s
     cl = clone
@@ -25,5 +26,6 @@
 	default = matching
 [core]
 	editor = emacsclient -c
+	excludesfile = /home/noah/.gitignore_global
 [http]
 	sslVerify = false
