@@ -428,6 +428,7 @@ layers configuration."
   (evil-leader/set-key "ors" 'remove-blank-spaces)
   (evil-leader/set-key "oc" 'customize-group)
   (evil-leader/set-key "oo" 'occur)
+  (evil-leader/set-key "oi" 'ibuffer)
 
 
   ;; auto-completion
