@@ -380,7 +380,9 @@ layers configuration."
             ("h" "Howto" entry (file+headline "~/Dropbox/notes/Howto.org" "Inbox")
              "* %?\nEntered on %U\n  %i\n  %a")
             ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
-             "* %?\nEntered on %U\n  %i\n  %a")))
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
+             "* %?\n\n")))
     (require 'ob-dot)
     (require 'ob-ipython))
 
