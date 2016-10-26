@@ -29,10 +29,10 @@ ipynb ()
 
     #!/bin/sh
     #PBS -l nodes=1,ppn=8,walltime=4:00:00
-    
+
     source $HOME/py3k/bin/activate
     PORT=$1
-    
+
     ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-0 &
     PID1=$!
     ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-1 &
@@ -44,12 +44,12 @@ ipynb ()
 
     ipython notebook --port=${PORT}
     echo "Killing procs"
-    
+
     kill $PID1
     kill $PID2
     kill $PID3
     kill $PID4
-    
+
 }
 
 activate_above ()
@@ -79,9 +79,9 @@ mv .tmp123124125 "$1"
 }
 
 # Open manual in preview
-pman() 
-{ 
-    man -t "$@" | open -f -a Preview; 
+pman()
+{
+    man -t "$@" | open -f -a Preview;
 }
 
 # name of file
@@ -96,7 +96,7 @@ na ()
 
     echo $name
     echo /ssh:mercer:$name
-    echo scp mercer:$name 
+    echo scp mercer:$name
 }
 
 # FZF stuff
