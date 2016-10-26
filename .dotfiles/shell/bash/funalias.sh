@@ -52,6 +52,24 @@ ipynb ()
     
 }
 
+activate_above ()
+{
+    CUR_DIR=$(pwd)
+    while [ ! $(pwd) == "/" ]
+    do
+        if [[  -e ./activate.sh  ]]
+        then
+            active_script="$(pwd)/activate.sh"
+            echo "Sourcing $active_script"
+            . $active_script
+        fi
+
+        cd ..
+    done
+
+    cd $CUR_DIR
+}
+
 # Swap files
 function sw(){
 mv "$2" .tmp123124125
@@ -204,5 +222,7 @@ alias config='/usr/bin/env git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
 alias qtconsole='jupyter qtconsole'
 alias notebook='jupyter notebook'
+
+alias aa='activate_above'
 
 

@@ -1,3 +1,4 @@
 channels:
+  - https://conda.anaconda.org/mpi4py
   - https://conda.anaconda.org/nbren12
   - defaults
