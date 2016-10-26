@@ -19,6 +19,8 @@ alias emacs=$EMACS
 export TERM="xterm-256color"
 export PATH=$HOME/usr/bin:$PATH
 
+export PYTHONPATH=$HOME/workspace/multicloudstochfmk13:$PYTHONPATH
+
 # path
 export PATH=/usr/local/bin:$PATH
 
