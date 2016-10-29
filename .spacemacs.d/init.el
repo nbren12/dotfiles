@@ -314,6 +314,9 @@ layers configuration."
   (setq abbrev-file-name (concat dotspacemacs-directory "abbrev_def"))
   (read-abbrev-file abbrev-file-name)
 
+  ;; hungry delete
+  (spacemacs/toggle-hungry-delete-on)
+
   ;; YCMD
   ;; (setq ycmd-search-paths '("/Users/noah/.dotfiles/vim/plugged/YouCompleteMe/third_party/ycmd/ycmd"))
   ;; (let (( my-ycmd-path (-first 'file-exists-p ycmd-search-paths)))
