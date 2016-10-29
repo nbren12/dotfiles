@@ -325,6 +325,7 @@ axes.prop_cycle    : cycler('color', 'bgckmyr')
 #legend.columnspacing : 2.    # the border between the axes and legend edge in fraction of fontsize
 #legend.shadow        : False
 #legend.frameon       : True   # whether or not to draw a frame around legend
+legend.frameon       : False   # whether or not to draw a frame around legend
 #legend.framealpha    : None    # opacity of of legend frame
 #legend.scatterpoints : 3 # number of scatter points
 
