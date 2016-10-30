@@ -35,7 +35,7 @@
 # You can also deploy your own backend outside of matplotlib by
 # referring to the module name (which must be in the PYTHONPATH) as
 # 'module://my_backend'.
-backend      : qt4agg
+# backend      : qt4agg
 
 # If you are using the Qt4Agg backend, you can choose here
 # to use the PyQt4 bindings or the newer PySide bindings to
@@ -268,7 +268,7 @@ axes.formatter.limits : -2, 3 # use scientific notation if log10
                                # rather than hyphen.  See
                                # http://en.wikipedia.org/wiki/Plus_and_minus_signs#Character_codes
 #axes.prop_cycle    : cycler('color', 'bgrcmyk')
-axes.prop_cycle    : cycler('color', 'bgckmyr')
+axes.prop_cycle    : cycler('ls', ['-', '--', ':']) * cycler('color', 'kbgc') 
                                             # color cycle for plot lines
                                             # as list of string colorspecs:
                                             # single letter, long name, or

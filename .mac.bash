@@ -25,7 +25,7 @@ export PYTHONPATH=$HOME/workspace/multicloudstochfmk13:$PYTHONPATH
 export PATH=/usr/local/bin:$PATH
 
 # anaconda
-export PATH=/Users/noah/anaconda/bin:$PATH
+export PATH=/Users/noah/anaconda3/bin:$PATH
 
 # anaconda's fortran overrides system version
 alias gfortran='/usr/local/bin/gfortran'
