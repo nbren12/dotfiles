@@ -36,6 +36,7 @@
 # referring to the module name (which must be in the PYTHONPATH) as
 # 'module://my_backend'.
 # backend      : qt4agg
+backend      :  Qt5Agg
 
 # If you are using the Qt4Agg backend, you can choose here
 # to use the PyQt4 bindings or the newer PySide bindings to
@@ -275,6 +276,8 @@ axes.prop_cycle    : cycler('ls', ['-', '--', ':']) * cycler('color', 'kbgc')
                                             # web-style hex
 #axes.xmargin        : 0  # x margin.  See `axes.Axes.margins`
 #axes.ymargin        : 0  # y margin See `axes.Axes.margins`
+axes.spines.right : False
+axes.spines.top : False
 
 #polaraxes.grid      : True    # display grid on polar axes
 #axes3d.grid         : True    # display grid on 3d axes
