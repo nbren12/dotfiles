@@ -386,6 +386,10 @@ layers configuration."
              "* %?\nEntered on %U\n  %i\n  %a")
             ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
              "* %?\n\n")))
+
+    (if (string-equal system-type "gnu/linux")
+        (add-to-list 'org-file-apps '(t . "xdg-open %s")))
+
     (require 'ob-dot)
     (require 'ob-ipython))
 
