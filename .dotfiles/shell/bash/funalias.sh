@@ -23,7 +23,8 @@ function nv {
 
 
 
-# Function for ipytohn notebook
+# Function for ipython notebook
+
 ipynb ()
 {
 
@@ -33,23 +34,100 @@ ipynb ()
     source $HOME/py3k/bin/activate
     PORT=$1
 
-    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-0 &
-    PID1=$!
-    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-1 &
-    PID2=$!
-    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-2 &
-    PID3=$!
-    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-3 &
-    PID4=$!
+    PID=""
 
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-0 &
+    PID[0]=$!
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-1 &
+    PID[1]=$!
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-2 &
+    PID[2]=$!
+    ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-3 &
+    PID[3]=$!
+
+    export JUPYTER_RUNTIME_DIR=$HOME/.local
     jupyter notebook --port=${PORT}
+
     echo "Killing procs"
 
-    kill $PID1
-    kill $PID2
-    kill $PID3
-    kill $PID4
+    kill ${PID[*]}
+}
 
+#function for pbs submission of ipython 
+pipynb ()
+{
+   subname=.submit.ipython.2393u
+cat <<EOF > $subname
+#!/bin/sh
+#PBS -N ipython_notebook
+#PBS -o ipy.out
+#PBS -e ipy.err
+#PBS -l nodes=1,walltime=04:00:00
+PORT=10001
+SSHPROC=
+
+for i in `seq 0 3`
+do
+    ssh -N -R $PORT:127.0.0.1:$PORT login-0-$i &
+    SSHPROC=$SSHPROJ $!
+done
+
+export JUPYTER_RUNTIME_DIR=$HOME/.local
+jupyter notebook --port $PORT &
+IPYPROC=$!
+echo ""
+echo "Running jupyter notebook on port $PORT"
+echo ""
+echo ""
+echo ""
+echo "Sleeping for 4 hours"
+sleep 4h
+echo "Killing proc"
+kill $SSHPROC
+kill $IPYPROC
+EOF
+
+qsub $subname
+}
+
+# function for slurm submission of ipython
+sipynb ()
+{
+
+    subname=.submit.143325
+cat <<EOF > $subname
+#!/bin/sh
+#SBATCH --ntasks=1
+#SBATCH --job-name="jupyter-notebook"
+#SBATCH --time=8:00:00
+#SBATCH -o  .ipy.out
+#SBATCH -e  .ipy.out
+PORT=10002
+SSHPROC=
+
+for i in `seq 0 3`
+do
+    ssh -N -R $PORT:127.0.0.1:$PORT login-0-$i &
+    SSHPROC=$SSHPROJ $!
+done
+
+export JUPYTER_RUNTIME_DIR=$HOME/.local
+jupyter notebook --port $PORT &
+IPYPROC=$!
+echo ""
+echo "Running jupyter notebook on port $PORT"
+echo ""
+echo ""
+echo ""
+echo "Sleeping for 4 hours"
+sleep 4h
+echo "Killing proc"
+kill $SSHPROC
+kill $IPYPROC
+EOF
+
+
+sbatch $subname
 }
 
 activate_above ()
