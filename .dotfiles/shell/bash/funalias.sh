@@ -42,7 +42,7 @@ ipynb ()
     ssh  -N -R  ${PORT}:127.0.0.1:${PORT} login-0-3 &
     PID4=$!
 
-    ipython notebook --port=${PORT}
+    jupyter notebook --port=${PORT}
     echo "Killing procs"
 
     kill $PID1

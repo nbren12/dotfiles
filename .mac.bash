@@ -41,6 +41,11 @@ alias vim=nvim
 # latex
 export PATH=/usr/local/texlive/2014/bin/x86_64-darwin:$PATH
 
+# CUDA
+export CUDA_HOME=/usr/local/cuda
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
+export PATH="$CUDA_HOME/bin:$PATH"
+
 # This make everything readable.  This means that your files are not private, 
 # allowing other people to share your data and output, which aids in research
 # and enables me to help you if you have a problem.  
