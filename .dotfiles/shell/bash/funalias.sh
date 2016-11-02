@@ -57,7 +57,7 @@ ipynb ()
 pipynb ()
 {
    subname=.submit.ipython.2393u
-cat <<EOF > $subname
+cat <<"EOF" > $subname
 #!/bin/sh
 #PBS -N ipython_notebook
 #PBS -o ipy.out
@@ -95,7 +95,7 @@ sipynb ()
 {
 
     subname=.submit.143325
-cat <<EOF > $subname
+cat <<"EOF" > $subname
 #!/bin/sh
 #SBATCH --ntasks=1
 #SBATCH --job-name="jupyter-notebook"
