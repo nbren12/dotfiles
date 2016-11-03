@@ -53,6 +53,12 @@ ipynb ()
     kill ${PID[*]}
 }
 
+
+dalma_notebook ()
+{
+    ssh dalma "/bin/bash -l -c 'jupyter-notebook --port=10002'"
+}
+
 #function for pbs submission of ipython 
 pipynb ()
 {
