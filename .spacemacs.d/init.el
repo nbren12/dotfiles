@@ -52,7 +52,7 @@ values."
      deft ;; notational velocity clone
      markdown
      ;; pandoc
-     (latex :variables latex-enable-folding t)
+     (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      bibtex
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
@@ -142,8 +142,8 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 11
+   dotspacemacs-default-font '("Monaco"
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -293,6 +293,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+  ;; turn off ugly text wrapping arrows
+  (global-visual-line-mode 1)
+
   ;; turn off line highlighting
   (global-hl-line-mode -1)
 
@@ -304,6 +307,10 @@ layers configuration."
 
   ;; Follow symlinks automatically
   (setq vc-follow-symlinks t)
+
+  ;; slow scrolling
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+
 
   ;; Turn on auto fill mode
   (spacemacs/toggle-auto-fill-mode-on)
@@ -333,8 +340,6 @@ layers configuration."
       (setq deft-directory "~/Dropbox/notes")
       (setq deft-use-filename-as-title t)))
 
-  ;; Julia
-  (setq inferior-julia-program-name "/Applications/Julia-0.4.0.app/Contents/Resources/julia/bin/julia")
 
   ;; Paredit bindings
   (dolist (lang-map '(emacs-lisp-mode-map))
@@ -346,6 +351,25 @@ layers configuration."
         "_" 'sp-backward-up-sexp
         "+" 'sp-down-sexp)))
 
+  ;; Use variable width font faces in current buffer
+  (defun my-buffer-face-mode-variable ()
+    "Set font to a variable width (proportional) fonts in current buffer"
+    (interactive)
+    (setq buffer-face-mode-face '(:family "Times" :height 150))
+    (buffer-face-mode))
+
+  ;; Use monospaced font faces in current buffer
+  (defun my-buffer-face-mode-fixed ()
+    "Sets a fixed width (monospace) font in current buffer"
+    (interactive)
+    (setq buffer-face-mode-face '(:family "Monaco" :height 120))
+    (buffer-face-mode))
+
+
+  ;; Set default font faces for Info and ERC modes
+  ;; (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
+  (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
+  (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
 
   ;; j and k go down visual lines
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -462,6 +486,13 @@ layers configuration."
   ;; mac os stuff
   (if (eq system-type 'darwin)
       (progn
+
+        ;; skim for synctex
+        (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
+        (setq TeX-view-program-list
+              '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
+
+
         (define-key global-map (kbd "s-w") 'spacemacs/frame-killer)
         (defadvice handle-delete-frame (around my-handle-delete-frame-advice activate)
           "Hide Emacs instead of closing the last frame"
@@ -482,6 +513,7 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(LaTeX-electric-left-right-brace t)
  '(abbrev-file-name "/home/noah/.spacemacs.d/abbrev_def")
  '(evil-search-module (quote evil-search))
  '(evil-want-Y-yank-to-eol nil)
@@ -496,6 +528,7 @@ layers configuration."
  '(projectile-globally-ignored-file-suffixes (quote (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc")))
  '(projectile-globally-ignored-files (quote ("TAGS" "*CMakeFiles/*")))
  '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape"))))
+ '(visual-line-fringe-indicators (quote (nil nil)))
  '(word-wrap t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
