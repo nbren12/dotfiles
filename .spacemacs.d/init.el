@@ -394,6 +394,7 @@ layers configuration."
   ;; latex shortcuts
   (use-package cdlatex)
   (add-hook 'latex-mode-hook 'turn-off-smartparens-mode)
+  (add-hook 'latex-mode-hook 'turn-off-auto-fill)
 
   (defun my-org-config ()
     ;; org mode
