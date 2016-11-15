@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: textwidth
+# key: tw
+# --
+${1:width=}.$2\textwidth
