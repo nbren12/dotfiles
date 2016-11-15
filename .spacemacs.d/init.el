@@ -354,7 +354,7 @@ layers configuration."
   (defun my-buffer-face-mode-variable ()
     "Set font to a variable width (proportional) fonts in current buffer"
     (interactive)
-    (setq buffer-face-mode-face '(:family "Times" :height 150))
+    (setq buffer-face-mode-face '(:family "Times New Roman" :height 150))
     (buffer-face-mode))
 
   ;; Use monospaced font faces in current buffer
@@ -393,6 +393,7 @@ layers configuration."
 
   ;; latex shortcuts
   (use-package cdlatex)
+  (add-hook 'latex-mode-hook 'turn-off-smartparens-mode)
 
   (defun my-org-config ()
     ;; org mode

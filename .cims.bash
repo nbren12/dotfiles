@@ -47,6 +47,10 @@ export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI with non-
 module load lyx-2.2.0
 export PATH=/usr/local/stow/lyx-2.2.0/bin:$PATH
 
+# latex
+module load texlive-2016
+export PATH=/usr/local/stow/texlive-2016/bin/x86_64-linux:$PATH
+
 
 # This make everything readable.  This means that your files are not private,
 # allowing other people to share your data and output, which aids in research
