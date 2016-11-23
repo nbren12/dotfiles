@@ -1,5 +1,6 @@
 channels:
+  - defaults
+  - conda-forge
   - https://conda.anaconda.org/mpi4py
   - https://conda.anaconda.org/nbren12
-  - defaults
   - mpi4py

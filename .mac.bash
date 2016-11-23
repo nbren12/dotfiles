@@ -13,6 +13,7 @@ source ~/.dotfiles/shell/bash/funalias.sh
 
 export EMACS="/Applications/Emacs.app/Contents/MacOS/Emacs"
 export EDITOR=$EMACS
+export PATH=/Applications/Emacs.app//Contents/MacOS/bin:$PATH
 alias emacs=$EMACS
 
 # Set user path and pythonpath
