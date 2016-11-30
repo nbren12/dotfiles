@@ -75,4 +75,7 @@ source ~/.dotfiles/shell/bash/funalias.sh
 
 module load texlive-2016 2> /dev/null
 
+# petsc
+export PETSC_DIR=/scratch/noah/anaconda3/envs/petsc/lib/petsc
+
 umask u=rwx,g=rx,o=rx

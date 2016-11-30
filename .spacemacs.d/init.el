@@ -30,7 +30,7 @@ values."
                                      auto-completion-return-key-behavior 'complete
                                      auto-completion-tab-key-behavior 'cycle
                                      auto-completion-complete-with-key-sequence "jk"
-                                     auto-completion-complete-with-key-sequence-delay 0.3)
+                                     auto-completion-complete-with-key-sequence-delay 0.1)
      ;; better-defaults
      emacs-lisp
      git
@@ -45,11 +45,12 @@ values."
      ess
      ;; clojure
      ;; go
+     semantic
      (c-c++
       :variables c-c++-enable-clang-support t)
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
-     gtags
+     ;gtags
      vagrant
      ;; ycmd
      deft ;; notational velocity clone
@@ -68,7 +69,6 @@ values."
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(snakemake-mode
-                                      org-plus-contrib
                                       org-ref
                                       yaml-mode
                                       ncl-mode
@@ -417,8 +417,8 @@ layers configuration."
             ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
              "* %?\n\n")))
 
-    (if (string-equal system-type "gnu/linux")
-        (add-to-list 'org-file-apps '(t . "xdg-open %s")))
+    ;; (if (string-equal system-type "gnu/linux")
+    ;;    (add-to-list 'org-file-apps '(t . "xdg-open %s")))
 
     (require 'ob-dot)
     (require 'ob-ipython))
@@ -431,6 +431,7 @@ layers configuration."
           (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
       ad-do-it
       (evil-change-state orig-state)))
+
 
   ;; Fortran
   (add-to-list 'auto-mode-alist '("\\.F\\'" . f90-mode))
@@ -445,6 +446,8 @@ layers configuration."
   ;; max-line-length = 160
   ;; exclude = tests/*
   ;; max-complexity = 10
+
+
 
   ;; my own functions
   (defun remove-blank-spaces ()
@@ -461,9 +464,9 @@ layers configuration."
 
 
   ;; auto-completion
-  (define-key global-map (kbd "C-.") 'company-files)
-  (evil-define-key 'insert prog-mod-map (kbd "<C-space>") 'company-complete)
-
+  (define-key evil-emacs-state-map (kbd "C-.") 'company-files)
+  (define-key global-map (kbd "<C-tab>") 'company-complete)
+  (push 'company-semantic company-backends-c-mode-common)
 
   ;; Window navivation
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)

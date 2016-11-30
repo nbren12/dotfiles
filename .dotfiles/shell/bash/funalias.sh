@@ -265,7 +265,6 @@ alias rmcmake='rm -rf CMakeFiles CMakeCache.txt'
 # alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias vim='vim -X'
 alias ml='matlab -nodesktop -nosplash'
 alias rs='rsync -aHv'
 
@@ -274,6 +273,7 @@ alias ec='emacsclient'
 alias ecc='emacsclient -c'
 alias ecw='emacsclient -nw'
 alias ee='emacsclient -c -a emacs'
+alias vim='emacsclient -nw -a vim'
 
 alias screen='screen -R'
 
