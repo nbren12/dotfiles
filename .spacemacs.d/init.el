@@ -69,7 +69,6 @@ values."
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
    dotspacemacs-additional-packages '(snakemake-mode
-                                      org-ref
                                       yaml-mode
                                       ncl-mode
                                       cdlatex
@@ -421,7 +420,36 @@ layers configuration."
     ;;    (add-to-list 'org-file-apps '(t . "xdg-open %s")))
 
     (require 'ob-dot)
-    (require 'ob-ipython))
+    (require 'ob-ipython)
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '( (perl . t)
+        (dot . t)
+        (shell . t)
+        ;; (R . t)
+        (gnuplot . t)
+        (clojure . t)
+        ;;    (graphviz . t)
+        (lisp . t)
+        ;;    (stan . t)
+        (org . t)
+        (screen . t)
+        (calc . t)
+        (js . t)
+        (latex . t)
+        (plantuml . t)
+        (ruby . t)
+        (sh . t)
+        (python . t)
+        (emacs-lisp . t)
+        (ditaa . t)
+        (awk . t)
+        (octave . t)
+        (sed . t)
+        (sql . t)
+        (sqlite . t)
+        ))
+    )
 
   (my-org-config)
 
