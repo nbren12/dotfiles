@@ -38,7 +38,7 @@ c.InteractiveShellApp.exec_lines = [
 ]
 
 # A list of dotted module names of IPython extensions to load.
-c.InteractiveShellApp.extensions = ['autoreload']
+c.InteractiveShellApp.extensions = ['autoreload', 'memory_profiler']
 
 # dotted module name of an IPython extension to load.
 # c.InteractiveShellApp.extra_extension = ''

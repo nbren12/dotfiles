@@ -318,6 +318,9 @@ layers configuration."
   ;; Change autosave interval
   (setq auto-save-timeout 30)
 
+  ;; Turn off savehist mode
+  (savehist-mode 0)
+
   ;; abbreviations
   (setq abbrev-file-name (concat dotspacemacs-directory "abbrev_def"))
   (read-abbrev-file abbrev-file-name)
@@ -508,6 +511,11 @@ layers configuration."
   ;; Window maximization
   (add-to-list 'default-frame-alist '(fullscreen . fullheight))
   (add-to-list 'default-frame-alist '(fullscreen-restore . fullheight))
+
+  ;; Insert mode navigation
+  (define-key evil-insert-state-map (kbd "<M-backspace>") 'evil-delete-backward-word)
+  (define-key evil-insert-state-map (kbd "S-<left>") 'evil-backward-WORD-begin)
+  (define-key evil-insert-state-map (kbd "S-<right>") 'evil-forward-WORD-begin)
 
   ;; mac os stuff
   (if (eq system-type 'darwin)
