@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: if not None
+# key: ifn
+# --
+
+if $1 is${2: not }None:
+    $3
