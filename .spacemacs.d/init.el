@@ -29,7 +29,7 @@ values."
      (auto-completion :variables
                                      auto-completion-return-key-behavior 'complete
                                      auto-completion-tab-key-behavior 'cycle
-                                     auto-completion-complete-with-key-sequence "jk"
+                                     auto-completion-complete-with-key-sequence "ii"
                                      auto-completion-complete-with-key-sequence-delay 0.1)
      ;; better-defaults
      emacs-lisp
@@ -53,7 +53,7 @@ values."
      ;gtags
      vagrant
      ;; ycmd
-     deft ;; notational velocity clone
+     ;; deft ;; notational velocity clone
      markdown
      ;; pandoc
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
@@ -71,6 +71,7 @@ values."
    dotspacemacs-additional-packages '(snakemake-mode
                                       yaml-mode
                                       ncl-mode
+                                      deft
                                       cdlatex
                                       helm-bibtex
                                       ob-ipython
@@ -249,11 +250,11 @@ values."
    dotspacemacs-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode nil
+   dotspacemacs-smartparens-strict-mode t
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis nil
+   dotspacemacs-smart-closing-parenthesis t
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -309,8 +310,7 @@ layers configuration."
   (setq vc-follow-symlinks t)
 
   ;; slow scrolling
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
-
+  (setq mouse-wheel-scroll-amount '(2 ((shift) . 2))) ;; one line at a time
 
   ;; Turn on auto fill mode
   (spacemacs/toggle-auto-fill-mode-on)
@@ -328,9 +328,9 @@ layers configuration."
   ;; hungry delete
   (spacemacs/toggle-hungry-delete-on)
 
-
   ;; C++ 
 
+  (evil-set-initial-state 'deft-mode 'emacs)
   (use-package deft
     :config
     (progn
@@ -343,8 +343,8 @@ layers configuration."
   ;; Paredit bindings
   (dolist (lang-map '(emacs-lisp-mode-map))
     (progn
-      (sp-use-smartparens-bindings)
       (evil-define-key 'normal emacs-lisp-mode-map
+        (sp-use-smartparens-bindings)
         "-" 'sp-backward-sexp
         ;; "=" 'sp-next-sexp
         "_" 'sp-backward-up-sexp
@@ -377,6 +377,8 @@ layers configuration."
   ;; j and k go down visual lines
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
+  (global-set-key (kbd "M-s M-s") 'save-buffer)
 
 
   ;;; Authoring tools
@@ -484,10 +486,12 @@ layers configuration."
     (replace-regexp " +$" "")
     (pop-global-mark))
 
-  (evil-leader/set-key "ors" 'remove-blank-spaces)
-  (evil-leader/set-key "oc" 'customize-group)
-  (evil-leader/set-key "oo" 'occur)
-  (evil-leader/set-key "oi" 'ibuffer)
+  (evil-leader/set-key
+    "ors" 'remove-blank-spaces
+    "oc" 'customize-group
+    "oo" 'helm-occur
+    "od" 'deft
+    "oi" 'ibuffer)
 
 
   ;; auto-completion
