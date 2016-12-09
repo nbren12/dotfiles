@@ -1,5 +1,4 @@
 alias lp='findignore `projectroot` | fzf'
-alias lpv='vim $(lp)'
 
 # HPC aliases
 alias qs='qstat -u ndb245'
@@ -12,8 +11,6 @@ alias wst='watch -n 5 sst'
 alias interactive_session='qsub -I -X -q interactive -l nodes=1:ppn=8,walltime=04:00:00'
 alias is='interactive_session'
 
-# Docker aliases
-alias docker_env='eval $(docker-machine env default)'
 
 # User specific aliases and functions
 alias ssh='ssh -Y'
@@ -57,7 +54,6 @@ alias gls='git status -s | less'
 alias ga='git commit --amend'
 
 alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/master/cpp/ycm/.ycm_extra_conf.py'
-alias mkdir_date='mkdir $(date +%F)'
 
 # configuration management
 # from https://news.ycombinator.com/item?id=11070797

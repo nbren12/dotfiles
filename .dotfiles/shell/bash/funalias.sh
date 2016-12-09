@@ -1,3 +1,7 @@
+#
+# This is a good place for bash specific functions and aliases
+# aliases of a more general nature should be placed in aliases.sh
+# which is one directory up from this file
 
 # some nice terminals
 function t1 {
@@ -240,4 +244,9 @@ function regexp() {
     perl -n -e "/$1/ && print \$1 . \"\n\""
 }
 
+alias lpv='vim $(lp)'
+# Docker aliases
+alias docker_env='eval $(docker-machine env default)'
+
+alias mkdir_date='mkdir $(date +%F)'
 . ~/.dotfiles/shell/aliases.sh
