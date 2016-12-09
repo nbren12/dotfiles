@@ -41,7 +41,7 @@ values."
      ;; html
      shell
      syntax-checking
-     python
+     (python :variables python-test-runner 'pytest)
      ess
      ;; clojure
      ;; go
@@ -250,7 +250,7 @@ values."
    dotspacemacs-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
-   dotspacemacs-smartparens-strict-mode t
+   dotspacemacs-smartparens-strict-mode nil
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
@@ -328,7 +328,7 @@ layers configuration."
   ;; hungry delete
   (spacemacs/toggle-hungry-delete-on)
 
-  ;; C++ 
+  ;; C++
 
   ;; deft-options
   (evil-set-initial-state 'deft-mode 'emacs)
@@ -498,9 +498,9 @@ layers configuration."
   ;; auto-completion
   (define-key evil-emacs-state-map (kbd "C-.") 'company-files)
  ;; (define-key global-map (kbd "<C-tab>") 'company-complete)
- ;; (global-set-key (kbd "<C-,>") 'company-clang)  
+ ;; (global-set-key (kbd "<C-,>") 'company-clang)
  ;; (evil-define-key 'insert c++-mode-map (kbd "C-c ,") 'company-clang)
-  
+
 
   ;; Window navivation
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)

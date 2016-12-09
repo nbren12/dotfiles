@@ -73,8 +73,8 @@ Plug 'benmills/vimux'
  endfunction
 
 " FZF
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim' | Plug 'dbakker/vim-projectroot'
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf.vim' | Plug 'dbakker/vim-projectroot'
 
 command! FZFMru call fzf#run({
             \  'source':  v:oldfiles,
@@ -147,6 +147,7 @@ call plug#end()
 filetype plugin indent on
 syntax on
 
+colo default
 
 " Bidnings
 
