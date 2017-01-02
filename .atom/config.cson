@@ -51,3 +51,12 @@
   "python-jedi": {}
   minimap:
     displayCodeHighlights: false
+  "tool-bar":
+    position: "Left"
+  "julia-client":
+    enableMenu: true
+    enableToolBar: true
+    launchOnStartup: true
+    juliaPath: "/Applications/Julia-0.5.app/Contents/Resources/julia/bin/julia"
+  "uber-juno":
+    disable: true

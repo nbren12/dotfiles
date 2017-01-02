@@ -254,7 +254,7 @@ values."
    ;; If non-nil pressing the closing parenthesis `)' key in insert mode passes
    ;; over any automatically added closing parenthesis, bracket, quote, etc…
    ;; This can be temporary disabled by pressing `C-q' before `)'. (default nil)
-   dotspacemacs-smart-closing-parenthesis t
+   dotspacemacs-smart-closing-parenthesis nil
    ;; Select a scope to highlight delimiters. Possible values are `any',
    ;; `current', `all' or `nil'. Default is `all' (highlight any scope and
    ;; emphasis the current one). (default 'all)
@@ -560,6 +560,7 @@ layers configuration."
  '(cua-normal-cursor-color "#657b83")
  '(cua-overwrite-cursor-color "#b58900")
  '(cua-read-only-cursor-color "#859900")
+ '(deft-use-filename-as-title t)
  '(evil-search-module (quote evil-search))
  '(evil-want-Y-yank-to-eol nil)
  '(flycheck-clang-language-standard "c++11")
@@ -580,7 +581,7 @@ layers configuration."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(org-agenda-files
    (quote
-    ("~/tmp/test.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
+    ("~/Dropbox/jobs/nsf/src/project.org" "~/tmp/test.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
  '(package-selected-packages
