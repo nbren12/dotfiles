@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: letter
+# key: letter
+# --
+\documentclass{article}
+\usepackage{graphicx}
+\setlength{\parindent}{0pt}% Remove paragraph indent
+\begin{document}
+\hspace*{0.5\linewidth}
+\begin{minipage}{0.4\linewidth}
+Random Institute \par
+Random City 1000 \par
+Randomia \par
+\today
+\end{minipage}
+
+To whom it may concern: \par \bigskip
+
+Hire me, it'll be worth your while. \par \bigskip
+
+Sincerely, \par \medskip
+
+\includegraphics[height=1.5\baselineskip]{signature} \par
+Random Randofsky \par
+Randomville
+\end{document}
