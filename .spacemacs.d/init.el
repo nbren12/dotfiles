@@ -57,7 +57,6 @@ values."
      markdown
      ;; pandoc
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
-     bibtex
      dash ;; documentation browser (I spent $$$ on this)
      ;; My layers
      ;; multiple-cursors
@@ -75,7 +74,7 @@ values."
                                       ncl-mode
                                       ;; writing
                                       deft
-                                      cdlatex
+                                      ;; cdlatex
                                       helm-bibtex
                                       ;; Extras
                                       dash-at-point ; for dash browser
@@ -373,8 +372,8 @@ layers configuration."
   ;; Set default font faces for Info and ERC modes
   ;; (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
 
-  (add-hook 'LaTeX-mode-hook 'turn-off-smartparens-mode)
-  (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
+  ;; (add-hook 'LaTeX-mode-hook 'turn-off-smartparens-mode)
+  ;; (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
 
   (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
   (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
@@ -389,26 +388,26 @@ layers configuration."
   ;;; Authoring tools
 
   ;; Bibliography management
-  ;; (use-package org-ref
-  ;;   :config
-  ;;   (progn
-  ;;     (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
+  (use-package org-ref
+    :config
+    (progn
+      (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
 
-  ;;     ;; see org-ref for use of these variables
-  ;;     (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-  ;;           org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
-  ;;           org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
+      ;; see org-ref for use of these variables
+      (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
+            org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
+            org-ref-pdf-directory "~/Dropbox/Documents/org-ref/bibtex-pdfs/")
 
-  ;;     ;; need to setup helm-bibtex as well
-  ;;     (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
+      ;; need to setup helm-bibtex as well
+      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
 
   ;; latex shortcuts
-  (use-package cdlatex)
+  ;; (use-package cdlatex)
 
   (defun my-org-config ()
     ;; org mode
     (add-hook 'org-mode-hook 'auto-fill-mode)
-    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    ;; (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
     (setq org-capture-templates
           '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
@@ -588,7 +587,7 @@ layers configuration."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/jobs/nsf/src/project.org" "~/tmp/test.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
+    ("~/Dropbox/jobs/nsf/src/project.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-latex-classes
    (quote
@@ -622,7 +621,11 @@ layers configuration."
    (quote
     (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc" ".aux" ".db" ".cmake" ".pickle" ".pkl" ".ind" ".toc" ".npz" ".pyc")))
  '(projectile-globally-ignored-files (quote ("TAGS" "*CMakeFiles/*")))
- '(safe-local-variable-values (quote ((TeX-command-extra-options . "-shell-escape"))))
+ '(safe-local-variable-values
+   (quote
+    ((TeX-master . talk\.tex)
+     (TeX-master . main\.tex)
+     (TeX-command-extra-options . "-shell-escape"))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")

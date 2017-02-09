@@ -55,7 +55,7 @@ alias aa='activate_above'
 # fzf commands
 alias cf 'cd (fzf)'
 # environment on cims
-set -x PATH /scratch/noah/anaconda3/bin $PATH
+set -x PATH /home/noah/bin /home/noah/usr/bin /scratch/noah/anaconda3/bin $PATH
 
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
 . $HOME/.fishmarks/marks.fish

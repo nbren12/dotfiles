@@ -38,9 +38,9 @@ alias screen='screen -R'
 alias pss='ps aux | fzf'
 
 # Directory movement
-#alias p='pushd'
-#alias o='popd'
-#alias d='dirs -v'
+alias p='pushd'
+alias o='popd'
+alias d='dirs -v'
 alias ..='cd ..'
 alias ...='cd ../..'
 

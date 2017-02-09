@@ -244,9 +244,16 @@ function regexp() {
     perl -n -e "/$1/ && print \$1 . \"\n\""
 }
 
+function backuptar(){
+    tar czf $(basename $1)-$(date +%F-%H-%M-%S).tar.gz $1
+}
+
 alias lpv='vim $(lp)'
 # Docker aliases
 alias docker_env='eval $(docker-machine env default)'
 
 alias mkdir_date='mkdir $(date +%F)'
+
+
+
 . ~/.dotfiles/shell/aliases.sh
