@@ -25,7 +25,7 @@
 [push]
 	default = matching
 [core]
-	editor = emacsclient -c
+	editor = emacsclient -c -a vim
 	excludesfile = /home/noah/.gitignore_global
 [http]
 	sslVerify = false

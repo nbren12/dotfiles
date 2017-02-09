@@ -29,3 +29,4 @@
   'ctrl-l': 'window:focus-pane-on-right'
   'ctrl-j': 'window:focus-pane-above'
   'ctrl-k': 'window:focus-pane-below'
+  

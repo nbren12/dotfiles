@@ -1,14 +1,12 @@
 "*":
-  "exception-reporting":
-    userId: "4545abde-a072-4c44-895c-42838c14bae4"
-  welcome:
-    showOnStartup: false
+  Hydrogen: {}
+  "atom-ctags": {}
+  "autocomplete-bibtex":
+    bibtex: [
+      "/Users/noah/Dropbox/Papers/references.bib"
+    ]
   "autocomplete-python":
     pythonPath: "/Users/noah/anaconda3/bin"
-  "vim-mode":
-    useClipboardAsDefaultRegister: true
-    useSmartcaseForSearch: true
-    wrapLeftRightMotion: true
   core:
     disabledPackages: [
       "symbols-view"
@@ -18,22 +16,35 @@
       "atom-ctags"
       "minimap"
       "vim-mode"
+      "vim-mode-plus"
     ]
+    telemetryConsent: "no"
     themes: [
-      "unity-ui"
-      "base16-tomorrow-dark-theme"
+      "atom-light-ui"
+      "atom-light-syntax"
     ]
   editor:
-    invisibles: {}
     fontSize: 12
+    invisibles: {}
     softWrap: true
     softWrapAtPreferredLineLength: true
+  "exception-reporting":
+    userId: "4545abde-a072-4c44-895c-42838c14bae4"
+  "git-plus": {}
+  "julia-client":
+    enableMenu: true
+    enableToolBar: true
+    juliaPath: "/Applications/Julia-0.5.app/Contents/Resources/julia/bin/julia"
+    launchOnStartup: true
   latex: {}
+  "markdown-preview": {}
+  minimap:
+    displayCodeHighlights: false
   "one-dark-ui": {}
   pandoc:
     args: "pandoc --filter pandoc-citeproc -s --bibliography=/Users/noah/Dropbox/My\\ Library.bib"
     cmd: "/usr/local/bin/pandoc"
-  "git-plus": {}
+  "python-jedi": {}
   "spell-check":
     grammars: [
       "text.tex.latex"
@@ -41,22 +52,13 @@
       "text.plain"
       "text.git-commit"
     ]
-  "atom-ctags": {}
-  "autocomplete-bibtex":
-    bibtex: [
-      "/Users/noah/Dropbox/Papers/references.bib"
-    ]
-  "markdown-preview": {}
-  Hydrogen: {}
-  "python-jedi": {}
-  minimap:
-    displayCodeHighlights: false
   "tool-bar":
     position: "Left"
-  "julia-client":
-    enableMenu: true
-    enableToolBar: true
-    launchOnStartup: true
-    juliaPath: "/Applications/Julia-0.5.app/Contents/Resources/julia/bin/julia"
   "uber-juno":
     disable: true
+  "vim-mode":
+    useClipboardAsDefaultRegister: true
+    useSmartcaseForSearch: true
+    wrapLeftRightMotion: true
+  welcome:
+    showOnStartup: false

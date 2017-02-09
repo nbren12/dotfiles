@@ -1,3 +1,7 @@
+# PATH
+ENV["JUPYTER"] = "/Users/noah/anaconda3/bin/jupyter"
+ENV["PYTHON"] = "/Users/noah/anaconda3/bin/python"
+
 import Base.reshape
 
 reshape{T}(a, dims::Array{T})  = reshape(a, tuple(dims...))
@@ -7,7 +11,7 @@ function rshp( arr, dims...)
     Reshape an array like in numpy or matlab
 
     dims is a list of new dimensions. dims can contain a single instance of -1
-    as a placeholder for the correct number of elements. 
+    as a placeholder for the correct number of elements.
 
     Example:
 
@@ -25,22 +29,28 @@ function rshp( arr, dims...)
     fillme = 0
 
     for (i, d) in enumerate(dims)
-        if d == -1 
+        if d == -1
             fillme = i
         else
             nelsh *= d
         end
     end
 
-    if fillme > 0 
+    if fillme > 0
         dims[fillme] = nel / nelsh
     end
 
     Base.reshape( arr,  dims)
-end 
+end
 
 function einsum(subscripts, arrs...)
     dimstrs = split(subscripts, ',')
     println(dimstrs)
 end
 
+"""
+pmod(a,b)
+
+remainder operations contrained to positive results
+"""
+pmod(a,b) =a - b * floor(a/b)
