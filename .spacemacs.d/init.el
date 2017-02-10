@@ -1,4 +1,4 @@
-;; -*- mode: emacs-lisp -*-
+;; -*- mode: emacs-lisp; magit-git-executable: con; -*-
 ;; This file is loaded by Spacemacs at startup.
 ;; It must be stored in your home directory.
 
@@ -424,7 +424,9 @@ layers configuration."
     ;; (if (string-equal system-type "gnu/linux")
     ;;    (add-to-list 'org-file-apps '(t . "xdg-open %s")))
 
+
     (require 'ob-dot)
+    (require 'ox-md) ;; needed for org markdown export
     ;; (require 'ob-ipython)
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -482,7 +484,7 @@ layers configuration."
 
 
 
-  ;; my own functions
+  ;;; my own functions
   (defun remove-blank-spaces ()
     ;; Remove annoying trailing spaces
     (interactive)
@@ -490,12 +492,20 @@ layers configuration."
     (replace-regexp " +$" "")
     (pop-global-mark))
 
+  (defun noah-add-to-config ()
+    ;; Add current file to config using the con alias
+    (interactive)
+    (shell-command
+     (concat "con add " (buffer-file-name))))
+
   (evil-leader/set-key
     "ors" 'remove-blank-spaces
-    "oc" 'customize-group
+    ;; "oc" 'customize-group
     "oo" 'helm-occur
     "od" 'deft
-    "oi" 'ibuffer)
+    "oi" 'ibuffer
+    "oc" 'noah-add-to-config)
+
 
 
   ;; auto-completion
@@ -636,7 +646,8 @@ layers configuration."
  '(reftex-toc-split-windows-fraction 0.5)
  '(safe-local-variable-values
    (quote
-    ((TeX-master . talk\.tex)
+    ((magit-git-executable . con)
+     (TeX-master . talk\.tex)
      (TeX-master . main\.tex)
      (TeX-command-extra-options . "-shell-escape"))))
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
