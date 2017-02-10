@@ -621,6 +621,19 @@ layers configuration."
    (quote
     (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc" ".aux" ".db" ".cmake" ".pickle" ".pkl" ".ind" ".toc" ".npz" ".pyc")))
  '(projectile-globally-ignored-files (quote ("TAGS" "*CMakeFiles/*")))
+ '(reftex-section-levels
+   (quote
+    (("part" . 0)
+     ("chapter" . 1)
+     ("section" . 2)
+     ("subsection" . 3)
+     ("subsubsection" . 4)
+     ("paragraph" . 5)
+     ("subparagraph" . 6)
+     ("frametitle" . 7)
+     ("addchap" . -1)
+     ("addsec" . -2))))
+ '(reftex-toc-split-windows-fraction 0.5)
  '(safe-local-variable-values
    (quote
     ((TeX-master . talk\.tex)
