@@ -264,7 +264,7 @@ values."
    dotspacemacs-highlight-delimiters 'all
    ;; If non nil advises quit functions to keep server open when quitting.
    ;; (default nil)
-   dotspacemacs-persistent-server nil
+   dotspacemacs-persistent-server t
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
@@ -496,7 +496,8 @@ layers configuration."
     ;; Add current file to config using the con alias
     (interactive)
     (shell-command
-     (concat "con add " (buffer-file-name))))
+     (concat "con add " (buffer-file-name)))
+    (message "Adding current file to dotfiles"))
 
   (evil-leader/set-key
     "ors" 'remove-blank-spaces
@@ -504,7 +505,7 @@ layers configuration."
     "oo" 'helm-occur
     "od" 'deft
     "oi" 'ibuffer
-    "oc" 'noah-add-to-config)
+    "orc" 'noah-add-to-config)
 
 
 
