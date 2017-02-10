@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: matplotlib colors
+# key: mc
+# --
+import matplotlib.colors as mc
