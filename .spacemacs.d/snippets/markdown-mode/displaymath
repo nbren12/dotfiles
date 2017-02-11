@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: display math
+# key: md
+# --
+<div>${1:$$ $2 $$}</div>
+$0
