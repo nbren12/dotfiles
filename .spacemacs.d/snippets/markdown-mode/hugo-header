@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: hugo header
+# group: hugo
+# key: hhead
+# --
++++
+date = "`(format-time-string "%Y-%m-%dT%H:%M:%S")`$0"
+draft = true
+${image = "banners/getting-started.png"}
+tags = ["academic", "hugo"]
+title = "${Getting started with the Academic framework for Hugo}"
+math = true
+summary = """
+${Create a beautifully simple personal or academic website in under 10 minutes.}
+"""
++++
