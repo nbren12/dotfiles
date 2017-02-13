@@ -394,17 +394,11 @@ layers configuration."
     :extend-selection t
     (kill-beamer-frame))
 
-  (evil-define-text-object evil-a-latex-env ()
-    (interactive)
-    (re-search-backward "\\\\begin{\\(.*?\\)}")
-    (let ((envname (match-string 1)))
-      (push-mark)
-      (search-forward-regexp (concat "\\\\end{" envname "}"))
-      (evil-visual-select (mark) (point))))
 
+  (define-key evil-outer-text-objects-map "f" 'evil-a-latex-frame)
 
-  (define-key evil-outer-text-objects-map "f" 'evil-a-bframe)
-  (define-key evil-outer-text-objects-map "l" 'evil-a-latex-env)
+  ;; Ask for latex master file
+  (setq-default TeX-master nil)
 
 
   ;;; Handy key-bindings
@@ -597,7 +591,7 @@ layers configuration."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(LaTeX-electric-left-right-brace t)
+ '(LaTeX-electric-left-right-brace nil)
  '(abbrev-file-name "/home/noah/.spacemacs.d/abbrev_def")
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
@@ -678,7 +672,11 @@ layers configuration."
  '(reftex-toc-split-windows-fraction 0.5)
  '(safe-local-variable-values
    (quote
-    ((magit-git-executable . con)
+    ((tex-main-file . talk)
+     (TeX-master . talk)
+     (tex-main-file . talk\.tex)
+     (tex-main-file . main\.tex)
+     (magit-git-executable . con)
      (TeX-master . talk\.tex)
      (TeX-master . main\.tex)
      (TeX-command-extra-options . "-shell-escape"))))
