@@ -394,6 +394,18 @@ layers configuration."
     :extend-selection t
     (kill-beamer-frame))
 
+  (defun latex-read-inputs ()
+    ;; Read all \input files in a latex file and comment out \input command
+    (interactive)
+    (push-mark)
+    (goto-char 0)
+    (while (re-search-forward "^ *\\\\input{\\(.*?\\)}" nil t)
+      (let ((input-file (match-string 1)))
+        (message (concat "Reading file " input-file " into current buffer and commenting input command"))
+        (forward-line)
+        (comment-line -1)
+        (evil-read nil input-file)))
+    (pop-mark))
 
   (define-key evil-outer-text-objects-map "f" 'evil-a-latex-frame)
 
