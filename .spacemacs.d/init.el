@@ -60,7 +60,7 @@ values."
      shell
      bibtex
      ;; My layers
-     ;; multiple-cursors
+     julia
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -593,7 +593,6 @@ layers configuration."
 
   ;; kill ring forward binding
   (global-set-key "\M-Y" 'evil-paste-pop-next)
-
 
   ;; add spacemacs.d/snippets to yas snippet dirs
   (add-to-list 'yas-snippet-dirs (concat dotspacemacs-directory "snippets")))
