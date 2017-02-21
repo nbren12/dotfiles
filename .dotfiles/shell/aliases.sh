@@ -29,7 +29,7 @@ alias ec='emacsclient'
 alias ecc='emacsclient -c'
 alias ew='emacsclient -nw'
 alias ee='emacsclient -c -a emacs'
-alias vim='emacsclient -nw -a vim'
+# alias vim='emacsclient -nw -a vim'
 
 alias screen='screen -R'
 
