@@ -58,7 +58,7 @@ values."
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      dash ;; documentation browser (I spent $$$ on this)
      shell
-     bibtex
+     ;; bibtex
      ;; My layers
      julia
      )
@@ -80,9 +80,11 @@ values."
                                       ;; Themes
                                       ;; warm-night-theme
                                       osx-pseudo-daemon
+                                      org-ref
+                                      cdlatex
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(exec-path-from-shell)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -443,7 +445,7 @@ layers configuration."
   (defun my-org-config ()
     ;; org mode
     (add-hook 'org-mode-hook 'auto-fill-mode)
-    ;; (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
     (setq org-capture-templates
           '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
