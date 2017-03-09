@@ -29,3 +29,6 @@
 	excludesfile = /home/noah/.gitignore_global
 [http]
 	sslVerify = false
+[github]
+	user = nbren12
+	oauth-token = 

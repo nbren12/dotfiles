@@ -45,17 +45,21 @@ ru  vanilla.vim
 "                   BEGIN PLUG SECTION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" If the :ruby crashes vim uncomment the following line
+let g:plug_threads = 1
+
 call plug#begin('~/.nvim/plugged')
 
 """ Essential Plugins
-Plug 'tComment'           " Commenting
-Plug 'tpope/vim-fugitive' " Git
-Plug 'tpope/vim-repeat'   " Repeat everything with  .
-Plug 'godlygeek/tabular'  " Like regex-align
-Plug 'justinmk/vim-sneak' " quick movement
-Plug 'surround.vim'       " Parenthesis
-" Plug 'guns/vim-sexp'      " Lisp
-" Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
+Plug 'tComment'               " Commenting
+Plug 'tpope/vim-fugitive'     " Git
+Plug 'tpope/vim-repeat'       " Repeat everything with  .
+Plug 'tpope/vim-unimpaired'
+Plug 'godlygeek/tabular'      " Like regex-align
+Plug 'justinmk/vim-sneak'     " quick movement
+Plug 'surround.vim'           " Parenthesis
+                              " Plug 'guns/vim-sexp'                              " Lisp
+                              " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 Plug 'airblade/vim-gitgutter' " see git diffs near the line no
 Plug 'airblade/vim-rooter'
 
@@ -99,11 +103,8 @@ Plug 'ag.vim'
 " let g:jedi#popup_on_dot = 0
 
 " Clojure 
-Plug 'tpope/vim-fireplace'
+" Plug 'tpope/vim-fireplace'
 
-""" Testing
-Plug 'baruchel/vim-notebook' 
-Plug 'tpope/vim-markdown'
 
 " 
 
@@ -118,7 +119,6 @@ let g:pandoc#biblio#bibs= ["~/Dropbox/Papers/zotero.bib",]
 let g:pandoc#biblio#use_bibtool=1
 
 
-Plug 'terryma/vim-multiple-cursors'
 "
 " VIM/NVIM specific plugins
 "
@@ -130,10 +130,7 @@ Plug 'benekastah/neomake'
 "
 " let g:clang_library_path = "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/libclang.dylib"
 
-    Plug 'Valloric/YouCompleteMe'
 else
-    Plug 'Valloric/YouCompleteMe', {'on': []}
-    autocmd InsertEnter * call plug#load('YouCompleteMe')
 
 endif
 

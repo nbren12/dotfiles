@@ -5,6 +5,9 @@ from subprocess import Popen, run, PIPE
 import signal
 import sys
 import re
+import os
+
+os.environ['JUPYTER_RUNTIME_DIR'] = os.path.join(os.environ['HOME'], ".local/runtime")
 
 
 # handle Cntrl-C from user
