@@ -41,6 +41,10 @@ then
     source $HOME/.dotfiles/git-completion.bash
 fi
 
+# autocompletion options
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'
+
 # z
 [[ -e ~/usr/bin/z.sh ]] && . ~/usr/bin/z.sh
 
