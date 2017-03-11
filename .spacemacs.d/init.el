@@ -332,6 +332,7 @@ layers configuration."
 
   ;; bash shell
   (setq-default explicit-shell-file-name "/bin/bash")
+  (setq-default shell-file-name "/bin/bash")
 
   ;; C++
 
