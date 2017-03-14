@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: common_imports
+# key: imps
+# --
+${import numpy as np}${
+import matplotlib as mpl}${
+import matplotlib.pyplot as plt}${
+import matplotlib.colors as mc}${
+import xarray as xr} ${
+
+import dask.array as da
+from dask.diagnostics import ProgressBar
+from dask import delayed}
+
+$0

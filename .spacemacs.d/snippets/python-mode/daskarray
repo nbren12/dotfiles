@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: daskarray
+# key: da
+# --
+import dask.array as da ${1:
+from dask.diagnostics import ProgressBar}${2:
+from dask import delayed}

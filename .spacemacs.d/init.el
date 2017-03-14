@@ -16,7 +16,7 @@ values."
    dotspacemacs-enable-lazy-installation nil
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (ie. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
+   dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load. If it is the symbol `all' instead
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
@@ -35,13 +35,12 @@ values."
      ;; ivy
      emacs-lisp
      git
-     github
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
      org
      ;; html
-     shell
+     (shell :variables shell-default-term-shell "/bin/bash")
      syntax-checking
      (python :variables python-test-runner 'pytest)
      ess
@@ -58,8 +57,7 @@ values."
      ;; pandoc
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      dash ;; documentation browser (I spent $$$ on this)
-     shell
-     ;; bibtex
+     bibtex
      ;; My layers
      julia
      )
@@ -81,11 +79,9 @@ values."
                                       ;; Themes
                                       ;; warm-night-theme
                                       osx-pseudo-daemon
-                                      org-ref
-                                      cdlatex
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(exec-path-from-shell)
+   dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -334,6 +330,9 @@ layers configuration."
   ;; hungry delete
   (spacemacs/toggle-hungry-delete-on)
 
+  ;; bash shell
+  (setq-default explicit-shell-file-name "/bin/bash")
+
   ;; C++
 
   ;; deft-options
@@ -446,7 +445,7 @@ layers configuration."
   (defun my-org-config ()
     ;; org mode
     (add-hook 'org-mode-hook 'auto-fill-mode)
-    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    ;; (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
     (setq org-capture-templates
           '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
@@ -670,7 +669,7 @@ layers configuration."
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
  '(package-selected-packages
    (quote
-    (zenburn-theme magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito ht zeal-at-point wgrep smex ivy-hydra counsel-projectile counsel-dash counsel swiper osx-pseudo-daemon warm-night-theme-theme warm-night-theme color-theme-sanityinc-tomorrow-theme irony-eldoc flycheck-irony company-irony irony stickyfunc-enhance srefactor git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter vagrant-tramp vagrant helm-gtags ggtags pythonic package-build hide-comnt evil-unimpaired highlight dumb-jump yapfify py-isort org-projectile pcache org git-link pos-tip ctable diminish bind-map bind-key packed spinner key-chord log4e gntp dash-functional parent-mode parsebib gitignore-mode pkg-info epl flx goto-chg eval-sexp-fu powerline ivy alert markdown-mode hydra projectile helm-bibtex magit magit-popup git-commit with-editor iedit biblio biblio-core anaconda-mode auto-complete auctex yasnippet ess julia-mode anzu smartparens vimish-fold evil undo-tree flycheck company request helm helm-core popup async avy f dash s sublimity auctex-latexmk yaml-mode xterm-color ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme snakemake-mode smeargle shell-pop restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox orgit org-repo-todo org-ref org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-ipython noflet neotree ncl-mode multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-vimish-fold evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-object-popup ess-R-data-view eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav disaster diff-hl deft define-word dash-at-point cython-mode company-statistics company-quickhelp company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex buffer-move auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (outshine pp-c-l helm-pages ein wgrep smex ivy-hydra counsel-projectile counsel-dash counsel swiper osx-pseudo-daemon warm-night-theme-theme warm-night-theme color-theme-sanityinc-tomorrow-theme irony-eldoc flycheck-irony company-irony irony stickyfunc-enhance srefactor git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter vagrant-tramp vagrant helm-gtags ggtags pythonic package-build hide-comnt evil-unimpaired highlight dumb-jump yapfify py-isort org-projectile pcache org git-link pos-tip ctable diminish bind-map bind-key packed spinner key-chord log4e gntp dash-functional parent-mode parsebib gitignore-mode pkg-info epl flx goto-chg eval-sexp-fu powerline ivy alert markdown-mode hydra projectile helm-bibtex magit magit-popup git-commit with-editor iedit biblio biblio-core anaconda-mode auto-complete auctex yasnippet ess julia-mode anzu smartparens vimish-fold evil undo-tree flycheck company request helm helm-core popup async avy f dash s sublimity auctex-latexmk yaml-mode xterm-color ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme snakemake-mode smeargle shell-pop restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox orgit org-repo-todo org-ref org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-ipython noflet neotree ncl-mode multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-vimish-fold evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-object-popup ess-R-data-view eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav disaster diff-hl deft define-word dash-at-point cython-mode company-statistics company-quickhelp company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex buffer-move auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(projectile-globally-ignored-file-suffixes
    (quote
     (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc" ".aux" ".db" ".cmake" ".pickle" ".pkl" ".ind" ".toc" ".npz" ".pyc")))
