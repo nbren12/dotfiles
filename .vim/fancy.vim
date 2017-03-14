@@ -62,7 +62,7 @@ Plug 'surround.vim'           " Parenthesis
                               " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 Plug 'airblade/vim-gitgutter' " see git diffs near the line no
 Plug 'airblade/vim-rooter'
-
+Plug 'ibab/vim-snakemake'
 " Fuzzy file finding
 Plug 'kien/ctrlp.vim'     " file finding
 

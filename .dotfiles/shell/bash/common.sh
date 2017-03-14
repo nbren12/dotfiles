@@ -25,7 +25,7 @@ fi
 export PS1='[\[\033[01;34m\]\h:\W\[\033[0m\]] '
 
 # vim mode
-set -o vi
+# set -o vi
 #export EDITOR='/usr/bin/env vim'
 export EDITOR='emacsclient -c --alternate-editor="vim"'
 export GIT_EDITOR=$EDITOR
