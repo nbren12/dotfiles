@@ -48,7 +48,7 @@ ru  vanilla.vim
 " If the :ruby crashes vim uncomment the following line
 let g:plug_threads = 1
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 """ Essential Plugins
 Plug 'tComment'               " Commenting
@@ -61,10 +61,11 @@ Plug 'surround.vim'           " Parenthesis
                               " Plug 'guns/vim-sexp'                              " Lisp
                               " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 Plug 'airblade/vim-gitgutter' " see git diffs near the line no
-Plug 'airblade/vim-rooter'
-Plug 'ibab/vim-snakemake'
+
 " Fuzzy file finding
 Plug 'kien/ctrlp.vim'     " file finding
+Plug 'ag.vim'
+Plug 'ibab/vim-snakemake'
 
 """ TMUX
 Plug 'christoomey/vim-tmux-navigator' " See https://github.com/christoomey/vim-tmux-navigator
@@ -80,19 +81,18 @@ Plug 'benmills/vimux'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim' | Plug 'dbakker/vim-projectroot'
 
-command! FZFMru call fzf#run({
-            \  'source':  v:oldfiles,
-            \  'sink':    'e',
-            \  'options': '-m -x +s',
-            \  'down':    '40%'})
+" command! FZFMru call fzf#run({
+"             \  'source':  v:oldfiles,
+"             \  'sink':    'e',
+"             \  'options': '-m -x +s',
+"             \  'down':    '40%'})
+"
+" nnoremap <leader>ff :FZF<CR>
+" nnoremap <leader>fs :Snippets<CR>
+" nnoremap <leader>fr :FZFMru<CR>
+" imap <c-x><c-l> <plug>(fzf-complete-line)
 
-nnoremap <leader>ff :FZF<CR>
-nnoremap <leader>fs :Snippets<CR>
-nnoremap <leader>fr :FZFMru<CR>
-imap <c-x><c-l> <plug>(fzf-complete-line)
 
-
-Plug 'ag.vim'
 """ Language specific plugins 
 " Julia
 " Plug 'JuliaLang/julia-vim'
@@ -113,10 +113,10 @@ Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
 autocmd InsertEnter * call plug#load('ultisnips')
 
 
-Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax'
-let g:pandoc#biblio#bibs= ["~/Dropbox/Papers/zotero.bib",]
-let g:pandoc#biblio#use_bibtool=1
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
+" let g:pandoc#biblio#bibs= ["~/Dropbox/Papers/zotero.bib",]
+" let g:pandoc#biblio#use_bibtool=1
 
 
 "

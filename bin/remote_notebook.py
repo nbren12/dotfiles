@@ -6,14 +6,15 @@ import signal
 import sys
 import re
 import os
+import time
 
 os.environ['JUPYTER_RUNTIME_DIR'] = os.path.join(os.environ['HOME'], ".local/runtime")
 
 
 # handle Cntrl-C from user
 def signal_handler(signal, frame):
-    ch = input()
-    if ch == "y":
+    ch = input("Kill Server and portforwarding processes?")
+    if ch.lower().startswith("y"):
         print("Killing server")
         notebook_proc.kill()
         print("Killing ssh processes")
@@ -40,7 +41,10 @@ port_forwards = [Popen(["ssh", "-N",
 print("Starting notebook server")
 notebook_proc = Popen(["jupyter", "notebook",
                      "--no-browser",
-                       "--port", compute_port])
+                       "--port", compute_port],
+                       stderr=PIPE)
 
-
+for line in iter(notebook_proc.stderr):
+    print(re.sub(str(compute_port), str(login_port), 
+        line.decode("utf-8").strip("\n")))
 notebook_proc.wait()
