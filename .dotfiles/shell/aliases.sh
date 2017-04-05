@@ -28,7 +28,7 @@ alias ed='emacs --daemon'
 alias ec='emacsclient'
 alias ecc='emacsclient -c'
 alias ew='emacsclient -nw'
-alias ee='emacsclient -c -a emacs'
+alias ee='emacsclient -c -a vim'
 # alias vim='emacsclient -nw -a vim'
 
 alias screen='screen -R'
