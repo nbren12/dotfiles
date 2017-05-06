@@ -39,8 +39,10 @@ values."
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
+     github
      org
-     ;; html
+     html
+     javascript
      (shell :variables shell-default-term-shell "/bin/bash")
      syntax-checking
      (python :variables python-test-runner 'pytest)
@@ -80,6 +82,7 @@ values."
                                       dash-at-point ; for dash browser
                                       ;; Themes
                                       ;; warm-night-theme
+                                      writeroom-mode
                                       osx-pseudo-daemon
                                       )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -384,6 +387,44 @@ layers configuration."
   (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
   (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
 
+  ;;; Sentence based filling in Latex modes
+  ;; http://stackoverflow.com/questions/539984/how-do-i-get-emacs-to-fill-sentences-but-not-paragraphs
+  (defun auto-fill-by-sentences ()
+    (if (looking-back (sentence-end))
+        ;; Break at a sentence
+        (progn
+          (LaTeX-newline)
+          t)
+      ;; Fall back to the default
+      (do-auto-fill)))
+  (add-hook 'LaTeX-mode-hook (lambda () (setq auto-fill-function 'auto-fill-by-sentences)))
+
+  ;; Modified from http://pleasefindattached.blogspot.com/2011/12/emacsauctex-sentence-fill-greatly.html
+  (defadvice LaTeX-fill-region-as-paragraph (around LaTeX-sentence-filling)
+    "Start each sentence on a new line."
+    (let ((from (ad-get-arg 0))
+          (to-marker (set-marker (make-marker) (ad-get-arg 1)))
+          tmp-end)
+      (while (< from (marker-position to-marker))
+        (forward-sentence)
+        ;; might have gone beyond to-marker---use whichever is smaller:
+        (ad-set-arg 1 (setq tmp-end (min (point) (marker-position to-marker))))
+        ad-do-it
+        (ad-set-arg 0 (setq from (point)))
+        (unless (or (looking-back "^\\s *")
+                    (looking-at "\\s *$"))
+          (LaTeX-newline)))
+      (set-marker to-marker nil)))
+  (ad-activate 'LaTeX-fill-region-as-paragraph)
+
+  ;; Electric period key
+  ;; (defun period-and-newline ()
+  ;;   (interactive)
+  ;;   (insert-string ".")
+  ;;   (newline-and-indent))
+
+  ;; (evil-define-key 'insert LaTeX-mode-map (kbd ".") 'period-and-newline)
+
   ;; evil-motions for selecting the current environment
 
   (defun kill-beamer-frame ()
@@ -542,11 +583,12 @@ layers configuration."
 
   (evil-leader/set-key
     "ors" 'remove-blank-spaces
+    "orc" 'noah-add-to-config
+    "ow" 'writeroom-mode
     ;; "oc" 'customize-group
     "oo" 'helm-occur
     "od" 'deft
-    "oi" 'ibuffer
-    "orc" 'noah-add-to-config)
+    "oi" 'ibuffer)
 
 
 
@@ -560,7 +602,7 @@ layers configuration."
   ;; Window navivation
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-h C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
   ;; buffer navigation
@@ -672,7 +714,8 @@ layers configuration."
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
  '(package-selected-packages
    (quote
-    (evil-snipe outshine pp-c-l helm-pages ein wgrep smex ivy-hydra counsel-projectile counsel-dash counsel swiper osx-pseudo-daemon warm-night-theme-theme warm-night-theme color-theme-sanityinc-tomorrow-theme irony-eldoc flycheck-irony company-irony irony stickyfunc-enhance srefactor git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter vagrant-tramp vagrant helm-gtags ggtags pythonic package-build hide-comnt evil-unimpaired highlight dumb-jump yapfify py-isort org-projectile pcache org git-link pos-tip ctable diminish bind-map bind-key packed spinner key-chord log4e gntp dash-functional parent-mode parsebib gitignore-mode pkg-info epl flx goto-chg eval-sexp-fu powerline ivy alert markdown-mode hydra projectile helm-bibtex magit magit-popup git-commit with-editor iedit biblio biblio-core anaconda-mode auto-complete auctex yasnippet ess julia-mode anzu smartparens vimish-fold evil undo-tree flycheck company request helm helm-core popup async avy f dash s sublimity auctex-latexmk yaml-mode xterm-color ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme snakemake-mode smeargle shell-pop restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox orgit org-repo-todo org-ref org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-ipython noflet neotree ncl-mode multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-vimish-fold evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-object-popup ess-R-data-view eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav disaster diff-hl deft define-word dash-at-point cython-mode company-statistics company-quickhelp company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex buffer-move auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (writeroom-mode visual-fill-column zenburn-theme reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc helm-css-scss haml-mode emmet-mode company-web web-completion-data company-tern tern coffee-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito ht evil-snipe outshine pp-c-l helm-pages ein wgrep smex ivy-hydra counsel-projectile counsel-dash counsel swiper osx-pseudo-daemon warm-night-theme-theme warm-night-theme color-theme-sanityinc-tomorrow-theme irony-eldoc flycheck-irony company-irony irony stickyfunc-enhance srefactor git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter vagrant-tramp vagrant helm-gtags ggtags pythonic package-build hide-comnt evil-unimpaired highlight dumb-jump yapfify py-isort org-projectile pcache org git-link pos-tip ctable diminish bind-map bind-key packed spinner key-chord log4e gntp dash-functional parent-mode parsebib gitignore-mode pkg-info epl flx goto-chg eval-sexp-fu powerline ivy alert markdown-mode hydra projectile helm-bibtex magit magit-popup git-commit with-editor iedit biblio biblio-core anaconda-mode auto-complete auctex yasnippet ess julia-mode anzu smartparens vimish-fold evil undo-tree flycheck company request helm helm-core popup async avy f dash s sublimity auctex-latexmk yaml-mode xterm-color ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme snakemake-mode smeargle shell-pop restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox orgit org-repo-todo org-ref org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-ipython noflet neotree ncl-mode multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-vimish-fold evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-object-popup ess-R-data-view eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav disaster diff-hl deft define-word dash-at-point cython-mode company-statistics company-quickhelp company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex buffer-move auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+ '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-globally-ignored-file-suffixes
    (quote
     (".build" ".o" ".png" ".pdf" ".mod" ".bin" ".nc" ".aux" ".db" ".cmake" ".pickle" ".pkl" ".ind" ".toc" ".npz" ".pyc")))
@@ -703,7 +746,29 @@ layers configuration."
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
  '(term-default-bg-color "#fdf6e3")
  '(term-default-fg-color "#657b83")
+ '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-background-mode nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3"))))
+ '(vc-annotate-very-old-color "#DC8CC3")
  '(visual-line-fringe-indicators (quote (nil nil)))
  '(word-wrap t)
  '(xterm-color-names

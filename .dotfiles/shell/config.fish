@@ -9,3 +9,9 @@ set -gx PATH /Users/noah/bin /Users/noah/anaconda3/bin /usr/local/texlive/2016/b
 # julia setup
 set -gx PYTHON /Users/noah/anaconda3/bin/python
 set -gx JUPYTER /Users/noah/anaconda3/bin/jupyter
+
+alias emd='/Applications/Emacs.app/Contents/MacOS/Emacs --daemon'
+alias em='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait'
+alias emn='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c
+--no-wait'
+
