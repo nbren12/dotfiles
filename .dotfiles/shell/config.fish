@@ -10,8 +10,19 @@ set -gx PATH /Users/noah/bin /Users/noah/anaconda3/bin /usr/local/texlive/2016/b
 set -gx PYTHON /Users/noah/anaconda3/bin/python
 set -gx JUPYTER /Users/noah/anaconda3/bin/jupyter
 
+# date
+alias today='date +%F'
+
+# emacs aliases
 alias emd='/Applications/Emacs.app/Contents/MacOS/Emacs --daemon'
 alias em='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait'
 alias emn='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c
 --no-wait'
 
+# NYU HPC setup
+function hpc
+    echo "**********************************"
+    echo "Connecting to NYU HPC Bastion Node"
+    echo "**********************************"
+    ssh -N hpc
+end

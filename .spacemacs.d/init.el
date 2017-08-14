@@ -31,7 +31,7 @@ values."
                                      auto-completion-tab-key-behavior 'cycle
                                      auto-completion-complete-with-key-sequence "ii"
                                      auto-completion-complete-with-key-sequence-delay 0.1)
-     evil-snipe ;; two character motions
+     evil-snipe ;; two character motions using s/S
      ;; better-defaults
      ;; ivy
      emacs-lisp
@@ -39,14 +39,16 @@ values."
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
-     github
+     ;; github
      org
-     html
-     javascript
+     bibtex
+     (latex :variables latex-enable-folding t latex-enable-auto-fill t)
+     ;; html
+     ;; javascript
      (shell :variables shell-default-term-shell "/bin/bash")
      syntax-checking
      (python :variables python-test-runner 'pytest)
-     ess
+     ;; ess
      ;; clojure
      ;; go
      ;; semantic
@@ -54,16 +56,14 @@ values."
      ;; )
      (version-control :variables
                       version-control-diff-tool 'diff-hl)
-     vagrant
      ;; deft ;; notational velocity clone
      markdown
      ;; pandoc
-     (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      dash ;; documentation browser (I spent $$$ on this)
-     bibtex
      tmux  ;; adds navigation between tmux and emacs panes
+     chrome
      ;; My layers
-     julia
+     ;; julia
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -73,6 +73,8 @@ values."
                                       ;; major-file modes
                                       snakemake-mode
                                       yaml-mode
+                                      ob-ipython
+                                      toml-mode
                                       ncl-mode
                                       ;; writing
                                       deft
@@ -112,7 +114,7 @@ values."
    dotspacemacs-elpa-timeout 5
    ;; If non nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. (default t)
-   dotspacemacs-check-for-update t
+   dotspacemacs-check-for-update nil
    ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
@@ -141,9 +143,9 @@ values."
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(warm-night
+                         spacemacs-light
                          zenburn
                          spacemacs-dark
-                         spacemacs-light
                          leuven
                          monokai)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
@@ -384,7 +386,7 @@ layers configuration."
   ;; (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
   ;;; Latex settings
 
-  (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
+  ;; (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
   (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
 
   ;;; Sentence based filling in Latex modes
@@ -466,6 +468,9 @@ layers configuration."
 
   (global-set-key (kbd "M-s M-s") 'save-buffer)
 
+  ;; browse url at point
+  (evil-leader/set-key "ou" 'browse-url-at-point)
+
 
   ;;; Authoring tools
 
@@ -509,6 +514,7 @@ layers configuration."
 
     (require 'ob-dot)
     (require 'ox-md) ;; needed for org markdown export
+    (require 'ob-ipython)
     ;; (require 'ob-ipython)
     (org-babel-do-load-languages
      'org-babel-load-languages
@@ -529,6 +535,7 @@ layers configuration."
         (plantuml . t)
         (ruby . t)
         (sh . t)
+        (ipython . t)
         (python . t)
         (emacs-lisp . t)
         (ditaa . t)
@@ -581,6 +588,16 @@ layers configuration."
      (concat "con add " (buffer-file-name)))
     (message "Adding current file to dotfiles"))
 
+  (defun craigslist-org ()
+    ;; pull info from craigslist page into org-mode header
+    (interactive)
+    (let ((url (read-string "Enter Craigslist URL: ")))
+      (org-insert-heading-respect-content)
+      (insert
+       (shell-command-to-string (concat "craigslist2org.py -n 0 " url)))))
+
+  (evil-leader/set-key "oc" 'craigslist-org)
+
   (evil-leader/set-key
     "ors" 'remove-blank-spaces
     "orc" 'noah-add-to-config
@@ -599,11 +616,11 @@ layers configuration."
  ;; (evil-define-key 'insert c++-mode-map (kbd "C-c ,") 'company-clang)
 
 
-  ;; Window navivation
-  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  ;; Window navivation (conflicts with key bindings)
+  ;; (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  ;; (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  ;; (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  ;; (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
   ;; buffer navigation
   (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
@@ -685,7 +702,7 @@ layers configuration."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/dissertation/phd.org" "~/Dropbox/jobs/nsf/src/project.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
+    ("~/Dropbox/notes/Apartment Search.org" "~/Dropbox/dissertation/phd.org" "~/Dropbox/jobs/nsf/src/project.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-latex-classes
    (quote
@@ -714,7 +731,7 @@ layers configuration."
  '(org-ref-pdf-directory "~/Dropbox/Papers/bibtex-pdfs/")
  '(package-selected-packages
    (quote
-    (writeroom-mode visual-fill-column zenburn-theme reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc helm-css-scss haml-mode emmet-mode company-web web-completion-data company-tern tern coffee-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito ht evil-snipe outshine pp-c-l helm-pages ein wgrep smex ivy-hydra counsel-projectile counsel-dash counsel swiper osx-pseudo-daemon warm-night-theme-theme warm-night-theme color-theme-sanityinc-tomorrow-theme irony-eldoc flycheck-irony company-irony irony stickyfunc-enhance srefactor git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter vagrant-tramp vagrant helm-gtags ggtags pythonic package-build hide-comnt evil-unimpaired highlight dumb-jump yapfify py-isort org-projectile pcache org git-link pos-tip ctable diminish bind-map bind-key packed spinner key-chord log4e gntp dash-functional parent-mode parsebib gitignore-mode pkg-info epl flx goto-chg eval-sexp-fu powerline ivy alert markdown-mode hydra projectile helm-bibtex magit magit-popup git-commit with-editor iedit biblio biblio-core anaconda-mode auto-complete auctex yasnippet ess julia-mode anzu smartparens vimish-fold evil undo-tree flycheck company request helm helm-core popup async avy f dash s sublimity auctex-latexmk yaml-mode xterm-color ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme snakemake-mode smeargle shell-pop restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox orgit org-repo-todo org-ref org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-ipython noflet neotree ncl-mode multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-vimish-fold evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-object-popup ess-R-data-view eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav disaster diff-hl deft define-word dash-at-point cython-mode company-statistics company-quickhelp company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex buffer-move auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
+    (gmail-message-mode ham-mode html-to-markdown edit-server toml-mode writeroom-mode visual-fill-column zenburn-theme reveal-in-osx-finder pbcopy osx-trash osx-dictionary launchctl web-mode web-beautify tagedit slim-mode scss-mode sass-mode pug-mode livid-mode skewer-mode simple-httpd less-css-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc helm-css-scss haml-mode emmet-mode company-web web-completion-data company-tern tern coffee-mode magit-gh-pulls github-search github-clone github-browse-file gist gh marshal logito ht evil-snipe outshine pp-c-l helm-pages ein wgrep smex ivy-hydra counsel-projectile counsel-dash counsel swiper osx-pseudo-daemon warm-night-theme-theme warm-night-theme color-theme-sanityinc-tomorrow-theme irony-eldoc flycheck-irony company-irony irony stickyfunc-enhance srefactor git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter vagrant-tramp vagrant helm-gtags ggtags pythonic package-build hide-comnt evil-unimpaired highlight dumb-jump yapfify py-isort org-projectile pcache org git-link pos-tip ctable diminish bind-map bind-key packed spinner key-chord log4e gntp dash-functional parent-mode parsebib gitignore-mode pkg-info epl flx goto-chg eval-sexp-fu powerline ivy alert markdown-mode hydra projectile helm-bibtex magit magit-popup git-commit with-editor iedit biblio biblio-core anaconda-mode auto-complete auctex yasnippet ess julia-mode anzu smartparens vimish-fold evil undo-tree flycheck company request helm helm-core popup async avy f dash s sublimity auctex-latexmk yaml-mode xterm-color ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline solarized-theme snakemake-mode smeargle shell-pop restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-yapf popwin pip-requirements persp-mode pcre2el paradox orgit org-repo-todo org-ref org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-ipython noflet neotree ncl-mode multi-term move-text monokai-theme mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint info+ indent-guide ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-dash helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger gh-md flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-vimish-fold evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu ess-smart-equals ess-R-object-popup ess-R-data-view eshell-z eshell-prompt-extras esh-help ensime elisp-slime-nav disaster diff-hl deft define-word dash-at-point cython-mode company-statistics company-quickhelp company-c-headers company-auctex company-anaconda column-enforce-mode cmake-mode clojure-snippets clj-refactor clean-aindent-mode clang-format cider-eval-sexp-fu cdlatex buffer-move auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(projectile-globally-ignored-file-suffixes
    (quote
