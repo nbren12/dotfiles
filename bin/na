@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+if [  "$1" != "" ]; then
+    name=$(readlink -f $1)
+else
+    name=$(pwd)
+fi
+
+echo $name
+echo /ssh:olympus:$name
+echo scp olympus:$name
