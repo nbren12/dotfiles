@@ -6,12 +6,18 @@ if [ ! -e ~/.config/fish/functions/fisher.fish ]
   curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
 end
 
+# fzf
+set -gx PATH $HOME/.fzf/bin $PATH
 
-set -gx PATH /Users/noah/bin /Users/noah/anaconda/bin $PATH 
+if not type -q fzf -h
+  echo "Download FZF..."
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --bin
+end
 
-# julia setup
-set -gx PYTHON /Users/noah/anaconda3/bin/python
-set -gx JUPYTER /Users/noah/anaconda3/bin/jupyter
+
+set -gx PATH /Users/noah/bin /Users/noah/anaconda/bin $PATH
+
 
 # date
 alias today='date +%F'
