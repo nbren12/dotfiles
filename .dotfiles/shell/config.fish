@@ -1,10 +1,13 @@
 . ~/.dotfiles/shell/aliases.sh
-. ~/anaconda3/etc/fish/conf.d/conda.fish
+. ~/anaconda/etc/fish/conf.d/conda.fish
 
-set -gx PATH /Users/noah/bin /Users/noah/anaconda3/bin /usr/local/texlive/2016/bin/x86_64-darwin /Applications/Julia-0.5.app/Contents/Resources/julia/bin $PATH 
+# install fisher if necessary
+if [ ! -e ~/.config/fish/functions/fisher.fish ]
+  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+end
 
-# Load fishmarks (http://github.com/techwizrd/fishmarks)
-. $HOME/.fishmarks/marks.fish
+
+set -gx PATH /Users/noah/bin /Users/noah/anaconda/bin $PATH 
 
 # julia setup
 set -gx PYTHON /Users/noah/anaconda3/bin/python
@@ -26,3 +29,6 @@ function hpc
     echo "**********************************"
     ssh -N hpc
 end
+
+# Load fishmarks (http://github.com/techwizrd/fishmarks)
+. $HOME/.fishmarks/marks.fish
