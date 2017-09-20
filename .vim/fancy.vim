@@ -51,20 +51,20 @@ let g:plug_threads = 1
 call plug#begin('~/.vim/plugged')
 
 """ Essential Plugins
-Plug 'tComment'               " Commenting
+Plug 'vim-scripts/tComment'               " Commenting
 Plug 'tpope/vim-fugitive'     " Git
 Plug 'tpope/vim-repeat'       " Repeat everything with  .
 Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'      " Like regex-align
 Plug 'justinmk/vim-sneak'     " quick movement
-Plug 'surround.vim'           " Parenthesis
+Plug 'vim-scripts/surround.vim'           " Parenthesis
                               " Plug 'guns/vim-sexp'                              " Lisp
                               " Plug 'tpope/vim-sexp-mappings-for-regular-people' " Better bindings
 Plug 'airblade/vim-gitgutter' " see git diffs near the line no
 
 " Fuzzy file finding
 Plug 'kien/ctrlp.vim'     " file finding
-Plug 'ag.vim'
+Plug 'vim-scripts/ag.vim'
 Plug 'ibab/vim-snakemake'
 
 """ TMUX

@@ -1,14 +1,23 @@
 . ~/.dotfiles/shell/aliases.sh
-. ~/anaconda3/etc/fish/conf.d/conda.fish
+. ~/anaconda/etc/fish/conf.d/conda.fish
 
-set -gx PATH /Users/noah/bin /Users/noah/anaconda3/bin /usr/local/texlive/2016/bin/x86_64-darwin /Applications/Julia-0.5.app/Contents/Resources/julia/bin $PATH 
+# install fisher if necessary
+if [ ! -e ~/.config/fish/functions/fisher.fish ]
+  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+end
 
-# Load fishmarks (http://github.com/techwizrd/fishmarks)
-. $HOME/.fishmarks/marks.fish
+# fzf
+set -gx PATH $HOME/.fzf/bin $PATH
 
-# julia setup
-set -gx PYTHON /Users/noah/anaconda3/bin/python
-set -gx JUPYTER /Users/noah/anaconda3/bin/jupyter
+if not type -q fzf -h
+  echo "Download FZF..."
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install --bin
+end
+
+
+set -gx PATH /Users/noah/bin /Users/noah/anaconda/bin $PATH
+
 
 # date
 alias today='date +%F'
@@ -27,4 +36,8 @@ function hpc
     ssh -N hpc
 end
 
+#gcloud
 set -gx PATH $HOME/.google-cloud-sdk/bin $PATH
+
+# Load fishmarks (http://github.com/techwizrd/fishmarks)
+. $HOME/.fishmarks/marks.fish
