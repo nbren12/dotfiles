@@ -1,5 +1,4 @@
-. ~/.dotfiles/shell/aliases.sh
-. ~/anaconda/etc/fish/conf.d/conda.fish
+source ~/.dotfiles/shell/aliases.sh
 
 # install fisher if necessary
 if [ ! -e ~/.config/fish/functions/fisher.fish ]
@@ -15,8 +14,12 @@ if not type -q fzf -h
   ~/.fzf/install --bin
 end
 
+# find anaconda
+set _PATHS /Users/noah/anaconda3/bin /Users/noah/anaconda/bin /Users/noah/bin
 
-set -gx PATH /Users/noah/bin /Users/noah/anaconda/bin $PATH
+for pth  in $_CONDA_PATHS 
+    set -gx PATH $_CONDA_PATHS $PATH
+end
 
 
 # date
