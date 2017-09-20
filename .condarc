@@ -1,4 +1,5 @@
 channels:
+  - conda-forge
   - defaults
 #  - https://conda.anaconda.org/nbren12
 anaconda_upload: true

@@ -26,3 +26,5 @@ function hpc
     echo "**********************************"
     ssh -N hpc
 end
+
+set -gx PATH $HOME/.google-cloud-sdk/bin $PATH
