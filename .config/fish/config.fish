@@ -17,8 +17,8 @@ end
 # find anaconda
 set _PATHS /Users/noah/anaconda3/bin /Users/noah/anaconda/bin /Users/noah/bin
 
-for pth  in $_CONDA_PATHS 
-    set -gx PATH $_CONDA_PATHS $PATH
+for pth in $_PATHS 
+    [ -d $pth ]; and set -gx PATH $pth $PATH
 end
 
 
@@ -40,7 +40,7 @@ function hpc
 end
 
 #gcloud
-set -gx PATH $HOME/.google-cloud-sdk/bin $PATH
+# set -gx PATH $HOME/.google-cloud-sdk/bin $PATH
 
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
 . $HOME/.fishmarks/marks.fish

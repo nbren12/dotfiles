@@ -297,6 +297,10 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+  ;; make spacemacs compatible with conda environments
+  ;; https://emacs.stackexchange.com/questions/32103/spacemacs-use-anaconda-environment
+  (setenv "WORKON_HOME" "/Users/noah/anaconda/envs")
+
   ;; turn off whitespace
   ;; (use-package edit-server
   ;;   :if window-system
