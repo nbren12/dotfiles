@@ -44,3 +44,6 @@ end
 
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
 . $HOME/.fishmarks/marks.fish
+
+# load system specific configs
+[ -f $HOME/.env ]; and source $HOME/.env

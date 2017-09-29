@@ -61,7 +61,8 @@ values."
      markdown
      ;; pandoc
      dash ;; documentation browser (I spent $$$ on this)
-     tmux  ;; adds navigation between tmux and emacs panes
+     ;; tmux  ;; adds navigation between tmux and emacs panes
+     vim-powerline
      chrome
      shell-scripts
      ;; My layers
@@ -348,8 +349,13 @@ layers configuration."
   (spacemacs/toggle-hungry-delete-on)
 
   ;; bash shell
+  ;; fish shell is too fancy for emacs
   (setq-default explicit-shell-file-name "/bin/bash")
   (setq-default shell-file-name "/bin/bash")
+
+  ;; tramp
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+  (add-to-list 'tramp-remote-path "~/anaconda3/bin")
 
   ;; C++
 
