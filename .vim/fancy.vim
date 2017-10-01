@@ -77,6 +77,9 @@ Plug 'benmills/vimux'
   call VimuxSendKeys("Enter")
  endfunction
 
+ " powerline TESTING
+ Plug 'powerline/powerline'
+
 " FZF
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'junegunn/fzf.vim' | Plug 'dbakker/vim-projectroot'

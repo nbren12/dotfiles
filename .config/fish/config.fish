@@ -15,7 +15,8 @@ if not type -q fzf -h
 end
 
 # find anaconda
-set _PATHS /Users/noah/anaconda3/bin /Users/noah/anaconda/bin /Users/noah/bin
+set _PATHS /Users/noah/anaconda3/bin /Users/noah/anaconda/bin /Users/noah/bin \
+   $HOME/Dropbox/gnl/bin
 
 for pth in $_PATHS 
     [ -d $pth ]; and set -gx PATH $pth $PATH
@@ -47,3 +48,5 @@ end
 
 # load system specific configs
 [ -f $HOME/.env ]; and source $HOME/.env
+
+set PATH ~/.google-cloud-sdk/bin $PATH
