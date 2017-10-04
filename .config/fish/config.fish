@@ -23,6 +23,8 @@ for pth in $_PATHS
 end
 
 
+
+
 # date
 alias today='date +%F'
 
@@ -48,5 +50,8 @@ end
 
 # load system specific configs
 [ -f $HOME/.env ]; and source $HOME/.env
-
 set PATH ~/.google-cloud-sdk/bin $PATH
+# key bindings
+set -g fish_key_bindings fish_default_key_bindings
+# set -g fish_key_bindings fish_vi_key_bindings
+bind \cg 'git status'
