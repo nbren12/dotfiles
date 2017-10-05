@@ -1,4 +1,5 @@
 source ~/.dotfiles/shell/aliases.sh
+set -gx EDITOR 'emacsclient -c'
 
 # install fisher if necessary
 if [ ! -e ~/.config/fish/functions/fisher.fish ]
@@ -51,7 +52,13 @@ end
 # load system specific configs
 [ -f $HOME/.env ]; and source $HOME/.env
 set PATH ~/.google-cloud-sdk/bin $PATH
+
 # key bindings
 set -g fish_key_bindings fish_default_key_bindings
 # set -g fish_key_bindings fish_vi_key_bindings
-bind \cg 'git status'
+
+# abbrevs
+abbr -a gcm 'git commit --amend' 
+abbr -a gco 'git checkout'
+abbr -a gcn 'git clean -nd '
+abbr -a c 'conda'

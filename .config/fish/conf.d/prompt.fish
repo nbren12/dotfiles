@@ -1,3 +1,11 @@
+function my_prompt_pwd
+  if [ (pwd | wc -c ) -le 50 ]
+    pwd
+  else
+    prompt_pwd
+  end
+end
+
 function fish_prompt
 
     # define git functions if not already defined
@@ -28,7 +36,12 @@ function fish_prompt
     set -l user_host $cyan"$USER@$__fish_prompt_hostname"
 
     # set path
-    set -l cwd $magenta(prompt_pwd)
+    # use this line for a shorter directory listing
+    # set -l cwd $magenta(prompt_pwd) 
+    # set -l cwd $magenta(pwd)
+    # this shows the full pwd
+    set -l cwd $magenta(my_prompt_pwd)
+	
 
     # if git branch
     if [ (_git_branch_name) ]
@@ -42,6 +55,7 @@ function fish_prompt
             set git_info "$git_info "
         end
     end
+	
 
     echo  -s "$user_host $cwd $git_info"
     echo  "\$ "
