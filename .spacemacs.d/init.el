@@ -145,7 +145,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(warm-night
+   dotspacemacs-themes '(misterioso
+                         warm-night
                          spacemacs-light
                          zenburn
                          spacemacs-dark
@@ -155,11 +156,16 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Monaco"
-                               :size 12
+   dotspacemacs-default-font '("Meslo LG M for Powerline"
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
+   ;; dotspacemacs-default-font '("Monaco"
+   ;;                             :size 12
+   ;;                             :weight normal
+   ;;                             :width normal
+   ;;                             :powerline-scale 1.1)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -352,10 +358,6 @@ layers configuration."
   ;; fish shell is too fancy for emacs
   (setq-default explicit-shell-file-name "/bin/bash")
   (setq-default shell-file-name "/bin/bash")
-
-  ;; tramp
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-  (add-to-list 'tramp-remote-path "~/anaconda3/bin")
 
   ;; C++
 
@@ -623,10 +625,10 @@ layers configuration."
     "od" 'deft
     "oi" 'ibuffer)
 
-
-
   ;; auto-completion
+  (global-company-mode)
   (define-key evil-emacs-state-map (kbd "C-.") 'company-files)
+  (define-key evil-insert-state-map (kbd "C-f") 'company-files)
  ;; (define-key global-map (kbd "<C-tab>") 'company-complete)
  ;; (global-set-key (kbd "<C-,>") 'company-clang)
  ;; (evil-define-key 'insert c++-mode-map (kbd "C-c ,") 'company-clang)
