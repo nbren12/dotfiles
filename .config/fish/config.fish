@@ -51,7 +51,6 @@ end
 
 # load system specific configs
 [ -f $HOME/.env ]; and source $HOME/.env
-set PATH ~/.google-cloud-sdk/bin $PATH
 
 # key bindings
 set -g fish_key_bindings fish_default_key_bindings
