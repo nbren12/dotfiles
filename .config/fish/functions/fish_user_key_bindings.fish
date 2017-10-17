@@ -1,4 +1,6 @@
 function fish_user_key_bindings
+    ### git ###
+    bind \cg 'git status'
     ### fzf ###
     set -q FZF_LEGACY_KEYBINDINGS
     or set -l FZF_LEGACY_KEYBINDINGS 1
@@ -30,6 +32,4 @@ function fish_user_key_bindings
         end
     end
     ### fzf ###
-    ### git ###
-    bind  \cg 'git status'
 end
