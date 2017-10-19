@@ -459,6 +459,13 @@ layers configuration."
     :extend-selection t
     (kill-beamer-frame))
 
+  (defun narrow-to-env ()
+    ;; Narrow to current latex environment
+    (interactive)
+    (LaTeX-mark-environment)
+    (narrow-to-region (region-beginning) (region-end))
+    (deactivate-mark))
+
   (defun latex-read-inputs ()
     ;; Read all \input files in a latex file and comment out \input command
     (interactive)
@@ -473,6 +480,8 @@ layers configuration."
     (pop-mark))
 
   (define-key evil-outer-text-objects-map "f" 'evil-a-latex-frame)
+  (spacemacs/set-leader-keys-for-major-mode 'latex-mode
+    "ne" 'narrow-to-env)
 
   ;; Ask for latex master file
   (setq-default TeX-master nil)
