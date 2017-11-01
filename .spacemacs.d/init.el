@@ -777,8 +777,9 @@ layers configuration."
   (global-set-key "\M-Y" 'evil-paste-pop-next)
 
   ;; add spacemacs.d/snippets to yas snippet dirs
-  (add-to-list 'yas-snippet-dirs (concat dotspacemacs-directory "snippets")))
-
+  (setq yas-snippet-dirs
+        (cons (concat dotspacemacs-directory "snippets") yas-snippet-dirs))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
@@ -911,7 +912,10 @@ layers configuration."
  '(xterm-color-names
    ["#eee8d5" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#073642"])
  '(xterm-color-names-bright
-   ["#fdf6e3" "#cb4b16" "#93a1a1" "#839496" "#657b83" "#6c71c4" "#586e75" "#002b36"]))
+   ["#fdf6e3" "#cb4b16" "#93a1a1" "#839496" "#657b83" "#6c71c4" "#586e75" "#002b36"])
+ '(yas-snippet-dirs
+   (quote
+    ("/Users/noah/.spacemacs.d/snippets" "/Users/noah/.emacs.d/private/snippets/" yas-installed-snippets-dir "/Users/noah/.emacs.d/layers/+completion/auto-completion/local/snippets"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
