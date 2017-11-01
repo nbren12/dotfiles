@@ -9,3 +9,6 @@ checkout = git clone 'git@github.com:nbren12/prezto.git' '.zprezto'
 
 [workspace/multicmt]
 checkout = git clone 'git@bitbucket.org:nbren12/multicmt.git' 'multicmt'
+
+[Dropbox/gnl]
+checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
