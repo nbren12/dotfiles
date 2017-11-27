@@ -778,6 +778,14 @@ layers configuration."
   ;; kill ring forward binding
   (global-set-key "\M-Y" 'evil-paste-pop-next)
 
+  ;; open fish config file
+  (defun noah/open-fish-config ()
+    (interactive)
+    (find-file "~/.config/fish/config.fish"))
+
+  (evil-leader/set-key
+    "off" 'noah/open-fish-config)
+
   ;; add spacemacs.d/snippets to yas snippet dirs
   (setq yas-snippet-dirs
         (cons (concat dotspacemacs-directory "snippets") yas-snippet-dirs))
