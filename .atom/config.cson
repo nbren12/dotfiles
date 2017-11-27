@@ -5,6 +5,8 @@
     bibtex: [
       "/Users/noah/Dropbox/Papers/references.bib"
     ]
+  "autocomplete-plus":
+    confirmCompletion: "tab always, enter when suggestion explicitly selected"
   "autocomplete-python":
     pythonPath: "/Users/noah/anaconda3/bin"
   core:
@@ -20,12 +22,13 @@
     ]
     telemetryConsent: "no"
     themes: [
-      "atom-light-ui"
-      "atom-light-syntax"
+      "atom-dark-ui"
+      "atom-dark-syntax"
     ]
   editor:
     fontSize: 12
     invisibles: {}
+    scrollPastEnd: true
     softWrap: true
     softWrapAtPreferredLineLength: true
   "exception-reporting":
@@ -34,7 +37,8 @@
   "julia-client":
     enableMenu: true
     enableToolBar: true
-    juliaPath: "/Applications/Julia-0.5.app/Contents/Resources/julia/bin/julia"
+    juliaOptions: {}
+    juliaPath: "/Applications/Julia-0.6.app/Contents/Resources/julia/bin/julia"
     launchOnStartup: true
   latex: {}
   "markdown-preview": {}
