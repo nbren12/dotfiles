@@ -9,6 +9,7 @@
     confirmCompletion: "tab always, enter when suggestion explicitly selected"
   "autocomplete-python":
     pythonPath: "/Users/noah/anaconda3/bin"
+    useKite: false
   core:
     disabledPackages: [
       "symbols-view"
@@ -22,8 +23,8 @@
     ]
     telemetryConsent: "no"
     themes: [
-      "atom-dark-ui"
-      "atom-dark-syntax"
+      "one-dark-ui"
+      "solarized-dark-syntax"
     ]
   editor:
     fontSize: 12
