@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: torch
+# key: torch
+# --
+import torch
+from torch.autograd import variable
+from torch import nn

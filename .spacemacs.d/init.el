@@ -833,7 +833,7 @@ layers configuration."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Apartment Search.org" "~/Dropbox/dissertation/phd.org" "~/Dropbox/jobs/nsf/src/project.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
+    ("~/Dropbox/notes/Personal.org" "~/Dropbox/notes/Apartment Search.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-latex-classes
    (quote

@@ -34,6 +34,7 @@ alias emd='/Applications/Emacs.app/Contents/MacOS/Emacs --daemon'
 alias em='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient --no-wait'
 alias emn='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c
 --no-wait'
+alias t='task'
 
 # NYU HPC setup
 function hpc
