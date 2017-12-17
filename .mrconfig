@@ -1,14 +1,35 @@
-[.dotfiles]
-checkout = git clone 'ssh://git@github.com/nbren12/dotfiles.git' '.dotfiles'
+[workspace/models/bous]
+checkout = git clone 'git@bitbucket.org:nbren12/bous.git' 'bous'
 
-[gnl]
-checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
+[workspace/models/pymulticloud]
+checkout = git clone 'git@github.com:nbren12/pymulticloud.git' 'pymulticloud'
 
-[.zprezto]
-checkout = git clone 'git@github.com:nbren12/prezto.git' '.zprezto'
+[workspace/models/sam]
+checkout = git clone 'git@bitbucket.org:nbren12/sam.git' 'sam'
 
-[workspace/multicmt]
-checkout = git clone 'git@bitbucket.org:nbren12/multicmt.git' 'multicmt'
+[workspace/models/wrf]
+checkout = git clone 'git@bitbucket.org:nbren12/wrf.git' 'wrf'
 
-[Dropbox/gnl]
-checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
+[workspace/research/multiscale_sam]
+checkout = git clone 'git@bitbucket.org:nbren12/multiscale_sam.git' 'multiscale_sam'
+
+[workspace/research/raybenconv]
+checkout = git clone 'git@github.com:nbren12/raybenconv.git' 'raybenconv'
+
+[workspace/research/uw-machine-learning]
+checkout = git clone 'git@bitbucket.org:nbren12/uw-machine-learning.git' 'uw-machine-learning'
+
+[workspace/software/geostreams]
+checkout = git clone 'git@github.com:nbren12/geostreams.git' 'geostreams'
+
+[workspace/software/icar]
+checkout = git clone 'git@github.com:nbren12/icar.git' 'icar'
+
+[workspace/software/pynlsa]
+checkout = git clone 'git@bitbucket.org:nbren12/pynlsa.git' 'pynlsa'
+
+[workspace/software/sklearn_xarray]
+checkout = git clone 'git@github.com:nbren12/xarray_sklearn.git' 'sklearn_xarray'
+
+[workspace/software/xarray]
+checkout = git clone 'git@github.com:nbren12/xarray.git' 'xarray'
