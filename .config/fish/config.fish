@@ -9,7 +9,7 @@ end
 # fzf
 set -gx PATH $HOME/.fzf/bin $PATH
 
-if not type -q fzf -h
+if not type -q fzf 
   echo "Download FZF..."
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install --bin
