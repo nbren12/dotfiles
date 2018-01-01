@@ -19,8 +19,6 @@
       "atom-ctags"
       "minimap"
       "vim-mode"
-      "vim-mode-plus"
-      "git-plus"
     ]
     telemetryConsent: "no"
     themes: [
@@ -43,6 +41,7 @@
     juliaPath: "/Applications/Julia-0.6.app/Contents/Resources/julia/bin/julia"
     launchOnStartup: true
   latex: {}
+  "linter-ui-default": {}
   "markdown-preview": {}
   minimap:
     displayCodeHighlights: false
@@ -60,6 +59,8 @@
     ]
   "tool-bar":
     position: "Left"
+  "tree-view":
+    hideVcsIgnoredFiles: true
   "uber-juno":
     disable: true
   "vim-mode":
