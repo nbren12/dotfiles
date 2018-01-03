@@ -95,7 +95,7 @@ set foldnestmax=2
 
 
 " Abbreviations
-iab `ndb Noah D. Brenowitz 
+iab ndb` Noah D. Brenowitz
 iab teh the
 iab adn and
 iab fo of
