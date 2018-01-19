@@ -31,12 +31,12 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     html
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     html
      (auto-completion :variables
                                      auto-completion-return-key-behavior 'complete
                                      auto-completion-tab-key-behavior 'cycle
@@ -45,41 +45,40 @@ values."
      evil-snipe ;; two character motions using s/S
      docker
      my-email
-     ;; better-defaults
-     ;; ivy
      emacs-lisp
      git
+     (org :variables org-enable-reveal-js-support t)
+     bibtex
+     (latex :variables latex-enable-folding t latex-enable-auto-fill t)
+     (shell :variables shell-default-term-shell "/bin/bash")
+     syntax-checking
+     (python :variables python-test-runner 'pytest)
+     nginx
+     (version-control :variables
+                      version-control-diff-tool 'diff-hl)
+     markdown
+     dash ;; documentation browser (I spent $$$ on this)
+     chrome
+     shell-scripts
+     ;; My layers
+     julia
+     ;; better-defaults
+     ;; ivy
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      ;; markdown
      ;; github
-     (org :variables org-enable-reveal-js-support t)
-     bibtex
-     (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      ;; html
      ;; javascript
-     (shell :variables shell-default-term-shell "/bin/bash")
-     syntax-checking
-     (python :variables python-test-runner 'pytest)
      ;; ess
      ;; clojure
      ;; go
      ;; semantic
      ;;(c-c++
-     nginx
-     ;; )
-     (version-control :variables
-                      version-control-diff-tool 'diff-hl)
      ;; deft ;; notational velocity clone
-     markdown
      ;; pandoc
-     dash ;; documentation browser (I spent $$$ on this)
      ;; tmux  ;; adds navigation between tmux and emacs panes
      ;; vim-powerline
-     chrome
-     shell-scripts
-     ;; My layers
-     julia
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -358,16 +357,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-
-  ;; make spacemacs compatible with conda environments
-  ;; https://emacs.stackexchange.com/questions/32103/spacemacs-use-anaconda-environment
-  ;; (setenv "WORKON_HOME" "/Users/noah/anaconda/envs")
-
-  ;; turn off whitespace
-  ;; (use-package edit-server
-  ;;   :if window-system
-  ;;   :init
-  ;;   (add-hook 'after-init-hook 'edit-server-start t))
   )
 
 (defun dotspacemacs/user-config ()
