@@ -364,15 +364,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
-  (defconst user-init-dir
-    "~/.spacemacs.d/config/")
-
-
-  (defun load-user-file (file)
-    (interactive "f")
-    "Load a file in current user's configuration directory"
-    (load-file (expand-file-name file user-init-dir)))
-
   ;; turn off ugly text wrapping arrows
   (global-visual-line-mode 1)
 
@@ -415,6 +406,16 @@ layers configuration."
   ;; add spacemacs.d/snippets to yas snippet dirs
   (setq yas-snippet-dirs
         (cons (concat dotspacemacs-directory "snippets") yas-snippet-dirs))
+
+  ;;; Load custom configurations
+  (defconst user-init-dir
+    "~/.spacemacs.d/config/")
+
+
+  (defun load-user-file (file)
+    (interactive "f")
+    "Load a file in current user's configuration directory"
+    (load-file (expand-file-name file user-init-dir)))
 
   (load-user-file "funs.el")
   (load-user-file "latex.el")
