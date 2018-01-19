@@ -36,3 +36,6 @@ checkout = git clone 'git@github.com:nbren12/xarray.git' 'xarray'
 
 [Dropbox/gnl]
 checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
+
+[workspace/software/dask.targeted]
+checkout = git clone 'git@github.com:nbren12/dask.targeted.git' 'dask.targeted'

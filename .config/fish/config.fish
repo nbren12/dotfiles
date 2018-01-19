@@ -28,6 +28,7 @@ end
 
 # date
 alias today='date +%F'
+alias td='today'
 
 # emacs aliases
 alias emd='/Applications/Emacs.app/Contents/MacOS/Emacs --daemon'
