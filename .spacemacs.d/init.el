@@ -375,6 +375,15 @@ before packages are loaded. If you are unsure, you should try in setting them in
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
 
+  (defconst user-init-dir
+    "~/.spacemacs.d/config/")
+
+
+  (defun load-user-file (file)
+    (interactive "f")
+    "Load a file in current user's configuration directory"
+    (load-file (expand-file-name file user-init-dir)))
+
   ;; turn off ugly text wrapping arrows
   (global-visual-line-mode 1)
 
@@ -414,241 +423,20 @@ layers configuration."
   (setq-default explicit-shell-file-name "/bin/bash")
   (setq-default shell-file-name "/bin/bash")
 
-  ;; C++
+  ;; add spacemacs.d/snippets to yas snippet dirs
+  (setq yas-snippet-dirs
+        (cons (concat dotspacemacs-directory "snippets") yas-snippet-dirs))
 
-  ;; deft-options
-  (evil-set-initial-state 'deft-mode 'emacs)
-  (use-package deft
-    :init
-    (progn
-      (setq deft-default-extension "org")
-      (setq deft-text-mode 'org-mode)
-      (setq deft-directory "~/Dropbox/notes")
-      (setq deft-use-filter-string-for-filename  t)))
-
-
-  ;; Paredit bindings
-  (dolist (lang-map '(emacs-lisp-mode-map))
-    (progn
-      (evil-define-key 'normal emacs-lisp-mode-map
-        (sp-use-smartparens-bindings)
-        "-" 'sp-backward-sexp
-        ;; "=" 'sp-next-sexp
-        "_" 'sp-backward-up-sexp
-        "+" 'sp-down-sexp)))
-
-  ;; Use variable width font faces in current buffer
-  (defun my-buffer-face-mode-variable ()
-    "Set font to a variable width (proportional) fonts in current buffer"
-    (interactive)
-    (setq buffer-face-mode-face '(:family "Times New Roman" :height 150))
-    (buffer-face-mode))
-
-  ;; Use monospaced font faces in current buffer
-  (defun my-buffer-face-mode-fixed ()
-    "Sets a fixed width (monospace) font in current buffer"
-    (interactive)
-    (setq buffer-face-mode-face '(:family "Monaco" :height 120))
-    (buffer-face-mode))
-
-
-  ;; Set default font faces for Info and ERC modes
-  ;; (add-hook 'org-mode-hook 'my-buffer-face-mode-variable)
-
-  ;; (add-hook 'LaTeX-mode-hook 'turn-off-smartparens-mode)
-  ;; (add-hook 'LaTeX-mode-hook 'turn-off-auto-fill)
-  ;;; Latex settings
-
-  ;; (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
-  (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
-
-  ;;; Sentence based filling in Latex modes
-  ;; http://stackoverflow.com/questions/539984/how-do-i-get-emacs-to-fill-sentences-but-not-paragraphs
-  (defun auto-fill-by-sentences ()
-    (if (looking-back (sentence-end))
-        ;; Break at a sentence
-        (progn
-          (LaTeX-newline)
-          t)
-      ;; Fall back to the default
-      (do-auto-fill)))
-  (add-hook 'LaTeX-mode-hook (lambda () (setq auto-fill-function 'auto-fill-by-sentences)))
-
-  ;; Modified from http://pleasefindattached.blogspot.com/2011/12/emacsauctex-sentence-fill-greatly.html
-  (defadvice LaTeX-fill-region-as-paragraph (around LaTeX-sentence-filling)
-    "Start each sentence on a new line."
-    (let ((from (ad-get-arg 0))
-          (to-marker (set-marker (make-marker) (ad-get-arg 1)))
-          tmp-end)
-      (while (< from (marker-position to-marker))
-        (forward-sentence)
-        ;; might have gone beyond to-marker---use whichever is smaller:
-        (ad-set-arg 1 (setq tmp-end (min (point) (marker-position to-marker))))
-        ad-do-it
-        (ad-set-arg 0 (setq from (point)))
-        (unless (or (looking-back "^\\s *")
-                    (looking-at "\\s *$"))
-          (LaTeX-newline)))
-      (set-marker to-marker nil)))
-  (ad-activate 'LaTeX-fill-region-as-paragraph)
-
-  ;; Electric period key
-  ;; (defun period-and-newline ()
-  ;;   (interactive)
-  ;;   (insert-string ".")
-  ;;   (newline-and-indent))
-
-  ;; (evil-define-key 'insert LaTeX-mode-map (kbd ".") 'period-and-newline)
-
-  ;; evil-motions for selecting the current environment
-
-  (defun kill-beamer-frame ()
-    (interactive)
-    (re-search-backward "\\\\begin{frame}")
-    (push-mark)
-    (search-forward-regexp "\\\\end{frame}")
-    (evil-visual-select (mark) (point)))
-
-  (evil-define-text-object evil-a-latex-frame (count &optional beg end type)
-    "Select inner angle bracket."
-    :extend-selection t
-    (kill-beamer-frame))
-
-  (defun narrow-to-env ()
-    ;; Narrow to current latex environment
-    (interactive)
-    (LaTeX-mark-environment)
-    (narrow-to-region (region-beginning) (region-end))
-    (deactivate-mark))
-
-  (defun latex-read-inputs ()
-    ;; Read all \input files in a latex file and comment out \input command
-    (interactive)
-    (push-mark)
-    (goto-char 0)
-    (while (re-search-forward "^ *\\\\input{\\(.*?\\)}" nil t)
-      (let ((input-file (match-string 1)))
-        (message (concat "Reading file " input-file " into current buffer and commenting input command"))
-        (forward-line)
-        (comment-line -1)
-        (evil-read nil input-file)))
-    (pop-mark))
-
-  (define-key evil-outer-text-objects-map "f" 'evil-a-latex-frame)
-  (spacemacs/set-leader-keys-for-major-mode 'latex-mode
-    "ne" 'narrow-to-env)
-
-  ;; Ask for latex master file
-  (setq-default TeX-master nil)
-
-
-  ;;; Handy key-bindings
-
-  ;; j and k go down visual lines
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-
-  (global-set-key (kbd "M-s M-s") 'save-buffer)
-
-  ;; browse url at point
-  (evil-leader/set-key "ou" 'browse-url-at-point)
-
+  (load-user-file "funs.el")
+  (load-user-file "latex.el")
+  (load-user-file "org.el")
+  (load-user-file "deft.el")
+  ;; mac os stuff
+  (if (eq system-type 'darwin)
+      (load-user-file "osx.el"))
+  (load-user-file "keybindings.el")
 
   ;;; Authoring tools
-
-  ;; Bibliography management
-  (use-package org-ref
-    :config
-    (progn
-      (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
-
-      ;; see org-ref for use of these variables
-      (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-            org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
-            org-ref-pdf-directory "~/Dropbox/Documents/org-ref/bibtex-pdfs/")
-
-      ;; need to setup helm-bibtex as well
-      (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
-
-  ;; latex shortcuts
-  ;; (use-package cdlatex)
-  
-  (defun org-archive-done-tasks ()
-    ;; Taken from https://stackoverflow.com/a/27043756/1208392
-    (interactive)
-    (org-map-entries
-     (lambda ()
-       (org-archive-subtree)
-       (setq org-map-continue-from (outline-previous-heading)))
-     "/DONE" 'tree))
-
-  (defun my-org-config ()
-    ;; org mode
-    (add-hook 'org-mode-hook 'auto-fill-mode)
-    ;; (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
-    (setq org-capture-templates
-          '(("m" "Personal todo" entry (file+headline "~/Dropbox/notes/Personal.org" "Inbox")
-             "* TODO %?\nEntered on %U\n  %i\n  %a")
-            ("w" "Work todo" entry (file+headline "~/Dropbox/notes/Admin.org" "Inbox")
-             "* TODO %?\nEntered on %U\n  %i\n  %a")
-            ("h" "Howto" entry (file+headline "~/Dropbox/notes/Howto.org" "Inbox")
-             "* %?\nEntered on %U\n  %i\n  %a")
-            ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
-             "* %?\nEntered on %U\n  %i\n  %a")
-            ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
-             "* %?\n\n")))
-
-    ;; (if (string-equal system-type "gnu/linux")
-    ;;    (add-to-list 'org-file-apps '(t . "xdg-open %s")))
-
-
-    (require 'ob-dot)
-    (require 'ox-md) ;; needed for org markdown export
-    ;; (require 'ob-ipython)
-    (org-babel-do-load-languages
-     'org-babel-load-languages
-     '( (perl . t)
-        (dot . t)
-        (shell . t)
-        ;; (R . t)
-        (gnuplot . t)
-        (clojure . t)
-        ;;    (graphviz . t)
-        (lisp . t)
-        ;;    (stan . t)
-        (org . t)
-        (screen . t)
-        (calc . t)
-        (js . t)
-        (latex . t)
-        (plantuml . t)
-        (ruby . t)
-        (shell . t)
-        (ipython . t)
-        (python . t)
-        (emacs-lisp . t)
-        (ditaa . t)
-        (awk . t)
-        (octave . t)
-        (sed . t)
-        (sql . t)
-        (sqlite . t)
-        ))
-    (evil-define-key 'normal org-mode-map "t" 'org-todo)
-    (spacemacs/set-leader-keys-for-major-mode 'org-mode
-      "er" 'org-reveal-export-current-subtree
-      "eR" 'org-reveal-export-to-html))
-
-  ;; (my-org-config)
-
-  ;; Remove evil mode for org-goto
-  (defadvice org-goto (around make-it-evil activate)
-    (let ((orig-state evil-state)
-          (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
-      ad-do-it
-      (evil-change-state orig-state)))
-
 
   ;; Fortran
   (add-to-list 'auto-mode-alist '("\\.F\\'" . f90-mode))
@@ -666,103 +454,12 @@ layers configuration."
 
 
 
-  ;;; my own functions
-  (defun remove-blank-spaces ()
-    ;; Remove annoying trailing spaces
-    (interactive)
-    (beginning-of-buffer)  ;; This adds mark at beginning of buffer
-    (replace-regexp " +$" "")
-    (pop-global-mark))
-
-  (defun noah-add-to-config ()
-    ;; Add current file to config using the con alias
-    (interactive)
-    (shell-command
-     (concat "con add " (buffer-file-name)))
-    (message "Adding current file to dotfiles"))
-
-  (defun craigslist-org ()
-    ;; pull info from craigslist page into org-mode header
-    (interactive)
-    (let ((url (read-string "Enter Craigslist URL: ")))
-      (org-insert-heading-respect-content)
-      (insert
-       (shell-command-to-string (concat "craigslist2org.py -n 0 " url)))))
-
-  (evil-leader/set-key "oc" 'craigslist-org)
-
-  (evil-leader/set-key
-    "ors" 'remove-blank-spaces
-    "orc" 'noah-add-to-config
-    "ow" 'writeroom-mode
-    ;; "oc" 'customize-group
-    "oo" 'helm-occur
-    "od" 'deft
-    "oi" 'ibuffer)
-
-  ;; auto-completion
-  (global-company-mode)
-  (define-key evil-emacs-state-map (kbd "C-.") 'company-files)
-  (define-key evil-insert-state-map (kbd "C-f") 'company-files)
- ;; (define-key global-map (kbd "<C-tab>") 'company-complete)
- ;; (global-set-key (kbd "<C-,>") 'company-clang)
- ;; (evil-define-key 'insert c++-mode-map (kbd "C-c ,") 'company-clang)
-
-
-  ;; Window navivation (conflicts with key bindings)
-  ;; (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-  ;; (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  ;; (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  ;; (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-
-  ;; buffer navigation
-  (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
-  (global-set-key (kbd "C-x <C-left>") 'spacemacs/previous-useful-buffer)
-  (global-set-key (kbd "C-x <C-right>") 'spacemacs/next-useful-buffer)
-
   ;; Window maximization
   ;; disabled because it is annoying on my work desktop
   ;; (add-to-list 'default-frame-alist '(fullscreen . fullheight))
   ;; (add-to-list 'default-frame-alist '(fullscreen-restore . fullheight))
 
-  ;; Insert mode navigation
-  (define-key evil-insert-state-map (kbd "<M-backspace>") 'evil-delete-backward-word)
-  (define-key evil-insert-state-map (kbd "S-<left>") 'evil-backward-WORD-begin)
-  (define-key evil-insert-state-map (kbd "S-<right>") 'evil-forward-WORD-begin)
-
-  ;; mac os stuff
-  (if (eq system-type 'darwin)
-      (progn
-
-        ;; skim for synctex
-        (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-        (setq TeX-view-program-list
-              '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
-
-        (define-key global-map (kbd "M-w") 'spacemacs/frame-killer)
-        ;; (evil-define-key 'normal global-map (kbd "M-w") 'spacemacs/frame-killer)
-        (defadvice handle-delete-frame (around my-handle-delete-frame-advice activate)
-          "Hide Emacs instead of closing the last frame"
-          (let ((frame   (posn-window (event-start event)))
-                (numfrs  (length (frame-list))))
-            (if (> numfrs 1)
-                ad-do-it
-              (do-applescript "tell application \"System Events\" to tell process \"Emacs\" to set visible to false"))))))
-
-  ;; kill ring forward binding
-  (global-set-key "\M-Y" 'evil-paste-pop-next)
-
-  ;; open fish config file
-  (defun noah/open-fish-config ()
-    (interactive)
-    (find-file "~/.config/fish/config.fish"))
-
-  (evil-leader/set-key
-    "off" 'noah/open-fish-config)
-
-  ;; add spacemacs.d/snippets to yas snippet dirs
-  (setq yas-snippet-dirs
-        (cons (concat dotspacemacs-directory "snippets") yas-snippet-dirs)))
+  )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
