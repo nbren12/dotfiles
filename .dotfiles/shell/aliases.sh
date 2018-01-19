@@ -63,3 +63,4 @@ alias qtconsole='jupyter qtconsole'
 alias notebook='jupyter notebook'
 
 alias aa='activate_above'
+alias ipy='ipython'
