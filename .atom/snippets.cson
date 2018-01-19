@@ -21,3 +21,11 @@
   'Docstring':
     'prefix': 'doc'
     'body': '$1\nParameters\n---------$2\nReturns\n-------$3'
+
+  'matplotlib':
+    'prefix': 'plt'
+    'body': 'import matplotlib.pyplot as plt'
+
+  'numpy':
+    'prefix': 'np'
+    'body': 'import numpy as np'

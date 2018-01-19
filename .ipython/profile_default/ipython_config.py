@@ -34,7 +34,10 @@
 
 # lines of code to run at IPython startup.
 c.InteractiveShellApp.exec_lines = [
-    '%autoreload 2'
+    '%autoreload 2',
+    'import numpy as np',
+    'import xarray as xr',
+    'import matplotlib.pyplot as plt',
 ]
 
 # A list of dotted module names of IPython extensions to load.

@@ -1,5 +1,6 @@
 "*":
-  Hydrogen: {}
+  Hydrogen:
+    gateways: "[{\"name\": \"prince\",\"options\": {\"baseUrl\": \"http://localhost:10001\"}}, {\"name\": \"uw\",\"options\": {\"baseUrl\": \"http://localhost:8888\"}}]"
   "atom-ctags": {}
   "autocomplete-bibtex":
     bibtex: [
@@ -41,7 +42,8 @@
     juliaPath: "/Applications/Julia-0.6.app/Contents/Resources/julia/bin/julia"
     launchOnStartup: true
   latex: {}
-  "linter-ui-default": {}
+  "linter-ui-default":
+    panelHeight: 300
   "markdown-preview": {}
   minimap:
     displayCodeHighlights: false
