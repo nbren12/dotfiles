@@ -357,7 +357,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  )
+
+  ;; Load ~/.local.el if it exists
+  (let ((local-config "~/.local.el"))
+    (if (file-exists-p local-config)
+        (load-file local-config))))
 
 (defun dotspacemacs/user-config ()
   "Configuration function.
