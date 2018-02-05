@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: subworkflow
+# key: subworkflow
+# --
+
+subworkflow ngaqua:
+    configfile: "$1/config.yml"
+    workdir: "$1"
+    snakefile: "$1/Snakefile"

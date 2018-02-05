@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: snakemake
+# key: snakemake
+# --
+try:
+    snakemake
+except NameError:
+    pass
+else:
+    $1
