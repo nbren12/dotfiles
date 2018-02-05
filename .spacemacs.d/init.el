@@ -44,7 +44,6 @@ values."
                                      auto-completion-complete-with-key-sequence-delay 0.1)
      evil-snipe ;; two character motions using s/S
      docker
-     my-email
      emacs-lisp
      git
      (org :variables org-enable-reveal-js-support t)
