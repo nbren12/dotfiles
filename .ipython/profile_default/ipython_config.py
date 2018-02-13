@@ -37,7 +37,10 @@ c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
     'import numpy as np',
     'import xarray as xr',
+    'import pandas as pd',
     'import matplotlib.pyplot as plt',
+    'from metpy.units import units as mu',
+    'import metpy.constants as mc'
 ]
 
 # A list of dotted module names of IPython extensions to load.
