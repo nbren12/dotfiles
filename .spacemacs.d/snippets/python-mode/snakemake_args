@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: snakemake_args
+# key: sargs
+# --
+$1(input, output, params)

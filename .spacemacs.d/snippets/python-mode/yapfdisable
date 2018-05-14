@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: yapfdisable
+# key: yd
+# --
+# yapf: disable

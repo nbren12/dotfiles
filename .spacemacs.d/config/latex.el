@@ -6,7 +6,7 @@
   ;;; Latex settings
 
 ;; (add-hook 'LaTeX-mode-hook 'my-buffer-face-mode-variable)
-(add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
+;; (add-hook 'Info-mode-hook 'my-buffer-face-mode-variable)
 
   ;;; Sentence based filling in Latex modes
 ;; http://stackoverflow.com/questions/539984/how-do-i-get-emacs-to-fill-sentences-but-not-paragraphs

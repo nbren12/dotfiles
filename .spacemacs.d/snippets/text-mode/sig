@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Signature and date
+# key: sig
+# --
+-- Noah D. Brenowitz [`(format-time-string "%F %a %R")`]
