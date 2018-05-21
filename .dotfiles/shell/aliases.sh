@@ -64,3 +64,5 @@ alias notebook='jupyter notebook'
 
 alias aa='activate_above'
 alias ipy='ipython'
+
+alias ls='ls -F'

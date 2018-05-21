@@ -457,6 +457,11 @@ layers configuration."
   ;; (add-to-list 'default-frame-alist '(fullscreen . fullheight))
   ;; (add-to-list 'default-frame-alist '(fullscreen-restore . fullheight))
 
+  ;; edit-server
+  (use-package edit-server
+    :config
+    (edit-server-start))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
