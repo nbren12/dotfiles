@@ -40,3 +40,7 @@
 (defun noah/open-fish-config ()
   (interactive)
   (find-file "~/.config/fish/config.fish"))
+
+(defun noah/open-uw ()
+    (interactive)
+  (find-file "/ssh:uw:/Users/noah/workspace/research"))

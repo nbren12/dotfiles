@@ -1,3 +1,4 @@
+
 (evil-leader/set-key
   "ou" 'browse-url-at-point
   "os" 'remove-blank-spaces
@@ -8,7 +9,8 @@
   "od" 'deft
   "oi" 'ibuffer
   "oc" 'craigslist-org
-  "of" 'noah/open-fish-config)
+  "off" 'noah/open-fish-config
+  "ofw" 'noah/open-uw)
 
 
 ;; j and k go down visual lines
