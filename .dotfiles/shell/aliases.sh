@@ -66,3 +66,6 @@ alias aa='activate_above'
 alias ipy='ipython'
 
 alias ls='ls -F'
+
+# google cloud
+alias mysite='gcloud compute ssh nbren12@ubuntu'
