@@ -61,6 +61,7 @@ alias config='/usr/bin/env git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
 alias qtconsole='jupyter qtconsole'
 alias notebook='jupyter notebook'
+alias jlab='jupyter lab'
 
 alias aa='activate_above'
 alias ipy='ipython'

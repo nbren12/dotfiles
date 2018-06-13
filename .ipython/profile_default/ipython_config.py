@@ -36,7 +36,10 @@
 c.InteractiveShellApp.exec_lines = [
     '%autoreload 2',
     'import numpy as np',
+    'pi=np.pi',
     'import xarray as xr',
+    'xo=xr.open_dataset',
+    'xmf=xr.open_mfdataset',
     'import pandas as pd',
     'import matplotlib.pyplot as plt',
     'from metpy.units import units as mu',
