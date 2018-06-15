@@ -362,6 +362,7 @@ executes.
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
 
+
   ;; Load ~/.local.el if it exists
   (let ((local-config "~/.local.el"))
     (if (file-exists-p local-config)
@@ -411,10 +412,8 @@ layers configuration."
   (setq-default explicit-shell-file-name "/bin/bash")
   (setq-default shell-file-name "/bin/bash")
 
-  ;; add spacemacs.d/snippets to yas snippet dirs
   (setq yas-snippet-dirs
         (cons (concat dotspacemacs-directory "snippets") yas-snippet-dirs))
-  (require 'yasnippet-snippets)
 
   ;;; Load custom configurations
   (defconst user-init-dir
