@@ -9,6 +9,7 @@
   "od" 'deft
   "oi" 'ibuffer
   "oc" 'craigslist-org
+  "ofl" 'flycheck-list-errors
   "off" 'noah/open-fish-config
   "ofw" 'noah/open-uw)
 
