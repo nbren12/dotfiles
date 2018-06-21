@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+#name : keyval
+#key : keyval
+#contributor : Noah Brenowitz
+# --
+{key: ${0:val} for key, val in $1.items()}
