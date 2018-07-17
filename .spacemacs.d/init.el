@@ -431,6 +431,7 @@ layers configuration."
   (load-user-file "latex.el")
   (load-user-file "org.el")
   (load-user-file "deft.el")
+  (load-user-file "python.el")
   ;; mac os stuff
   (if (eq system-type 'darwin)
       (load-user-file "osx.el"))
@@ -602,7 +603,7 @@ layers configuration."
    ["#fdf6e3" "#cb4b16" "#93a1a1" "#839496" "#657b83" "#6c71c4" "#586e75" "#002b36"])
  '(yas-snippet-dirs
    (quote
-    ("/Users/noah/.spacemacs.d/snippets" "/Users/noah/.emacs.d/private/snippets/" yas-installed-snippets-dir "/Users/noah/.emacs.d/layers/+completion/auto-completion/local/snippets"))))
+    ("/Users/noah/.spacemacs.d/snippets" "/Users/noah/.emacs.d/private/snippets/" "/Users/noah/.emacs.d/yasnippet-snippets-20180503.657/snippets" "/Users/noah/.emacs.d/layers/+completion/auto-completion/local/snippets"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

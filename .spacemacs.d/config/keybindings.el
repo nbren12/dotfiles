@@ -44,7 +44,6 @@
 
 (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 
-
 ;; Paredit bindings
 (dolist (lang-map '(emacs-lisp-mode-map))
   (progn
