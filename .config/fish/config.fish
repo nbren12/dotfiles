@@ -63,3 +63,5 @@ abbr -a gcm 'git commit --amend'
 abbr -a gco 'git checkout'
 abbr -a gcn 'git clean -nd '
 abbr -a c 'conda'
+
+eval (direnv hook fish)
