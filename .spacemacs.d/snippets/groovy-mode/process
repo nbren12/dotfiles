@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+#name : process
+#key : process
+#contributor : Noah Brenowitz
+# --
+process $1 {
+${2:    input:}
+${3:    output:}
+
+    """
+    $0
+    """
+}

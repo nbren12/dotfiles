@@ -54,3 +54,5 @@
       "_" 'sp-backward-up-sexp
       "+" 'sp-down-sexp)))
 
+;; cool key bindings for changing windows
+(windmove-default-keybindings)

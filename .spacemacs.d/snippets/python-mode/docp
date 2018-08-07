@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+#name : docp
+#key : docp
+#contributor : Noah Brenowitz
+# --
+$1 : $2
+    $0

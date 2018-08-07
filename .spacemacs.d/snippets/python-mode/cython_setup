@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+#name : cython_setup
+#key : cython_setup
+#contributor : Noah Brenowitz
+# --
+from distutils.core import setup
+from Cython.Build import cythonize
+
+setup(
+    ext_modules = cythonize("example.pyx")
+)
