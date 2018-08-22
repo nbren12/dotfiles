@@ -73,3 +73,6 @@ alias mysite='gcloud compute ssh nbren12@ubuntu'
 
 # anaconda
 alias cuw='conda activate uw-machine-learning'
+
+# weather
+alias weather='curl wttr.in'
