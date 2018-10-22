@@ -76,5 +76,3 @@ alias cuw='conda activate uw-machine-learning'
 
 # weather
 alias weather='curl wttr.in'
-
-alias du_directory='du --max-depth 0'

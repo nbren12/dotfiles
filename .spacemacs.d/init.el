@@ -75,7 +75,11 @@ values."
      ;; ess
      ;; clojure
      ;; go
-     ;; semantic
+
+     ;; Tools for C/C++
+     semantic
+     (c-c++ :variables
+            c-c++-enable-clang-support t)
      ;;(c-c++
      ;; deft ;; notational velocity clone
      ;; pandoc

@@ -85,3 +85,7 @@
         (evil-emacs-state-modes (cons 'org-mode evil-emacs-state-modes)))
     ad-do-it
     (evil-change-state orig-state)))
+
+;; checkboxes in html export
+;; see https://stackoverflow.com/questions/22065589/org-mode-html-export-with-checkbox
+(setq org-html-checkbox-type 'html)
