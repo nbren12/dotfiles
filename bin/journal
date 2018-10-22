@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if [[ "$JOURNAL_ROOT" == "" ]] 
+if [[ "$JOURNAL_ROOT" == "" ]]
 then
     JOURNAL_ROOT=$HOME/Dropbox/journal
 fi
 
-$EDITOR $(date +%F)-"$1"
+$EDITOR "$JOURNAL_ROOT/$(date +%F)-$1"
