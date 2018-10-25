@@ -11,11 +11,12 @@
   "oc" 'craigslist-org
   "ofl" 'flycheck-list-errors
   "off" 'noah/open-fish-config
-  "ofw" 'noah/open-uw)
+  "ofw" 'noah/open-uw
+  "ob" 'noah/big-frame)
 
 
 ;; j and k go down visual lines
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "j") "evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
 (global-set-key (kbd "M-s M-s") 'save-buffer)

@@ -44,3 +44,8 @@
 (defun noah/open-uw ()
     (interactive)
   (find-file "/ssh:uw:/Users/noah/workspace/research"))
+
+;; Make the current frame big!
+(defun noah/big-frame ()
+  (interactive)
+  (set-frame-size (selected-frame) 150 70))

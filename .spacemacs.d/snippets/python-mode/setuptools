@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+#name : setuptools
+#key : setuptools
+#contributor : Noah Brenowitz
+# --
+from setuptools import setup, find_packages
+
+setup(
+    name="sam",
+    version="0.1.1",
+    packages=find_packages(),
+)
