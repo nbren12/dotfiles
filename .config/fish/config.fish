@@ -58,6 +58,11 @@ end
 set -g fish_key_bindings fish_default_key_bindings
 # set -g fish_key_bindings fish_vi_key_bindings
 
+# ncdump helper
+function ncd
+    ncdump -h $argv | less
+end
+
 # abbrevs
 abbr -a gcm 'git commit --amend' 
 abbr -a gco 'git checkout'
