@@ -52,7 +52,7 @@ values."
      (org :variables org-enable-reveal-js-support t)
      bibtex
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
-     (shell :variables shell-default-term-shell "/bin/bash")
+     (shell :variables shell-default-shell 'eshell)
      syntax-checking
      (python :variables python-test-runner 'pytest)
      nginx
@@ -516,7 +516,7 @@ layers configuration."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Personal.org" "~/Dropbox/notes/Jobs.org" "~/Dropbox/notes/Admin.org")))
+    ("~/Dropbox/JobSearch2018/readme.org" "~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Personal.org" "~/Dropbox/notes/Jobs.org")))
  '(org-directory "~/Dropbox/notes")
  '(org-latex-classes
    (quote

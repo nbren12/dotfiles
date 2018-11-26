@@ -68,3 +68,7 @@ abbr -a gcm 'git commit --amend'
 abbr -a gco 'git checkout'
 abbr -a gcn 'git clean -nd '
 abbr -a c 'conda'
+
+# add autojump if it's present
+[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
+
