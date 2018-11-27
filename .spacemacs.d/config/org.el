@@ -30,16 +30,14 @@
          "* TODO %?\nEntered on %U\n  %i\n  %a")
         ("w" "Work todo" entry (file+headline "~/Dropbox/notes/Admin.org" "Inbox")
          "* TODO %?\nEntered on %U\n  %i\n  %a")
+        ("j" "Job" entry (file+headline "~/Dropbox/JobSearch2018/readme.org" "Opportunities")
+         "* TODO %?\nEntered on %U\n  %i\n  %a")
         ("h" "Howto" entry (file+headline "~/Dropbox/notes/Howto.org" "Inbox")
          "* %?\nEntered on %U\n  %i\n  %a")
         ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
          "* %?\nEntered on %U\n  %i\n  %a")
         ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
          "* %?\n\n")))
-
-;; (if (string-equal system-type "gnu/linux")
-;;    (add-to-list 'org-file-apps '(t . "xdg-open %s")))
-
 
 (require 'ob-dot)
 (require 'ox-md) ;; needed for org markdown export
