@@ -43,7 +43,9 @@ c.InteractiveShellApp.exec_lines = [
     'import pandas as pd',
     'import matplotlib.pyplot as plt',
     'from metpy.units import units as mu',
-    'import metpy.constants as mc'
+    'import metpy.constants as mc',
+    'import torch',
+    'from torch import nn',
 ]
 
 # A list of dotted module names of IPython extensions to load.
