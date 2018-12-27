@@ -57,3 +57,8 @@
 
 ;; cool key bindings for changing windows
 (windmove-default-keybindings)
+
+;; function key bindings
+(global-set-key (kbd "<f12>") 'org-agenda-list)
+(global-set-key (kbd "<f10>") 'org-todo-list)
+(global-set-key (kbd "<f1>") 'magit)
