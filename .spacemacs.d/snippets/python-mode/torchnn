@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: torchnn
+# key: nn
+# --
+from torch import nn
