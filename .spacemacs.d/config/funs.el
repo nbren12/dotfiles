@@ -49,3 +49,9 @@
 (defun noah/big-frame ()
   (interactive)
   (set-frame-size (selected-frame) 150 70))
+
+(defun noah/insert-time-stamp ()
+  (interactive)
+  (if (/= (current-column) 0)
+      (forward-char))
+  (insert (concat " -- NDB [" (format-time-string "%F %a %R") "]")))

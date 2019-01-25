@@ -1,4 +1,3 @@
-
 (evil-leader/set-key
   "ou" 'browse-url-at-point
   "os" 'remove-blank-spaces
@@ -12,7 +11,10 @@
   "ofl" 'flycheck-list-errors
   "off" 'noah/open-fish-config
   "ofw" 'noah/open-uw
-  "ob" 'noah/big-frame)
+  "ob" 'noah/big-frame
+  "ot" 'noah/insert-time-stamp
+  )
+
 
 
 ;; j and k go down visual lines
