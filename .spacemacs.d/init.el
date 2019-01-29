@@ -112,6 +112,7 @@ This function should only modify configuration layer settings."
                                       ein
                                       yasnippet-snippets
                                       julia-mode
+                                      org-ref
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
