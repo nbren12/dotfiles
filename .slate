@@ -38,12 +38,12 @@ bind c:cmd;alt   move screenSizeX/3;0 screenSizeX/3;screenSizeY
 # bind down:ctrl;alt;cmd  throw down  resize
 
 # Focus Bindings
-# bind right:cmd    focus right
-# bind left:cmd     focus left
-# bind up:cmd       focus up
-# bind down:cmd     focus down
-bind up:cmd;alt   focus behind
-bind down:cmd;alt focus behind
+bind right:cmd;alt    focus right
+bind left:cmd;alt    focus left
+bind up:cmd;alt       focus up
+bind down:cmd;alt     focus down
+bind up:cmd   focus behind
+bind down:cmd focus behind
 
 # Window Hints
 bind esc:cmd hint
