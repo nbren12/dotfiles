@@ -34,12 +34,14 @@
          "* TODO %?\nEntered on %U\n  %i\n  %a")
         ("h" "Howto" entry (file+headline "~/Dropbox/notes/Howto.org" "Inbox")
          "* %?\nEntered on %U\n  %i\n  %a")
+        ("s" "Skiing" entry (file+olp "~/Dropbox/notes/Personal.org" "Skiing" "Log")
+         "* %?\nEntered on %U\n  %i\n  %a")
         ("i" "Idea" entry (file+headline "~/Dropbox/notes/Ideas.org" "Ideas")
          "* %?\nEntered on %U\n  %i\n  %a")
         ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
          "* %?\n\n")))
 
-(require 'ob-dot)
+(require 'ob-dote
 (require 'ox-md) ;; needed for org markdown export
 ;; (require 'ob-ipython)
 (org-babel-do-load-languages

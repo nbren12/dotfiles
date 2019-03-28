@@ -5,6 +5,23 @@ config defaultToCurrentScreen true
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
 
+alias 1-main   move 0;0 screenSizeX/2;screenSizeY
+alias 1-doc   corner bottom-right resize:screenSizeX/2;screenSizeY/2
+alias 1-term   corner top-right resize:screenSizeX/2;screenSizeY/2
+
+
+layout 1monitor 'Google Chrome':REPEAT                   ${1-main}
+layout 1monitor 'Emacs':REPEAT                   ${1-main}
+layout 1monitor 'iTerm2':REPEAT                ${1-term}
+layout 1monitor 'Dash':REPEAT                   ${1-doc}
+
+bind l:cmd;alt layout 1monitor
+
+# layout 1monitor 'MacVim':REPEAT                          ${1-main}
+# layout 1monitor 'Flex Builder':REPEAT                    ${1-main}
+# layout 1monitor 'GitX':REPEAT                            ${1-main}
+# layout 1monitor 'Ooyala Player Debug Console':REPEAT     ${1-main}
+
 # Resize Bindings
 # bind right:alt       resize +10% +0
 # bind left:alt        resize -10% +0
@@ -42,8 +59,10 @@ bind right:cmd;alt    focus right
 bind left:cmd;alt    focus left
 bind up:cmd;alt       focus up
 bind down:cmd;alt     focus down
-bind up:cmd   focus behind
-bind down:cmd focus behind
+#bind up:cmd   focus behind
+#bind down:cmd focus behind
+bind t:cmd;alt focus 'iTerm2'
+bind e:cmd;alt focus 'Emacs'
 
 # Window Hints
 bind esc:cmd hint
