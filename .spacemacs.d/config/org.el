@@ -41,7 +41,6 @@
         ("c" "Meeting" entry (file+headline "~/Dropbox/notes/Admin.org" "Meetings")
          "* %?\n\n")))
 
-(require 'ob-dote
 (require 'ox-md) ;; needed for org markdown export
 ;; (require 'ob-ipython)
 (org-babel-do-load-languages
