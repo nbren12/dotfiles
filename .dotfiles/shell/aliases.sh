@@ -57,6 +57,7 @@ alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/m
 
 # configuration management
 # from https://news.ycombinator.com/item?id=11070797
+# Initialize uinsg  git clone --separate-git-dir=~/.myconf /path/to/repo ~
 alias config='/usr/bin/env git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
 alias qtconsole='jupyter qtconsole'
