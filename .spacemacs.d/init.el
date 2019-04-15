@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
           org-journal-file-format "%Y-%m-%d"
           org-journal-date-prefix "#+TITLE: "
           org-journal-date-format "%A, %B %d %Y"
+          org-journal-time-prefix "* "
           org-enable-reveal-js-support t)
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      (shell :variables shell-default-shell 'eshell)
