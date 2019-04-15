@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ag -G '(py|ipynb)' $1 $AG_SEARCH_PATHS
