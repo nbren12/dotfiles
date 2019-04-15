@@ -50,10 +50,13 @@ This function should only modify configuration layer settings."
      emacs-lisp
      git
      (org :variables
+          org-adapt-indentation nil
+          org-hide-leading-stars t
           org-enable-org-journal-support t
           org-journal-dir "~/Dropbox/notes/"
           org-journal-file-format "%Y-%m-%d"
           org-journal-date-prefix "#+TITLE: "
+          org-journal-time-prefix "* "
           org-journal-date-format "%A, %B %d %Y"
           org-journal-time-prefix "* "
           org-enable-reveal-js-support t)
