@@ -1,3 +1,5 @@
 #!/bin/bash
 
-ag -G '(py|ipynb)' $1 $AG_SEARCH_PATHS
+SEARCH_PATHS="$HOME/workspace $HOME/Dropbox/journal $HOME/Dropbox/notes"
+
+ag -G '(py|ipynb)' "$1" $SEARCH_PATHS

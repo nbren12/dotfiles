@@ -60,9 +60,6 @@ alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/m
 # Initialize uinsg  git clone --separate-git-dir=~/.myconf /path/to/repo ~
 alias config='/usr/bin/env git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
-alias qtconsole='jupyter qtconsole'
-alias notebook='jupyter notebook'
-alias jlab='jupyter lab --no-browser --port $JUPYTER_PORT'
 
 alias aa='activate_above'
 alias ipy='ipython'
@@ -76,3 +73,10 @@ alias mysite='gcloud compute ssh nbren12@ubuntu'
 alias weather='curl wttr.in'
 
 alias skim='open -a Skim'
+
+# jupyter
+alias jls='jupyter notebook list'
+alias jlab='jupyter lab --no-browser --port $JUPYTER_PORT'
+alias nbc='jupyter nbconvert'
+alias qtconsole='jupyter qtconsole'
+alias notebook='jupyter notebook'
