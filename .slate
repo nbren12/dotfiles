@@ -1,0 +1,70 @@
+# This is the default .slate file.
+# If no ~/.slate file exists this is the file that will be used.
+
+config defaultToCurrentScreen true
+config nudgePercentOf screenSize
+config resizePercentOf screenSize
+
+alias 1-main   move 0;0 screenSizeX/2;screenSizeY
+alias 1-doc   corner bottom-right resize:screenSizeX/2;screenSizeY/2
+alias 1-term   corner top-right resize:screenSizeX/2;screenSizeY/2
+
+
+layout 1monitor 'Google Chrome':REPEAT                   ${1-main}
+layout 1monitor 'Emacs':REPEAT                   ${1-main}
+layout 1monitor 'iTerm2':REPEAT                ${1-term}
+layout 1monitor 'Dash':REPEAT                   ${1-doc}
+
+bind l:cmd;alt layout 1monitor
+
+# layout 1monitor 'MacVim':REPEAT                          ${1-main}
+# layout 1monitor 'Flex Builder':REPEAT                    ${1-main}
+# layout 1monitor 'GitX':REPEAT                            ${1-main}
+# layout 1monitor 'Ooyala Player Debug Console':REPEAT     ${1-main}
+
+# Resize Bindings
+# bind right:alt       resize +10% +0
+# bind left:alt        resize -10% +0
+# bind up:alt          resize +0   -10%
+# bind down:alt        resize +0   +10%
+# bind right:ctrl;alt  resize -10% +0 bottom-right
+# bind left:ctrl;alt   resize +10% +0 bottom-right
+# bind up:ctrl;alt     resize +0   +10% bottom-right
+# bind down:ctrl;alt   resize +0   -10% bottom-right
+
+# Push Bindings
+bind right:ctrl;cmd  push right bar-resize:screenSizeX/3
+bind left:ctrl;cmd   push left  bar-resize:screenSizeX/3
+bind up:ctrl;cmd     push up    bar-resize:screenSizeY/2
+bind down:ctrl;cmd   push down  bar-resize:screenSizeY/2
+bind c:cmd;alt   move screenSizeX/3;0 screenSizeX/3;screenSizeY
+
+# Nudge Bindings
+# bind right:shift;alt nudge +10% +0
+# bind left:shift;alt  nudge -10% +0
+# bind up:shift;alt    nudge +0   -10%
+# bind down:shift;alt  nudge +0   +10%
+
+# Throw Bindings
+# bind 1:ctrl;alt         throw 0 resize
+# bind 2:ctrl;alt         throw 1 resize
+# bind 3:ctrl;alt         throw 2 resize
+# bind right:ctrl;alt;cmd throw right resize
+# bind left:ctrl;alt;cmd  throw left  resize
+# bind up:ctrl;alt;cmd    throw up    resize
+# bind down:ctrl;alt;cmd  throw down  resize
+
+# Focus Bindings
+bind right:cmd;alt    focus right
+bind left:cmd;alt    focus left
+bind up:cmd;alt       focus up
+bind down:cmd;alt     focus down
+#bind up:cmd   focus behind
+#bind down:cmd focus behind
+bind t:cmd;alt focus 'iTerm2'
+bind e:cmd;alt focus 'Emacs'
+
+# Window Hints
+bind esc:cmd hint
+
+bind g:cmd grid padding:5 0:6,2 1:8,3

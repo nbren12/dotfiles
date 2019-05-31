@@ -57,11 +57,9 @@ alias download_ycmd_conf='wget https://raw.githubusercontent.com/Valloric/ycmd/m
 
 # configuration management
 # from https://news.ycombinator.com/item?id=11070797
+# Initialize uinsg  git clone --separate-git-dir=~/.myconf /path/to/repo ~
 alias config='/usr/bin/env git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias con='config'
-alias qtconsole='jupyter qtconsole'
-alias notebook='jupyter notebook'
-alias jlab='jupyter lab --no-browser --port $JUPYTER_PORT'
 
 # run mpi cleanly on olympus
 # thanks to peter blossey
@@ -75,8 +73,14 @@ alias ls='ls -F'
 # google cloud
 alias mysite='gcloud compute ssh nbren12@ubuntu'
 
-# anaconda
-alias cuw='conda activate uw-machine-learning'
-
 # weather
 alias weather='curl wttr.in'
+
+alias skim='open -a Skim'
+
+# jupyter
+alias jls='jupyter notebook list'
+alias jlab='jupyter lab --no-browser --port $JUPYTER_PORT'
+alias nbc='jupyter nbconvert'
+alias qtconsole='jupyter qtconsole'
+alias notebook='jupyter notebook'

@@ -55,8 +55,7 @@ end
 [ -f $HOME/.env ]; and source $HOME/.env
 
 # key bindings
-set -g fish_key_bindings fish_default_key_bindings
-# set -g fish_key_bindings fish_vi_key_bindings
+fish_vi_key_bindings
 
 # ncdump helper
 function ncd
