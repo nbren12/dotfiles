@@ -63,6 +63,10 @@ alias qtconsole='jupyter qtconsole'
 alias notebook='jupyter notebook'
 alias jlab='jupyter lab --no-browser --port $JUPYTER_PORT'
 
+# run mpi cleanly on olympus
+# thanks to peter blossey
+alias mpirun_clean='mpirun  -mca btl tcp,self'
+
 alias aa='activate_above'
 alias ipy='ipython'
 
