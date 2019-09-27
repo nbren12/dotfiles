@@ -59,6 +59,7 @@ This function should only modify configuration layer settings."
           org-journal-date-prefix "#+TITLE: "
           org-journal-time-prefix "* "
           org-journal-date-format "%A, %B %d %Y"
+          org-journal-time-prefix "* "
           org-enable-reveal-js-support t)
      (latex :variables latex-enable-folding t latex-enable-auto-fill t)
      (shell :variables shell-default-shell 'eshell)
@@ -245,8 +246,8 @@ It should only modify the values of Spacemacs settings."
 
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Monaco"
-                               :size 12
+   dotspacemacs-default-font '("Source Code Pro"
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -289,7 +290,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then the last auto saved layouts are resumed automatically upon
    ;; start. (default nil)
-   dotspacemacs-auto-resume-layouts t
+   dotspacemacs-auto-resume-layouts nil 
 
    ;; If non-nil, auto-generate layout name when creating new layouts. Only has
    ;; effect when using the "jump to layout by number" commands. (default nil)
@@ -608,7 +609,19 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
    (quote
-    ("~/Dropbox/notes/Admin.org" "~/Dropbox/notes/Personal.org")))
+    ("~/Dropbox/My Articles/Submitted/uwnet2019/uwnet2019/review.org" "~/Dropbox/notes/Personal.org" "~/Dropbox/notes/Admin.org")))
+ '(org-structure-template-alist
+   (quote
+    (("a" . "export ascii")
+     ("c" . "center")
+     ("C" . "comment")
+     ("e" . "example")
+     ("E" . "export")
+     ("h" . "export html")
+     ("l" . "export latex")
+     ("q" . "quote")
+     ("s" . "src")
+     ("v" . "verse"))))
  '(package-selected-packages
    (quote
     (jupyter flycheck-ledger evil-ledger ledger-mode hledger-mode org-journal zenburn-theme yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify warm-night-theme volatile-highlights vi-tilde-fringe uuidgen use-package toml-mode toc-org tagedit symon string-inflection stickyfunc-enhance srefactor spaceline-all-the-icons snakemake-mode smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode prettier-js popwin pippel pipenv pip-requirements persp-mode pcre2el password-generator paradox ox-reveal overseer osx-pseudo-daemon orgit org-ref org-projectile org-present org-pomodoro org-mime org-download org-bullets org-brain open-junk-file neotree ncl-mode nameless multi-term move-text monokai-theme mmm-mode markdown-toc magit-svn magit-gitflow macrostep lorem-ipsum live-py-mode link-hint julia-mode insert-shebang indent-guide importmagic impatient-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-xref helm-themes helm-swoop helm-rtags helm-pydoc helm-purpose helm-projectile helm-org-rifle helm-mode-manager helm-make helm-gitignore helm-git-grep helm-flx helm-descbinds helm-dash helm-css-scss helm-company helm-c-yasnippet helm-ag groovy-mode google-translate google-c-style golden-ratio gnuplot gmail-message-mode gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy font-lock+ flymd flycheck-rtags flycheck-pos-tip flycheck-bashate flx-ido fish-mode fill-column-indicator fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein editorconfig edit-server dumb-jump dotenv-mode doom-themes doom-modeline dockerfile-mode docker disaster diminish diff-hl deft define-word dash-at-point cython-mode counsel-projectile company-web company-statistics company-shell company-rtags company-c-headers company-auctex company-anaconda column-enforce-mode clean-aindent-mode clang-format centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile auctex-latexmk aggressive-indent ace-window ace-link ace-jump-helm-line ac-ispell))))
@@ -619,3 +632,17 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  )
 )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (zeal-at-point yasnippet-snippets yapfify yaml-mode xterm-color ws-butler writeroom-mode visual-fill-column winum which-key web-mode volatile-highlights vi-tilde-fringe uuidgen use-package toml-mode toc-org tagedit spaceline powerline snakemake-mode smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements persp-mode pcre2el paradox spinner ox-reveal osx-pseudo-daemon orgit org-ref pdf-tools key-chord ivy helm-bibtex biblio parsebib biblio-core org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-plus-contrib org-mime org-download org-bullets open-junk-file neotree ncl-mode multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode julia-mode insert-shebang indent-guide hydra lv hy-mode dash-functional hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-pydoc helm-projectile projectile helm-mode-manager helm-make helm-gitignore request helm-flx helm-descbinds helm-dash dash-docs helm-css-scss helm-company helm-c-yasnippet helm-ag haml-mode groovy-mode google-translate golden-ratio gnuplot gmail-message-mode ham-mode markdown-mode html-to-markdown gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter gh-md fuzzy flymd flycheck-pos-tip pos-tip flycheck pkg-info epl flx-ido flx fish-mode fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit magit transient git-commit with-editor evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav edit-server dumb-jump doom-themes all-the-icons memoize dockerfile-mode docker json-mode tablist magit-popup docker-tramp json-snatcher json-reformat diminish diff-hl deft define-word dash-at-point cython-mode company-web web-completion-data company-statistics company-shell company-auctex company-anaconda company column-enforce-mode clean-aindent-mode bind-map bind-key auto-yasnippet yasnippet auto-highlight-symbol auto-compile packed auctex anaconda-mode pythonic f dash s aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core async ac-ispell auto-complete popup))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
