@@ -1,5 +1,4 @@
 source ~/.dotfiles/shell/aliases.sh
-set -gx EDITOR 'emacsclient -c'
 
 # install fisher if necessary
 if [ ! -e ~/.config/fish/functions/fisher.fish ]

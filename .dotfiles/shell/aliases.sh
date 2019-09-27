@@ -76,3 +76,4 @@ alias mysite='gcloud compute ssh nbren12@ubuntu'
 alias weather='curl wttr.in'
 
 alias skim='open -a Skim'
+alias edit_aliases='vim ~/.dotfiles/shell/aliases.sh'
