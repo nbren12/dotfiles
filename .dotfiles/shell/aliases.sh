@@ -85,3 +85,8 @@ alias jlab='jupyter lab --no-browser --port $JUPYTER_PORT'
 alias nbc='jupyter nbconvert'
 alias qtconsole='jupyter qtconsole'
 alias notebook='jupyter notebook'
+
+# GCS vms
+alias vmstart='gcloud compute instances start noah-vm'
+alias vmstop='gcloud compute instances stop noah-vm'
+alias vmssh='gcloud compute ssh noahb@noah-vm'
