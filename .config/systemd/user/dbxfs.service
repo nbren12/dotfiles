@@ -1,0 +1,13 @@
+#[Unit]
+#AssertPathExists=/home/noahb/ghost
+
+[Service]
+WorkingDirectory=/home/noahb
+Environment=
+ExecStart=/home/noahb/miniconda3/envs/fv3net/bin/dbxfs /home/noahb/VulcanDropbox
+Restart=always
+PrivateTmp=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
