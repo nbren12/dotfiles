@@ -90,3 +90,6 @@ alias notebook='jupyter notebook'
 alias vmstart='gcloud compute instances start --zone us-central1-a noah-vm'
 alias vmstop='gcloud compute instances stop --zone us-central1-a noah-vm'
 alias vmssh='gcloud compute ssh --zone us-central1-a noahb@noah-vm'
+
+# interpret color codes with less
+alias less='less -r'
