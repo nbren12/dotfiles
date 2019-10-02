@@ -87,6 +87,6 @@ alias qtconsole='jupyter qtconsole'
 alias notebook='jupyter notebook'
 
 # GCS vms
-alias vmstart='gcloud compute instances start noah-vm'
-alias vmstop='gcloud compute instances stop noah-vm'
-alias vmssh='gcloud compute ssh noahb@noah-vm'
+alias vmstart='gcloud compute instances start --zone us-central1-a noah-vm'
+alias vmstop='gcloud compute instances stop --zone us-central1-a noah-vm'
+alias vmssh='gcloud compute ssh --zone us-central1-a noahb@noah-vm'
