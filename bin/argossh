@@ -1,0 +1,7 @@
+#!/bin/sh
+
+
+
+kubectl exec -it $1 -c main -- /bin/bash
+
+
