@@ -1,0 +1,12 @@
+#!/bin/bash
+
+url=$1
+
+url=${url##gs://}
+PREFIX=http://storage.googleapis.com
+
+echo $PREFIX/$url
+
+
+
+
