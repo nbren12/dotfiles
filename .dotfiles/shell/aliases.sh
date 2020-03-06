@@ -94,3 +94,6 @@ alias vmls='gcloud compute instances list'
 
 # interpret color codes with less
 alias less='less -r'
+
+# kubectl
+alias k='kubectl'

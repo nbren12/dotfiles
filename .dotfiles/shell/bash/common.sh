@@ -50,3 +50,6 @@ bind 'TAB:menu-complete'
 
 # fzf
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
+
+# paginate ncdump
+function ncdump { command ncdump "$@" |& less -F; }

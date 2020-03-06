@@ -1,21 +1,7 @@
 source ~/.dotfiles/shell/aliases.sh
 
-# install fisher if necessary
-if [ ! -e ~/.config/fish/functions/fisher.fish ]
-  curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-end
-
-# fzf
-set -gx PATH $HOME/.fzf/bin $PATH
-
-if not type -q fzf 
-  echo "Download FZF..."
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install --bin
-end
-
 # find anaconda
-set _PATHS /Users/noah/anaconda3/bin /Users/noah/anaconda/bin /Users/noah/bin \
+set _PATHS /home/noahb/miniconda3/bin /Users/noah/anaconda3/bin /Users/noah/anaconda/bin /Users/noah/bin \
    $HOME/Dropbox/gnl/bin
 
 for pth in $_PATHS 
@@ -36,19 +22,8 @@ alias emn='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c
 --no-wait'
 alias t='task'
 
-# NYU HPC setup
-function hpc
-    echo "**********************************"
-    echo "Connecting to NYU HPC Bastion Node"
-    echo "**********************************"
-    ssh -N hpc
-end
-
 #gcloud
 # set -gx PATH $HOME/.google-cloud-sdk/bin $PATH
-
-# Load fishmarks (http://github.com/techwizrd/fishmarks)
-. $HOME/.fishmarks/marks.fish
 
 # load system specific configs
 [ -f $HOME/.env ]; and source $HOME/.env
@@ -61,12 +36,12 @@ function ncd
     ncdump -h $argv | less
 end
 
-# abbrevs
-abbr -a gcm 'git commit --amend' 
-abbr -a gco 'git checkout'
-abbr -a gcn 'git clean -nd '
-abbr -a c 'conda'
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /home/noahb/miniconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
 
-# add autojump if it's present
-[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish
+eval (direnv hook fish)
 
+set -gx EDITOR vim
+set -gx PATH /snap/google-cloud-sdk/current/bin $PATH
