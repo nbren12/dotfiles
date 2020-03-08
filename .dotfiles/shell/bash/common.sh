@@ -27,8 +27,6 @@ export PS1='[\[\033[01;34m\]\h:\W\[\033[0m\]] '
 # vim mode
 # set -o vi
 #export EDITOR='/usr/bin/env vim'
-export EDITOR='emacsclient -c --alternate-editor="vim"'
-export GIT_EDITOR=$EDITOR
 export PAGER=less
 export LANG='en_US.UTF-8'
 
@@ -52,4 +50,4 @@ bind 'TAB:menu-complete'
 [ -f ~/.fzf.bash ] && . ~/.fzf.bash
 
 # paginate ncdump
-function ncdump { command ncdump "$@" |& less -F; }
+function ncdump { command ncdump "$@" | less -F; }
