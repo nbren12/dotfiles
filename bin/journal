@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ $# < 1 ]]
 then
   echo "usage: journal 'message'"
@@ -12,5 +14,7 @@ then
 fi
 
 journal=$(date +"$JOURNAL_ROOT/%Y/%m/%d.txt")
+dirname=${journal%/*}
 
-echo "$1" > "$journal"
+mkdir -p "$dirname"
+echo "$1" >> "$journal"
