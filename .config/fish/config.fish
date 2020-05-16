@@ -36,12 +36,11 @@ function ncd
     ncdump -h $argv | less
 end
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-eval /home/noahb/miniconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-
-eval (direnv hook fish)
-
 set -gx EDITOR vim
 set -gx PATH /snap/google-cloud-sdk/current/bin $PATH
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /Users/noah/.pyenv/versions/miniconda3-latest/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+

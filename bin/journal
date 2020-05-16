@@ -1,8 +1,16 @@
 #!/bin/bash
 
+if [[ $# < 1 ]]
+then
+  echo "usage: journal 'message'"
+  exit 1
+fi
+
 if [[ "$JOURNAL_ROOT" == "" ]]
 then
     JOURNAL_ROOT=$HOME/Dropbox/journal
 fi
 
-$EDITOR "$JOURNAL_ROOT/$(date +%F)-$1"
+journal=$(date +"$JOURNAL_ROOT/%Y/%m/%d.txt")
+
+echo "$1" > "$journal"
