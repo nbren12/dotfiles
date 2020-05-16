@@ -10,7 +10,7 @@ fi
 
 if [[ "$JOURNAL_ROOT" == "" ]]
 then
-    JOURNAL_ROOT=$HOME/Dropbox/journal
+    JOURNAL_ROOT="$HOME/Dropbox (Personal)/journal/"
 fi
 
 journal=$(date +"$JOURNAL_ROOT/%Y/%m/%d.txt")
