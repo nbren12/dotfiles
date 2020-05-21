@@ -112,8 +112,8 @@ Plug 'benmills/vimux'
 " 
 
 " Snippets: use lazy loading
-Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
-autocmd InsertEnter * call plug#load('ultisnips')
+" Plug 'SirVer/ultisnips',  {'on': []}  | Plug 'honza/vim-snippets'
+" autocmd InsertEnter * call plug#load('ultisnips')
 
 
 " Plug 'vim-pandoc/vim-pandoc'

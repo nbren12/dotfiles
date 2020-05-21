@@ -1,20 +1,63 @@
 #!/bin/bash
 
+function usage {
+
+    echo "Usage:"
+    echo "  journal [command]"
+    echo "  journal <message>"
+    echo "  journal -h"
+    echo
+    echo "Commands:"
+    echo "  e       edit"
+    echo "  s       search"
+    echo "  v       view"
+    echo
+}
+
+function printFile {
+    echo "$1:"
+    echo
+    cat "$1"
+    echo
+    echo
+}
+
+export -f printFile
+
 set -e
 
 if [[ $# < 1 ]]
 then
-  echo "usage: journal 'message'"
-  exit 1
+    usage
+    exit 1
 fi
 
 if [[ "$JOURNAL_ROOT" == "" ]]
 then
-    JOURNAL_ROOT="$HOME/Dropbox (Personal)/journal/"
+    JOURNAL_ROOT="$HOME/Dropbox (Personal)/journal/journal"
 fi
 
 journal=$(date +"$JOURNAL_ROOT/%Y/%m/%d.txt")
 dirname=${journal%/*}
-
 mkdir -p "$dirname"
-echo "$1" >> "$journal"
+
+command="$1"
+case $command in
+    e)
+        "$EDITOR" "$journal"
+        ;;
+    s)
+        shift
+        ag --file-search-regex '.txt$' "$@" "$JOURNAL_ROOT"
+        ;;
+    v)
+        find "$JOURNAL_ROOT" -type f | sort -r | xargs -I{} bash -c "printFile \"{}\""
+        ;;
+    -h)
+        usage
+        exit 1
+        ;;
+    *)
+        echo "$1" >> "$journal"
+        ;;
+esac
