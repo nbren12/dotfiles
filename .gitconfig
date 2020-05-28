@@ -17,6 +17,13 @@
     ; diff = diff --word-diff
     dc = diff --cached
     ttc = clean -x -d 
+    todo = "!sh -c ' \
+    [ $GIT_PREFIX ] && cd $GIT_PREFIX; \
+    git status --short --branch $*; \
+    git --no-pager diff -U0 master | \
+    grep \"^+.*TODO\" | \
+    sed \"s/^+//\" | \
+    git --no-pager grep -nFf - 2> /dev/null' -"
 
 [user]
     name = Noah D. Brenowitz
