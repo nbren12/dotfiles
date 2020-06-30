@@ -11,6 +11,7 @@ function usage {
     echo "  e       edit"
     echo "  s       search"
     echo "  v       view"
+    echo "  t       view today"
     echo
 }
 
@@ -52,6 +53,9 @@ case $command in
         ;;
     v)
         find "$JOURNAL_ROOT" -type f | sort -r | xargs -I{} bash -c "printFile \"{}\""
+        ;;
+    t)
+        cat "$journal"
         ;;
     -h)
         usage
