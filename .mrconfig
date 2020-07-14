@@ -1,47 +1,17 @@
-[workspace/models/bous]
-checkout = git clone 'git@bitbucket.org:nbren12/bous.git' 'bous'
-
-[workspace/models/pymulticloud]
-checkout = git clone 'git@github.com:nbren12/pymulticloud.git' 'pymulticloud'
-
-[workspace/models/sam]
-checkout = git clone 'git@bitbucket.org:nbren12/sam.git' 'sam'
-
-[workspace/models/wrf]
-checkout = git clone 'git@bitbucket.org:nbren12/wrf.git' 'wrf'
-
-[workspace/research/multiscale_sam]
-checkout = git clone 'git@bitbucket.org:nbren12/multiscale_sam.git' 'multiscale_sam'
-
-[workspace/research/raybenconv]
-checkout = git clone 'git@github.com:nbren12/raybenconv.git' 'raybenconv'
-
-[workspace/research/uw-machine-learning]
-checkout = git clone 'git@bitbucket.org:nbren12/uw-machine-learning.git' 'uw-machine-learning'
-
-[workspace/software/geostreams]
-checkout = git clone 'git@github.com:nbren12/geostreams.git' 'geostreams'
-
-[workspace/software/icar]
-checkout = git clone 'git@github.com:nbren12/icar.git' 'icar'
-
-[workspace/software/pynlsa]
-checkout = git clone 'git@bitbucket.org:nbren12/pynlsa.git' 'pynlsa'
-
-[workspace/software/sklearn_xarray]
-checkout = git clone 'git@github.com:nbren12/xarray_sklearn.git' 'sklearn_xarray'
-
-[workspace/software/xarray]
+[workspace/pydata/xarray]
 checkout = git clone 'git@github.com:nbren12/xarray.git' 'xarray'
 
-[Dropbox/gnl]
-checkout = git clone 'git@github.com:nbren12/gnl.git' 'gnl'
-
-[workspace/software/dask.targeted]
-checkout = git clone 'git@github.com:nbren12/dask.targeted.git' 'dask.targeted'
-
-[workspace/models/SAMUWgh]
-checkout = git clone 'git@github.com:nbren12/SAMUWgh.git' 'SAMUWgh'
-
-[workspace/software/call_py_fort]
+[workspace/nbren12/call_py_fort]
 checkout = git clone 'https://github.com/nbren12/call_py_fort' 'call_py_fort'
+
+[workspace/VulcanClimateModeling/explore]
+checkout = git clone 'git@github.com:VulcanClimateModeling/explore.git' 'explore'
+
+[workspace/VulcanClimateModeling/fv3gfs-python]
+checkout = git clone 'git@github.com:VulcanClimateModeling/fv3gfs-python.git' 'fv3gfs-python'
+
+[workspace/VulcanClimateModeling/fv3net]
+checkout = git clone 'git@github.com:VulcanClimateModeling/fv3net.git' 'fv3net'
+
+[workspace/VulcanClimateModeling/secret-plumbing-terraform]
+checkout = git clone 'git@github.com:VulcanClimateModeling/secret-plumbing-terraform.git' 'secret-plumbing-terraform'
