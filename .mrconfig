@@ -15,3 +15,6 @@ checkout = git clone 'git@github.com:VulcanClimateModeling/fv3net.git' 'fv3net'
 
 [workspace/VulcanClimateModeling/secret-plumbing-terraform]
 checkout = git clone 'git@github.com:VulcanClimateModeling/secret-plumbing-terraform.git' 'secret-plumbing-terraform'
+
+[workspace/VulcanClimateModeling/vcm-workflow-control]
+checkout = git clone 'git@github.com:VulcanClimateModeling/vcm-workflow-control.git' 'vcm-workflow-control'
