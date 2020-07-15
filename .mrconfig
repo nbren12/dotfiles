@@ -18,3 +18,6 @@ checkout = git clone 'git@github.com:VulcanClimateModeling/secret-plumbing-terra
 
 [workspace/VulcanClimateModeling/vcm-workflow-control]
 checkout = git clone 'git@github.com:VulcanClimateModeling/vcm-workflow-control.git' 'vcm-workflow-control'
+
+[workspace/VulcanClimateModeling/long-lived-infrastructure]
+checkout = git clone 'git@github.com:VulcanClimateModeling/long-lived-infrastructure.git' 'long-lived-infrastructure'
