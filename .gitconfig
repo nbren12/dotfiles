@@ -36,7 +36,7 @@
 	default = matching
 [core]
 	editor = /usr/bin/vim
-	excludesfile = /home/noah/.gitignore_global
+	excludesfile = /Users/noah/.globalgitignore
 [http]
 	sslVerify = false
 [github]

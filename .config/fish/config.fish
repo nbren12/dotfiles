@@ -31,6 +31,12 @@ alias t='task'
 # key bindings
 fish_vi_key_bindings
 
+## git
+bind -M insert \cg 'git status'
+bind gs 'git status'
+bind gci 'git commit'
+bind gcm 'git commit --amend'
+
 # ncdump helper
 function ncd
     ncdump -h $argv | less
