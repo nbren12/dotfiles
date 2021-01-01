@@ -1,1 +1,8 @@
-.vscode/*
+.vscode/
+.DS_Store
+.pytest_cache
+__pycache__
+*.zarr
+*.nc
+.ipynb_checkpoints
+.devcontainer

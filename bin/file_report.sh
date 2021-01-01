@@ -2,7 +2,7 @@
 
 report=$1
 
-target=nbren12-data/reports/$(date +%Y)/$(date +%F)-$report
+target=vcm-ml-public/noah/reports/$(date +%Y)/$(date +%F)-$report
 
 echo "uploading report to" 
 echo $target

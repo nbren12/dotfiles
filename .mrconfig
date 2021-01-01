@@ -21,3 +21,10 @@ checkout = git clone 'git@github.com:VulcanClimateModeling/vcm-workflow-control.
 
 [workspace/VulcanClimateModeling/long-lived-infrastructure]
 checkout = git clone 'git@github.com:VulcanClimateModeling/long-lived-infrastructure.git' 'long-lived-infrastructure'
+
+[workspace/VulcanClimateModeling/fv3gfs-python/lib/external]
+checkout = git clone 'git@github.com:VulcanClimateModeling/fv3gfs-fortran.git' 'external'
+order = 1
+
+[workspace/fv3config]
+checkout = git clone 'git@github.com:VulcanClimateModeling/fv3config.git' 'fv3config'
