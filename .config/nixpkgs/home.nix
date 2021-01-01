@@ -19,36 +19,53 @@
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [
-    hugo
-  ];
-  
+  home.packages = with pkgs; [ hugo nixfmt ];
+
+  home.sessionVariables = { EDITOR = "vim"; };
+
   programs.git = {
-    enable=true;
+    enable = true;
     userName = "Noah D. Brenowitz";
     userEmail = "nbren12@gmail.com";
+    aliases = {
+      a = "add";
+      co = "checkout";
+      br = "branch";
+      ds = "diff --stat";
+      ls =
+        "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative";
+      lss = ''
+        log --pretty=format:"%C(yellow)%h%Cred%d\ %Creset%s%Cblue\ [%cn]" --decorate'';
+      ll = ''
+        log --pretty=format:"%C(yellow)%h%Cred%d\ %Creset%s%Cblue\ [%cn]" --decorate --numstat'';
+      ln = "log --name-status";
+      li = "log --stat";
+      lsf = "ls-files";
+      cp = "cherry-pick";
+      st = "status -s";
+      cl = "clone";
+      ci = "commit";
+      cm = "commit --amend";
+      diff = "diff --word-diff";
+      dc = "diff --cached";
+      ttc = "clean -x -d";
+    };
+    ignores =
+      [ "*.aux" "*.bbl" "*.bcf" "*.blg" "*.pdf" "*.gz" "*.fdb_latexmk" ];
   };
-  
-  programs.vim = {
-    enable=true;
-  };
+
+  programs.vim = { enable = true; };
 
   programs.tmux = {
     enable = true;
     extraConfig = builtins.readFile ~/dotfiles/.tmux.conf;
   };
 
-  programs.direnv = {
-    enable = true;
-  };
-
-  home.sessionVariables = {
-    EDITOR="vim";
-  };
+  programs.direnv = { enable = true; };
 
   programs.fish.enable = true;
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
 
-
+  programs.vscode = { enable = true; };
 }
