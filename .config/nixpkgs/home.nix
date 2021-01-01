@@ -19,7 +19,7 @@
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [ hugo nixfmt ];
+  home.packages = with pkgs; [ hugo nixfmt google-cloud-sdk ];
 
   home.sessionVariables = { EDITOR = "vim"; };
 
