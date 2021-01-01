@@ -19,7 +19,7 @@
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [ hugo nixfmt google-cloud-sdk openssh rsync ];
+  home.packages = with pkgs; [ hugo nixfmt google-cloud-sdk openssh rsync curl ];
 
   home.sessionVariables = { EDITOR = "vim"; };
 
