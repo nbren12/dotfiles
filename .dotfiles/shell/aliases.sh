@@ -98,3 +98,8 @@ alias less='less -r'
 
 # kubectl
 alias k='kubectl'
+
+# dates
+alias today='date +%F'
+alias td='today'
+alias t='task'

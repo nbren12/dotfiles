@@ -63,7 +63,18 @@
 
   programs.direnv = { enable = true; };
 
-  programs.fish.enable = true;
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      source ~/dotfiles/.dotfiles/shell/aliases.sh
+      fish_vi_key_bindings
+
+      # key bindings
+      bind -M insert \cg 'git status'
+    '';
+
+  };
+
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
 
