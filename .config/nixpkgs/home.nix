@@ -74,6 +74,7 @@
     '';
 
   };
+  home.file.".config/fish/conf.d/prompt.fish".source = ~/dotfiles/.config/fish/conf.d/prompt.fish;
 
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
