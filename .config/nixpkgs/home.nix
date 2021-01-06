@@ -19,7 +19,15 @@
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [ hugo nixfmt google-cloud-sdk openssh rsync curl ag ];
+  home.packages = with pkgs; [
+    hugo
+    nixfmt
+    google-cloud-sdk
+    openssh
+    rsync
+    curl
+    ag
+  ];
 
   home.sessionVariables = { EDITOR = "vim"; };
 
@@ -54,7 +62,11 @@
       [ "*.aux" "*.bbl" "*.bcf" "*.blg" "*.pdf" "*.gz" "*.fdb_latexmk" ];
   };
 
-  programs.vim = { enable = true; };
+  # neovim works but vim hangs indefinitely on MacOS
+  programs.neovim = {
+    enable = true;
+    vimAlias = true;
+  };
 
   programs.tmux = {
     enable = true;
@@ -74,7 +86,8 @@
     '';
 
   };
-  home.file.".config/fish/conf.d/prompt.fish".source = ~/dotfiles/.config/fish/conf.d/prompt.fish;
+  home.file.".config/fish/conf.d/prompt.fish".source =
+    ~/dotfiles/.config/fish/conf.d/prompt.fish;
 
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
