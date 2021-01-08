@@ -58,8 +58,18 @@
       dc = "diff --cached";
       ttc = "clean -x -d";
     };
-    ignores =
-      [ "*.aux" "*.bbl" "*.bcf" "*.blg" "*.pdf" "*.gz" "*.fdb_latexmk" ];
+    ignores = [
+      "*.aux"
+      "*.bbl"
+      "*.bcf"
+      "*.blg"
+      "*.pdf"
+      "*.gz"
+      "*.fdb_latexmk"
+      ".envrc"
+      ".env"
+      ".vscode"
+    ];
   };
 
   # neovim works but vim hangs indefinitely on MacOS
