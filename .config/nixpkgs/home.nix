@@ -35,6 +35,11 @@
     enable = true;
     userName = "Noah D. Brenowitz";
     userEmail = "nbren12@gmail.com";
+    extraConfig = {
+      diff = { submodule = "log"; };
+      status = { submoduleSummary = true; };
+    };
+
     aliases = {
       a = "add";
       co = "checkout";
