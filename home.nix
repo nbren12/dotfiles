@@ -86,7 +86,12 @@
     extraConfig = builtins.readFile ~/dotfiles/vim/vanilla.vim;
 
     plugins = with pkgs.vimPlugins; [
-      ctrlp-vim
+      {
+        plugin = ctrlp-vim;
+        config = ''
+          nnoremap <leader>r :CtrlPMRUFiles<CR>
+        '';
+      }
       vim-fugitive
       vim-surround
       vim-unimpaired
