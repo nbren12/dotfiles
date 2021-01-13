@@ -83,7 +83,7 @@
     enable = true;
     vimAlias = true;
 
-    extraConfig = builtins.readFile ~/dotfiles/.vim/vanilla.vim;
+    extraConfig = builtins.readFile ~/dotfiles/vim/vanilla.vim;
 
     plugins = with pkgs.vimPlugins; [
     	ctrlp-vim
@@ -98,7 +98,7 @@
 
   programs.tmux = {
     enable = true;
-    extraConfig = builtins.readFile ~/dotfiles/.tmux.conf;
+    extraConfig = builtins.readFile ~/dotfiles/tmux.conf;
   };
 
   programs.direnv = { enable = true; };
