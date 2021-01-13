@@ -38,6 +38,7 @@
     extraConfig = {
       diff = { submodule = "log"; };
       status = { submoduleSummary = true; };
+      pull = { ff = "only"; };
     };
 
     aliases = {
