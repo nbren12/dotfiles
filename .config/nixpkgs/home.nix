@@ -83,6 +83,8 @@
     enable = true;
     vimAlias = true;
 
+    extraConfig = builtins.readFile ~/dotfiles/.vim/vanilla.vim;
+
     plugins = with pkgs.vimPlugins; [
     	ctrlp-vim
 	vim-fugitive
