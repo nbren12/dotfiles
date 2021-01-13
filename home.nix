@@ -86,14 +86,14 @@
     extraConfig = builtins.readFile ~/dotfiles/vim/vanilla.vim;
 
     plugins = with pkgs.vimPlugins; [
-    	ctrlp-vim
-	vim-fugitive
-	vim-surround
-	vim-unimpaired
-	vim-nix
-	tcomment_vim
+      ctrlp-vim
+      vim-fugitive
+      vim-surround
+      vim-unimpaired
+      vim-nix
+      tcomment_vim
     ];
-    	
+
   };
 
   programs.tmux = {
