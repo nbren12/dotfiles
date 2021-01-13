@@ -82,6 +82,16 @@
   programs.neovim = {
     enable = true;
     vimAlias = true;
+
+    plugins = with pkgs.vimPlugins; [
+    	ctrlp-vim
+	vim-fugitive
+	vim-surround
+	vim-unimpaired
+	vim-nix
+	tcomment_vim
+    ];
+    	
   };
 
   programs.tmux = {
