@@ -75,6 +75,7 @@
       ".envrc"
       ".env"
       ".vscode"
+      "shell.nix"
     ];
   };
 
