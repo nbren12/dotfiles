@@ -27,6 +27,8 @@
     rsync
     curl
     ag
+    python3
+    python3Packages.pip
   ];
 
   home.sessionVariables = { EDITOR = "vim"; };
