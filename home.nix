@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let my-python = pkgs.python3.withPackages (ps: [ ps.pip ps.tox ps.setuptools ]);
+let my-python = pkgs.python3.withPackages (ps: [ ps.pip ps.tox ps.setuptools ps.pip-tools]);
 in {
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
