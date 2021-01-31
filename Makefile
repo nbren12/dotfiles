@@ -1,3 +1,5 @@
 lint:
-	 nixfmt $(shell find . -name '*.nix')
+	 nixfmt --check $(shell find . -name '*.nix')
 
+reformat:
+	 nixfmt $(shell find . -name '*.nix')
