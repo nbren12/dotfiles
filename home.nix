@@ -140,5 +140,5 @@ in {
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
 
-  programs.vscode = { enable = true; };
+  programs.vscode = { enable = true; userSettings = builtins.fromJSON ( builtins.readFile ./vscode/user-settings.json );};
 }
