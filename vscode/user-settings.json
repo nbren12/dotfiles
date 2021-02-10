@@ -1,0 +1,80 @@
+{
+    "terminal.integrated.copyOnSelection": true,
+    "[yaml]": {},
+    "vs-kubernetes": {
+        "vs-kubernetes.minikube-path.mac": "/Users/noah/.vs-kubernetes/tools/minikube/darwin-amd64/minikube"
+    },
+    "workbench.colorTheme": "Visual Studio 2019 Light",
+    "window.zoomLevel": 1,
+    "githubPullRequests.defaultMergeMethod": "squash",
+    "git.confirmSync": false,
+    "shellcheck.disableVersionCheck": true,
+    "metals.javaHome": "/Users/noah/.jabba/jdk/adopt@1.11.0-7/Contents/Home",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "java.semanticHighlighting.enabled": true,
+    "java.requirements.JDK11Warning": false,
+    "python.jediEnabled": false,
+    "vim.leader": " ",
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                "g",
+                "y"
+            ],
+            "commands": [
+                "issue.copyGithubPermalink"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "<leader>",
+                "g"
+            ],
+            "commands": [
+                "workbench.action.joinAllGroups"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "l"
+            ],
+            "commands": [
+                "workbench.action.focusRightGroup"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "commands": [
+                "workbench.action.focusLeftGroup"
+            ]
+        }
+    ],
+    "python.languageServer": "Pylance",
+    "explorer.confirmDelete": false,
+    "remote.SSH.allowLocalServerDownload": false,
+    "python.testing.cwd": "",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "python.defaultInterpreterPath": "",
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true,
+        "**/.ammonite": true
+    },
+    "terminal.integrated.inheritEnv": false,
+    "jupyter.askForKernelRestart": false,
+    "jupyter.alwaysTrustNotebooks": true,
+    "fortran-ls.executablePath": "/Users/noah/.local/bin/fortls",
+    "task.problemMatchers.neverPrompt": {
+        "shell": true
+    },
+    "go.gopath": "~/.go",
+    "cmake.configureOnOpen": true
+}
