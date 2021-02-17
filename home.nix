@@ -4,6 +4,15 @@ let
     (ps: [ ps.pip ps.tox ps.setuptools ps.pip-tools ps.pipx ]);
 
 in {
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url =
+        "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+    }))
+  ];
+
+  imports = [ ./emacs.nix ];
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
@@ -80,6 +89,7 @@ in {
       ".env"
       ".vscode"
       "shell.nix"
+      ".DS_Store"
     ];
   };
 
