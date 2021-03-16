@@ -44,6 +44,39 @@ in {
 
   home.sessionVariables = { EDITOR = "vim"; };
 
+  programs.mbsync.enable = true;
+  programs.msmtp.enable = true;
+
+  accounts.email.accounts.gmail = {
+    primary = true;
+    flavor = "gmail.com";
+    address = "nbren12@gmail.com";
+    realName = "Noah D. Brenowitz";
+    imap = {
+      host = "imap.gmail.com";
+      port = 993;
+      tls = {
+        enable = true;
+        certificatesFile = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+      };
+    };
+    smtp = {
+      host = "smtp.gmail.com";
+      port = 465;
+      tls = {
+        enable = true;
+        certificatesFile = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+      };
+    };
+    passwordCommand = "echo $EMAIL_PASSWD";
+
+    msmtp = { enable = true; };
+    mbsync.enable = true;
+    neomutt.enable = true;
+  };
+
+  programs.neomutt.enable = true;
+
   programs.git = {
     enable = true;
     userName = "Noah D. Brenowitz";
