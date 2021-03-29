@@ -197,6 +197,11 @@ in {
       };
     }];
 
+    shellAliases = {
+      hs="home-manager switch";
+      k="kubectl";
+    };
+
   };
   home.file.".config/fish/conf.d/prompt.fish".source =
     ~/dotfiles/.config/fish/conf.d/prompt.fish;
