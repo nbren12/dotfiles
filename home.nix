@@ -55,12 +55,22 @@ in {
   home.packages = with pkgs; [
     hugo
     nixfmt
+    kubectl
     google-cloud-sdk
     openssh
     rsync
     curl
     ag
     my-python
+    netcdf
+
+    # haskell ecosystem
+    stack
+    cabal-install
+    hlint
+
+    # nix
+    cachix
   ];
 
   home.sessionVariables = { EDITOR = "vim"; };
