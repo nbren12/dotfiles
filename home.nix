@@ -15,24 +15,25 @@ in {
 
   programs.emacs = {
     enable = true;
-    extraPackages = (epkgs: with epkgs; [
-      org
-      magit
-      evil
-      projectile
-      helm
-      org-bullets
-      ob-ipython
-      deft
-      markdown-mode
-      pandoc-mode
-      ace-jump-mode
-      solarized-theme
-      helm-bibtex
-    ]);
+    extraPackages = (epkgs:
+      with epkgs; [
+        org
+        magit
+        evil
+        projectile
+        helm
+        org-bullets
+        ob-ipython
+        deft
+        markdown-mode
+        pandoc-mode
+        ace-jump-mode
+        solarized-theme
+        helm-bibtex
+      ]);
   };
 
-  home.file.".emacs".source= ~/dotfiles/.dotfiles/emacs.d/init.el;
+  home.file.".emacs".source = ~/dotfiles/.dotfiles/emacs.d/init.el;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -208,8 +209,8 @@ in {
     }];
 
     shellAliases = {
-      hs="home-manager switch";
-      k="kubectl";
+      hs = "home-manager switch";
+      k = "kubectl";
     };
 
   };
@@ -225,7 +226,5 @@ in {
       builtins.fromJSON (builtins.readFile ./vscode/user-settings.json);
   };
 
-  programs.irssi = {
-    enable = true;
-  };
+  programs.irssi = { enable = true; };
 }
