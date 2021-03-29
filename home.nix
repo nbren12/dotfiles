@@ -11,7 +11,12 @@ in {
     }))
   ];
 
-  imports = [ ./emacs.nix ];
+  #imports = [ ./emacs.nix ];
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = (epkgs: with epkgs; [magit]);
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -187,5 +192,9 @@ in {
     enable = true;
     userSettings =
       builtins.fromJSON (builtins.readFile ./vscode/user-settings.json);
+  };
+
+  programs.irssi = {
+    enable = true;
   };
 }
