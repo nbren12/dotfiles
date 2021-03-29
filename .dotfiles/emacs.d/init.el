@@ -83,7 +83,6 @@
 
 ;;;; Evil
 (use-package evil
-  :ensure t
   :init
   (setq evil-want-C-u-scroll t)
   :config
@@ -116,7 +115,6 @@
     ))
 
 (use-package evil-leader
-  :ensure t
   :config
   (progn
     (evil-leader/set-leader "<SPC>")
@@ -141,14 +139,12 @@
 
     
 (use-package evil-nerd-commenter
-  :ensure t
   :config
   (progn
     (evil-leader/set-key ";" 'evilnc-comment-operator)))
 
 
 (use-package evil-matchit
-  :ensure t
   :config (progn
             (global-evil-matchit-mode 1)))
 
@@ -173,7 +169,6 @@
 ;;;;; company mode
 ;;    autocomplete mode is an alternative
 (use-package company
-  :ensure t
   :config
   (progn
     (global-company-mode)
@@ -212,7 +207,6 @@
 
 
 (use-package ggtags
-  :ensure t
   :config
   (progn
     (defun fix-keybindings ()
@@ -224,7 +218,6 @@
 ;;;;; Helm
 
 (use-package helm
-  :ensure t
   :config
   (progn
 
@@ -249,13 +242,11 @@
 
 
 (use-package imenu
-  :ensure t
   :config
   (progn
     (evil-leader/set-key "hi" 'helm-imenu)))
 
 (use-package projectile
-  :ensure t
   :config
   (progn
     (projectile-global-mode 1)
@@ -264,7 +255,6 @@
 
 
 (use-package helm-projectile
-  :ensure t
   :config
   (progn
     (evil-leader/set-key
@@ -275,14 +265,12 @@
     ))
 
 ;;;;; Recentf
-(use-package recentf
-  :ensure t)
+(use-package recentf)
 
 ;;;; Modes
 ;;;;; Magit (git)
 
 (use-package magit
-  :ensure t
   :init
   (setq magit-last-seen-setup-instructions "1.4.0"))
 
@@ -296,10 +284,9 @@
 
 ;;;;; Python
 
-(use-package snakemake-mode :ensure t)
+(use-package snakemake-mode)
 
 (use-package anaconda-mode
-  :ensure t
   :config
   (progn
     (add-hook 'python-mode-hook 'anaconda-mode)
@@ -311,7 +298,6 @@
     ))
 
 (use-package company-anaconda
-  :ensure t
   :config
   (progn
     (add-to-list 'company-backends 'company-anaconda)))
@@ -335,7 +321,6 @@
 
 
 (use-package python-cell
-  :ensure t
   :config
   (progn
     (add-hook 'python-mode-hook 'python-cell-mode)
@@ -355,13 +340,11 @@
 (semantic-mode 1)
 
 (use-package c-eldoc
-  :ensure t
   :config
   (progn
     (add-hook 'c-mode-hook 'c-turn-on-eldoc-mode)))
 
 (use-package function-args
-  :ensure t
   :config
   (progn
     (fa-config-default)))
@@ -371,7 +354,6 @@
     (local-set-key  (kbd "C-c o") 'ff-find-other-file)))
 
 (use-package  irony
-  :ensure t
   :defer t
   :config
   (progn
@@ -392,7 +374,6 @@
 
 (use-package company-irony
   :defer t
-  :ensure t
   :config
   (progn
     (eval-after-load 'company
@@ -485,7 +466,6 @@
 ;;;;; Writeroom mode
 
 (use-package writeroom-mode
-  :ensure t
   :config
   (progn
     (evil-leader/set-key "ow" 'writeroom-mode)))
@@ -495,7 +475,6 @@
 ;;;;; Outshine Mode
 
 (use-package outshine
-  :ensure t
   :defer t
   :commands (outshine-hook-function)
   :preface
@@ -516,7 +495,6 @@
 ;;;;; Org
 (setq org-use-speed-commands t)
 (use-package org
-  :ensure t
   :init
   :config
   (progn
@@ -532,18 +510,13 @@
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((python . t)
-       (sh . t)
+       (shell . t)
        (R . t))))
   :bind ("C-c a" . org-agenda))
 
-(use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 ;; Ipython integration with org
-(use-package ob-ipython
-  :ensure t)
+(use-package ob-ipython)
 
 (setq org-confirm-babel-evaluate nil)   ;don't prompt me to confirm everytime I want to evaluate a block
 
@@ -554,7 +527,6 @@
 
 
 (use-package deft
-  :ensure t
   :config
   (progn
     (setq deft-extension "org")
@@ -565,13 +537,13 @@
 
 ;;;;; Markdown
 
-(use-package markdown-mode :ensure t
+(use-package markdown-mode
   :config
   (progn
     (add-hook 'markdown-mode-hook 'turn-on-reftex)
     ))
 
-(use-package pandoc-mode :ensure t
+(use-package pandoc-mode
   :config
   (progn
     (add-hook 'markdown-mode-hook 'pandoc-mode)))
@@ -595,7 +567,6 @@
 ;;;;; AceJump
 
 (use-package ace-jump-mode
-  :ensure t
   :config
   (progn
     ;; AceJump bindings
@@ -605,28 +576,15 @@
 
 ;;;; Themes
 
-(use-package solarized-theme :ensure t)
+(use-package solarized-theme)
 
 ;;;; Reference Software 
 ;;;;; Helm-bibtex
 
-(use-package helm-bibtex :ensure t
+(use-package helm-bibtex
   :config
   (progn
     (setq helm-bibtex-bibliography '("~/Dropbox/Papers/references.bib"))))
-
-
-;;;; General
-
-(defun config/general ()
-  (add-hook 'prog-mode-hook 'electric-pair-mode)
-  (modify-syntax-entry ?_ "w" )  ; Make "_" part of word
-
-
-  (hbin-remove-mm-lighter 'undo-tree-mode)
-  )
-
-(add-to-list 'config-list 'config/general)
 
 ;;;;; Bindings
 
