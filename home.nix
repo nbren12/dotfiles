@@ -64,6 +64,8 @@ in {
     ag
     my-python
     netcdf
+    # git
+    gitAndTools.hub
 
     # haskell ecosystem
     stack
@@ -226,5 +228,18 @@ in {
       builtins.fromJSON (builtins.readFile ./vscode/user-settings.json);
   };
 
-  programs.irssi = { enable = true; };
+  programs.irssi = {
+
+    enable = true;
+    networks = {
+      freenode = {
+        nick = "nbren12";
+        server = {
+          address = "irc.freenode.net";
+          port = 6697;
+          autoConnect = true;
+        };
+      };
+    };
+  };
 }
