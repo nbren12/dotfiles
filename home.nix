@@ -11,29 +11,31 @@ in {
     }))
   ];
 
-  #imports = [ ./emacs.nix ];
+  # imports = [ ./emacs.nix ];
+  # programs.emacs = {
+  #   enable = true;
+  #   extraPackages = (epkgs:
+  #     with epkgs; [
+  #       org
+  #       magit
+  #       evil
+  #       projectile
+  #       helm
+  #       org-bullets
+  #       ob-ipython
+  #       deft
+  #       markdown-mode
+  #       pandoc-mode
+  #       ace-jump-mode
+  #       solarized-theme
+  #       helm-bibtex
+  #     ]);
+  # };
+  # home.file.".emacs".source = ~/dotfiles/.dotfiles/emacs.d/init.el;
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = (epkgs:
-      with epkgs; [
-        org
-        magit
-        evil
-        projectile
-        helm
-        org-bullets
-        ob-ipython
-        deft
-        markdown-mode
-        pandoc-mode
-        ace-jump-mode
-        solarized-theme
-        helm-bibtex
-      ]);
-  };
-
-  home.file.".emacs".source = ~/dotfiles/.dotfiles/emacs.d/init.el;
+  programs.emacs = { enable = true; };
+  home.file.".spacemacs.d".source =
+    config.lib.file.mkOutOfStoreSymlink ~/dotfiles/emacs/spacemacs.d;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

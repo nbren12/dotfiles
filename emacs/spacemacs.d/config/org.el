@@ -1,17 +1,4 @@
 ;; Bibliography management
-(use-package org-ref
-  :config
-  (progn
-    (setq reftex-default-bibliography '("~/Dropbox/Papers/zotero.bib"))
-
-    ;; see org-ref for use of these variables
-    (setq org-ref-bibliography-notes "~/Dropbox/Papers/notes.org"
-          org-ref-default-bibliography '("~/Dropbox/Papers/zotero.bib")
-          org-ref-pdf-directory "~/Dropbox/Documents/org-ref/bibtex-pdfs/")
-
-    ;; need to setup helm-bibtex as well
-    (setq helm-bibtex-bibliography "~/Dropbox/Papers/zotero.bib")))
-
 ;; latex shortcuts
 ;; (use-package cdlatex)
 (defun org-archive-done-tasks ()
