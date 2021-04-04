@@ -66,6 +66,8 @@ in {
     ag
     my-python
     netcdf
+    bitwarden-cli
+
     # git
     gitAndTools.hub
 
