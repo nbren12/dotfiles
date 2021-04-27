@@ -15,7 +15,6 @@
     "java.semanticHighlighting.enabled": true,
     "java.requirements.JDK11Warning": false,
     "python.jediEnabled": false,
-    "vim.leader": " ",
     "vim.visualModeKeyBindings": [
         {
             "before": [
@@ -56,6 +55,8 @@
             ]
         }
     ],
+
+
     "python.languageServer": "Pylance",
     "explorer.confirmDelete": false,
     "remote.SSH.allowLocalServerDownload": false,
@@ -79,5 +80,39 @@
     "cmake.configureOnOpen": true,
 
     "update.mode": false,
-    "extensions.autoUpdate": false
+    "extensions.autoUpdate": false,
+    "vim.easymotion": true,
+    "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<space>"],
+            "commands": ["vspacecode.space"]
+        },
+        {
+            "before": [","],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<space>"],
+            "commands": ["vspacecode.space"]
+        },
+        {
+            "before": [","],
+            "commands": [
+                "vspacecode.space",
+                {
+                    "command": "whichkey.triggerKey",
+                    "args": "m"
+                }
+            ]
+        }
+    ]
 }

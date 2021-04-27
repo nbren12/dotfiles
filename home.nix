@@ -64,7 +64,7 @@ in {
     rsync
     curl
     ag
-    my-python
+    #my-python
     netcdf
     bitwarden-cli
 
@@ -115,6 +115,30 @@ in {
 
   programs.neomutt.enable = true;
 
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      digitalocean = {
+        hostname = "138.68.20.134";
+        user = "noah";
+      };
+
+      work = {
+        hostname = "34.68.113.117";
+        user = "noahb";
+        localForwards = [{
+          bind.port = 10001;
+          bind.address = "127.0.0.1";
+
+          host.port = 8888;
+          host.address = "127.0.0.1";
+        }];
+      };
+    };
+  };
+
+  programs.gpg = { enable = true; };
+
   programs.git = {
     enable = true;
     userName = "Noah D. Brenowitz";
@@ -123,6 +147,11 @@ in {
       diff = { submodule = "log"; };
       status = { submoduleSummary = true; };
       pull = { ff = "only"; };
+    };
+
+    signing = {
+      signByDefault = true;
+      key = "0x55465F962E05AAD1";
     };
 
     aliases = {
