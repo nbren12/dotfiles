@@ -147,6 +147,7 @@ in {
       diff = { submodule = "log"; };
       status = { submoduleSummary = true; };
       pull = { ff = "only"; };
+      submodule = { recurse = true; };
     };
 
     signing = {
