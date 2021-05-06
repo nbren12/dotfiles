@@ -78,6 +78,7 @@ in {
 
     # nix
     cachix
+    niv
   ];
 
   home.sessionVariables = { EDITOR = "vim"; };
