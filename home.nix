@@ -61,6 +61,7 @@ in {
     kubectl
     google-cloud-sdk
     openssh
+    unixtools.watch
     rsync
     curl
     ag
