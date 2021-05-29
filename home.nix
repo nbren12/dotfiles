@@ -65,12 +65,15 @@ in {
     rsync
     curl
     ag
+    jq
+
     #my-python
     netcdf
     bitwarden-cli
 
     # git
     gitAndTools.hub
+    gitAndTools.gh
 
     # haskell ecosystem
     stack
@@ -80,6 +83,9 @@ in {
     # nix
     cachix
     niv
+
+    slack
+    spotify
   ];
 
   home.sessionVariables = { EDITOR = "vim"; };
@@ -139,7 +145,8 @@ in {
     };
   };
 
-  programs.gpg = { enable = true; };
+  programs.gpg.enable = true;
+  services.gpg-agent.enable = true;
 
   programs.git = {
     enable = true;
@@ -259,8 +266,6 @@ in {
 
   programs.vscode = {
     enable = true;
-    userSettings =
-      builtins.fromJSON (builtins.readFile ./vscode/user-settings.json);
   };
 
   programs.irssi = {
