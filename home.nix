@@ -2,7 +2,7 @@
 let
   my-python = pkgs.python3.withPackages
     (ps: [ ps.pip ps.tox ps.setuptools ps.pip-tools ps.pipx ]);
-
+  shellAliases = import ./aliases.nix;
 in {
   nixpkgs.overlays = [
     (import (builtins.fetchTarball {
@@ -234,7 +234,6 @@ in {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
-      source ~/dotfiles/.dotfiles/shell/aliases.sh
       fish_vi_key_bindings
 
       # key bindings
@@ -250,15 +249,15 @@ in {
         sha256 = "0c5i7sdrsp0q3vbziqzdyqn4fmp235ax4mn4zslrswvn8g3fvdyh";
       };
     }];
-
-    shellAliases = {
-      hs = "home-manager switch";
-      k = "kubectl";
-    };
-
+    inherit shellAliases;
   };
   home.file.".config/fish/conf.d/prompt.fish".source =
     ~/dotfiles/.config/fish/conf.d/prompt.fish;
+
+  programs.bash = {
+    enable = true;
+    inherit shellAliases;
+  };
 
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
