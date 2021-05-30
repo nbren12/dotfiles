@@ -257,6 +257,14 @@ in {
   programs.bash = {
     enable = true;
     inherit shellAliases;
+
+    # globstar and checkjobs are not present in the mac login shell
+    shellOptions = [ "histappend" "checkwinsize" "extglob" ];
+
+    initExtra = pkgs.lib.optionalString config.programs.fish.enable ''
+      fish
+      exit
+    '';
   };
 
   programs.fzf.enable = true;
