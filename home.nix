@@ -55,38 +55,36 @@ in {
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [
-    hugo
-    nixfmt
-    kubectl
-    google-cloud-sdk
-    openssh
-    unixtools.watch
-    rsync
-    curl
-    ag
-    jq
+  home.packages = with pkgs;
+    [
+      hugo
+      nixfmt
+      kubectl
+      google-cloud-sdk
+      openssh
+      unixtools.watch
+      rsync
+      curl
+      ag
+      jq
 
-    #my-python
-    netcdf
-    bitwarden-cli
+      #my-python
+      netcdf
+      bitwarden-cli
 
-    # git
-    gitAndTools.hub
-    gitAndTools.gh
+      # git
+      gitAndTools.hub
+      gitAndTools.gh
 
-    # haskell ecosystem
-    stack
-    cabal-install
-    hlint
+      # haskell ecosystem
+      stack
+      cabal-install
+      hlint
 
-    # nix
-    cachix
-    niv
-
-    slack
-    spotify
-  ];
+      # nix
+      cachix
+      niv
+    ] ++ lib.optionals pkgs.stdenv.isLinux [ slack spotify ];
 
   home.sessionVariables = { EDITOR = "vim"; };
 
@@ -146,7 +144,7 @@ in {
   };
 
   programs.gpg.enable = true;
-  services.gpg-agent.enable = true;
+  services.gpg-agent.enable = pkgs.stdenv.isLinux;
 
   programs.git = {
     enable = true;
@@ -264,9 +262,7 @@ in {
   programs.fzf.enable = true;
   programs.fzf.enableFishIntegration = true;
 
-  programs.vscode = {
-    enable = true;
-  };
+  programs.vscode = { enable = true; };
 
   programs.irssi = {
 
