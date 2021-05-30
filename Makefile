@@ -3,3 +3,6 @@ lint:
 
 reformat:
 	 nixfmt $(shell find . -name '*.nix')
+
+%:
+	home-manager $@
