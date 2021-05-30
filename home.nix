@@ -183,6 +183,7 @@ in {
       diff = "diff --word-diff";
       dc = "diff --cached";
       ttc = "clean -x -d";
+      pf = "push --force-with-lease";
     };
     ignores = [
       "*.aux"
