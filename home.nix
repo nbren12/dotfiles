@@ -67,6 +67,7 @@ in {
       curl
       ag
       jq
+      gnumake
 
       #my-python
       netcdf
@@ -234,6 +235,7 @@ in {
   programs.fish = {
     enable = true;
     interactiveShellInit = ''
+      set -gx NIX_FISH 1
       fish_vi_key_bindings
 
       # key bindings
@@ -262,8 +264,10 @@ in {
     shellOptions = [ "histappend" "checkwinsize" "extglob" ];
 
     initExtra = pkgs.lib.optionalString config.programs.fish.enable ''
-      fish
-      exit
+      if [[ -z $NIX_FISH ]]; then
+        fish
+        exit
+      fi
     '';
   };
 
